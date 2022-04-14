@@ -1,4 +1,4 @@
-package com.example.back.contoller;
+package com.example.back.controller;
 
 import com.example.back.entity.Dairy;
 import com.example.back.service.DairyService;
