@@ -1,5 +1,5 @@
+/* eslint-disable */
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { Layout, Button, Menu, Typography } from 'antd';
 import { green } from '@ant-design/colors';
 import styled from 'styled-components';
@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import SearchMy from './pages/SearchMyDiary';
 import MyDetail from './pages/MyDetail';
 import './App.css';
+import Writing from './pages/Writing';
 
 
 const { Header, Content, Footer } = Layout;
@@ -24,7 +25,7 @@ function App() {
             <Title level={5} >지금 나의 하루는</Title>
           </StyledLogo>
           {/* <Button type="text">글 작성</Button> */}
-          <Menu mode='horizontal' style={{ background: green.primary, height: 70, width: '80%', margin: 0 }}>
+          <Menu mode='horizontal' style={{ background: green.primary, height: 70 }}>
             <Menu.Item style={{ height: 70 }}>글 작성</Menu.Item>
             <Menu.Item>둘러보기</Menu.Item>
           </Menu>
@@ -43,6 +44,7 @@ function App() {
                 <Route path='/user/signup' element={<Signup />} />
                 <Route path='/my/search' element={<SearchMy />} />
                 <Route path='/my/detail' element={<MyDetail />} />
+                <Route path="/my/Writing" element={<Writing />} />
               </Routes>
             </BrowserRouter>
           </div>
