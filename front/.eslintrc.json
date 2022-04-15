@@ -6,7 +6,9 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "eslint-config-prettier",
+        "eslint:recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -19,5 +21,9 @@
         "react"
     ],
     "rules": {
+        "linebreak-style": [
+            "error",
+            "windows"
+        ]
     }
 }
