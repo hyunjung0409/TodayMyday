@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Title = styled.h3``;
+const MyButton = styled(Button)`
+  margin-bottom: 10px
+`;
 
 function LoginForm() {
   const onFinish = (values) => {
@@ -19,21 +22,14 @@ function LoginForm() {
       <Title>로그인</Title>
       <Form
         name="basic"
-        initialValues={{
-          remember: true,
-        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        layout="vertical"
       >
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[
-            {
-              message: 'Please input your username!',
-            },
-          ]}
+          label="ID"
+          name="id"
         >
           <Input />
         </Form.Item>
@@ -41,20 +37,17 @@ function LoginForm() {
         <Form.Item
           label="Password"
           name="password"
-          rules={[
-            {
-              message: 'Please input your password!',
-            },
-          ]}
         >
           <Input.Password />
         </Form.Item>
 
         <Form.Item>
-          <Button style={{ marginBottom: '10px' }} type="primary" htmlType="submit">
+          <MyButton type="primary" htmlType="submit">
             Login
-          </Button>
-          <Link to="/signup">signUp</Link>
+          </MyButton>
+          <div>
+            <Link to="/user/signup">Signup</Link>
+          </div>
         </Form.Item>
       </Form>
     </>
