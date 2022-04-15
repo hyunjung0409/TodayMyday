@@ -6,4 +6,6 @@ import com.example.back.entity.User;
 
 public interface DairyService {
     boolean createDairy(DairyDto dairyDto, User user);
+    Dairy findDairy(Long dno);
+    Dairy modifyDairy(Long dno, String userId, DairyDto dairyDto);
 }
