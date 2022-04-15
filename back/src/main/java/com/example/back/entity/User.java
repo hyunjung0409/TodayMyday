@@ -1,11 +1,12 @@
 package com.example.back.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,12 +19,16 @@ public class User {
     String userId;
 
     @NotNull
+    @JsonIgnore
     String password;
 
     @NotNull
     String nickname;
 
     String image;
+//
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    List<Dairy> dairies = new ArrayList<>();
 
     @Builder
     public User(String userId, String password, String nickname, String image) {
@@ -32,5 +37,6 @@ public class User {
         this.nickname = nickname;
         this.image = image;
     }
+
 
 }

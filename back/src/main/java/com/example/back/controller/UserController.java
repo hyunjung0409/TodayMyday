@@ -2,15 +2,14 @@ package com.example.back.controller;
 
 import ch.qos.logback.core.encoder.EchoEncoder;
 import com.example.back.dto.UserDto;
+import com.example.back.entity.User;
+import com.example.back.repository.UserRepository;
 import com.example.back.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +20,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @PostMapping("/signup")
     public ResponseEntity<Map<String, Object>> signUp(@RequestBody UserDto userDto) {
@@ -51,5 +51,15 @@ public class UserController {
 //        }
 //
 //        return new ResponseEntity<Map<String, Object>>(result, status);
+    }
+
+    @GetMapping("/read/{userId}")
+    public ResponseEntity<Map<String, Object>> readUser(@PathVariable String userId){
+        Map<String, Object> map = new HashMap<>();
+        User user = userRepository.findByUserId(userId);
+
+        map.put("user", user);
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }

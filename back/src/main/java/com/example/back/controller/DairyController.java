@@ -1,14 +1,16 @@
 package com.example.back.controller;
 
+import com.example.back.dto.DairyDto;
 import com.example.back.entity.Dairy;
+import com.example.back.entity.User;
+import com.example.back.repository.DairyRepository;
+import com.example.back.repository.UserRepository;
 import com.example.back.service.DairyService;
+import com.example.back.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,24 +21,32 @@ import java.util.Map;
 public class DairyController {
 
     private final DairyService dairyService;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final DairyRepository dairyRepository;
 
-    @PostMapping("/create")
-    public ResponseEntity<Map<String, Object>> createDairy(@RequestBody Dairy dairy){
+    @PostMapping("/create/{userId}")
+    public ResponseEntity<Map<String, Object>> createDairy(@PathVariable String userId, @RequestBody DairyDto dairyDto){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        try {
-            dairyService.createDairy(dairy);
+        User user = userRepository.findByUserId(userId);
+        if (dairyService.createDairy(dairyDto, user)) {
             hashMap.put("Message", "SUCCES");
             status = HttpStatus.OK;
-        } catch (Exception e){
-            hashMap.put("Message", "FAIL");
-            hashMap.put("ERROR", e.getMessage());
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
-        }
+            hashMap.put("Status", status);
 
+        } else {
+            hashMap.put("Message", "FAIL");
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            hashMap.put("ERROR", "빈 값이 들어있습니다.");
+            hashMap.put("Status", status);
+
+        }
         return new ResponseEntity<>(hashMap, status);
     }
+
+
 
 
 }
