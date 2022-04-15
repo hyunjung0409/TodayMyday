@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface DairyRepository extends JpaRepository<Dairy, Long> {
 
     Dairy findDairyByDno(Long dno);
+    Dairy deleteDairyByDno(Long dno);
 }
