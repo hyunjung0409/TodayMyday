@@ -35,12 +35,7 @@ public class DairyServiceImpl implements DairyService{
 
     @Override
     public Dairy findDairy(Long dno) {
-
-
-        Dairy dairy = dairyRepository.findDairyByDno(dno);
-        if(dairy == null) System.out.println("null");
-        else System.out.println("되여");
-        return dairy;
+        return null;
     }
 
     @Override
@@ -60,6 +55,21 @@ public class DairyServiceImpl implements DairyService{
         dairyRepository.save(dairy);
 
         return dairy;
+    }
+
+    @Override
+    public Boolean deleteDairy(Long dno, String userId) {
+        Dairy dairy = dairyRepository.findDairyByDno(dno);
+
+        if(dairy == null){ return false; }
+
+        String id = dairy.getUser().getUserId();
+        if(!id.equals(userId)) { return false; }
+
+        dairyRepository.delete(dairy);
+
+        return true;
+
     }
 
 

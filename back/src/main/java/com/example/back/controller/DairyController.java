@@ -27,7 +27,7 @@ public class DairyController {
     private final UserRepository userRepository;
     private final DairyRepository dairyRepository;
 
-    @GetMapping("/readall")
+    @GetMapping("/")
     public ResponseEntity<Map<String, Object>> readAllDairy(){ // 모든 다이어리를 불러옴
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
@@ -42,7 +42,7 @@ public class DairyController {
         return new ResponseEntity<>(hashMap, status);
     }
 
-    @PostMapping("/create/{userId}")
+    @PostMapping("/{userId}")
     public ResponseEntity<Map<String, Object>> createDairy(@PathVariable String userId, @RequestBody DairyDto dairyDto){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
@@ -63,7 +63,7 @@ public class DairyController {
         return new ResponseEntity<>(hashMap, status);
     }
 
-    @PutMapping("/modify/{userId}/{dno}")
+    @PutMapping("/{userId}/{dno}")
     public ResponseEntity<Map<String, Object>> modifyDairy(@PathVariable String userId, @PathVariable long dno, @RequestBody DairyDto dairyDto) {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
@@ -87,6 +87,26 @@ public class DairyController {
     }
 
 
+    @DeleteMapping("/{userId}/{dno}")
+    public ResponseEntity<Map<String, Object>> deleteDairy(@PathVariable String userId, @PathVariable Long dno){
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        if(dairyService.deleteDairy(dno, userId)) {
+            status = HttpStatus.OK;
+            hashMap.put("Status", status);
+            hashMap.put("Message", "SUCCESS"); // 메세지를 코드로 바꾸자
+            hashMap.put("deleted", dno+"번 다이어리가 성공적으로 삭제되었습니다.");
+            // 여기 더넣자
+        } else {
+            status = HttpStatus.NOT_FOUND;
+            hashMap.put("Status", status);
+            hashMap.put("Message", "FAIL");
+            hashMap.put("ERROR", "데이터를 찾을 수 없습니다.");
+        }
+
+        return new ResponseEntity<>(hashMap, status);
+    }
 
 
 }
