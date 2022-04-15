@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,6 +26,21 @@ public class DairyController {
     private final UserRepository userRepository;
     private final DairyRepository dairyRepository;
 
+    @GetMapping("/readall")
+    public ResponseEntity<Map<String, Object>> readAllDairy(){ // 모든 다이어리를 불러옴
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Dairy> dairies = dairyRepository.findAll();
+
+        hashMap.put("Message", "SUCCESS");
+        status = HttpStatus.OK;
+        hashMap.put("Status", HttpStatus.OK);
+        hashMap.put("dairies", dairies);
+
+        return new ResponseEntity<>(hashMap, status);
+    }
+
     @PostMapping("/create/{userId}")
     public ResponseEntity<Map<String, Object>> createDairy(@PathVariable String userId, @RequestBody DairyDto dairyDto){
         Map<String, Object> hashMap = new HashMap<>();
@@ -32,7 +48,7 @@ public class DairyController {
 
         User user = userRepository.findByUserId(userId);
         if (dairyService.createDairy(dairyDto, user)) {
-            hashMap.put("Message", "SUCCES");
+            hashMap.put("Message", "SUCCESS");
             status = HttpStatus.OK;
             hashMap.put("Status", status);
 
@@ -45,6 +61,7 @@ public class DairyController {
         }
         return new ResponseEntity<>(hashMap, status);
     }
+
 
 
 
