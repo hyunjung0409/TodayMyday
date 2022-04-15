@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/dairy")
@@ -35,7 +36,7 @@ public class DairyController {
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
-        hashMap.put("Status", HttpStatus.OK);
+        hashMap.put("Status", status);
         hashMap.put("dairies", dairies);
 
         return new ResponseEntity<>(hashMap, status);
@@ -62,6 +63,28 @@ public class DairyController {
         return new ResponseEntity<>(hashMap, status);
     }
 
+    @PutMapping("/modify/{userId}/{dno}")
+    public ResponseEntity<Map<String, Object>> modifyDairy(@PathVariable String userId, @PathVariable long dno, @RequestBody DairyDto dairyDto) {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        Dairy dairy = dairyService.modifyDairy(dno, userId, dairyDto);
+
+        if(dairy != null) {
+            status = HttpStatus.OK;
+            hashMap.put("Status", status);
+            hashMap.put("Message", "SUCCESS");
+            hashMap.put("dairy", dairy);
+        } else {
+            status = HttpStatus.NOT_FOUND;
+            hashMap.put("Status", status);
+            hashMap.put("Message", "FAIL");
+            hashMap.put("ERROR", "데이터를 찾을 수 없습니다.");
+        }
+
+       return new ResponseEntity<>(hashMap, status);
+
+    }
 
 
 

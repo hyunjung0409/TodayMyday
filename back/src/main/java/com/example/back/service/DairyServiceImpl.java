@@ -32,4 +32,35 @@ public class DairyServiceImpl implements DairyService{
         dairyRepository.save(save);
         return true;
     }
+
+    @Override
+    public Dairy findDairy(Long dno) {
+
+
+        Dairy dairy = dairyRepository.findDairyByDno(dno);
+        if(dairy == null) System.out.println("null");
+        else System.out.println("되여");
+        return dairy;
+    }
+
+    @Override
+    public Dairy modifyDairy(Long dno, String userId, DairyDto dairyDto) {
+        Dairy dairy = dairyRepository.findDairyByDno(dno);
+        if(dairy == null){ return null; }
+
+        String id = dairy.getUser().getUserId();
+        if(!id.equals(userId)) { return null; }
+
+        dairy.setWord(dairyDto.getWord());
+        dairy.setImage(dairyDto.getImage());
+        dairy.setContent(dairyDto.getContent());
+
+        System.out.println(dairy.getWord()+" "+dairy.getContent());
+
+        dairyRepository.save(dairy);
+
+        return dairy;
+    }
+
+
 }
