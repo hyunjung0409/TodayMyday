@@ -1,5 +1,5 @@
+/* eslint-disable */
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { Layout, Button, Menu, Typography } from 'antd';
 import { green } from '@ant-design/colors';
 import styled from 'styled-components';
@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import SearchMy from './pages/SearchMyDiary';
 import MyDetail from './pages/MyDetail';
 import './App.css';
+import Writing from './pages/Writing';
 
 
 const { Header, Content, Footer } = Layout;
@@ -43,8 +44,7 @@ function App() {
                 <Route path='/user/signup' element={<Signup />} />
                 <Route path='/my/search' element={<SearchMy />} />
                 <Route path='/my/detail' element={<MyDetail />} />
-                <Route path="/user/login" element={<Login />} />
-                <Route path="/user/Writing" element={<Writing />} />
+                <Route path="/my/Writing" element={<Writing />} />
               </Routes>
             </BrowserRouter>
           </div>
