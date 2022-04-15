@@ -24,12 +24,12 @@ function App() {
             <Title level={5} >지금 나의 하루는</Title>
           </StyledLogo>
           {/* <Button type="text">글 작성</Button> */}
-          <Menu mode='horizontal' style={{background: green.primary, height: 70}}>
-            <Menu.Item style={{height: 70}}>글 작성</Menu.Item>
+          <Menu mode='horizontal' style={{ background: green.primary, height: 70, width: '80%', margin: 0 }}>
+            <Menu.Item style={{ height: 70 }}>글 작성</Menu.Item>
             <Menu.Item>둘러보기</Menu.Item>
           </Menu>
           <StyledUserArea>
-          <Title level={5} >로그인</Title>
+            <Title level={5} >로그인</Title>
           </StyledUserArea>
         </StyledNavItems>
       </Header>
