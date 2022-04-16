@@ -1,7 +1,7 @@
-import React from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import React from 'react'
+import { Form, Input, Button, Select } from 'antd'
 
-const { Option } = Select;
+const { Option } = Select
 
 const formItemLayout = {
   labelCol: {
@@ -20,7 +20,7 @@ const formItemLayout = {
       span: 16,
     },
   },
-};
+}
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -32,18 +32,18 @@ const tailFormItemLayout = {
       offset: 8,
     },
   },
-};
+}
 
 function SignupForm() {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const onFinish = (values) => {
-    console.log('Success:', values);
-  };
+    console.log('Success:', values)
+  }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   // const onGenderChange = (value) => {
   //   // eslint-disable-next-line default-case
@@ -74,8 +74,7 @@ function SignupForm() {
       name="signup"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
+      autoComplete="off">
       <Form.Item
         label="아이디"
         name="id"
@@ -84,8 +83,7 @@ function SignupForm() {
             required: true,
             message: 'Please input your id!',
           },
-        ]}
-      >
+        ]}>
         <Input />
       </Form.Item>
 
@@ -97,8 +95,7 @@ function SignupForm() {
             required: true,
             message: 'Please input your password!',
           },
-        ]}
-      >
+        ]}>
         <Input.Password />
       </Form.Item>
       <Form.Item
@@ -114,14 +111,13 @@ function SignupForm() {
           ({ getFieldValue }) => ({
             validator(_, value) {
               if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
+                return Promise.resolve()
               }
 
-              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+              return Promise.reject(new Error('The two passwords that you entered do not match!'))
             },
           }),
-        ]}
-      >
+        ]}>
         <Input.Password />
       </Form.Item>
 
@@ -135,21 +131,19 @@ function SignupForm() {
             message: 'Please input your nickname!',
             whitespace: true,
           },
-        ]}
-      >
+        ]}>
         <Input />
       </Form.Item>
 
       <Form.Item
-          label="성별"
-          name="gender"
-          rules={[
-            {
-              required: true,
-              message: 'Please select gender!',
-            },
-          ]}
-        >
+        label="성별"
+        name="gender"
+        rules={[
+          {
+            required: true,
+            message: 'Please select gender!',
+          },
+        ]}>
         <Select
           placeholder="Select your gender"
           // onChange={onGenderChange}
@@ -160,15 +154,14 @@ function SignupForm() {
       </Form.Item>
 
       <Form.Item
-          label="연령대"
-          name="ageRange"
-          rules={[
-            {
-              required: true,
-              message: 'Please select ageRange!',
-            },
-          ]}
-        >
+        label="연령대"
+        name="ageRange"
+        rules={[
+          {
+            required: true,
+            message: 'Please select ageRange!',
+          },
+        ]}>
         <Select
           placeholder="Select your ageRange"
           // onChange={onGenderChange}
@@ -180,14 +173,14 @@ function SignupForm() {
           <Option value="5">노년 (60~)</Option>
         </Select>
       </Form.Item>
-    
+
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
           Register
         </Button>
       </Form.Item>
     </Form>
-  );
+  )
 }
 
-export default SignupForm;
+export default SignupForm

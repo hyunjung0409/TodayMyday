@@ -1,10 +1,10 @@
-import React from 'react';
-import { Carousel } from 'antd';
-import styled from 'styled-components';
-import DiaryCard from './DiaryCard';
+import React from 'react'
+import { Carousel } from 'antd'
+import styled from 'styled-components'
+import DiaryCard from './DiaryCard'
 
 function onChange(a, b, c) {
-  console.log(a, b, c);
+  console.log(a, b, c)
 }
 
 const contentStyle = {
@@ -13,13 +13,13 @@ const contentStyle = {
   lineHeight: '160px',
   textAlign: 'center',
   background: '#364d79',
-};
+}
 
 function DiaryCarousel() {
   return (
     <Carousel afterChange={onChange}>
-      <div className='carousel-1'>
-        <h3 >1</h3>
+      <div className="carousel-1">
+        <h3>1</h3>
         <StyledCardlArea>
           <DiaryCard />
           <DiaryCard />
@@ -55,4 +55,4 @@ const StyledCardlArea = styled.div`
   border: 1px solid red;
 `
 
-export default DiaryCarousel;
+export default DiaryCarousel

@@ -1,8 +1,7 @@
-/* eslint-disable */
 class ImageUploader {
-    async upload(file) {
-        return 'file';
-    }
+  async upload(file) {
+    return 'file'
+  }
 }
 
-export default ImageUploader;
+export default ImageUploader

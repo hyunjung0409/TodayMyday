@@ -1,21 +1,21 @@
-import React from 'react';
-import { Button, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import { Button, Form, Input } from 'antd'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-const Title = styled.h3``;
+const Title = styled.h3``
 const MyButton = styled(Button)`
-  margin-bottom: 10px
-`;
+  margin-bottom: 10px;
+`
 
 function LoginForm() {
   const onFinish = (values) => {
-    console.log('Success:', values);
-  };
+    console.log('Success:', values)
+  }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
 
   return (
     <>
@@ -25,19 +25,12 @@ function LoginForm() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
-        layout="vertical"
-      >
-        <Form.Item
-          label="ID"
-          name="id"
-        >
+        layout="vertical">
+        <Form.Item label="ID" name="id">
           <Input />
         </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-        >
+        <Form.Item label="Password" name="password">
           <Input.Password />
         </Form.Item>
 
@@ -51,7 +44,7 @@ function LoginForm() {
         </Form.Item>
       </Form>
     </>
-  );
+  )
 }
 
-export default LoginForm;
+export default LoginForm

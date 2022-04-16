@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import LoginForm from '../components/LoginForm';
+import React from 'react'
+import styled from 'styled-components'
+import LoginForm from '../components/LoginForm'
 
 const Container = styled.div`
   height: 100vh;
@@ -8,18 +8,18 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const MyForm = styled.div`
   width: 300px;
   border
-`;
+`
 
 const Item = styled.div`
   padding: 20px;
   width: 100%;
-  background-color: #EEA7BB;
-`;
+  background-color: #eea7bb;
+`
 
 function Login() {
   return (
@@ -30,7 +30,7 @@ function Login() {
         </Item>
       </MyForm>
     </Container>
-  );
+  )
 }
 
-export default Login;
+export default Login
