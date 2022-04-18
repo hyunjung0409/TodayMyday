@@ -3,7 +3,7 @@ import DiaryCarousel from '../components/Diary/DiaryCarousel'
 import SearchBar from '../components/SearchBar'
 
 function SearchMy() {
-  const [word, serWord] = useState('단어예시')
+  const [word, setWord] = useState('단어예시')
 
   return (
     <div>
