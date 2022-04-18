@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Card, Avatar } from 'antd';
+import React, { useState } from 'react'
+import { Card, Avatar } from 'antd'
 
-const { Meta } = Card;
+const { Meta } = Card
 
 function DiaryCard() {
   return (
@@ -14,19 +14,19 @@ function DiaryCard() {
           src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
         />
       }
-    // actions={[
-    //   <SettingOutlined key="setting" />,
-    //   <EditOutlined key="edit" />,
-    //   <EllipsisOutlined key="ellipsis" />,
-    // ]}
+      // actions={[
+      //   <SettingOutlined key="setting" />,
+      //   <EditOutlined key="edit" />,
+      //   <EllipsisOutlined key="ellipsis" />,
+      // ]}
     >
       <Meta
         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
         title="Nickname"
-      // description="This is the description"
+        // description="This is the description"
       />
     </Card>
   )
 }
 
-export default DiaryCard;
+export default DiaryCard

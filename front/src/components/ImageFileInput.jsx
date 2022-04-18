@@ -1,12 +1,11 @@
-/* eslint-disable */
-import React from 'react';
+import React from 'react'
 
 function ImageFileInput({ imageUploader, onFileChange }) {
-    return (
-        <div>
-            <input type='file' accept='image/*' name='file' />
-        </div>
-    );
+  return (
+    <div>
+      <input type="file" accept="image/*" name="file" />
+    </div>
+  )
 }
 
-export default ImageFileInput;
+export default ImageFileInput
