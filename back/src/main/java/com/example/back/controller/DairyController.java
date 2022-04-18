@@ -27,6 +27,7 @@ public class DairyController {
     private final UserRepository userRepository;
     private final DairyRepository dairyRepository;
 
+
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> readAllDairy(){ // 모든 다이어리를 불러옴
         Map<String, Object> hashMap = new HashMap<>();
