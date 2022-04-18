@@ -4,12 +4,18 @@ import com.example.back.dto.UserDto;
 import com.example.back.entity.User;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -19,13 +25,12 @@ public class UserServiceImpl implements UserService{
         String encPass = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("확인해보자" + user.getPassword());
 
-
         if (!validateDuplicateUser(user)) {
             return false;
         }
         else {
             User info = User.builder()
-                    .userId(user.getUserId())
+                    .userName(user.getUserName())
                     .password(encPass)
                     .nickname(user.getNickname())
                     .image(user.getImage())
@@ -38,10 +43,21 @@ public class UserServiceImpl implements UserService{
     }
 
     public boolean validateDuplicateUser(UserDto user) {
-        User findUsers = userRepository.findByUserId(user.getUserId());
+        User findUsers = userRepository.findByUserName(user.getUserName());
         if (findUsers != null) {
             return false;
         }
         return true;
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(username);
+
+        if (user == null) throw new UsernameNotFoundException("User: " + username + " not found");
+
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
+                Arrays.asList(new SimpleGrantedAuthority("user")));
     }
 }

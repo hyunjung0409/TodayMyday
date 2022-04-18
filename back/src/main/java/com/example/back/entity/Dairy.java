@@ -20,7 +20,7 @@ public class Dairy {
     private Long dno;
 
     @NotNull
-    private String userid;
+    private String userName;
 
     @NotNull
     private String word;
