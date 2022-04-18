@@ -18,21 +18,21 @@ function Navbar() {
       </StyledLogo>
 
       <Menu mode="horizontal" style={{ background: '#C1E17D', height: '5rem' }}>
-        <Menu.Item key="1" onClick={() => navigate('my/writing')}>
+        <Menu.Item key="1" onClick={() => navigate('/my/writing')}>
           글 작성
         </Menu.Item>
-        <Menu.Item key="2" onClick={() => navigate('my/search')}>
+        <Menu.Item key="2" onClick={() => navigate('/my/search')}>
           글 검색
         </Menu.Item>
-        <Menu.Item key="3" onClick={() => navigate('my/detail')}>
+        <Menu.Item key="3" onClick={() => navigate('/my/detail')}>
           글 보기
         </Menu.Item>
       </Menu>
 
-      <Button type="text" onClick={() => navigate('user/login')}>
+      <Button type="text" onClick={() => navigate('/user/login')}>
         로그인
       </Button>
-      <Button type="text" onClick={() => navigate('user/signup')}>
+      <Button type="text" onClick={() => navigate('/user/signup')}>
         회원가입
       </Button>
     </Header>

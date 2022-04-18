@@ -23,11 +23,11 @@ function App() {
             <StyledContentArea>
               <Routes>
                 <Route path="/" element={<Main />} />
-                <Route path="user/login" element={<Login />} />
-                <Route path="user/signup" element={<Signup />} />
-                <Route path="my/search" element={<SearchMy />} />
-                <Route path="my/detail" element={<MyDetail />} />
-                <Route path="my/writing" element={<Writing />} />
+                <Route path="/user/login" element={<Login />} />
+                <Route path="/user/signup" element={<Signup />} />
+                <Route path="/my/search" element={<SearchMy />} />
+                <Route path="/my/detail" element={<MyDetail />} />
+                <Route path="/my/writing" element={<Writing />} />
               </Routes>
             </StyledContentArea>
           </div>
