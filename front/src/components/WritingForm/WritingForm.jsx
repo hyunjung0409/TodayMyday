@@ -36,8 +36,8 @@ function WritingForm({ imageUploader, form }) {
       fileURL: file.url,
     })
   }
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const onSubmit = (event) => {
+    event.preventDefault()
     const data = {
       id: Date.now(), // uuid
       message: messageRef.current.value || '',

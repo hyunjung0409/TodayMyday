@@ -7,7 +7,7 @@ const imageUploader = new ImageUploader()
 function Writing() {
   const [form, setForm] = useState({
     word: '바다',
-    message: '바다 가고 싶다~',
+    message: '',
     fileURL: '/images/기본이미지.jpg',
   })
 
