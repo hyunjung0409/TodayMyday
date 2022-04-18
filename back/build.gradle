@@ -9,6 +9,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
+    all {
+        exclude group: 'org.srpingframework.boot', module: 'spring-boot-starter-logging'
+    }
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -24,6 +27,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    implementation 'org.springframework.boot:spring-boot-start-log4j2'
+
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
