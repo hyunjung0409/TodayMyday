@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
 import ImageFileInput from '../ImageFileInput'
@@ -25,22 +25,56 @@ const Submit = styled(Button)`
   margin-top: 10px;
 `
 
-function WritingForm({ imageUploader }) {
+function WritingForm({ imageUploader, form }) {
+  const formRef = useRef()
+  const messageRef = useRef()
+  const [file, setFile] = useState({ fileName: null, fileURL: null })
+  const { word, message } = form
+  const onFileChange = (file) => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    })
+  }
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const data = {
+      id: Date.now(), // uuid
+      message: messageRef.current.value || '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
+    }
+    formRef.current.reset()
+    console.log(data)
+  }
   return (
-    <div style={{ width: '80%', margin: '0 auto', backgroundColor: '#EEA7BB', padding: '20px' }}>
-      <Word>단어</Word>
+    <form
+      ref={formRef}
+      style={{ width: '80%', margin: '0 auto', backgroundColor: '#EEA7BB', padding: '20px' }}>
+      <Word>{word}</Word>
       <Row>
         <Col span={8}>
           <ImageLayout>
-            <ImageFileInput />
+            <ImageFileInput
+              name={file.fileName}
+              imageUploader={imageUploader}
+              onFileChange={onFileChange}
+              file={file}
+              form={form}
+              setFile={setFile}
+            />
           </ImageLayout>
         </Col>
         <Col span={16}>
-          <WritingLayout>일기 내용</WritingLayout>
+          <WritingLayout>
+            <textarea ref={messageRef} name="message" placeholder={message}></textarea>
+          </WritingLayout>
         </Col>
       </Row>
-      <Submit type="primary">등록</Submit>
-    </div>
+      <Submit type="primary" onClick={onSubmit}>
+        등록
+      </Submit>
+    </form>
   )
 }
 
