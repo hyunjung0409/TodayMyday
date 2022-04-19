@@ -11,7 +11,7 @@ import MyDetail from './pages/MyDetail'
 import Navbar from './components/Layout/Navbar'
 import Article from './pages/Article'
 import ArticleList from './pages/ArticleList'
-
+import Profile from './pages/Profile'
 const { Content, Footer } = Layout
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
                 <Route path="/my/detail" element={<MyDetail />} />
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
+                <Route path="/profile" element={<Profile />} />
               </Routes>
             </StyledContentArea>
           </div>
