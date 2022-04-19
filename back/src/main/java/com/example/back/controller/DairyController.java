@@ -118,7 +118,7 @@ public class DairyController {
     }
 
     @GetMapping("/search")
-    @ApiOperation(value = "다이어리 삭제", notes = "다이어리 삭제", response = String.class)
+    @ApiOperation(value = "내 다이어리 검색", notes = "내가 등록한 다이어리 검색하기", response = String.class)
     public ResponseEntity<List<Dairy>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
         HttpStatus status;
 
