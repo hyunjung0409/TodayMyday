@@ -9,21 +9,25 @@ function WordCard() {
   })
   return (
     <div>
-      <div class="card card1">
-        <div class="front"></div>
-        <div class="back"></div>
+      <div className="card card1">
+        <div className="front"></div>
+        <div className="back"></div>
       </div>
-      <div class="card card2">
-        <div class="front"></div>
-        <div class="back"></div>
+      <div className="card card2">
+        <div className="front"></div>
+        <div className="back"></div>
       </div>
-      <div class="card card3">
-        <div class="front"></div>
-        <div class="back"></div>
+      <div className="card card3">
+        <div className="front"></div>
+        <div className="back"></div>
       </div>
-      <div class="card card4">
-        <div class="front"></div>
-        <div class="back"></div>
+      <div className="card card4">
+        <div className="front"></div>
+        <div className="back"></div>
+      </div>
+      <div className="card card5">
+        <div className="front"></div>
+        <div className="back"></div>
       </div>
     </div>
   )
