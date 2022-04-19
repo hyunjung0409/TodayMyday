@@ -7,6 +7,8 @@ import com.example.back.repository.DairyRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DairyService;
 import com.example.back.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/dairy")
 @RequiredArgsConstructor
+@Api(tags = {"다이어리 컨트롤러"})
 public class DairyController {
 
     private final DairyService dairyService;
@@ -29,6 +31,7 @@ public class DairyController {
 
 
     @GetMapping("/")
+    @ApiOperation(value = "다이어리 전체 검색", notes = "모든 다이어리 출력", response = String.class)
     public ResponseEntity<Map<String, Object>> readAllDairy(){ // 모든 다이어리를 불러옴
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
@@ -44,6 +47,7 @@ public class DairyController {
     }
 
     @PostMapping("/{userId}")
+    @ApiOperation(value = "다이어리 등록", notes = "현재 로그인 된 아이디로 다이어리 등록", response = String.class)
     public ResponseEntity<Map<String, Object>> createDairy(@PathVariable String userId, @RequestBody DairyDto dairyDto){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
@@ -65,6 +69,7 @@ public class DairyController {
     }
 
     @PutMapping("/{userId}/{dno}")
+    @ApiOperation(value = "다이어리 수정", notes = "다이어리 수정", response = String.class)
     public ResponseEntity<Map<String, Object>> modifyDairy(@PathVariable String userId, @PathVariable long dno, @RequestBody DairyDto dairyDto) {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
@@ -89,6 +94,7 @@ public class DairyController {
 
 
     @DeleteMapping("/{userId}/{dno}")
+    @ApiOperation(value = "다이어리 삭제", notes = "다이어리 삭제", response = String.class)
     public ResponseEntity<Map<String, Object>> deleteDairy(@PathVariable String userId, @PathVariable Long dno){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
