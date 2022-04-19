@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import WritingForm from '../components/WritingForm/WritingForm'
+import ArticleForm from '../components/ArticleForm'
 import ImageUploader from '../service/image_uploader'
 
 const imageUploader = new ImageUploader()
@@ -13,7 +13,7 @@ function Writing() {
 
   return (
     <div>
-      <WritingForm imageUploader={imageUploader} form={form} />
+      <ArticleForm imageUploader={imageUploader} form={form} />
     </div>
   )
 }

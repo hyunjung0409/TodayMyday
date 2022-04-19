@@ -9,7 +9,8 @@ import Signup from './pages/Signup'
 import SearchMy from './pages/SearchMyDiary'
 import MyDetail from './pages/MyDetail'
 import './app.css'
-import Writing from './pages/Writing'
+import Article from './pages/Article'
+import ArticleList from './pages/ArticleList'
 
 const { Header, Content, Footer } = Layout
 const { Title } = Typography
@@ -42,7 +43,8 @@ function App() {
                 <Route path="/user/signup" element={<Signup />} />
                 <Route path="/my/search" element={<SearchMy />} />
                 <Route path="/my/detail" element={<MyDetail />} />
-                <Route path="/my/Writing" element={<Writing />} />
+                <Route path="/my/article" element={<Article />} />
+                <Route path="/my/articleList" element={<ArticleList />} />
               </Routes>
             </BrowserRouter>
           </div>
