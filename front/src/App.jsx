@@ -10,7 +10,6 @@ import SearchMy from './pages/SearchMyDiary'
 import MyDetail from './pages/MyDetail'
 import './app.css'
 import Writing from './pages/Writing'
-
 const { Header, Content, Footer } = Layout
 const { Title } = Typography
 
@@ -48,6 +47,7 @@ function App() {
           </div>
         </StyledContentArea>
       </Content>
+      {/* <Footer></Footer> */}
       <Footer style={{ background: green.primary, textAlign: 'center' }}>
         지금 나의 하루는 ©2022 Created by Ginny-us{' '}
       </Footer>
