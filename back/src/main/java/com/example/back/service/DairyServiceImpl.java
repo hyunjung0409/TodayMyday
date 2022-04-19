@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -70,6 +72,23 @@ public class DairyServiceImpl implements DairyService{
 
         return true;
 
+    }
+
+    @Override
+    public List<Dairy> searchDiaries(String keyword, String userId) {
+        System.out.println(keyword +" 서비스키워드");
+        List<Dairy> diares = dairyRepository.findByContentContains(keyword);
+        System.out.println("찍혀라ㅏㅏㅏ");
+
+        List<Dairy> my_daires = new ArrayList<>();
+        for (Dairy diary : diares) {
+            System.out.println(diary.getContent());
+            if (diary.getUser().getUserId().equals(userId)) {
+                System.out.println("찍힌다");
+                my_daires.add(diary);
+            }
+        }
+        return my_daires;
     }
 
 
