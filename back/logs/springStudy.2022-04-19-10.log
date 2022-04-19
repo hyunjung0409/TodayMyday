@@ -1,0 +1,649 @@
+INFO  2022-04-19 10:23:19,477 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:23:23,455 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:23:23,537 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:23:23,546 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:23:24,018 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:23:24,019 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:23:24,054 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:23:24,072 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:23:24,072 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:23:24,078 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:23:24,079 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:23:24,079 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:23:24,459 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:23:24,530 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 983 ms
+INFO  2022-04-19 10:23:25,508 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:23:25,540 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:23:25,795 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: b0147f5f-7c08-4b2d-90da-cb128dec2955
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:23:25,836 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:23:25,993 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:23:26,228 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:23:26,253 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:24:23,682 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:24:23,683 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+WARN  2022-04-19 10:26:47,351 [http-nio-8080-exec-5]  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver(logException:208) - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'keyword' for method parameter type String is not present]
+INFO  2022-04-19 10:29:23,102 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:29:26,594 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:29:26,673 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:29:26,673 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:29:27,162 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:29:27,162 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:29:27,198 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:29:27,215 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:29:27,216 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:29:27,221 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:29:27,222 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:29:27,222 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:29:27,641 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:29:27,702 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 1028 ms
+INFO  2022-04-19 10:29:28,680 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:29:28,721 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:29:29,001 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: c800331d-3836-48c9-add2-72884122ff36
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:29:29,054 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:29:29,253 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:29:29,529 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:29:29,555 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:30:43,938 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:30:43,939 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 0 ms
+INFO  2022-04-19 10:31:15,767 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:31:18,369 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:31:18,449 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:31:18,449 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:31:18,895 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:31:18,896 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:31:18,930 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:31:18,947 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:31:18,947 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:31:18,953 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:31:18,953 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:31:18,954 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 5 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:31:19,321 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:31:19,384 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 934 ms
+INFO  2022-04-19 10:31:20,241 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:31:20,292 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:31:20,521 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: db00fff4-e5ac-404f-a1bc-b59ed8ce532e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:31:20,561 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:31:20,710 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:31:20,927 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:31:20,952 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:31:34,623 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:31:34,625 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 2 ms
+INFO  2022-04-19 10:35:46,119 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:35:49,384 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:35:49,456 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:35:49,457 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:35:49,942 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:35:49,943 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:35:49,978 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:35:49,994 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:35:49,994 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:35:50,000 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:35:50,001 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:35:50,001 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:35:50,377 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:35:50,442 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 985 ms
+INFO  2022-04-19 10:35:51,301 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:35:51,357 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:35:51,594 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: dbd45f9e-2937-4f99-9325-81f60c606e3a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:35:51,636 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:35:51,793 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:35:52,022 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:35:52,046 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:36:04,264 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:36:04,265 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 0 ms
+INFO  2022-04-19 10:44:15,720 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:44:19,033 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:44:19,108 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:44:19,108 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:44:19,605 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:44:19,605 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:44:19,646 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:44:19,667 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:44:19,668 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:44:19,674 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:44:19,674 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:44:19,675 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:44:20,066 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:44:20,136 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 1027 ms
+INFO  2022-04-19 10:44:20,980 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:44:21,025 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:44:21,249 [restartedMain]  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext(refresh:591) - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dairyController' defined in file [C:\Users\SSAFY\S06P31C205\back\build\classes\java\main\com\example\back\controller\DairyController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dairyServiceImpl' defined in file [C:\Users\SSAFY\S06P31C205\back\build\classes\java\main\com\example\back\service\DairyServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dairyRepository' defined in com.example.back.repository.DairyRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)! Reason: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!
+INFO  2022-04-19 10:44:21,249 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  2022-04-19 10:44:21,269 [restartedMain]  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener(logMessage:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 2022-04-19 10:44:21,286 [restartedMain]  org.springframework.boot.SpringApplication(reportFailure:830) - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dairyController' defined in file [C:\Users\SSAFY\S06P31C205\back\build\classes\java\main\com\example\back\controller\DairyController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dairyServiceImpl' defined in file [C:\Users\SSAFY\S06P31C205\back\build\classes\java\main\com\example\back\service\DairyServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dairyRepository' defined in com.example.back.repository.DairyRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)! Reason: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.18.jar:5.3.18]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.18.jar:5.3.18]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.6.jar:2.6.6]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740) ~[spring-boot-2.6.6.jar:2.6.6]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415) ~[spring-boot-2.6.6.jar:2.6.6]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) ~[spring-boot-2.6.6.jar:2.6.6]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312) ~[spring-boot-2.6.6.jar:2.6.6]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.6.jar:2.6.6]
+	at com.example.back.BackApplication.main(BackApplication.java:10) ~[main/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.6.jar:2.6.6]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dairyServiceImpl' defined in file [C:\Users\SSAFY\S06P31C205\back\build\classes\java\main\com\example\back\service\DairyServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dairyRepository' defined in com.example.back.repository.DairyRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)! Reason: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	... 24 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dairyRepository' defined in com.example.back.repository.DairyRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)! Reason: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	... 24 more
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)! Reason: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:106) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[?:?]
+	at java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?]
+	at java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1052) ~[?:?]
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[?:?]
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
+	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.Optional.map(Optional.java:265) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	... 24 more
+Caused by: java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.util.List com.example.back.repository.DairyRepository.searchDiares(java.lang.String)!
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:96) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[?:?]
+	at java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?]
+	at java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1052) ~[?:?]
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[?:?]
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
+	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.Optional.map(Optional.java:265) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	... 24 more
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from dairy where content like '%:keyword%']
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:188) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:757) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.18.jar:5.3.18]
+	at com.sun.proxy.$Proxy131.createQuery(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:90) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[?:?]
+	at java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?]
+	at java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1052) ~[?:?]
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[?:?]
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
+	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.Optional.map(Optional.java:265) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	... 24 more
+Caused by: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from dairy where content like '%:keyword%']
+	at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.hql.internal.ast.ErrorTracker.throwQueryException(ErrorTracker.java:93) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:301) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:636) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:748) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114) ~[hibernate-core-5.6.7.Final.jar:5.6.7.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.18.jar:5.3.18]
+	at com.sun.proxy.$Proxy131.createQuery(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:90) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) ~[?:?]
+	at java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?]
+	at java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1052) ~[?:?]
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) ~[?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) ~[?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) ~[?:?]
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913) ~[?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:?]
+	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at java.util.Optional.map(Optional.java:265) ~[?:?]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.util.Lazy.get(Lazy.java:114) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328) ~[spring-data-commons-2.6.3.jar:2.6.3]
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144) ~[spring-data-jpa-2.6.3.jar:2.6.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.18.jar:5.3.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.18.jar:5.3.18]
+	... 24 more
+ERROR 2022-04-19 10:44:36,077 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:44:36,159 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:44:36,160 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:44:36,636 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:44:36,636 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:44:36,674 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 32 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:44:36,692 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:44:36,692 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:44:36,697 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:44:36,698 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:44:36,698 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:44:37,091 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:44:37,166 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 1006 ms
+INFO  2022-04-19 10:44:38,097 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:44:38,147 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:44:38,418 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: 28f7cb17-bce4-403b-ac9a-4542f3c24fcd
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:44:38,471 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:44:38,639 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:44:38,878 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:44:38,904 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:44:48,588 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:44:48,589 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+INFO  2022-04-19 10:46:44,314 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:46:47,637 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:46:47,713 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:46:47,713 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:46:48,200 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:46:48,200 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:46:48,249 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:46:48,267 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:46:48,267 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:46:48,272 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:46:48,273 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:46:48,273 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 6 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:46:48,676 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:46:48,746 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 1032 ms
+INFO  2022-04-19 10:46:49,621 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:46:49,669 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:46:49,893 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: da7ec165-130e-41e4-85a1-19035033d9a9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:46:49,932 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:46:50,091 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:46:50,318 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:46:50,342 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:46:54,848 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:46:54,850 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+WARN  2022-04-19 10:47:14,623 [http-nio-8080-exec-5]  org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver(logException:208) - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<java.util.List<com.example.back.entity.Dairy>> com.example.back.controller.DairyController.searchDiary(java.lang.String)]
+INFO  2022-04-19 10:48:17,821 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:48:20,937 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:48:21,007 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:48:21,007 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:48:21,509 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:48:21,509 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:48:21,544 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:48:21,559 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:48:21,560 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:48:21,564 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:48:21,565 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:48:21,565 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 5 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:48:21,943 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:48:22,004 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 996 ms
+INFO  2022-04-19 10:48:22,830 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:48:22,880 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:48:23,105 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: 5c56988a-f4af-46d1-a59c-68d71c1b0f03
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:48:23,145 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:48:23,291 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:48:23,519 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:48:23,542 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:48:32,323 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:48:32,324 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 0 ms
+INFO  2022-04-19 10:53:37,975 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:53:41,320 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:53:41,394 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:53:41,394 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:53:41,867 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:53:41,867 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:53:41,905 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 33 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:53:41,922 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:53:41,922 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:53:41,927 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:53:41,928 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:53:41,928 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 5 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:53:42,316 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:53:42,380 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 985 ms
+INFO  2022-04-19 10:53:43,236 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:53:43,286 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:53:43,513 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: a0beee3d-534f-4ab6-ace2-c3b89aaa51e9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:53:43,553 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:53:43,703 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:53:43,924 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:53:43,950 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:53:54,233 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:53:54,234 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+INFO  2022-04-19 10:55:07,554 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:55:10,670 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:55:10,742 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:55:10,743 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:55:11,214 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:55:11,214 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:55:11,253 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:55:11,270 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:55:11,270 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:55:11,275 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:55:11,276 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:55:11,276 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 5 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:55:11,658 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:55:11,722 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 979 ms
+INFO  2022-04-19 10:55:12,558 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:55:12,609 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:55:12,845 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: 4efe32f0-d327-42c6-af05-7eb35dd0e9f8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:55:12,889 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:55:13,049 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:55:13,279 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:55:13,306 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:56:02,345 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:56:02,347 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+INFO  2022-04-19 10:57:35,036 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:57:37,562 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:57:37,651 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:57:37,651 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:57:38,107 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:57:38,108 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:57:38,142 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:57:38,159 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:57:38,159 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:57:38,164 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:57:38,164 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:57:38,164 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 5 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:57:38,541 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:57:38,609 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 958 ms
+INFO  2022-04-19 10:57:39,450 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:57:39,481 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:57:39,703 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: 64508129-f2d1-41ef-84af-b18e46abdf1b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:57:39,743 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:57:39,889 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:57:40,111 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:57:40,136 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:57:43,584 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:57:43,586 [http-nio-8080-exec-2]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 1 ms
+INFO  2022-04-19 10:59:42,189 [SpringApplicationShutdownHook]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(destroy:651) - Closing JPA EntityManagerFactory for persistence unit 'default'
+ERROR 2022-04-19 10:59:44,523 [restartedMain]  org.springframework.boot.context.logging.LoggingApplicationListener(lambda$getLogLevelConfigurer$2:396) - Cannot set level 'INFO' for 'null'
+INFO  2022-04-19 10:59:44,599 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-04-19 10:59:44,599 [restartedMain]  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor(logTo:255) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  2022-04-19 10:59:45,073 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:59:45,074 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  2022-04-19 10:59:45,108 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+INFO  2022-04-19 10:59:45,126 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(multipleStoresDetected:262) - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  2022-04-19 10:59:45,126 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:132) - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+INFO  2022-04-19 10:59:45,131 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.DairyRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:59:45,131 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport(isStrictRepositoryCandidate:349) - Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.example.back.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+INFO  2022-04-19 10:59:45,131 [restartedMain]  org.springframework.data.repository.config.RepositoryConfigurationDelegate(registerRepositoriesIn:201) - Finished Spring Data repository scanning in 5 ms. Found 0 MongoDB repository interfaces.
+INFO  2022-04-19 10:59:45,517 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(initialize:108) - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-04-19 10:59:45,583 [restartedMain]  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext(prepareWebApplicationContext:290) - Root WebApplicationContext: initialization completed in 983 ms
+INFO  2022-04-19 10:59:46,462 [restartedMain]  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean(buildNativeEntityManagerFactory:437) - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  2022-04-19 10:59:46,513 [restartedMain]  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration(openEntityManagerInViewInterceptor:219) - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  2022-04-19 10:59:46,742 [restartedMain]  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration(getOrDeducePassword:87) - 
+
+Using generated security password: fc7dd155-1b07-4287-a014-e5d701c2a446
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+INFO  2022-04-19 10:59:46,783 [restartedMain]  org.springframework.security.web.DefaultSecurityFilterChain(<init>:52) - Will not secure any request
+WARN  2022-04-19 10:59:46,937 [restartedMain]  org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration(checkTemplateLocationExists:104) - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+INFO  2022-04-19 10:59:47,158 [restartedMain]  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer(startServer:58) - LiveReload server is running on port 35729
+INFO  2022-04-19 10:59:47,181 [restartedMain]  org.springframework.boot.web.embedded.tomcat.TomcatWebServer(start:220) - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-04-19 10:59:51,148 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:525) - Initializing Servlet 'dispatcherServlet'
+INFO  2022-04-19 10:59:51,149 [http-nio-8080-exec-1]  org.springframework.web.servlet.DispatcherServlet(initServletBean:547) - Completed initialization in 0 ms

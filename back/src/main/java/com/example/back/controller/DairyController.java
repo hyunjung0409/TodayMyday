@@ -8,6 +8,8 @@ import com.example.back.repository.UserRepository;
 import com.example.back.service.DairyService;
 import com.example.back.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.dialect.DataDirectOracle9Dialect;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -107,6 +109,25 @@ public class DairyController {
         }
 
         return new ResponseEntity<>(hashMap, status);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Dairy>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
+        HttpStatus status;
+
+        System.out.println("키워드" + keyword);
+        List<Dairy> diares = dairyService.searchDiaries(keyword, userId);
+        System.out.println("컨트롤러 찍혀라");
+
+        if (diares != null) {
+            status = HttpStatus.OK;
+        }
+        else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        System.out.println("컨트롤러 찍혀라222");
+        return new ResponseEntity<>(diares, status);
     }
 
 
