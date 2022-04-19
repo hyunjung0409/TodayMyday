@@ -44,7 +44,7 @@ function ImageCarousel(props) {
     <div className="Carousel">
       <Slider {...settings}>
         {images.map((img, idx) => (
-          <div className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
+          <div key={idx} className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
             <img src={img} alt={img} />
           </div>
         ))}

@@ -19,7 +19,7 @@ function Navbar() {
         </Col>
         <Col span={16}>
           <nav className="nav-link">
-            <StyledLink to="/my/writing">
+            <StyledLink to="/my/article">
               <strong>글 작성</strong>
             </StyledLink>
             <StyledLink to="/my/search">
