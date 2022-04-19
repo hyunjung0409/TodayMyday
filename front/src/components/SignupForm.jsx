@@ -3,37 +3,6 @@ import { Form, Input, Button, Select } from 'antd'
 
 const { Option } = Select
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-}
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-}
-
 function SignupForm() {
   const [form] = Form.useForm()
 
@@ -69,12 +38,12 @@ function SignupForm() {
 
   return (
     <Form
-      {...formItemLayout}
       form={form}
       name="signup"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      autoComplete="off">
+      autoComplete="off"
+      layout="vertical">
       <Form.Item
         label="아이디"
         name="id"
@@ -174,7 +143,7 @@ function SignupForm() {
         </Select>
       </Form.Item>
 
-      <Form.Item {...tailFormItemLayout}>
+      <Form.Item>
         <Button type="primary" htmlType="submit">
           Register
         </Button>
