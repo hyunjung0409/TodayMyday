@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { Card, Avatar } from 'antd'
+import { Card, Avatar, Space, Typography } from 'antd'
+import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
 
 const { Meta } = Card
+const { Text } = Typography
 
 function DiaryCard() {
+  const [comment, setComment] = useState(0)
+
   return (
     <Card
       hoverable
@@ -20,11 +24,12 @@ function DiaryCard() {
       //   <EllipsisOutlined key="ellipsis" />,
       // ]}
     >
-      <Meta
-        avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-        title="Nickname"
-        // description="This is the description"
-      />
+      <Space>
+        <MessageOutlined style={{ fontSize: '20px', color: '#08c' }} />
+        <CommentOutlined style={{ fontSize: '20px', color: '#08c' }} />
+        <Text>{comment}</Text>
+      </Space>
+      <Meta avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />} title="Nickname" />
     </Card>
   )
 }
