@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import SignupForm from '../components/SignupForm'
+import SignupForm from '../components/Signup/SignupForm'
+import ImageUploader from '../service/image_uploader'
 
 function Signup() {
+  const [form, setForm] = useState({
+    word: '바다',
+    message: '',
+    fileURL: '/images/기본이미지.jpg',
+  })
+
   return (
     <StyledContainer>
       <StyledFormArea className="styled-form-area">
         <h3>Signup page</h3>
-        <SignupForm />
+        <SignupForm imageUploader={ImageUploader} form={form} setForm={setForm} />
       </StyledFormArea>
     </StyledContainer>
   )
