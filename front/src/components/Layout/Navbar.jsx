@@ -11,6 +11,7 @@ const { Title } = Typography
 function Navbar() {
   const navigate = useNavigate()
   const { me } = useSelector((state) => state.user)
+  console.log('me', me)
   const dispatch = useDispatch()
 
   const onLogOut = () => {
@@ -27,18 +28,22 @@ function Navbar() {
         </Col>
         <Col span={16}>
           <nav className="nav-link">
-            <StyledLink to="/my/article">
-              <strong>글 작성</strong>
-            </StyledLink>
-            <StyledLink to="/my/articleList">
-              <strong>글 목록</strong>
-            </StyledLink>
-            <StyledLink to="/my/search">
-              <strong>글 검색</strong>
-            </StyledLink>
-            <StyledLink to="/my/detail">
-              <strong>글 보기</strong>
-            </StyledLink>
+            {me && (
+              <>
+                <StyledLink to="/my/article">
+                  <strong>글 작성</strong>
+                </StyledLink>
+                <StyledLink to="/my/articleList">
+                  <strong>글 목록</strong>
+                </StyledLink>
+                <StyledLink to="/my/search">
+                  <strong>글 검색</strong>
+                </StyledLink>
+                <StyledLink to="/my/detail">
+                  <strong>글 보기</strong>
+                </StyledLink>
+              </>
+            )}
           </nav>
         </Col>
 
