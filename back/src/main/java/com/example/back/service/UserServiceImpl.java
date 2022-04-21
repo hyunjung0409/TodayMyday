@@ -42,6 +42,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public void deleteUser(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        userRepository.delete(user);
+    }
+
     public boolean validateDuplicateUser(UserDto user) {
         User findUsers = userRepository.findByUserId(user.getUserId());
         if (findUsers != null) {

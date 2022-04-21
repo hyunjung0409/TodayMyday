@@ -65,4 +65,15 @@ public class UserController {
 
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{userId}")
+    @ApiOperation(value = "사용자 탈퇴", notes = "아이디로 사용자 조회", response = String.class)
+    public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable String userId){
+        Map<String, Object> map = new HashMap<>();
+        userService.deleteUser(userId);
+
+        map.put("message", "삭제되었습니다");
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
 }
