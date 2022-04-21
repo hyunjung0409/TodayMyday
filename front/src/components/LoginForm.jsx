@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button, Form, Input } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { loginRequestAction } from '../reducers/user'
 
 const Title = styled.h3``
 const MyButton = styled(Button)`
@@ -9,8 +11,12 @@ const MyButton = styled(Button)`
 `
 
 function LoginForm() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const onFinish = (values) => {
     console.log('Success:', values)
+    dispatch(loginRequestAction({ values, navigate }))
   }
 
   const onFinishFailed = (errorInfo) => {
