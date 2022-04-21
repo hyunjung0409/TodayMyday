@@ -1,16 +1,19 @@
 package com.example.back.controller;
 
+import com.example.back.dto.TestWordDto;
 import com.example.back.entity.Dairy;
+import com.example.back.entity.TestWord;
+import com.example.back.entity.Word;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DairyRepository;
+import com.example.back.repository.WordRepository;
+import com.example.back.service.WordService;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +25,7 @@ import java.util.Map;
 public class TestController {
 
     private final DairyRepository dairyRepository;
+    private final WordService wordService;
 
     @GetMapping("/test1")
     public String test() {
@@ -34,5 +38,22 @@ public class TestController {
 
         List<Dairy> dairies = dairyRepository.findAll();
         return ResponseEntity.ok().body(dairies);
+    }
+
+    @GetMapping("/word")
+    @ApiOperation(value = "단어 뽑기", notes = "랜덤 단어 5개 뽑기", response = String.class)
+    public ResponseEntity<List<String>> recomandWord(){
+        List<String> words = wordService.pickWords();
+        return ResponseEntity.ok().body(words);
+    }
+
+    @PostMapping("/word")
+    @ApiOperation(value = "단어 추가", notes = "테스트용 단어 추가하기", response = String.class)
+    public ResponseEntity<Object> createWord(@RequestBody TestWordDto wordDto){
+
+        wordService.createWord(wordDto);
+
+        return ResponseEntity.ok().body(HttpStatus.OK);
+
     }
 }
