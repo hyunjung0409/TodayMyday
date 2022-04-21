@@ -22,6 +22,9 @@ function Navbar() {
             <StyledLink to="/my/article">
               <strong>글 작성</strong>
             </StyledLink>
+            <StyledLink to="/my/articleList">
+              <strong>글 목록</strong>
+            </StyledLink>
             <StyledLink to="/my/search">
               <strong>글 검색</strong>
             </StyledLink>

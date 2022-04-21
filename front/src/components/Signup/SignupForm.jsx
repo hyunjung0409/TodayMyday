@@ -1,17 +1,59 @@
-import React from 'react'
-import { Form, Input, Button, Select } from 'antd'
+import React, { useRef, useState } from 'react'
+import { Form, Input, Button, Select, Upload } from 'antd'
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons'
+import ImageFileInput from '../ImageFileInput'
+import { getAxios } from '../../api'
 
 const { Option } = Select
 
-function SignupForm() {
+function SignupForm(imageUploader) {
+  const formRef = useRef()
+  const messageRef = useRef()
   const [form] = Form.useForm()
+  const [file, setFile] = useState({ fileName: null, fileURL: null })
 
-  const onFinish = (values) => {
+  const onFileChange = (file) => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    })
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    const data = {
+      id: Date.now(), // uuid
+      message: messageRef.current.value || '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
+    }
+    formRef.current.reset()
+    console.log(data)
+  }
+
+  const onFinish = async (values) => {
+    const axios = getAxios()
+    await axios.post('user/signup', {
+      image: values.image,
+      nickname: values.nickname,
+      password: values.password,
+      userId: values.id,
+    })
     console.log('Success:', values)
   }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
+  }
+
+  const normFile = (e) => {
+    console.log('Upload event:', e)
+
+    if (Array.isArray(e)) {
+      return e
+    }
+
+    return e && e.fileList
   }
 
   // const onGenderChange = (value) => {
@@ -38,12 +80,45 @@ function SignupForm() {
 
   return (
     <Form
+      // ref={formRef}
       form={form}
       name="signup"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       layout="vertical">
+      <ImageFileInput
+        name={file.fileName}
+        imageUploader={imageUploader}
+        onFileChange={onFileChange}
+        file={file}
+        // form={form}
+        setFile={setFile}
+      />
+
+      {/* <Form.Item
+        name="upload"
+        label="Upload"
+        valuePropName="fileList"
+        getValueFromEvent={normFile}
+        extra="longgggggggggggggggggggggggggggggggggg">
+        <Upload name="logo" action="/upload.do" listType="picture">
+          <Button icon={<UploadOutlined />}>Click to upload</Button>
+        </Upload>
+      </Form.Item> */}
+
+      <Form.Item
+        label="프로필 이미지"
+        name="image"
+        rules={[
+          {
+            required: false,
+            message: 'Please input your id!',
+          },
+        ]}>
+        <Input />
+      </Form.Item>
+
       <Form.Item
         label="아이디"
         name="id"
@@ -109,7 +184,7 @@ function SignupForm() {
         name="gender"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Please select gender!',
           },
         ]}>
@@ -127,7 +202,7 @@ function SignupForm() {
         name="ageRange"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Please select ageRange!',
           },
         ]}>
