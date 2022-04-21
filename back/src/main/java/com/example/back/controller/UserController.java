@@ -1,15 +1,14 @@
 package com.example.back.controller;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.example.back.dto.UserDto;
 import com.example.back.entity.User;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,12 +17,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
+@Api(tags = {"유저 컨트롤러"})
 public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
 
     @PostMapping("/signup")
+    @ApiOperation(value = "회원가입", notes = "사용자 회원가입", response = String.class)
     public ResponseEntity<Map<String, Object>> signUp(@RequestBody UserDto userDto) {
         Map<String, Object> result = new HashMap<>();
         HttpStatus status;
@@ -54,14 +55,14 @@ public class UserController {
 //        return new ResponseEntity<Map<String, Object>>(result, status);
     }
 
-//    @GetMapping("/users")
-//    public User getUsers(@RequestBody UserDto userDto) {
-//        return userRepository.findByUserName(userDto.getUserName());
-//    }
+    @GetMapping("/read/{userId}")
+    @ApiOperation(value = "사용자 조회", notes = "아이디로 사용자 조회", response = String.class)
+    public ResponseEntity<Map<String, Object>> readUser(@PathVariable String userId){
+        Map<String, Object> map = new HashMap<>();
+        User user = userRepository.findByUserId(userId);
 
-    @GetMapping("/users")
-    public String getUsers() {
-        return "로그인 성공입니다~";
+        map.put("user", user);
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
-
 }

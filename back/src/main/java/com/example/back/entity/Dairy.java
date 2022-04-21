@@ -1,6 +1,8 @@
 package com.example.back.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,7 +53,4 @@ public class Dairy {
         this.createdat = createdat;
         this.user = user;
     }
-
-
-
 }

@@ -3,13 +3,9 @@ package com.example.back.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -30,7 +26,7 @@ public class User {
     String nickname;
 
     String image;
-
+//
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<Dairy> dairies = new ArrayList<>();
 
@@ -41,5 +37,6 @@ public class User {
         this.nickname = nickname;
         this.image = image;
     }
+
 
 }
