@@ -1,28 +1,29 @@
 package com.example.back.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "User")
-public class User extends BaseTimeEntity {
+public class User {
     @Id
     @NotNull
-    String userName;
+    String userId;
 
     @NotNull
+    @JsonIgnore
     String password;
 
     @NotNull
@@ -30,15 +31,15 @@ public class User extends BaseTimeEntity {
 
     String image;
 
-    LocalDateTime lastLoginTime;
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    List<Dairy> dairies = new ArrayList<>();
 
     @Builder
-    public User(String userName, String password, String nickname, String image, LocalDateTime lastLoginTime) {
-        this.userName = userName;
+    public User(String userId, String password, String nickname, String image) {
+        this.userId = userId;
         this.password = password;
         this.nickname = nickname;
         this.image = image;
-        this.lastLoginTime = lastLoginTime;
     }
+
 }

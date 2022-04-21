@@ -32,7 +32,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
                 .readValue(req.getInputStream(), UserCredentials.class);
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        userCredentials.getUserName(),
+                        userCredentials.getUserId(),
                         userCredentials.getPassword(),
                         Collections.emptyList()
                 )

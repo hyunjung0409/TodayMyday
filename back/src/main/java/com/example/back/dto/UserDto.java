@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserDto {
     @NotNull
-    String userName;
+    String userId;
     @NotNull
     String password;
     @NotNull
@@ -18,8 +18,8 @@ public class UserDto {
     String image;
 
     @Builder
-    public UserDto(String userName, String password, String nickname, String image) {
-        this.userName = userName;
+    public UserDto(String userId, String password, String nickname, String image) {
+        this.userId = userId;
         this.password = password;
         this.nickname = nickname;
         this.image = image;
@@ -27,7 +27,7 @@ public class UserDto {
 
     public User createUser() {
         return User.builder()
-                .userName(userName)
+                .userId(userId)
                 .password(password)
                 .nickname(nickname)
                 .image(image)

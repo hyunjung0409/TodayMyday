@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }
         else {
             User info = User.builder()
-                    .userName(user.getUserName())
+                    .userId(user.getUserId())
                     .password(encPass)
                     .nickname(user.getNickname())
                     .image(user.getImage())
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean validateDuplicateUser(UserDto user) {
-        User findUsers = userRepository.findByUserName(user.getUserName());
+        User findUsers = userRepository.findByUserId(user.getUserId());
         if (findUsers != null) {
             return false;
         }
@@ -53,11 +53,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUserId(username);
 
         if (user == null) throw new UsernameNotFoundException("User: " + username + " not found");
 
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getUserId(), user.getPassword(),
                 Arrays.asList(new SimpleGrantedAuthority("user")));
     }
 }
