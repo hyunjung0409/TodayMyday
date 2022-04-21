@@ -26,7 +26,13 @@ public class User {
     String nickname;
 
     String image;
-//
+
+    @NotNull
+    String gender;
+
+    @NotNull
+    String age;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<Dairy> dairies = new ArrayList<>();
 
