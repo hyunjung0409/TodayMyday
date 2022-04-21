@@ -47,6 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/login").permitAll()
+                .antMatchers("/test/**").permitAll()
                 //.antMatchers("/swagger-ui.html", "/swagger/**", "/swagger-resources/**", "webjars/**").permitAll()
                 .anyRequest().authenticated();
 
