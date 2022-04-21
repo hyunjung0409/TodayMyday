@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService {
                     .password(encPass)
                     .nickname(user.getNickname())
                     .image(user.getImage())
+                    .gender(user.getGender())
+                    .age(user.getAge())
                     .build();
             userRepository.save(info);
 
