@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { getAxios } from '../api'
 import { all, fork, takeLatest, call, put, delay } from 'redux-saga/effects'
 import {
   LOG_IN_REQUEST,
@@ -9,18 +9,19 @@ import {
   LOG_OUT_FAILURE,
 } from '../reducers/user'
 
+const axios = getAxios()
+
 function logInAPI(data) {
-  return axios.post('/api/login', data)
+  return axios.post('/user/login', { userId: data.values.userId, password: data.values.password })
 }
 
 function* logIn(action) {
   try {
-    // const result = yield call(logInAPI, action.data)
+    const result = yield call(logInAPI, action.data)
     const { navigate } = action.data
-    yield delay(2000)
     yield put({
       type: LOG_IN_SUCCESS,
-      data: action.data,
+      data: result.headers.authorization,
     })
     navigate('/')
   } catch (err) {

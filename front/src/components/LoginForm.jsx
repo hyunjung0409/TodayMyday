@@ -32,7 +32,7 @@ function LoginForm() {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         layout="vertical">
-        <Form.Item label="ID" name="id">
+        <Form.Item label="ID" name="userId">
           <Input />
         </Form.Item>
 

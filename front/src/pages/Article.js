@@ -5,7 +5,7 @@ import ImageUploader from '../service/image_uploader'
 const imageUploader = new ImageUploader()
 
 function Writing() {
-  const [form, setForm] = useState({
+  const [data, setForm] = useState({
     word: '바다',
     message: '',
     fileURL: '/images/기본이미지.jpg',
@@ -13,7 +13,7 @@ function Writing() {
 
   return (
     <div>
-      <ArticleForm imageUploader={imageUploader} form={form} />
+      <ArticleForm imageUploader={imageUploader} data={data} />
     </div>
   )
 }
