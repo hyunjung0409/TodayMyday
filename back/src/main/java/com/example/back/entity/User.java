@@ -37,11 +37,13 @@ public class User {
     List<Dairy> dairies = new ArrayList<>();
 
     @Builder
-    public User(String userId, String password, String nickname, String image) {
+    public User(String userId, String password, String nickname, String image, String gender, String age) {
         this.userId = userId;
         this.password = password;
         this.nickname = nickname;
         this.image = image;
+        this.gender = gender;
+        this.age = age;
     }
 
 

@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -55,6 +56,12 @@ public class UserController {
 //
 //        return new ResponseEntity<Map<String, Object>>(result, status);
     }
+
+//    @PostMapping("/login")
+//    @ApiOperation(value = "로그인", notes = "사용자 로그인", response = String.class)
+//    public ResponseEntity<Map<String, Object>> login(@RequestBody UserDto userDto) {
+//
+//    }
 
     @GetMapping("/read/{userId}")
     @ApiOperation(value = "사용자 조회", notes = "아이디로 사용자 조회", response = String.class)

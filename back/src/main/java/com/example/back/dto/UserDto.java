@@ -15,14 +15,21 @@ public class UserDto {
     String password;
     @NotNull
     String nickname;
+
     String image;
 
+    String gender;
+
+    String age;
+
     @Builder
-    public UserDto(String userId, String password, String nickname, String image) {
+    public UserDto(String userId, String password, String nickname, String image, String gender, String age) {
         this.userId = userId;
         this.password = password;
         this.nickname = nickname;
         this.image = image;
+        this.gender = gender;
+        this.age = age;
     }
 
     public User createUser() {
@@ -31,6 +38,8 @@ public class UserDto {
                 .password(password)
                 .nickname(nickname)
                 .image(image)
+                .gender(gender)
+                .age(age)
                 .build();
 
     }
