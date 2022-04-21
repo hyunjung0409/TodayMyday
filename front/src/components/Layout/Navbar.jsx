@@ -2,12 +2,20 @@ import React from 'react'
 import { Layout, Typography, Row, Col } from 'antd'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutRequestAction } from '../../reducers/user'
 
 const { Header } = Layout
 const { Title } = Typography
 
 function Navbar() {
   const navigate = useNavigate()
+  const { me } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+
+  const onLogOut = () => {
+    dispatch(logoutRequestAction({ navigate }))
+  }
 
   return (
     <Header style={{ background: '#C1E17D' }}>
@@ -35,14 +43,23 @@ function Navbar() {
         </Col>
 
         <Col span={4}>
-          <nav className="nav-user">
-            <StyledLink to="/user/login">
-              <strong>로그인</strong>
-            </StyledLink>
-            <StyledLink to="/user/signup">
-              <strong>회원가입</strong>
-            </StyledLink>
-          </nav>
+          {me ? (
+            <nav className="nav-user">
+              <StyledLink to="/#">
+                <strong>마이페이지</strong>
+              </StyledLink>
+              <strong onClick={onLogOut}>로그아웃</strong>
+            </nav>
+          ) : (
+            <nav className="nav-user">
+              <StyledLink to="/user/login">
+                <strong>로그인</strong>
+              </StyledLink>
+              <StyledLink to="/user/signup">
+                <strong>회원가입</strong>
+              </StyledLink>
+            </nav>
+          )}
         </Col>
       </Row>
     </Header>
