@@ -1,11 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import { EditOutlined } from '@ant-design/icons'
 
 const Age = styled.div`
-  margin-left: 5%;
-  display: 'flex';
+  margin-top: 5%;
 `
 function MyAge() {
-  return <Age>나이 : 숫자</Age>
+  return (
+    <div>
+      <Age>
+        나이 : 숫자 <EditOutlined></EditOutlined>
+      </Age>
+    </div>
+  )
 }
 export default MyAge

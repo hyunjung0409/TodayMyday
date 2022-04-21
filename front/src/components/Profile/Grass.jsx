@@ -1,16 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 
 const MyGrass = styled.div`
-  width: 50%;
-  height: 300px;
-  background-color: green;
+  margin-top: 6%;
+  width: 90%;
+  height: 280px;
+  background-color: grey;
+  text-align: left;
+  padding-left: 5%;
+  padding-top: 2%;
 `
-
+const Month = styled.p`
+  float: right;
+  padding-right: 48%;
+`
 function Grass() {
   return (
     <div>
-      <MyGrass>잔디심기</MyGrass>
+      <MyGrass>
+        잔디심기
+        <Month>
+          <CaretLeftOutlined /> 4월 <CaretRightOutlined />
+        </Month>
+      </MyGrass>
     </div>
   )
 }
