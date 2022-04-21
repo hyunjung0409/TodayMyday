@@ -6,9 +6,8 @@ import { getAxios } from '../../api'
 
 const { Option } = Select
 
-function SignupForm(imageUploader) {
+function SignupForm({ imageUploader, data }) {
   const formRef = useRef()
-  const messageRef = useRef()
   const [form] = Form.useForm()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
 
@@ -23,7 +22,6 @@ function SignupForm(imageUploader) {
     event.preventDefault()
     const data = {
       id: Date.now(), // uuid
-      message: messageRef.current.value || '',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
     }
@@ -87,15 +85,6 @@ function SignupForm(imageUploader) {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       layout="vertical">
-      <ImageFileInput
-        name={file.fileName}
-        imageUploader={imageUploader}
-        onFileChange={onFileChange}
-        file={file}
-        // form={form}
-        setFile={setFile}
-      />
-
       {/* <Form.Item
         name="upload"
         label="Upload"
@@ -107,6 +96,8 @@ function SignupForm(imageUploader) {
         </Upload>
       </Form.Item> */}
 
+      <Form.Item></Form.Item>
+
       <Form.Item
         label="프로필 이미지"
         name="image"
@@ -116,7 +107,14 @@ function SignupForm(imageUploader) {
             message: 'Please input your id!',
           },
         ]}>
-        <Input />
+        <ImageFileInput
+          name={file.fileName}
+          imageUploader={imageUploader}
+          onFileChange={onFileChange}
+          file={file}
+          data={data}
+          setFile={setFile}
+        />
       </Form.Item>
 
       <Form.Item

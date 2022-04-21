@@ -1,10 +1,10 @@
 import { Spin } from 'antd'
 import React, { useRef, useState } from 'react'
 
-function ImageFileInput({ imageUploader, onFileChange, file, form }) {
+function ImageFileInput({ imageUploader, onFileChange, file, data }) {
   const inputRef = useRef()
   const [loading, setLoading] = useState(false)
-  const { fileURL } = form
+  const { fileURL } = data
   const onButtonClick = (e) => {
     e.preventDefault()
     inputRef.current.click()
