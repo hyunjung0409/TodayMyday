@@ -1,13 +1,11 @@
 import React, { useRef, useState } from 'react'
 import { Form, Input, Button, Select, Upload } from 'antd'
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons'
 import ImageFileInput from '../ImageFileInput'
 import { getAxios } from '../../api'
 
 const { Option } = Select
 
 function SignupForm({ imageUploader, data }) {
-  const formRef = useRef()
   const [form] = Form.useForm()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
 
@@ -31,12 +29,15 @@ function SignupForm({ imageUploader, data }) {
 
   const onFinish = async (values) => {
     const axios = getAxios()
+    console.log(axios)
     await axios.post('user/signup', {
       // image: values.image,
       image: file.fileURL,
       nickname: values.nickname,
       password: values.password,
       userId: values.id,
+      age: values.ageRange,
+      gender: values.gender,
     })
     console.log('Success:', values)
   }
@@ -47,7 +48,6 @@ function SignupForm({ imageUploader, data }) {
 
   return (
     <Form
-      // ref={formRef}
       form={form}
       name="signup"
       // onSubmit={onSubmit}
@@ -143,10 +143,7 @@ function SignupForm({ imageUploader, data }) {
             message: 'Please select gender!',
           },
         ]}>
-        <Select
-          placeholder="Select your gender"
-          // onChange={onGenderChange}
-        >
+        <Select placeholder="Select your gender">
           <Option value="male">남성</Option>
           <Option value="female">여성</Option>
         </Select>
@@ -161,10 +158,7 @@ function SignupForm({ imageUploader, data }) {
             message: 'Please select ageRange!',
           },
         ]}>
-        <Select
-          placeholder="Select your ageRange"
-          // onChange={onGenderChange}
-        >
+        <Select placeholder="Select your ageRange">
           <Option value="1">어린이 (0~9)</Option>
           <Option value="2">청소년 (10~19)</Option>
           <Option value="3">청년 (20~29)</Option>
