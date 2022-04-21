@@ -18,21 +18,22 @@ function SignupForm({ imageUploader, data }) {
     })
   }
 
-  const onSubmit = (event) => {
-    event.preventDefault()
-    const data = {
-      id: Date.now(), // uuid
-      fileName: file.fileName || '',
-      fileURL: file.fileURL || '',
-    }
-    formRef.current.reset()
-    console.log(data)
-  }
+  // const onSubmit = (event) => {
+  //   event.preventDefault()
+  //   const data = {
+  //     id: Date.now(), // uuid
+  //     fileName: file.fileName || '',
+  //     fileURL: file.fileURL || '',
+  //   }
+  //   formRef.current.reset()
+  //   console.log(data)
+  // }
 
   const onFinish = async (values) => {
     const axios = getAxios()
     await axios.post('user/signup', {
-      image: values.image,
+      // image: values.image,
+      image: file.fileURL,
       nickname: values.nickname,
       password: values.password,
       userId: values.id,
@@ -44,67 +45,23 @@ function SignupForm({ imageUploader, data }) {
     console.log('Failed:', errorInfo)
   }
 
-  const normFile = (e) => {
-    console.log('Upload event:', e)
-
-    if (Array.isArray(e)) {
-      return e
-    }
-
-    return e && e.fileList
-  }
-
-  // const onGenderChange = (value) => {
-  //   // eslint-disable-next-line default-case
-  //   switch (value) {
-  //     case 'male':
-  //       this.formRef.current.setFieldsValue({
-  //         note: 'Hi, man!',
-  //       });
-  //       return;
-
-  //     case 'female':
-  //       this.formRef.current.setFieldsValue({
-  //         note: 'Hi, lady!',
-  //       });
-  //       return;
-
-  //     case 'other':
-  //       this.formRef.current.setFieldsValue({
-  //         note: 'Hi there!',
-  //       });
-  //   }
-  // };
-
   return (
     <Form
       // ref={formRef}
       form={form}
       name="signup"
+      // onSubmit={onSubmit}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       layout="vertical">
-      {/* <Form.Item
-        name="upload"
-        label="Upload"
-        valuePropName="fileList"
-        getValueFromEvent={normFile}
-        extra="longgggggggggggggggggggggggggggggggggg">
-        <Upload name="logo" action="/upload.do" listType="picture">
-          <Button icon={<UploadOutlined />}>Click to upload</Button>
-        </Upload>
-      </Form.Item> */}
-
-      <Form.Item></Form.Item>
-
       <Form.Item
         label="프로필 이미지"
         name="image"
         rules={[
           {
             required: false,
-            message: 'Please input your id!',
+            message: 'Please upload your profile picture!',
           },
         ]}>
         <ImageFileInput

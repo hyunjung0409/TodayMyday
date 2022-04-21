@@ -25,11 +25,11 @@ const Submit = styled(Button)`
   margin-top: 10px;
 `
 
-function ArticleForm({ imageUploader, form }) {
+function ArticleForm({ imageUploader, data }) {
   const formRef = useRef()
   const messageRef = useRef()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
-  const { word, message } = form
+  const { word, message } = data
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -60,7 +60,7 @@ function ArticleForm({ imageUploader, form }) {
               imageUploader={imageUploader}
               onFileChange={onFileChange}
               file={file}
-              form={form}
+              data={data}
               setFile={setFile}
             />
           </ImageLayout>
