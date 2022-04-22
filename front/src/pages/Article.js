@@ -5,7 +5,7 @@ import ImageUploader from '../service/image_uploader'
 const imageUploader = new ImageUploader()
 
 function Writing() {
-  const [data, setForm] = useState({
+  const [data, setData] = useState({
     word: '바다',
     message: '',
     fileURL: '/images/기본이미지.jpg',
