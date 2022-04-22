@@ -20,7 +20,7 @@ const contentStyle = {
 // console.log(map_result3);
 // // ["<li>[ 0] 45</li>\n", "<li>[ 1] 1</li>\n", ...]
 
-function DiaryCarousel() {
+function DiaryCarousel({ diaryList, setDiaryList }) {
   return (
     <Carousel afterChange={onChange} dotPosition="bottom">
       <div className="carousel-1">

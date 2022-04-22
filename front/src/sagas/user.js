@@ -21,7 +21,7 @@ function* logIn(action) {
     const { navigate } = action.data
     yield put({
       type: LOG_IN_SUCCESS,
-      data: result.headers.authorization,
+      data: action.data,
     })
     navigate('/')
   } catch (err) {
