@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Words = styled.div`
   width: 90%;
   height: 280px;
-  background-color: grey;
+  background-color: rgb(238, 167, 187);
   text-align: left;
   padding-left: 5%;
   padding-top: 2%;
