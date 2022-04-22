@@ -7,6 +7,12 @@ function onChange(a, b, c) {
   console.log(a, b, c)
 }
 
+const MyCarousel = styled(Carousel)`
+  > .slick-dots-bottom li button:before {
+    display: none;
+  }
+`
+
 const contentStyle = {
   height: '350px',
   color: '#fff',
@@ -22,7 +28,7 @@ const contentStyle = {
 
 function DiaryCarousel({ diaryList, setDiaryList }) {
   return (
-    <Carousel afterChange={onChange} dotPosition="bottom">
+    <MyCarousel afterChange={onChange} dotPosition="bottom">
       <div className="carousel-1">
         <div style={contentStyle}>
           <StyledCardlArea>
@@ -45,7 +51,7 @@ function DiaryCarousel({ diaryList, setDiaryList }) {
           </StyledCardlArea>
         </div>
       </div>
-    </Carousel>
+    </MyCarousel>
   )
 }
 
