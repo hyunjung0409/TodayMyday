@@ -67,7 +67,8 @@ function* logOut(action) {
   try {
     // const result = yield call(logOutAPI)
     const { navigate } = action.data
-    yield delay(2000)
+    yield delay(1000)
+    localStorage.removeItem('jwtToken')
     yield put({
       type: LOG_OUT_SUCCESS,
     })
