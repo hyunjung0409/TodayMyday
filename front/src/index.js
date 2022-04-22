@@ -14,6 +14,7 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaM
 store.sagaTask = sagaMiddleware.run(rootSaga)
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 root.render(
   <Provider store={store}>
     <React.StrictMode>
