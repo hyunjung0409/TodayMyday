@@ -3,30 +3,22 @@ import { List, Skeleton, Divider } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import ArticleListItem from './ArticleListItem'
 import Search from 'antd/lib/input/Search'
-import { Select } from 'antd'
-import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { articleListRequestAction } from '../reducers/article'
 
 function ArticleListForm(props) {
+  const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
+  const { articleList } = useSelector((state) => state.article)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
-  const [userId, setserId] = useState(null)
 
   const loadMoreData = (userId) => {
     if (loading) {
       return
     }
+    dispatch(articleListRequestAction({ userId }))
     setLoading(true)
-    axios
-      .get(`http://localhost:8080/user/read/${userId}`)
-      .then((res) => {
-        setData([...data, ...res.data.user.dairies])
-        setLoading(false)
-      })
-      .catch(() => {
-        setLoading(false)
-      })
   }
   useEffect(() => {
     if (me != null) {
@@ -35,6 +27,12 @@ function ArticleListForm(props) {
       }
     }
   }, [me])
+
+  useEffect(() => {
+    if (articleList != null) {
+      setData([...articleList])
+    }
+  }, [articleList])
 
   const onSearch = (value) => console.log(value)
 

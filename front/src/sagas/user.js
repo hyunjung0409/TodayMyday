@@ -59,13 +59,8 @@ function* logIn(action) {
   }
 }
 
-function logOutAPI() {
-  return axios.post('/api/logout')
-}
-
 function* logOut(action) {
   try {
-    // const result = yield call(logOutAPI)
     const { navigate } = action.data
     yield delay(1000)
     localStorage.removeItem('jwtToken')
