@@ -27,39 +27,64 @@ const contentStyle = {
 // // ["<li>[ 0] 45</li>\n", "<li>[ 1] 1</li>\n", ...]
 
 function DiaryCarousel({ diaryList, setDiaryList }) {
+  const rendering = () => {
+    const result = []
+    for (let index = 0; index < diaryList.length; index += 5) {
+      const element = diaryList.slice(0 + index, 5 + index)
+      const fiveCards = element.map((card, i) => {
+        return <DiaryCard card={card} key={i} />
+      })
+
+      result.push(
+        <div className="card-area">
+          <StyledCardlArea>{fiveCards}</StyledCardlArea>
+        </div>,
+      )
+    }
+    return result
+  }
+
   return (
-    <MyCarousel afterChange={onChange} dotPosition="bottom">
-      <div className="carousel-1">
-        <div style={contentStyle}>
-          <StyledCardlArea>
-            <DiaryCard />
-            <DiaryCard />
-            <DiaryCard />
-            <DiaryCard />
-            <DiaryCard />
-          </StyledCardlArea>
+    <>
+      {/* <MyCarousel afterChange={onChange} dotPosition="bottom">
+        <div className="carousel-1">
+          <div style={contentStyle}>
+            <StyledCardlArea>
+              <DiaryCard />
+              <DiaryCard />
+              <DiaryCard />
+              <DiaryCard />
+              <DiaryCard />
+            </StyledCardlArea>
+          </div>
         </div>
-      </div>
-      <div className="carousel-2">
-        <div style={contentStyle}>
-          <StyledCardlArea>
-            <DiaryCard />
-            <DiaryCard />
-            <DiaryCard />
-            <DiaryCard />
-            <DiaryCard />
-          </StyledCardlArea>
+        <div className="carousel-2">
+          <div style={contentStyle}>
+            <StyledCardlArea>
+              <DiaryCard />
+              <DiaryCard />
+              <DiaryCard />
+              <DiaryCard />
+              <DiaryCard />
+            </StyledCardlArea>
+          </div>
         </div>
-      </div>
-    </MyCarousel>
+      </MyCarousel> */}
+      <MyCarousel
+        afterChange={onChange}
+        dotPosition="bottom"
+        style={{ listStyle: 'none', overflow: 'hidden' }}>
+        {rendering()}
+      </MyCarousel>
+    </>
   )
 }
 
 const StyledCardlArea = styled.div`
   display: flex;
   justify-content: space-evenly;
-  // border: 1px solid red;
-  padding: 1rem;
+  border: 1px solid red;
+  padding: 2rem;
 `
 
 export default DiaryCarousel

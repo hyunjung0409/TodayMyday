@@ -9,26 +9,19 @@ const axios = getAxios()
 const SearchBar = ({ keyword, setKeyword, diaryList, setDiaryList }) => {
   const { me } = useSelector((state) => state.user)
 
-  // const getDiaryList = async () => {
-  //   // setDiaryList([])
-  // }
-
   const onSearch = async (value) => {
     console.log('value: ', value)
     console.log('me: ', me)
-    // await setKeyword(value)
-    let result = await axios.get('dairy/search', { keyword: value }, { userId: me.values.userId })
+    await setKeyword(value)
+    console.log('keyword: ', keyword)
+    let result = await axios.get('dairy/search', { params: { keyword: value, userId: me.userId } })
     console.log('result: ', result)
+    console.log('result.data: ', result.data)
+    await setDiaryList([...result.data])
+    console.log('diaryList: ', diaryList)
   }
 
-  return (
-    <Search
-      placeholder="input search text"
-      onSearch={onSearch}
-      // onClick={getDiaryList}
-      enterButton
-    />
-  )
+  return <Search placeholder="input search text" onSearch={onSearch} enterButton />
 }
 
 export default SearchBar
