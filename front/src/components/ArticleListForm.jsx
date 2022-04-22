@@ -4,24 +4,24 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import ArticleListItem from './ArticleListItem'
 import Search from 'antd/lib/input/Search'
 import { Select } from 'antd'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function ArticleListForm(props) {
-  const { Option } = Select
-  function handleChange(value) {
-    console.log(`selected ${value}`)
-  }
+  const { me } = useSelector((state) => state.user)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
+  const [userId, setserId] = useState(null)
 
-  const loadMoreData = () => {
+  const loadMoreData = (userId) => {
     if (loading) {
       return
     }
     setLoading(true)
-    fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results])
+    axios
+      .get(`http://localhost:8080/user/read/${userId}`)
+      .then((res) => {
+        setData([...data, ...res.data.user.dairies])
         setLoading(false)
       })
       .catch(() => {
@@ -29,8 +29,12 @@ function ArticleListForm(props) {
       })
   }
   useEffect(() => {
-    loadMoreData()
-  }, [])
+    if (me != null) {
+      if (me.userId != null) {
+        loadMoreData(me.userId)
+      }
+    }
+  }, [me])
 
   const onSearch = (value) => console.log(value)
 
@@ -56,7 +60,6 @@ function ArticleListForm(props) {
         <InfiniteScroll
           dataLength={data.length}
           next={loadMoreData}
-          hasMore={data.length < 50}
           loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
           endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
           scrollableTarget="scrollableDiv">
@@ -64,7 +67,11 @@ function ArticleListForm(props) {
             dataSource={data}
             renderItem={(item) => (
               <List.Item key={item.id}>
-                <ArticleListItem picture={item.picture.large} title={item.name.last} />
+                <ArticleListItem
+                  picture={item.image}
+                  title={item.word}
+                  createdat={item.createdat}
+                />
               </List.Item>
             )}
           />

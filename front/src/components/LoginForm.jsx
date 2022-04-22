@@ -15,8 +15,7 @@ function LoginForm() {
   const navigate = useNavigate()
 
   const onFinish = (values) => {
-    console.log('Success:', values)
-    dispatch(loginRequestAction({ values, navigate }))
+    dispatch(loginRequestAction({ userId: values.userId, password: values.password, navigate }))
   }
 
   const onFinishFailed = (errorInfo) => {

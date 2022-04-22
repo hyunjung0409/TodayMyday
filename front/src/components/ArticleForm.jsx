@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
 import ImageFileInput from '../components/ImageFileInput'
+import { getAxios } from '../api'
+import { useSelector } from 'react-redux'
 
 const Word = styled.h1`
   margin: 10px auto;
@@ -26,6 +28,8 @@ const Submit = styled(Button)`
 `
 
 function ArticleForm({ imageUploader, data }) {
+  const { me } = useSelector((state) => state.user)
+  const axios = getAxios()
   const formRef = useRef()
   const messageRef = useRef()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
@@ -36,16 +40,23 @@ function ArticleForm({ imageUploader, data }) {
       fileURL: file.url,
     })
   }
+
   const onSubmit = (event) => {
     event.preventDefault()
     const data = {
-      id: Date.now(), // uuid
-      message: messageRef.current.value || '',
-      fileName: file.fileName || '',
-      fileURL: file.fileURL || '',
+      content: messageRef.current.value || '',
+      word: word,
+      image: file.fileURL || '',
     }
+    axios
+      .post(`dairy/${me.userId}`, data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     formRef.current.reset()
-    console.log(data)
   }
   return (
     <form

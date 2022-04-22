@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout, Typography, Row, Col } from 'antd'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutRequestAction } from '../../reducers/user'
+import { loadUserRequestAction, logoutRequestAction } from '../../reducers/user'
+import jwt_decode from 'jwt-decode'
 
 const { Header } = Layout
 const { Title } = Typography
@@ -11,12 +12,19 @@ const { Title } = Typography
 function Navbar() {
   const navigate = useNavigate()
   const { me } = useSelector((state) => state.user)
-  console.log('me', me)
   const dispatch = useDispatch()
 
   const onLogOut = () => {
     dispatch(logoutRequestAction({ navigate }))
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('jwtToken') != null) {
+      const decode_token = jwt_decode(localStorage.getItem('jwtToken'))
+      const userId = decode_token.sub
+      dispatch(loadUserRequestAction({ userId }))
+    }
+  }, [])
 
   return (
     <Header style={{ background: '#C1E17D' }}>
