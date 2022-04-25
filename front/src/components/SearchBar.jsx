@@ -14,9 +14,8 @@ const SearchBar = ({ keyword, setKeyword, diaryList, setDiaryList }) => {
     console.log('me: ', me)
     await setKeyword(value)
     console.log('keyword: ', keyword)
-    let result = await axios.get('dairy/search', { params: { keyword: value, userId: me.userId } })
+    let result = await axios.get('diary/search', { params: { keyword: value, userId: me.userId } })
     console.log('result: ', result)
-    console.log('result.data: ', result.data)
     await setDiaryList([...result.data])
     console.log('diaryList: ', diaryList)
   }
