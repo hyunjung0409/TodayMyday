@@ -1,8 +1,6 @@
 package com.example.back.dto;
 
-import com.example.back.entity.Dairy;
 import com.sun.istack.NotNull;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +8,7 @@ import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Data
-public class DairyDto {
+public class DiaryDto {
 
     @NotNull
     private String word;
@@ -22,7 +20,7 @@ public class DairyDto {
     private LocalDateTime createdat;
 
 
-    public DairyDto(String word, String image, String content, LocalDateTime createdat){
+    public DiaryDto(String word, String image, String content, LocalDateTime createdat){
         this.word = word;
         this.image = image;
         this.content = content;

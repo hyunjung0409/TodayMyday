@@ -1,12 +1,12 @@
 package com.example.back.controller;
 
 import com.example.back.dto.TestWordDto;
-import com.example.back.entity.Dairy;
+import com.example.back.entity.Diary;
 import com.example.back.entity.TestWord;
 import com.example.back.entity.Word;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
-import com.example.back.repository.DairyRepository;
+import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.WordRepository;
 import com.example.back.service.WordService;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +24,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class TestController {
 
-    private final DairyRepository dairyRepository;
+    private final DiaryRepository diaryRepository;
     private final WordService wordService;
 
     @GetMapping("/test1")
@@ -34,9 +34,9 @@ public class TestController {
 
     @GetMapping("")
     @ApiOperation(value = "다이어리 전체 검색", notes = "모든 다이어리 출력", response = String.class)
-    public ResponseEntity<List<Dairy>> readAllDairy(){ // 모든 다이어리를 불러옴
+    public ResponseEntity<List<Diary>> readAllDiary(){ // 모든 다이어리를 불러옴
 
-        List<Dairy> dairies = dairyRepository.findAll();
+        List<Diary> dairies = diaryRepository.findAll();
         return ResponseEntity.ok().body(dairies);
     }
 

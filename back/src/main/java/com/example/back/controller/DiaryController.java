@@ -1,17 +1,15 @@
 package com.example.back.controller;
 
-import com.example.back.dto.DairyDto;
-import com.example.back.entity.Dairy;
+import com.example.back.dto.DiaryDto;
+import com.example.back.entity.Diary;
 import com.example.back.entity.User;
-import com.example.back.repository.DairyRepository;
+import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.UserRepository;
-import com.example.back.service.DairyService;
+import com.example.back.service.DiaryService;
 import com.example.back.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.dialect.DataDirectOracle9Dialect;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,24 +19,24 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/dairy")
+@RequestMapping("/diary")
 @RequiredArgsConstructor
 @Api(tags = {"다이어리 컨트롤러"})
-public class DairyController {
+public class DiaryController {
 
-    private final DairyService dairyService;
+    private final DiaryService diaryService;
     private final UserService userService;
     private final UserRepository userRepository;
-    private final DairyRepository dairyRepository;
+    private final DiaryRepository diaryRepository;
 
 
     @GetMapping("/")
     @ApiOperation(value = "다이어리 전체 검색", notes = "모든 다이어리 출력", response = String.class)
-    public ResponseEntity<Map<String, Object>> readAllDairy(){ // 모든 다이어리를 불러옴
+    public ResponseEntity<Map<String, Object>> readAllDiary(){ // 모든 다이어리를 불러옴
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Dairy> dairies = dairyRepository.findAll();
+        List<Diary> dairies = diaryRepository.findAll();
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
@@ -50,12 +48,12 @@ public class DairyController {
 
     @PostMapping("/{userId}")
     @ApiOperation(value = "다이어리 등록", notes = "현재 로그인 된 아이디로 다이어리 등록", response = String.class)
-    public ResponseEntity<Map<String, Object>> createDairy(@PathVariable String userId, @RequestBody DairyDto dairyDto){
+    public ResponseEntity<Map<String, Object>> createDiary(@PathVariable String userId, @RequestBody DiaryDto diaryDto){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
         User user = userRepository.findByUserId(userId);
-        if (dairyService.createDairy(dairyDto, user)) {
+        if (diaryService.createDiary(diaryDto, user)) {
             hashMap.put("Message", "SUCCESS");
             status = HttpStatus.OK;
             hashMap.put("Status", status);
@@ -72,17 +70,17 @@ public class DairyController {
 
     @PutMapping("/{userId}/{dno}")
     @ApiOperation(value = "다이어리 수정", notes = "다이어리 수정", response = String.class)
-    public ResponseEntity<Map<String, Object>> modifyDairy(@PathVariable String userId, @PathVariable long dno, @RequestBody DairyDto dairyDto) {
+    public ResponseEntity<Map<String, Object>> modifyDiary(@PathVariable String userId, @PathVariable long dno, @RequestBody DiaryDto diaryDto) {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        Dairy dairy = dairyService.modifyDairy(dno, userId, dairyDto);
+        Diary diary = diaryService.modifyDiary(dno, userId, diaryDto);
 
-        if(dairy != null) {
+        if(diary != null) {
             status = HttpStatus.OK;
             hashMap.put("Status", status);
             hashMap.put("Message", "SUCCESS");
-            hashMap.put("dairy", dairy);
+            hashMap.put("diary", diary);
         } else {
             status = HttpStatus.NOT_FOUND;
             hashMap.put("Status", status);
@@ -97,11 +95,11 @@ public class DairyController {
 
     @DeleteMapping("/{userId}/{dno}")
     @ApiOperation(value = "다이어리 삭제", notes = "다이어리 삭제", response = String.class)
-    public ResponseEntity<Map<String, Object>> deleteDairy(@PathVariable String userId, @PathVariable Long dno){
+    public ResponseEntity<Map<String, Object>> deleteDiary(@PathVariable String userId, @PathVariable Long dno){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        if(dairyService.deleteDairy(dno, userId)) {
+        if(diaryService.deleteDiary(dno, userId)) {
             status = HttpStatus.OK;
             hashMap.put("Status", status);
             hashMap.put("Message", "SUCCESS"); // 메세지를 코드로 바꾸자
@@ -119,11 +117,11 @@ public class DairyController {
 
     @GetMapping("/search")
     @ApiOperation(value = "내 다이어리 검색", notes = "내가 등록한 다이어리 검색하기", response = String.class)
-    public ResponseEntity<List<Dairy>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
+    public ResponseEntity<List<Diary>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
         HttpStatus status;
 
         System.out.println("키워드" + keyword);
-        List<Dairy> diares = dairyService.searchDiaries(keyword, userId);
+        List<Diary> diares = diaryService.searchDiaries(keyword, userId);
         System.out.println("컨트롤러 찍혀라");
 
         if (diares != null) {
@@ -135,6 +133,22 @@ public class DairyController {
 
         System.out.println("컨트롤러 찍혀라222");
         return new ResponseEntity<>(diares, status);
+    }
+
+    @GetMapping("/read/{dno}")
+    @ApiOperation(value = "다이어리 상세글", notes = "다이어리 상세 글 보기", response = String.class)
+    public ResponseEntity<Diary> readDiary(@PathVariable long dno) {
+        Diary diary = diaryService.readDiary(dno);
+        HttpStatus status;
+
+        if (diary != null) {
+            status = HttpStatus.OK;
+        }
+        else {
+            status = HttpStatus.NOT_FOUND;
+        }
+
+        return new ResponseEntity<Diary>(diary, status);
     }
 
 

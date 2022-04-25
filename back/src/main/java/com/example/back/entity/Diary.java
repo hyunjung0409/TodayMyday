@@ -1,8 +1,6 @@
 package com.example.back.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,12 +13,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "dairy")
+@Table(name = "diary")
 @RequiredArgsConstructor
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class Dairy {
+public class Diary {
     @Id
     @NotNull
     @GeneratedValue
@@ -45,7 +43,7 @@ public class Dairy {
     User user;
 
     @Builder
-    public Dairy (Long dno, String word, String image, String content, LocalDateTime createdat, User user){
+    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user){
         this.dno = dno;
         this.word = word;
         this.image = image;

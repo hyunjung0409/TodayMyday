@@ -34,7 +34,7 @@ public class User {
     String age;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    List<Dairy> dairies = new ArrayList<>();
+    List<Diary> dairies = new ArrayList<>();
 
     @Builder
     public User(String userId, String password, String nickname, String image, String gender, String age) {
