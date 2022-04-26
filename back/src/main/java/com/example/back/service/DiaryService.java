@@ -11,6 +11,6 @@ public interface DiaryService {
     Diary findDiary(Long dno);
     Diary modifyDiary(Long dno, String userId, DiaryDto diaryDto);
     Boolean deleteDiary(Long dno, String userId);
-    List<Diary> searchDiaries(String keyword, String userId);
+    List<DiaryDto> searchDiaries(String keyword, String userId);
     Diary readDiary(long dno);
 }

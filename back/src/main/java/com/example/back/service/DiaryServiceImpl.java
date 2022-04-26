@@ -76,17 +76,18 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<Diary> searchDiaries(String keyword, String userId) {
-        System.out.println(keyword +" 서비스키워드");
+    public List<DiaryDto> searchDiaries(String keyword, String userId) {
         List<Diary> diares = diaryRepository.findByContentContains(keyword);
-        System.out.println("찍혀라ㅏㅏㅏ");
+        DiaryDto diaryDto = new DiaryDto();
 
-        List<Diary> my_daires = new ArrayList<>();
+        List<DiaryDto> my_daires = new ArrayList<>();
         for (Diary diary : diares) {
-            System.out.println(diary.getContent());
             if (diary.getUser().getUserId().equals(userId)) {
-                System.out.println("찍힌다");
-                my_daires.add(diary);
+                diaryDto.setContent(diary.getContent());
+                diaryDto.setImage(diary.getImage());
+                diaryDto.setWord(diary.getWord());
+                diaryDto.setNickname(diary.getUser().getNickname());
+                my_daires.add(diaryDto);
             }
         }
         return my_daires;

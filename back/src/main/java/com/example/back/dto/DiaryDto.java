@@ -19,12 +19,15 @@ public class DiaryDto {
 
     private LocalDateTime createdat;
 
+    private String nickname;
 
-    public DiaryDto(String word, String image, String content, LocalDateTime createdat){
+
+    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname){
         this.word = word;
         this.image = image;
         this.content = content;
         this.createdat = createdat;
+        this.nickname = nickname;
     }
 
 }

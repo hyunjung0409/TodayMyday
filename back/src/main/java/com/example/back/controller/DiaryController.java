@@ -117,12 +117,11 @@ public class DiaryController {
 
     @GetMapping("/search")
     @ApiOperation(value = "내 다이어리 검색", notes = "내가 등록한 다이어리 검색하기", response = String.class)
-    public ResponseEntity<List<Diary>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
+    public ResponseEntity<List<DiaryDto>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
         HttpStatus status;
 
         System.out.println("키워드" + keyword);
-        List<Diary> diares = diaryService.searchDiaries(keyword, userId);
-        System.out.println("컨트롤러 찍혀라");
+        List<DiaryDto> diares = diaryService.searchDiaries(keyword, userId);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -131,7 +130,6 @@ public class DiaryController {
             status = HttpStatus.NO_CONTENT;
         }
 
-        System.out.println("컨트롤러 찍혀라222");
         return new ResponseEntity<>(diares, status);
     }
 
