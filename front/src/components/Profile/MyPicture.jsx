@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { EditOutlined } from '@ant-design/icons'
 import { getAxios } from '../../api'
@@ -22,6 +22,7 @@ const Submit = styled(Button)`
 `
 function MyPicture({ imageUploader, data }) {
   const { me } = useSelector((state) => state.user)
+  console.log(me)
   const axios = getAxios()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
@@ -32,7 +33,9 @@ function MyPicture({ imageUploader, data }) {
       fileName: file2.name,
       fileURL: file2.url,
     })
+    console.log(file2)
   }
+
   const onSubmit = (event) => {
     event.preventDefault()
     const data = {
@@ -78,7 +81,13 @@ function MyPicture({ imageUploader, data }) {
   const onClickImageUpload = () => {
     imageInput.current.click()
   }
-
+  useEffect(() => {
+    try {
+      setFile2({ fileName: me.name, fileURL: me.image })
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
   return (
     <div>
       <div className="MyPic">

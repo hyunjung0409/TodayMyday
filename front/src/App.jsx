@@ -30,7 +30,7 @@ function App() {
                 <Route path="/my/detail" element={<MyDetail />} />
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/my/profile/" element={<Profile />} />
               </Routes>
             </StyledContentArea>
           </div>
