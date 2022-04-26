@@ -3,25 +3,28 @@ import { Row, Col, Typography, Avatar, Image } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 
-const { Title } = Typography
+const { Title, Text } = Typography
 
-function DiaryHeader(params) {
-  const [word, setWord] = useState('단어예시')
-  const [user, setUser] = useState('작성자')
-  const [date, setDate] = useState('2022-04-19 오전 11:13')
+function DiaryHeader({ diary, me }) {
+  const [word, setWord] = useState('')
+  const [user, setUser] = useState('')
+  const [date, setDate] = useState('')
 
   return (
     <Row>
       <Col span={12}>
-        <StyledWordTitle level={3}>#{word}</StyledWordTitle>
+        <StyledWordTitle level={3}>#{diary.word}</StyledWordTitle>
       </Col>
       <Col span={12}>
         <StyledUserArea>
-          <Avatar icon={<UserOutlined />} />
-          <Avatar src={<Image src="https://joeschmoe.io/api/v1/random" style={{ width: 32 }} />} />
-          <Title level={5}>{user}</Title>
+          {me.image === null ? (
+            <Avatar icon={<UserOutlined />} />
+          ) : (
+            <Avatar src={<Image src={me.image} style={{ width: 32 }} />} />
+          )}
+          <Title level={5}>{me.nickname}</Title>
         </StyledUserArea>
-        <StyledDateTitle level={5}>{date}</StyledDateTitle>
+        <StyledDateText level={5}>{diary.createdat}</StyledDateText>
       </Col>
     </Row>
   )
@@ -41,7 +44,7 @@ const StyledUserArea = styled.div`
   align-items: center;
 `
 
-const StyledDateTitle = styled(Title)`
+const StyledDateText = styled(Text)`
   display: flex;
   justify-content: end;
   align-items: center;

@@ -22,11 +22,14 @@ function SearchMy() {
         <h3 style={{ textAlign: 'left', padding: '1rem' }}>'{keyword}' 단어가 주제로 쓰여진 글</h3>
         <DiaryCarousel />
       </div> */}
-
-      <div className="diary-carousel-contained" style={{ background: '#FFDAE5', margin: '1rem' }}>
-        <h3 style={{ textAlign: 'left', padding: '1rem' }}>'{keyword}' 단어가 포함된 글</h3>
-        <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} />
-      </div>
+      {keyword === '' ? (
+        <div>검색어를 입력해주세요</div>
+      ) : (
+        <div className="diary-carousel-contained" style={{ background: '#FFDAE5', margin: '1rem' }}>
+          <h3 style={{ textAlign: 'left', padding: '1rem' }}>'{keyword}' 단어가 포함된 글</h3>
+          <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} />
+        </div>
+      )}
     </div>
   )
 }
