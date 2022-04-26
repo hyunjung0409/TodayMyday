@@ -80,11 +80,13 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public List<DiaryDto> searchDiariesByContent(String keyword, String userId) {
         List<Diary> diares = diaryRepository.findByContentContains(keyword);
-        DiaryDto diaryDto = new DiaryDto();
 
         List<DiaryDto> my_daires = new ArrayList<>();
         for (Diary diary : diares) {
+            DiaryDto diaryDto = new DiaryDto();
             if (diary.getUser().getUserId().equals(userId)) {
+                diaryDto.setCreatedat(diary.getCreatedat());
+                diaryDto.setDno(diary.getDno());
                 diaryDto.setContent(diary.getContent());
                 diaryDto.setImage(diary.getImage());
                 diaryDto.setWord(diary.getWord());
@@ -120,10 +122,10 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public List<DiaryDto> searchDiariesByWord(String word, String userId) {
         List<Diary> diares = diaryRepository.findDiaryByWord(word);
-        DiaryDto diaryDto = new DiaryDto();
 
         List<DiaryDto> my_daires = new ArrayList<>();
         for (Diary diary : diares) {
+            DiaryDto diaryDto = new DiaryDto();
             if (diary.getUser().getUserId().equals(userId)) {
                 diaryDto.setContent(diary.getContent());
                 diaryDto.setImage(diary.getImage());

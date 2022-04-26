@@ -21,13 +21,16 @@ public class DiaryDto {
 
     private String nickname;
 
+    private long dno;
 
-    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname){
+
+    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno){
         this.word = word;
         this.image = image;
         this.content = content;
         this.createdat = createdat;
         this.nickname = nickname;
+        this.dno = dno;
     }
 
 }
