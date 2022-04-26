@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Row, Col, Typography } from 'antd'
 import styled from 'styled-components'
 
-const { Title } = Typography
+const { Text } = Typography
 
-function DiaryContent({ me }) {
+function DiaryContent({ diary }) {
   const [content, setContent] = useState('')
 
   // setContent(me.dairies[])
@@ -12,7 +12,7 @@ function DiaryContent({ me }) {
     <Row>
       <Col span={24}>
         <StyledContainer>
-          <Title level={5}>{content}</Title>
+          <Text level={5}>{diary.content}</Text>
         </StyledContainer>
       </Col>
     </Row>

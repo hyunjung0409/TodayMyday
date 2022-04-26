@@ -6,18 +6,8 @@ import DiaryFooter from '../components/Detail/DiaryFooter'
 import DiaryHeader from '../components/Detail/DiaryHeader'
 import { useSelector } from 'react-redux'
 
-const urlParams = new URL(window.location.href).searchParams
-// const dno = urlParams.get('name')
-// console.log(name)
-
 function MyDetail() {
   const { me } = useSelector((state) => state.user)
-  const [diaryNo, setDiary] = useState('')
-
-  useEffect(() => {
-    setDiary(urlParams.get('dno'))
-    console.log('dno: ', diaryNo)
-  }, [])
 
   return (
     <StyledContainer>

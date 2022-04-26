@@ -32,6 +32,7 @@ function App() {
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
                 <Route path="/profile" element={<Profile />} />
+                {/* <Route path="/diary/read/:dno" render={(props) => <ReadDiary {...props} />} /> */}
                 <Route path="/diary/read/:dno" element={<ReadDiary />} />
               </Routes>
             </StyledContentArea>
