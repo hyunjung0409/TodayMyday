@@ -36,7 +36,7 @@ function ImageFileInput({ imageUploader, onFileChange, file, data }) {
         <button
           style={{ backgroundColor: '#ffff', border: 'none', cursor: 'pointer' }}
           onClick={onButtonClick}>
-          <img src={file.fileURL || fileURL} alt="img" width="150px" />
+          <img src={file.fileURL || fileURL} alt="img" width="100%" />
         </button>
       )}
       {loading && (
