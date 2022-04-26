@@ -13,7 +13,7 @@ const axios = getAxios()
 
 function articleAddAPI(data) {
   const article = data.data
-  return axios.post(`dairy/${data.userId}`, article)
+  return axios.post(`diary/${data.userId}`, article)
 }
 
 function* articleAdd(action) {
