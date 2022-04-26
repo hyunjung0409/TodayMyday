@@ -4,6 +4,7 @@ import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
 import com.example.back.entity.User;
 import com.example.back.repository.DiaryRepository;
+import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class DiaryServiceImpl implements DiaryService{
 
     private final DiaryRepository diaryRepository;
+    private final UserRepository userRepository;
 
 
     @Override
@@ -76,7 +78,7 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<DiaryDto> searchDiaries(String keyword, String userId) {
+    public List<DiaryDto> searchDiariesByContent(String keyword, String userId) {
         List<Diary> diares = diaryRepository.findByContentContains(keyword);
         DiaryDto diaryDto = new DiaryDto();
 
@@ -98,6 +100,39 @@ public class DiaryServiceImpl implements DiaryService{
         Diary diary = diaryRepository.findDiaryByDno(dno);
 
         return diary;
+    }
+
+    @Override
+    public List<String> readMyword(String userId) {
+        List<Diary> diaries = diaryRepository.findByUserId(userId);
+
+        List<String> mywords = new ArrayList<>();
+
+        for (Diary diary : diaries) {
+            if (!mywords.contains(diary.getWord())) {
+                mywords.add(diary.getWord());
+            }
+        }
+
+        return mywords;
+    }
+
+    @Override
+    public List<DiaryDto> searchDiariesByWord(String word, String userId) {
+        List<Diary> diares = diaryRepository.findDiaryByWord(word);
+        DiaryDto diaryDto = new DiaryDto();
+
+        List<DiaryDto> my_daires = new ArrayList<>();
+        for (Diary diary : diares) {
+            if (diary.getUser().getUserId().equals(userId)) {
+                diaryDto.setContent(diary.getContent());
+                diaryDto.setImage(diary.getImage());
+                diaryDto.setWord(diary.getWord());
+                diaryDto.setNickname(diary.getUser().getNickname());
+                my_daires.add(diaryDto);
+            }
+        }
+        return my_daires;
     }
 
 

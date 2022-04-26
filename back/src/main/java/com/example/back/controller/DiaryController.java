@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -115,24 +116,6 @@ public class DiaryController {
         return new ResponseEntity<>(hashMap, status);
     }
 
-    @GetMapping("/search")
-    @ApiOperation(value = "내 다이어리 검색", notes = "내가 등록한 다이어리 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchDiary(@RequestParam String keyword, @RequestParam String userId) {
-        HttpStatus status;
-
-        System.out.println("키워드" + keyword);
-        List<DiaryDto> diares = diaryService.searchDiaries(keyword, userId);
-
-        if (diares != null) {
-            status = HttpStatus.OK;
-        }
-        else {
-            status = HttpStatus.NO_CONTENT;
-        }
-
-        return new ResponseEntity<>(diares, status);
-    }
-
     @GetMapping("/read/{dno}")
     @ApiOperation(value = "다이어리 상세글", notes = "다이어리 상세 글 보기", response = String.class)
     public ResponseEntity<Diary> readDiary(@PathVariable long dno) {
@@ -149,5 +132,56 @@ public class DiaryController {
         return new ResponseEntity<Diary>(diary, status);
     }
 
+    @GetMapping("/myword")
+    @ApiOperation(value = "내가 선택한 단어들", notes = "내가 선택한 단어들 보기", response = String.class)
+    public ResponseEntity<List<String>> readMyword(@RequestParam String userId) {
+        HttpStatus status;
 
+        List<String> mywords = diaryService.readMyword(userId);
+
+        if (userId == null) {
+            status = HttpStatus.NOT_FOUND;
+        }
+        else {
+            status = HttpStatus.OK;
+        }
+
+        return new ResponseEntity<>(mywords, status);
+
+    }
+
+    @GetMapping("/searchcontent")
+    @ApiOperation(value = "내 다이어리 내용별 검색", notes = "내가 등록한 다이어리 내용별 검색하기", response = String.class)
+    public ResponseEntity<List<DiaryDto>> searchDiaryByContent(@RequestParam String keyword, @RequestParam String userId) {
+        HttpStatus status;
+
+        System.out.println("키워드" + keyword);
+        List<DiaryDto> diares = diaryService.searchDiariesByContent(keyword, userId);
+
+        if (diares != null) {
+            status = HttpStatus.OK;
+        }
+        else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        return new ResponseEntity<>(diares, status);
+    }
+
+    @GetMapping("/searchword")
+    @ApiOperation(value = "내 다이어리 단어별 검색", notes = "내가 등록한 다이어리 단어별 검색하기", response = String.class)
+    public ResponseEntity<List<DiaryDto>> searchDiaryByWord(@RequestParam String word, @RequestParam String userId) {
+        HttpStatus status;
+
+        List<DiaryDto> diares = diaryService.searchDiariesByWord(word, userId);
+
+        if (diares != null) {
+            status = HttpStatus.OK;
+        }
+        else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        return new ResponseEntity<>(diares, status);
+    }
 }
