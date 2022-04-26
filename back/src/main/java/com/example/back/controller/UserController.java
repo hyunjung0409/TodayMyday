@@ -72,9 +72,9 @@ public class UserController {
 //
 //    }
 
-    @GetMapping("/read/{userId}")
+    @GetMapping("/read")
     @ApiOperation(value = "사용자 조회", notes = "아이디로 사용자 조회", response = String.class)
-    public ResponseEntity<Map<String, Object>> readUser(@PathVariable String userId){
+    public ResponseEntity<Map<String, Object>> readUser(@RequestParam String userId){
         Map<String, Object> map = new HashMap<>();
         User user = userRepository.findByUserId(userId);
 
@@ -83,9 +83,9 @@ public class UserController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-    @PutMapping("/modify/{userId}")
+    @PutMapping("/modify")
     @ApiOperation(value = "사용자 정보 수정", notes = "아이디로 사용자 정보 수정", response = String.class)
-    public ResponseEntity<Map<String, Object>> modifyUser(@PathVariable String userId, @RequestBody UserDto userDto){
+    public ResponseEntity<Map<String, Object>> modifyUser(@RequestParam String userId, @RequestBody UserDto userDto){
         Map<String, Object> map = new HashMap<>();
         User user = userService.modifyUser(userId, userDto);
 
@@ -94,9 +94,9 @@ public class UserController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/delete")
     @ApiOperation(value = "사용자 탈퇴", notes = "아이디로 사용자 디비에서 삭제", response = String.class)
-    public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable String userId){
+    public ResponseEntity<Map<String, Object>> deleteUser(@RequestParam String userId){
         Map<String, Object> map = new HashMap<>();
         userService.deleteUser(userId);
 

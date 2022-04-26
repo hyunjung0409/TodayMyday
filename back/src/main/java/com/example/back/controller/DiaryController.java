@@ -46,9 +46,9 @@ public class DiaryController {
         return new ResponseEntity<>(hashMap, status);
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping
     @ApiOperation(value = "다이어리 등록", notes = "현재 로그인 된 아이디로 다이어리 등록", response = String.class)
-    public ResponseEntity<Map<String, Object>> createDiary(@PathVariable String userId, @RequestBody DiaryDto diaryDto){
+    public ResponseEntity<Map<String, Object>> createDiary(@RequestParam String userId, @RequestBody DiaryDto diaryDto){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
@@ -68,9 +68,9 @@ public class DiaryController {
         return new ResponseEntity<>(hashMap, status);
     }
 
-    @PutMapping("/{userId}/{dno}")
+    @PutMapping("/{dno}")
     @ApiOperation(value = "다이어리 수정", notes = "다이어리 수정", response = String.class)
-    public ResponseEntity<Map<String, Object>> modifyDiary(@PathVariable String userId, @PathVariable long dno, @RequestBody DiaryDto diaryDto) {
+    public ResponseEntity<Map<String, Object>> modifyDiary(@RequestParam String userId, @PathVariable long dno, @RequestBody DiaryDto diaryDto) {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
@@ -93,9 +93,9 @@ public class DiaryController {
     }
 
 
-    @DeleteMapping("/{userId}/{dno}")
+    @DeleteMapping("/{dno}")
     @ApiOperation(value = "다이어리 삭제", notes = "다이어리 삭제", response = String.class)
-    public ResponseEntity<Map<String, Object>> deleteDiary(@PathVariable String userId, @PathVariable Long dno){
+    public ResponseEntity<Map<String, Object>> deleteDiary(@RequestParam String userId, @PathVariable Long dno){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
