@@ -21,14 +21,15 @@ function Signup() {
 }
 
 const StyledContainer = styled.div`
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
 `
 
 const StyledFormArea = styled.div`
+  border: 3px solid red;
   width: 50%;
 `
 

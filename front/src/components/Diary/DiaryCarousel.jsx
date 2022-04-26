@@ -11,20 +11,11 @@ const MyCarousel = styled(Carousel)`
   > .slick-dots-bottom li button:before {
     display: none;
   }
+  // > .ant-carousel .slick-dots {
+  //   margin-left: 0;
+  //   margin-right: 0;
+  // }
 `
-
-const contentStyle = {
-  height: '350px',
-  color: '#fff',
-  textAlign: 'center',
-  background: '#FFDAE5',
-}
-
-// const map_result3 = numbers.map(function (value, index) {
-//   return "<li>[ " + index + "] " + value + "</li>\n";
-// });
-// console.log(map_result3);
-// // ["<li>[ 0] 45</li>\n", "<li>[ 1] 1</li>\n", ...]
 
 function DiaryCarousel({ diaryList, setDiaryList }) {
   const rendering = () => {
@@ -46,30 +37,6 @@ function DiaryCarousel({ diaryList, setDiaryList }) {
 
   return (
     <>
-      {/* <MyCarousel afterChange={onChange} dotPosition="bottom">
-        <div className="carousel-1">
-          <div style={contentStyle}>
-            <StyledCardlArea>
-              <DiaryCard />
-              <DiaryCard />
-              <DiaryCard />
-              <DiaryCard />
-              <DiaryCard />
-            </StyledCardlArea>
-          </div>
-        </div>
-        <div className="carousel-2">
-          <div style={contentStyle}>
-            <StyledCardlArea>
-              <DiaryCard />
-              <DiaryCard />
-              <DiaryCard />
-              <DiaryCard />
-              <DiaryCard />
-            </StyledCardlArea>
-          </div>
-        </div>
-      </MyCarousel> */}
       <MyCarousel
         afterChange={onChange}
         dotPosition="bottom"
@@ -85,6 +52,7 @@ const StyledCardlArea = styled.div`
   justify-content: space-evenly;
   border: 1px solid red;
   padding: 2rem;
+  height: 60vh;
 `
 
 export default DiaryCarousel

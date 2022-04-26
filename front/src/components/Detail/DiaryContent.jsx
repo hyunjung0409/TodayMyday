@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { Row, Col, Typography } from 'antd'
 import styled from 'styled-components'
 
-const { Title } = Typography
+const { Text } = Typography
 
-function DiaryContent(params) {
-  const [content, setContent] = useState(
-    '가까이 있어서 소중한 것,\n그러나 너무나 평범한 일상 속에 있어서\n소중함을 잘 모르는 것.',
-  )
+function DiaryContent({ diary }) {
+  const [content, setContent] = useState('')
+
+  // setContent(me.dairies[])
   return (
     <Row>
       <Col span={24}>
         <StyledContainer>
-          <Title level={5}>{content}</Title>
+          <Text level={5}>{diary.content}</Text>
         </StyledContainer>
       </Col>
     </Row>
