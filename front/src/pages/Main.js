@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import WordCard from '../components/Main/WordCard'
 import { getAxios } from '../api'
+import { useDispatch, useSelector } from 'react-redux'
+import { wordGetRequestAction } from '../reducers/word'
 
 const Cards = styled.div`
   background-color: #f9fafb;
@@ -13,21 +15,13 @@ const Cards = styled.div`
 `
 
 function Main() {
-  const axios = getAxios()
-  const [word, setWord] = useState(null)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    axios
-      .get('test/word')
-      .then((res) => {
-        setWord(res.data)
-      })
-      .catch((err) => {
-        console.log('err', err)
-      })
+    dispatch(wordGetRequestAction())
   }, [])
 
-  return <WordCard word={word} />
+  return <WordCard />
 }
 
 export default Main

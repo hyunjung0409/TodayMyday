@@ -33,7 +33,6 @@ const Submit = styled(Button)`
 
 function ArticleForm({ imageUploader, data }) {
   const { me } = useSelector((state) => state.user)
-  const { articleAddDone } = useSelector((state) => state.article)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const formRef = useRef()
