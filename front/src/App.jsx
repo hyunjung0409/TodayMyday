@@ -46,7 +46,7 @@ function App() {
 }
 
 const StyledContentArea = styled.div`
-  min-height: 30rem;
+  min-height: 80vh;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.5);
 `
