@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import WordCard from '../components/Main/WordCard'
+import { getAxios } from '../api'
+
 const Cards = styled.div`
   background-color: #f9fafb;
   height: 200px;
@@ -11,7 +13,22 @@ const Cards = styled.div`
 `
 
 function Main() {
-  return <WordCard />
+  const axios = getAxios()
+  const [word, setWord] = useState(null)
+
+  useEffect(() => {
+    axios
+      .get('test/word')
+      .then((res) => {
+        console.log('단어', res.data)
+        setWord(res.data)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+  }, [])
+
+  return <WordCard word={word} />
 }
 
 export default Main
