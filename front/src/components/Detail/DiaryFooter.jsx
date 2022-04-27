@@ -3,10 +3,12 @@ import { Row, Col, Button, Space, Modal } from 'antd'
 import styled from 'styled-components'
 import { getAxios } from '../../api'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const axios = getAxios()
 
-function DiaryFooter({ dno, me }) {
+function DiaryFooter({ dno }) {
+  const { me } = useSelector((state) => state.user)
   const [size, setSize] = useState(8)
   const [isModalVisible, setIsModalVisible] = useState(false)
 

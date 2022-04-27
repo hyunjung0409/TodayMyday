@@ -3,13 +3,15 @@ import { Card, Avatar, Space, Typography, Image } from 'antd'
 import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const { Meta } = Card
 const { Text } = Typography
 
-function DiaryCard({ card, me }) {
+function DiaryCard({ card }) {
   // const [dno, setDno] = useState('')
   const [date, setDate] = useState('')
+  const { me } = useSelector((state) => state.user)
 
   const navigate = useNavigate()
 
