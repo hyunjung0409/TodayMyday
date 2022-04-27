@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import WordCard from '../components/Main/WordCard'
-import { getAxios } from '../api'
-import { useDispatch, useSelector } from 'react-redux'
 import { wordGetRequestAction } from '../reducers/word'
 
 const Cards = styled.div`
