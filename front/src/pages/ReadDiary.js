@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Image } from 'antd'
 import styled from 'styled-components'
+import { Button } from 'antd'
 import DiaryContent from '../components/Detail/DiaryContent'
 import DiaryFooter from '../components/Detail/DiaryFooter'
 import DiaryHeader from '../components/Detail/DiaryHeader'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getAxios } from '../api'
 
 function MyDetail() {
   const axios = getAxios()
-  const { me } = useSelector((state) => state.user)
+  const navigate = useNavigate()
   const { dno } = useParams()
+
   const [diary, setDiary] = useState({})
 
   const match = async () => {
@@ -26,14 +26,15 @@ function MyDetail() {
 
   return (
     <StyledContainer>
+      <Button onClick={() => navigate(-1)}>뒤로가기</Button>
       <StyledImageArea>
         <StyledImage src={diary.image} />
       </StyledImageArea>
 
       <StyledFormArea className="styled-form-area">
-        <DiaryHeader diary={diary} me={me} />
+        <DiaryHeader diary={diary} />
         <DiaryContent diary={diary} />
-        <DiaryFooter dno={dno} me={me} />
+        <DiaryFooter dno={dno} />
       </StyledFormArea>
     </StyledContainer>
   )

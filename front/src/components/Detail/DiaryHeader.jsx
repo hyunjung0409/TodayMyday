@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { Row, Col, Typography, Avatar, Image } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 const { Title, Text } = Typography
 
-function DiaryHeader({ diary, me }) {
+function DiaryHeader({ diary }) {
   const [word, setWord] = useState('')
   const [user, setUser] = useState('')
   const [date, setDate] = useState('')
+  const { me } = useSelector((state) => state.user)
 
   return (
     <Row>
