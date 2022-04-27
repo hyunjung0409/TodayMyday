@@ -54,19 +54,23 @@ public class DiaryController {
         HttpStatus status;
 
         User user = userRepository.findByUserId(userId);
-        if (diaryService.createDiary(diaryDto, user)) {
-            hashMap.put("Message", "SUCCESS");
-            status = HttpStatus.OK;
-            hashMap.put("Status", status);
+        Diary diary = diaryService.createDiary(diaryDto, user);
 
-        } else {
-            hashMap.put("Message", "FAIL");
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
-            hashMap.put("ERROR", "빈 값이 들어있습니다.");
-            hashMap.put("Status", status);
-
-        }
-        return new ResponseEntity<>(hashMap, status);
+        hashMap.put("diary", diary);
+        hashMap.put("Message", "SUCCESS");
+//        if (diaryService.createDiary(diaryDto, user)) {
+//            hashMap.put("Message", "SUCCESS");
+//            status = HttpStatus.OK;
+//            hashMap.put("Status", status);
+//
+//        } else {
+//            hashMap.put("Message", "FAIL");
+//            status = HttpStatus.INTERNAL_SERVER_ERROR;
+//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
+//            hashMap.put("Status", status);
+//
+//        }
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 
     @PutMapping("/{dno}")

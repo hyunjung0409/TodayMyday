@@ -3,6 +3,8 @@ package com.example.back.service;
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
 import com.example.back.entity.User;
+import com.example.back.exception.CustomException;
+import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +23,11 @@ public class DiaryServiceImpl implements DiaryService{
 
 
     @Override
-    public boolean createDiary(DiaryDto diaryDto, User user) {
+    public Diary createDiary(DiaryDto diaryDto, User user) {
 
         // 단어가 없거나 내용이 없으면 (유효성 검사)
-        // if(diaryDto.getWord().equals(null) || diaryDto.getContent().equals(null)) return  false;
+        if(diaryDto.getWord().equals(null) || diaryDto.getContent().equals(null))
+            throw new CustomException(ErrorCode.METHOD_NOT_ALLOWED);
 
         Diary save = Diary.builder()
                 .image(diaryDto.getImage())
@@ -35,7 +38,7 @@ public class DiaryServiceImpl implements DiaryService{
                 .build();
 
         diaryRepository.save(save);
-        return true;
+        return save;
     }
 
     @Override
