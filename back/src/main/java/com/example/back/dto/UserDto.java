@@ -18,8 +18,10 @@ public class UserDto {
 
     String image;
 
+    @NotNull
     String gender;
 
+    @NotNull
     String age;
 
     @Builder
