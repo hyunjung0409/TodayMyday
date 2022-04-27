@@ -34,7 +34,7 @@ function* articleAdd(action) {
 }
 
 function articleListAPI(data) {
-  return axios.get(`/user/read/${data}`)
+  return axios.get('/user/read/', { params: { userId: data } })
 }
 
 function* articleList(action) {
