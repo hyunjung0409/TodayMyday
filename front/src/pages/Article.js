@@ -6,7 +6,7 @@ const imageUploader = new ImageUploader()
 
 function Writing() {
   const [data, setData] = useState({
-    word: '바다',
+    word: '산',
     message: '',
     fileURL: '/images/기본이미지.jpg',
   })

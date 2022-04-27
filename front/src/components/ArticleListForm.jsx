@@ -5,6 +5,9 @@ import ArticleListItem from './ArticleListItem'
 import Search from 'antd/lib/input/Search'
 import { useDispatch, useSelector } from 'react-redux'
 import { articleListRequestAction } from '../reducers/article'
+import { getAxios } from '../api'
+import moment from 'moment'
+import 'moment/locale/ko'
 
 function ArticleListForm(props) {
   const dispatch = useDispatch()
@@ -12,6 +15,7 @@ function ArticleListForm(props) {
   const { articleList } = useSelector((state) => state.article)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
+  const axios = getAxios()
 
   const loadMoreData = (userId) => {
     if (loading) {
@@ -34,7 +38,16 @@ function ArticleListForm(props) {
     }
   }, [articleList])
 
-  const onSearch = (value) => console.log(value)
+  const onSearch = (value) => {
+    axios
+      .get('diary/searchword', { params: { userId: me.userId, word: value } })
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+  }
 
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
@@ -68,7 +81,7 @@ function ArticleListForm(props) {
                 <ArticleListItem
                   picture={item.image}
                   title={item.word}
-                  createdat={item.createdat}
+                  createdat={moment(item.createdat).format('YYYY-MM-DD HH:mm:ss')}
                 />
               </List.Item>
             )}
