@@ -20,7 +20,6 @@ function Main() {
     axios
       .get('test/word')
       .then((res) => {
-        console.log('단어', res.data)
         setWord(res.data)
       })
       .catch((err) => {

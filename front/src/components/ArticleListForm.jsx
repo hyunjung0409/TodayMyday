@@ -8,6 +8,10 @@ import { articleListRequestAction } from '../reducers/article'
 import { getAxios } from '../api'
 import moment from 'moment'
 import 'moment/locale/ko'
+import { useNavigate } from 'react-router-dom'
+import { Select } from 'antd'
+
+const { Option } = Select
 
 function ArticleListForm(props) {
   const dispatch = useDispatch()
@@ -16,6 +20,8 @@ function ArticleListForm(props) {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const axios = getAxios()
+  const navigate = useNavigate()
+  const [searchKind, setSearchKind] = useState(null)
 
   const loadMoreData = (userId) => {
     if (loading) {
@@ -39,24 +45,56 @@ function ArticleListForm(props) {
   }, [articleList])
 
   const onSearch = (value) => {
-    axios
-      .get('diary/searchword', { params: { userId: me.userId, word: value } })
-      .then((res) => {
-        setData(res.data)
+    searchKind === 'searchword'
+      ? axios
+          .get(`diary/${searchKind}`, { params: { userId: me.userId, word: value } })
+          .then((res) => {
+            setData(res.data)
+          })
+          .catch((err) => {
+            console.log('err', err)
+          })
+      : axios
+          .get(`diary/${searchKind}`, { params: { userId: me.userId, keyword: value } })
+          .then((res) => {
+            setData(res.data)
+          })
+          .catch((err) => {
+            console.log('err', err)
+          })
+  }
+
+  const pageMove = (dno, e) => {
+    navigate(`/diary/read/${dno}`)
+  }
+
+  function handleChange(value) {
+    setSearchKind(value)
+    if (value === 'all') {
+      axios.get('user/read', { params: { userId: me.userId } }).then((res) => {
+        setData(res.data.user.dairies)
       })
-      .catch((err) => {
-        console.log('err', err)
-      })
+    }
   }
 
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
-      <div style={{ marginBottom: '10px' }}>
+      <div style={{ width: '100%', marginBottom: '10px' }}>
+        <Select
+          defaultValue="전체보기"
+          size="large"
+          onChange={handleChange}
+          style={{ float: 'left', width: '19%', marginRight: '5px' }}>
+          <Option value="all">전체보기</Option>
+          <Option value="searchword">단어</Option>
+          <Option value="searchcontent">내용</Option>
+        </Select>
         <Search
           placeholder="input search text"
           allowClear
           enterButton="검색"
           size="large"
+          style={{ width: '80%' }}
           onSearch={onSearch}
         />
       </div>
@@ -77,7 +115,11 @@ function ArticleListForm(props) {
           <List
             dataSource={data}
             renderItem={(item) => (
-              <List.Item key={item.id}>
+              <List.Item
+                key={item.id}
+                onClick={(e) => {
+                  pageMove(item.dno, e)
+                }}>
                 <ArticleListItem
                   picture={item.image}
                   title={item.word}

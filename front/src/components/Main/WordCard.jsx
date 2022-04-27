@@ -11,7 +11,6 @@ function WordCard({ word }) {
   const navigate = useNavigate()
 
   const pageMove = (e) => {
-    console.log(e.target.innerHTML)
     navigate('/my/article', { state: e.target.innerHTML })
   }
 

@@ -6,17 +6,17 @@ import { useLocation } from 'react-router-dom'
 const imageUploader = new ImageUploader()
 
 function Writing() {
-  const [data, setData] = useState({
-    word: '산',
-    message: '',
-    fileURL: '/images/기본이미지.jpg',
-  })
   const { state } = useLocation()
-  console.log(state)
+  const rand_1_3 = Math.floor(Math.random() * 3) + 1
+  const [data] = useState({
+    word: state,
+    message: '',
+    fileURL: `/images/${rand_1_3}.svg`,
+  })
 
   return (
     <div>
-      <ArticleForm imageUploader={imageUploader} data={data} state={state} />
+      <ArticleForm imageUploader={imageUploader} data={data} />
     </div>
   )
 }
