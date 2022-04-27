@@ -3,6 +3,7 @@ package com.example.back.controller;
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
 import com.example.back.entity.User;
+import com.example.back.entity.Word;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DiaryService;
@@ -57,12 +58,12 @@ public class DiaryController {
 
         User user = userRepository.findByUserId(userId);
         if (diaryService.createDiary(diaryDto, user)) {
+            // 단어 정보 수집
+            Word word = wordService.increaseFrequency(userId, diaryDto);
+            hashMap.put("word", word);
             hashMap.put("Message", "SUCCESS");
             status = HttpStatus.OK;
             hashMap.put("Status", status);
-            // 단어 정보 수집
-            wordService.increaseFrequency(userId, diaryDto);
-
         } else {
             hashMap.put("Message", "FAIL");
             status = HttpStatus.INTERNAL_SERVER_ERROR;

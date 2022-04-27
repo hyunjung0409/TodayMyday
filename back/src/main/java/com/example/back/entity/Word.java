@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @RequiredArgsConstructor
 @Getter
+@Setter
 public class Word {
     @Id
     @NotNull
