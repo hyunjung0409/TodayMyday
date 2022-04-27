@@ -1,10 +1,15 @@
 package com.example.back.service;
 
+import com.example.back.dto.DiaryDto;
 import com.example.back.dto.WordDto;
+import com.example.back.entity.Diary;
+import com.example.back.entity.User;
 import com.example.back.entity.Word;
 
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
+import com.example.back.repository.DiaryRepository;
+import com.example.back.repository.UserRepository;
 import com.example.back.repository.WordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +18,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class WordServiceImpl implements WordService{
 
-    private final WordRepository WordRepository;
+    private final UserRepository userRepository;
+    private final WordRepository wordRepository;
+    private final DiaryRepository diaryRepository;
 
     @Override
     public void createWord(String word) {
@@ -33,8 +40,25 @@ public class WordServiceImpl implements WordService{
                 .female(0)
                 .build();
 
-        WordRepository.save(save);
+        wordRepository.save(save);
+    }
+
+    @Override
+    public void increaseFrequency(String userId, DiaryDto diaryDto) {
+        User user = userRepository.findByUserId(userId);
+        Word word = wordRepository.findWordByWord(diaryDto.getWord());
+        Diary diary = diaryRepository.findDiaryByDno(diaryDto.getDno());
+
+        String gender = user.getGender();
+        String age = user.getAge();
+
+        if(user.getGender().equals("male")){
+
+        }
+
+
 
 
     }
+
 }

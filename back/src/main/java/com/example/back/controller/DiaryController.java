@@ -7,6 +7,7 @@ import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DiaryService;
 import com.example.back.service.UserService;
+import com.example.back.service.WordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class DiaryController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final DiaryRepository diaryRepository;
+    private final WordService wordService;
 
 
     @GetMapping("/")
@@ -58,6 +60,8 @@ public class DiaryController {
             hashMap.put("Message", "SUCCESS");
             status = HttpStatus.OK;
             hashMap.put("Status", status);
+            // 단어 정보 수집
+            wordService.increaseFrequency(userId, diaryDto);
 
         } else {
             hashMap.put("Message", "FAIL");
