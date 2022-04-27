@@ -16,9 +16,6 @@ public class Word {
     @NotNull
     private String word;
 
-    @NotNull
-    private String userId;
-
     private long teens;
 
     private long twenties;
@@ -36,9 +33,8 @@ public class Word {
     private long female;
 
     @Builder
-    public Word (String word, String userId, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female){
+    public Word (String word, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female){
         this.word = word;
-        this.userId = userId;
         this.teens = teens;
         this.twenties = twenties;
         this.thirties = thirties;

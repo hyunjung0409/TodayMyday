@@ -2,7 +2,7 @@ package com.example.back.service;
 
 import com.example.back.dto.TestWordDto;
 import com.example.back.entity.TestWord;
-import com.example.back.repository.WordRepository;
+import com.example.back.repository.TestWordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TestWordServiceImpl implements TestWordService {
 
-    private final WordRepository wordRepository;
+    private final TestWordRepository testWordRepository;
 
     @Override
     public boolean createWord(TestWordDto testWordDto) {
@@ -22,14 +22,14 @@ public class TestWordServiceImpl implements TestWordService {
                 .word(testWordDto.getWord())
                 .build();
 
-        wordRepository.save(save);
+        testWordRepository.save(save);
 
         return true;
     }
 
     @Override
     public List<String> pickWords() {
-        List<TestWord> words = wordRepository.findAll();
+        List<TestWord> words = testWordRepository.findAll();
 
         if(words == null) return null;
 

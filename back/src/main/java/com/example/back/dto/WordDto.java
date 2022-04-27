@@ -12,9 +12,6 @@ public class WordDto {
     @NotNull
     private String word;
 
-    @NotNull
-    private String userId;
-
     private long teens;
 
     private long twenties;
@@ -32,9 +29,8 @@ public class WordDto {
     private long female;
 
     @Builder
-    public WordDto (String word, String userId, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female){
+    public WordDto (String word, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female){
         this.word = word;
-        this.userId = userId;
         this.teens = teens;
         this.twenties = twenties;
         this.thirties = thirties;
@@ -43,19 +39,5 @@ public class WordDto {
         this.oversixties = oversixties;
         this.male = male;
         this.female = female;
-    }
-
-    public Word createWord(){
-        return Word.builder()
-                .word(word)
-                .teens(0)
-                .twenties(0)
-                .thirties(0)
-                .fourties(0)
-                .fifties(0)
-                .oversixties(0)
-                .male(0)
-                .female(0)
-                .build();
     }
 }
