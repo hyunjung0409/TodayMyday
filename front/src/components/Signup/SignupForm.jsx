@@ -35,14 +35,14 @@ function SignupForm({ imageUploader, data }) {
     console.log('Failed:', errorInfo)
   }
 
-  const handleOk = () => {
+  const handleMove = () => {
     navigate('/')
   }
 
   const success = () => {
     Modal.success({
       content: '회원가입이 완료되었습니다.',
-      onOk: handleOk,
+      onOk: handleMove,
     })
   }
 

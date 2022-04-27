@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import DiaryCarousel from '../components/Diary/DiaryCarousel'
 import SearchBar from '../components/SearchBar'
 
 function SearchMy() {
   const [keyword, setKeyword] = useState('')
   const [diaryList, setDiaryList] = useState([{}])
+  const { me } = useSelector((state) => state.user)
 
   return (
     <div>
@@ -15,6 +17,7 @@ function SearchMy() {
           setKeyword={setKeyword}
           diaryList={diaryList}
           setDiaryList={setDiaryList}
+          me={me}
         />
       </div>
 
@@ -27,7 +30,7 @@ function SearchMy() {
       ) : (
         <div className="diary-carousel-contained" style={{ background: '#FFDAE5', margin: '1rem' }}>
           <h3 style={{ textAlign: 'left', padding: '1rem' }}>'{keyword}' 단어가 포함된 글</h3>
-          <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} />
+          <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} me={me} />
         </div>
       )}
     </div>
