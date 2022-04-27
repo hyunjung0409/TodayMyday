@@ -58,7 +58,7 @@ function Navbar() {
         <Col span={4}>
           {me ? (
             <nav className="nav-user">
-              <StyledLink to="/#">
+              <StyledLink to="/my/profile">
                 <strong>마이페이지</strong>
               </StyledLink>
               <strong onClick={onLogOut}>로그아웃</strong>

@@ -13,14 +13,14 @@ import ImageUploader from '../service/image_uploader'
 const imageUploader = new ImageUploader()
 
 function Profile() {
-  const [form, setForm] = useState({
+  const [data, setData] = useState({
     fileURL: '/images/기본이미지.jpg',
   })
   return (
     <div>
       <Row>
         <Col span={12}>
-          <MyPicture imageUploader={imageUploader} form={form}></MyPicture>
+          <MyPicture imageUploader={imageUploader} data={data}></MyPicture>
           <MyNickName></MyNickName>
           <MyAge></MyAge>
           <MyGender></MyGender>
