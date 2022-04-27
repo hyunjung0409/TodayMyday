@@ -7,7 +7,7 @@ import com.example.back.entity.User;
 import java.util.List;
 
 public interface DiaryService {
-    boolean createDiary(DiaryDto diaryDto, User user);
+    Diary createDiary(DiaryDto diaryDto, User user);
     Diary findDiary(Long dno);
     Diary modifyDiary(Long dno, String userId, DiaryDto diaryDto);
     Boolean deleteDiary(Long dno, String userId);
