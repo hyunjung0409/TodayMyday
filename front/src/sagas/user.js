@@ -16,7 +16,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken'
 const axios = getAxios()
 
 function loadUsedrAPI(data) {
-  return axios.get(`/user/read/${data}`)
+  return axios.get(`/user/read`, { params: { userId: data } })
 }
 
 function* loadUser(action) {

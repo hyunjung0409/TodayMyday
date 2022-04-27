@@ -1,9 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
 import ImageFileInput from '../components/ImageFileInput'
 import { useDispatch, useSelector } from 'react-redux'
 import { articleAddRequestAction } from '../reducers/article'
+import { Upload, message } from 'antd'
+import { InboxOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+
+const { Dragger } = Upload
 
 const Word = styled.h1`
   margin: 10px auto;
@@ -12,10 +17,9 @@ const Word = styled.h1`
 `
 
 const ImageLayout = styled.div`
-  border: 1px solid blue;
   margin-right: 10px;
   background-color: #ffff;
-  height: 150px;
+  height: 30vh;
 `
 const WritingLayout = styled.div`
   border: 1px solid red;
@@ -29,6 +33,8 @@ const Submit = styled(Button)`
 
 function ArticleForm({ imageUploader, data }) {
   const { me } = useSelector((state) => state.user)
+  const { articleAddDone } = useSelector((state) => state.article)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const formRef = useRef()
   const messageRef = useRef()
@@ -48,9 +54,10 @@ function ArticleForm({ imageUploader, data }) {
       word: word,
       image: file.fileURL || '',
     }
-    dispatch(articleAddRequestAction({ userId: me.userId, data }))
+    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
     formRef.current.reset()
   }
+
   return (
     <form
       ref={formRef}
@@ -59,14 +66,22 @@ function ArticleForm({ imageUploader, data }) {
       <Row>
         <Col span={8}>
           <ImageLayout>
-            <ImageFileInput
-              name={file.fileName}
-              imageUploader={imageUploader}
-              onFileChange={onFileChange}
-              file={file}
-              data={data}
-              setFile={setFile}
-            />
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#fff',
+                border: 'none',
+              }}>
+              <ImageFileInput
+                name={file.fileName}
+                imageUploader={imageUploader}
+                onFileChange={onFileChange}
+                file={file}
+                data={data}
+                setFile={setFile}
+              />
+            </div>
           </ImageLayout>
         </Col>
         <Col span={16}>

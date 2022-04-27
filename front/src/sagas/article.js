@@ -12,17 +12,19 @@ import {
 const axios = getAxios()
 
 function articleAddAPI(data) {
-  const article = data.data
-  return axios.post(`diary/${data.userId}`, article)
+  return axios.post('diary', data.data, { params: { userId: data.userId } })
 }
 
 function* articleAdd(action) {
+  const navigate = action.data.navigate
   try {
     yield call(articleAddAPI, action.data)
     yield put({
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
     })
+    yield alert('글 작성 성공')
+    yield navigate('/')
   } catch (err) {
     yield put({
       type: ARTICLE_ADD_FAILURE,
@@ -32,7 +34,7 @@ function* articleAdd(action) {
 }
 
 function articleListAPI(data) {
-  return axios.get(`/user/read/${data}`)
+  return axios.get('/user/read/', { params: { userId: data } })
 }
 
 function* articleList(action) {
