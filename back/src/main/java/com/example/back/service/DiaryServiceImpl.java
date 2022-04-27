@@ -127,6 +127,8 @@ public class DiaryServiceImpl implements DiaryService{
         for (Diary diary : diares) {
             DiaryDto diaryDto = new DiaryDto();
             if (diary.getUser().getUserId().equals(userId)) {
+                diaryDto.setDno(diary.getDno());
+                diaryDto.setCreatedat(diary.getCreatedat());
                 diaryDto.setContent(diary.getContent());
                 diaryDto.setImage(diary.getImage());
                 diaryDto.setWord(diary.getWord());
