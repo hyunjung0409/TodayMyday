@@ -31,7 +31,7 @@ const Submit = styled(Button)`
   margin-top: 10px;
 `
 
-function ArticleForm({ imageUploader, data, state }) {
+function ArticleForm({ imageUploader, data }) {
   const { me } = useSelector((state) => state.user)
   const { articleAddDone } = useSelector((state) => state.article)
   const navigate = useNavigate()
@@ -39,7 +39,7 @@ function ArticleForm({ imageUploader, data, state }) {
   const formRef = useRef()
   const messageRef = useRef()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
-  const { word } = state
+  const { word, message, fileURL } = data
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -52,7 +52,7 @@ function ArticleForm({ imageUploader, data, state }) {
     const data = {
       content: messageRef.current.value || '',
       word: word,
-      image: file.fileURL || '',
+      image: file.fileURL || fileURL,
     }
     dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
     formRef.current.reset()
@@ -62,7 +62,7 @@ function ArticleForm({ imageUploader, data, state }) {
     <form
       ref={formRef}
       style={{ width: '80%', margin: '0 auto', backgroundColor: '#EEA7BB', padding: '20px' }}>
-      <Word>{state}</Word>
+      <Word>{word}</Word>
       <Row>
         <Col span={8}>
           <ImageLayout>

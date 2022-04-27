@@ -18,13 +18,13 @@ function articleAddAPI(data) {
 function* articleAdd(action) {
   const navigate = action.data.navigate
   try {
-    yield call(articleAddAPI, action.data)
+    const res = yield call(articleAddAPI, action.data)
     yield put({
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
     })
     yield alert('글 작성 성공')
-    yield navigate('/')
+    yield navigate(`/diary/read/${res.data.diary.dno}`)
   } catch (err) {
     yield put({
       type: ARTICLE_ADD_FAILURE,
