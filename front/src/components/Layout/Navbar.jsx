@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Typography, Row, Col, Menu, Dropdown, Button, Space } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { Layout, Typography, Row, Col, Menu, Dropdown, Button, Space, Avatar } from 'antd'
+import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -81,19 +81,22 @@ function Navbar() {
 
         <Col span={4}>
           {me ? (
-            <Dropdown
-              overlay={menu}
-              trigger={['click']}
-              onVisibleChange={handleVisibleChange}
-              visible={state}>
-              <a onClick={handleMenuClick}>
-                {/* <a onClick={(e) => e.preventDefault()}> */}
-                <Space>
-                  {me.userId}
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
+            <Space>
+              <Avatar icon={me.image === null ? <UserOutlined /> : <img src={me.image}></img>} />
+              <Dropdown
+                overlay={menu}
+                trigger={['click']}
+                onVisibleChange={handleVisibleChange}
+                visible={state}>
+                <a onClick={handleMenuClick}>
+                  {/* <a onClick={(e) => e.preventDefault()}> */}
+                  <Space>
+                    {me.userId}
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+            </Space>
           ) : (
             <nav className="nav-user">
               <StyledLink to="/user/login">
