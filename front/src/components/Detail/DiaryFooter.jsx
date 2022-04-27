@@ -1,19 +1,68 @@
 import React, { useState } from 'react'
-import { Row, Col, Button, Space } from 'antd'
+import { Row, Col, Button, Space, Modal } from 'antd'
 import styled from 'styled-components'
+import { getAxios } from '../../api'
+import { useNavigate } from 'react-router-dom'
 
-function DiaryFooter(params) {
+const axios = getAxios()
+
+function DiaryFooter({ dno, me }) {
   const [size, setSize] = useState(8)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const navigate = useNavigate()
+
+  const handleModify = () => {
+    navigate(`/diary/modify/${dno}`)
+  }
+
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+    deleteDiary()
+    success()
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
+
+  const deleteDiary = async () => {
+    await axios.delete(`diary/${dno}`, {
+      params: { dno: dno, userId: me.userId },
+    })
+  }
+
+  const handleMove = () => {
+    navigate('/')
+  }
+
+  const success = () => {
+    Modal.success({
+      content: '글 삭제가 완료되었습니다.',
+      onOk: handleMove,
+    })
+  }
 
   return (
     <Row>
       <Col span={24}>
         <StyledContainer>
           <Space size={size}>
-            <Button type="primary">수정</Button>
-            <Button type="danger">삭제</Button>
+            <Button type="primary" onClick={handleModify}>
+              수정
+            </Button>
+            <Button type="danger" onClick={showModal}>
+              삭제
+            </Button>
           </Space>
         </StyledContainer>
+        <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+          <p>해당 글을 삭제하시겠습니까?</p>
+        </Modal>
       </Col>
     </Row>
   )

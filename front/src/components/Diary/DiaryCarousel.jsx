@@ -17,13 +17,13 @@ const MyCarousel = styled(Carousel)`
   // }
 `
 
-function DiaryCarousel({ diaryList, setDiaryList }) {
+function DiaryCarousel({ diaryList, setDiaryList, me }) {
   const rendering = () => {
     const result = []
     for (let index = 0; index < diaryList.length; index += 5) {
       const element = diaryList.slice(0 + index, 5 + index)
-      const fiveCards = element.map((card, i) => {
-        return <DiaryCard card={card} key={i} />
+      const fiveCards = element.map((card) => {
+        return <DiaryCard card={card} key={card.dno} me={me} />
       })
 
       result.push(

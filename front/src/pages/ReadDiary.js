@@ -33,7 +33,7 @@ function MyDetail() {
       <StyledFormArea className="styled-form-area">
         <DiaryHeader diary={diary} me={me} />
         <DiaryContent diary={diary} />
-        <DiaryFooter />
+        <DiaryFooter dno={dno} me={me} />
       </StyledFormArea>
     </StyledContainer>
   )

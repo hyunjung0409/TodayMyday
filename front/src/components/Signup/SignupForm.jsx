@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react'
-import { Form, Input, Button, Select, Upload } from 'antd'
+import React, { useState } from 'react'
+import { Form, Input, Button, Select, Modal } from 'antd'
 import ImageFileInput from '../ImageFileInput'
 import { getAxios } from '../../api'
+import { useNavigate } from 'react-router-dom'
 
 const { Option } = Select
 
 function SignupForm({ imageUploader, data }) {
   const [form] = Form.useForm()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
+  const navigate = useNavigate()
 
   const onFileChange = (file) => {
     setFile({
@@ -16,22 +18,9 @@ function SignupForm({ imageUploader, data }) {
     })
   }
 
-  // const onSubmit = (event) => {
-  //   event.preventDefault()
-  //   const data = {
-  //     id: Date.now(), // uuid
-  //     fileName: file.fileName || '',
-  //     fileURL: file.fileURL || '',
-  //   }
-  //   formRef.current.reset()
-  //   console.log(data)
-  // }
-
   const onFinish = async (values) => {
     const axios = getAxios()
-    console.log(axios)
     await axios.post('user/signup', {
-      // image: values.image,
       image: file.fileURL,
       nickname: values.nickname,
       password: values.password,
@@ -39,18 +28,28 @@ function SignupForm({ imageUploader, data }) {
       age: values.ageRange,
       gender: values.gender,
     })
-    console.log('Success:', values)
+    console.log('Success')
   }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
+  const handleMove = () => {
+    navigate('/')
+  }
+
+  const success = () => {
+    Modal.success({
+      content: '회원가입이 완료되었습니다.',
+      onOk: handleMove,
+    })
+  }
+
   return (
     <Form
       form={form}
       name="signup"
-      // onSubmit={onSubmit}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
@@ -168,7 +167,7 @@ function SignupForm({ imageUploader, data }) {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" onClick={success}>
           Register
         </Button>
       </Form.Item>

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const { Meta } = Card
 const { Text } = Typography
 
-function DiaryCard({ card }) {
+function DiaryCard({ card, me }) {
   // const [dno, setDno] = useState('')
   const [date, setDate] = useState('')
 
@@ -18,9 +18,9 @@ function DiaryCard({ card }) {
     navigate(`/diary/read/${card.dno}`)
   }
 
-  useEffect(() => {
-    setDate(card.createdat)
-  }, [card.createdat])
+  // useEffect(() => {
+  //   setDate(card.createdat)
+  // }, [card.createdat])
 
   return (
     <Card
@@ -39,11 +39,7 @@ function DiaryCard({ card }) {
         <Text>내용: {card.content}</Text>
       </Space> */}
 
-      <Meta
-        avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-        title="작성자예시"
-        description={date}
-      />
+      <Meta avatar={<Avatar src={me.image} />} title={card.nickname} description={card.createdat} />
     </Card>
   )
 }
