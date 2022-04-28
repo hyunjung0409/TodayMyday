@@ -30,7 +30,7 @@ function App() {
                 <Route path="/my/search" element={<SearchMy />} />
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/my/profile" element={<Profile />} />
                 <Route path="/diary/read/:dno" element={<ReadDiary />} />
                 <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
               </Routes>

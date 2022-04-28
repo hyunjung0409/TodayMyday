@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MyPicture from '../components/Profile/MyPicture'
 import MyNickName from '../components/Profile/MyNickname'
 import MyAge from '../components/Profile/MyAge'
@@ -9,13 +9,25 @@ import Change from '../components/Profile/Change'
 import Search from '../components/Profile/Search'
 import { Col, Row } from 'antd'
 import ImageUploader from '../service/image_uploader'
+import { loadUserRequestAction } from '../reducers/user'
+import jwt_decode from 'jwt-decode'
+import { useDispatch } from 'react-redux'
 
 const imageUploader = new ImageUploader()
 
 function Profile() {
+  const dispatch = useDispatch()
   const [data, setData] = useState({
     fileURL: '/images/기본이미지.jpg',
   })
+
+  useEffect(() => {
+    if (localStorage.getItem('jwtToken') != null) {
+      const decode_token = jwt_decode(localStorage.getItem('jwtToken'))
+      const userId = decode_token.sub
+      dispatch(loadUserRequestAction({ userId }))
+    }
+  }, [])
   return (
     <div>
       <Row>
