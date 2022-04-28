@@ -113,9 +113,15 @@ function ModifyForm({ imageUploader, data }) {
         </Col>
         <Col span={16}>
           <WritingLayout>
-            <textarea ref={messageRef} name="message" defaultValue={message} onChange={onChange}>
+            {/* <input
+              type="text"
+              name="message"
+              ref={messageRef}
+              defaultValue={message}
+              onChange={onChange}>
               {message}
-            </textarea>
+            </input> */}
+            <textarea ref={messageRef} name="message" defaultValue={message}></textarea>
           </WritingLayout>
         </Col>
       </Row>
