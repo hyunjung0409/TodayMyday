@@ -7,6 +7,12 @@ import {
   ARTICLE_LIST_REQUEST,
   ARTICLE_LIST_SUCCESS,
   ARTICLE_LIST_FAILURE,
+  DIARY_SEARCH_WORD_REQUEST,
+  DIARY_SEARCH_WORD_SUCCESS,
+  DIARY_SEARCH_WORD_FAILURE,
+  DIARY_SEARCH_CONTENT_REQUEST,
+  DIARY_SEARCH_CONTENT_SUCCESS,
+  DIARY_SEARCH_CONTENT_FAILURE,
 } from '../reducers/article'
 
 const axios = getAxios()
@@ -18,13 +24,13 @@ function articleAddAPI(data) {
 function* articleAdd(action) {
   const navigate = action.data.navigate
   try {
-    yield call(articleAddAPI, action.data)
+    const res = yield call(articleAddAPI, action.data)
     yield put({
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
     })
     yield alert('글 작성 성공')
-    yield navigate('/')
+    yield navigate(`/diary/read/${res.data.diary.dno}`)
   } catch (err) {
     yield put({
       type: ARTICLE_ADD_FAILURE,
@@ -53,6 +59,50 @@ function* articleList(action) {
   }
 }
 
+function diarySearchWordAPI(data) {
+  const searchKind = data.searchKind
+  return axios.get(`diary/${searchKind}`, { params: { userId: data.userId, word: data.word } })
+}
+
+function* diarySearchWord(action) {
+  try {
+    const result = yield call(diarySearchWordAPI, action.data)
+    yield put({
+      type: DIARY_SEARCH_WORD_SUCCESS,
+      data: result.data,
+    })
+    yield action.data.setData(result.data)
+  } catch (err) {
+    yield put({
+      type: DIARY_SEARCH_WORD_FAILURE,
+      error: err.response.data,
+    })
+  }
+}
+
+function diarySearchContentAPI(data) {
+  const searchKind = data.searchKind
+  return axios.get(`diary/${searchKind}`, {
+    params: { keyword: data.keyword, userId: data.userId },
+  })
+}
+
+function* diarySearchContent(action) {
+  try {
+    const result = yield call(diarySearchContentAPI, action.data)
+    yield put({
+      type: DIARY_SEARCH_CONTENT_SUCCESS,
+      data: result.data,
+    })
+    yield action.data.setData(result.data)
+  } catch (err) {
+    yield put({
+      type: DIARY_SEARCH_CONTENT_FAILURE,
+      error: err.response.data,
+    })
+  }
+}
+
 function* watchArticleAdd() {
   yield takeLatest(ARTICLE_ADD_REQUEST, articleAdd)
 }
@@ -61,6 +111,19 @@ function* watchArticleList() {
   yield takeLatest(ARTICLE_LIST_REQUEST, articleList)
 }
 
+function* watchDiarySearchWord() {
+  yield takeLatest(DIARY_SEARCH_WORD_REQUEST, diarySearchWord)
+}
+
+function* watchDiarySearchContent() {
+  yield takeLatest(DIARY_SEARCH_CONTENT_REQUEST, diarySearchContent)
+}
+
 export default function* userSaga() {
-  yield all([fork(watchArticleAdd), fork(watchArticleList)])
+  yield all([
+    fork(watchArticleAdd),
+    fork(watchArticleList),
+    fork(watchDiarySearchWord),
+    fork(watchDiarySearchContent),
+  ])
 }
