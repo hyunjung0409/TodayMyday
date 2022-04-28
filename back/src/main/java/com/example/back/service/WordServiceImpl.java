@@ -1,8 +1,7 @@
 package com.example.back.service;
 
 import com.example.back.dto.DiaryDto;
-import com.example.back.dto.WordDto;
-import com.example.back.entity.Diary;
+import com.example.back.dto.UserDto;
 import com.example.back.entity.User;
 import com.example.back.entity.Word;
 
@@ -12,8 +11,10 @@ import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.repository.WordRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -78,6 +79,90 @@ public class WordServiceImpl implements WordService{
         wordRepository.save(word);
 
         return word;
+    }
+
+    @Override
+    public List<String> pickRandomWords(UserDto userDto) {
+        // 각 조건에 따른 각각의 5개의 단어들을 담을 배열
+        List<String> pickedWords = new ArrayList<>();
+        String gender = userDto.getGender();
+        String age = userDto.getAge();
+
+        for(int i = 0; i < 5; i++){
+            String selectedWord = pickWordByCondition(i, gender, age);
+            pickedWords.add(selectedWord);
+        }
+
+        return pickedWords;
+    }
+
+    @Override
+    public String pickWordByCondition(int condition, String gender, String age) {
+        String selectedWord = "";
+        List<String> wordList = new ArrayList<>();
+        int len = 0;
+        int index = 0;
+        String year = "";
+//        for (int i = 0; i < wordList.size(); i++) {
+//            System.out.println("word : "+wordList.get(i).split(",")[0]);
+//        }
+
+        switch (age){
+            case "1":
+                year = "teens";
+                break;
+            case "2":
+                year = "twenties";
+                break;
+            case "3":
+                year = "thirties";
+                break;
+            case "4":
+                year = "fourties";
+                break;
+            case "5":
+                year = "fifties";
+                break;
+            case "6":
+                year = "oversixties";
+
+        }
+
+        System.out.println("year : "+year);
+        System.out.println("gender : "+gender);
+
+        switch (condition) {
+            case 0: // 연령대 + 성별
+                wordList = wordRepository.findWordsByGenderAndAge("male");
+                if(wordList.size() > 20) len = wordList.size();
+                else len = wordList.size();
+
+                for (int i = 0; i < wordList.size(); i++) {
+                    System.out.println("word : "+wordList.get(i));
+                }
+
+                index = (int)(Math.random()*len);
+                selectedWord = wordList.get(index);
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+        }
+
+
+        return selectedWord;
     }
 
 }
