@@ -38,7 +38,8 @@ function DiaryFooter({ dno }) {
   }
 
   const handleMove = () => {
-    navigate('/')
+    // navigate('/')
+    navigate(-1)
   }
 
   const success = () => {

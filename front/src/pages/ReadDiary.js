@@ -25,7 +25,6 @@ function MyDetail() {
 
   return (
     <StyledContainer>
-      <Button onClick={() => navigate(-1)}>뒤로가기</Button>
       <StyledImageArea>
         <StyledImage src={diary.image} />
       </StyledImageArea>

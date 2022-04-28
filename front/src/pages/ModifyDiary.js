@@ -5,13 +5,15 @@ import { getAxios } from '../api'
 import { useParams } from 'react-router-dom'
 import ModifyForm from '../components/ModifyDiary/ModifyForm'
 
+const imageUploader = new ImageUploader()
+
 function ModifyDiary() {
   const axios = getAxios()
   const { me } = useSelector((state) => state.user)
   const { dno } = useParams()
   const [data, setData] = useState({
     word: '',
-    message: '',
+    content: '',
     fileURL: '',
   })
 
@@ -20,7 +22,7 @@ function ModifyDiary() {
     console.log('result: ', result)
     setData({
       word: result.data.word,
-      message: result.data.content,
+      content: result.data.content,
       fileURL: result.data.image,
     })
   }
@@ -31,7 +33,7 @@ function ModifyDiary() {
 
   return (
     <div>
-      <ModifyForm imageUploader={ImageUploader} data={data} />
+      <ModifyForm imageUploader={imageUploader} data={data} />
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import SearchMy from './pages/SearchMyDiary'
+import Search from './pages/Search'
 import Navbar from './components/Layout/Navbar'
 import Article from './pages/Article'
 import ArticleList from './pages/ArticleList'
@@ -40,7 +40,7 @@ function App() {
                 <Route path="/" element={<Main />} />
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/signup" element={<Signup />} />
-                <Route path="/my/search" element={<SearchMy />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
                 <Route path="/my/profile" element={<Profile />} />
