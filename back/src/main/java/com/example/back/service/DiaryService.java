@@ -15,4 +15,8 @@ public interface DiaryService {
     Diary readDiary(long dno);
     List<String> readMyword(String userId);
     List<DiaryDto> searchDiariesByWord(String word, String userId);
+    List<DiaryDto> searchAllDiariesByContent(String keyword);
+    List<DiaryDto> searchAllDiariesByWord(String word);
+    List<String> readAllword();
+
 }
