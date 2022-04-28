@@ -3,6 +3,7 @@ import { Row, Col, Typography, Avatar, Image } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 const { Title, Text } = Typography
 
@@ -26,7 +27,9 @@ function DiaryHeader({ diary }) {
           )}
           <Title level={5}>{me.nickname}</Title>
         </StyledUserArea>
-        <StyledDateText level={5}>{diary.createdat}</StyledDateText>
+        <StyledDateText level={5}>
+          {moment(diary.createdat).format('YYYY-MM-DD HH:mm:ss')}
+        </StyledDateText>
       </Col>
     </Row>
   )

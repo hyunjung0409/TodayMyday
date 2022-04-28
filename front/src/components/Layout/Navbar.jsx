@@ -63,7 +63,7 @@ function Navbar() {
           <Space align="center">
             {me && (
               <>
-                <StyledLink to="/my/search">
+                <StyledLink to="/search">
                   <strong>둘러보기</strong>
                 </StyledLink>
               </>
