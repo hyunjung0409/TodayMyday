@@ -18,7 +18,6 @@ import {
 const { Option } = Select
 
 function ArticleListForm(props) {
-  const axios = getAxios()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [data, setData] = useState([])
