@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout, Typography, Row, Col, Menu, Dropdown, Space, Avatar } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
@@ -46,7 +46,6 @@ function Navbar() {
       const userId = decode_token.sub
       dispatch(loadUserRequestAction({ userId }))
     }
-    console.log('menu: ', menu)
   }, [])
 
   return (
