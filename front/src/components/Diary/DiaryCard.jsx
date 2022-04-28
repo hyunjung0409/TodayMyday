@@ -4,13 +4,12 @@ import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 const { Meta } = Card
 const { Text } = Typography
 
 function DiaryCard({ card }) {
-  // const [dno, setDno] = useState('')
-  const [date, setDate] = useState('')
   const { me } = useSelector((state) => state.user)
 
   const navigate = useNavigate()
@@ -20,15 +19,10 @@ function DiaryCard({ card }) {
     navigate(`/diary/read/${card.dno}`)
   }
 
-  // useEffect(() => {
-  //   setDate(card.createdat)
-  // }, [card.createdat])
-
   return (
-    <Card
+    <StyledCard
       className="card"
       hoverable
-      style={{ width: '15vw', height: '50vh', border: '3px solid blue' }}
       cover={
         <StyledImageArea>
           <StyledImage src={card.image} />
@@ -41,21 +35,33 @@ function DiaryCard({ card }) {
         <Text>내용: {card.content}</Text>
       </Space> */}
 
-      <Meta avatar={<Avatar src={me.image} />} title={card.nickname} description={card.createdat} />
-    </Card>
+      {/* <Meta
+        avatar={<Avatar src={card.profile_image} />}
+        title={card.nickname}
+        description={moment(card.createdat).format('YYYY-MM-DD HH:mm:ss')}
+      /> */}
+
+      <Space direction="vertical" size="middle" style={{ display: 'flex', alignItems: 'start' }}>
+        <Space>
+          <Avatar src={card.profile_image} />
+          <StyledText>{card.nickname}</StyledText>
+        </Space>
+        <StyledText>#{card.word}</StyledText>
+        <StyledText>{card.content}</StyledText>
+      </Space>
+    </StyledCard>
   )
 }
 
 const StyledImageArea = styled.div`
-  width: 14vw;
   height: 25vh;
   overflow: hidden;
   // border: 1px solid red;
 `
 
 const StyledImage = styled.img`
-  width: 14vw;
-  // height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `
 const StyledUserArea = styled.div`
@@ -63,9 +69,13 @@ const StyledUserArea = styled.div`
   flex-direction: column;
   justify-content: start;
 `
+const StyledCard = styled(Card)`
+  width: 15vw;
+  height: 50vh;
+`
+
 const StyledText = styled(Text)`
-  font-size: x-small;
-  margin: 1em 0;
+  font-size: small;
 `
 
 export default DiaryCard

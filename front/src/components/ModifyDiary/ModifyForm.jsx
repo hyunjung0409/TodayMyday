@@ -1,50 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
 import ImageFileInput from '../../components/ImageFileInput'
-import { useDispatch, useSelector } from 'react-redux'
-import { articleAddRequestAction } from '../../reducers/article'
-import { Upload, message } from 'antd'
+import { useSelector } from 'react-redux'
+import { message } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getAxios } from '../../api'
-import ImageUploader from '../../service/image_uploader'
-
-const { Dragger } = Upload
-
-const imageUploader = new ImageUploader()
-
-const Word = styled.h1`
-  margin: 10px auto;
-  width: 150px;
-  background-color: #ffff;
-`
-
-const ImageLayout = styled.div`
-  margin-right: 10px;
-  background-color: #ffff;
-  height: 30vh;
-`
-const WritingLayout = styled.div`
-  border: 1px solid red;
-  background-color: #ffff;
-  height: 150px;
-`
-
-const Submit = styled(Button)`
-  margin-top: 10px;
-`
 
 function ModifyForm({ imageUploader, data }) {
   const axios = getAxios()
-  const { me } = useSelector((state) => state.user)
-  const { articleAddDone } = useSelector((state) => state.article)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { me } = useSelector((state) => state.user)
+
   const formRef = useRef()
   const messageRef = useRef()
-  const { word, message, fileURL } = data
-  const [file, setFile] = useState({ fileName: null, fileURL: fileURL })
-  const [content, setContent] = useState('')
+  const { word, content, fileURL } = data
+  const [file, setFile] = useState({ fileName: null, fileURL: null })
+  const [copyContent, setCopyContent] = useState('')
   const { dno } = useParams()
 
   const onFileChange = (file) => {
@@ -56,25 +28,22 @@ function ModifyForm({ imageUploader, data }) {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    // const data = {
-    //   content: messageRef.current.value || '',
-    //   word: word,
-    //   image: file.fileURL || '',
-    // }
-    // dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
-    // formRef.current.reset()
+    console.log(copyContent)
     try {
       axios.put(
         `diary/${dno}`,
         {
-          content: content,
-          image: file.fileURL,
+          word: word,
+          content: copyContent === '' ? content : copyContent,
+          image: file.fileURL === null ? fileURL : file.fileURL,
         },
         {
           params: { dno: dno, userId: me.userId },
         },
       )
       console.log('완료')
+      // message.success('This is a success message')
+      navigate(`/diary/read/${dno}`)
     } catch (err) {
       console.log(err)
     }
@@ -82,7 +51,7 @@ function ModifyForm({ imageUploader, data }) {
 
   const onChange = (e) => {
     console.log('e.target.value: ', e.target.value)
-    setContent(e.target.value)
+    setCopyContent(e.target.value)
   }
 
   return (
@@ -113,15 +82,11 @@ function ModifyForm({ imageUploader, data }) {
         </Col>
         <Col span={16}>
           <WritingLayout>
-            {/* <input
-              type="text"
-              name="message"
+            <textarea
               ref={messageRef}
-              defaultValue={message}
-              onChange={onChange}>
-              {message}
-            </input> */}
-            <textarea ref={messageRef} name="message" defaultValue={message}></textarea>
+              name="message"
+              defaultValue={content}
+              onChange={onChange}></textarea>
           </WritingLayout>
         </Col>
       </Row>
@@ -131,5 +96,26 @@ function ModifyForm({ imageUploader, data }) {
     </form>
   )
 }
+
+const Word = styled.h1`
+  margin: 10px auto;
+  width: 150px;
+  background-color: #ffff;
+`
+
+const ImageLayout = styled.div`
+  margin-right: 10px;
+  background-color: #ffff;
+  height: 30vh;
+`
+const WritingLayout = styled.div`
+  border: 1px solid red;
+  background-color: #ffff;
+  height: 150px;
+`
+
+const Submit = styled(Button)`
+  margin-top: 10px;
+`
 
 export default ModifyForm
