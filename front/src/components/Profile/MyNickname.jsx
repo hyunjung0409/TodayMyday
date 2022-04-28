@@ -43,6 +43,6 @@ function MyNickName() {
   //   }
   // }
 
-  return <MyNick>닉네임 : {me.nickname}</MyNick>
+  return <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
 }
 export default MyNickName

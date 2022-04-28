@@ -10,7 +10,7 @@ function MyGender() {
 
   const { me } = useSelector((state) => state.user)
   const checkGender = () => {
-    if (me.gender === 'male') {
+    if (me !== null && me.gender === 'male') {
       return '남'
     } else {
       return '여'

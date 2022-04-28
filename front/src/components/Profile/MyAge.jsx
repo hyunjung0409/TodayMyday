@@ -21,7 +21,7 @@ function MyAge() {
     <div>
       {editable === false ? (
         <Age>
-          나이 : {me.age}{' '}
+          나이 : {me !== null && me.age}{' '}
           <EditOutlined
             onClick={(e) => {
               setEditable(!editable)
