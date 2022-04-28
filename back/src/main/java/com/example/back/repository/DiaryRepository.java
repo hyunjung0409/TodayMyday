@@ -20,6 +20,7 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
     @Query(value = "select * from diary d where d.user_id = :userId", nativeQuery = true)
     List<Diary>findByUserId(@Param("userId") String userId);
 
+    List<Diary>findAll();
 
 
 //    @Query(value = "select * from diary where content like '%:keyword%'")

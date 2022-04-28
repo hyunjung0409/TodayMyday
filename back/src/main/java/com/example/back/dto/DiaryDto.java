@@ -23,14 +23,17 @@ public class DiaryDto {
 
     private long dno;
 
+    private String profile_image;
 
-    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno){
+
+    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno, String profile_image){
         this.word = word;
         this.image = image;
         this.content = content;
         this.createdat = createdat;
         this.nickname = nickname;
         this.dno = dno;
+        this.profile_image = profile_image;
     }
 
 }

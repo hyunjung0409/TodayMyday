@@ -143,7 +143,7 @@ public class DiaryController {
 
         List<String> mywords = diaryService.readMyword(userId);
 
-        if (userId == null) {
+        if (mywords == null) {
             status = HttpStatus.NOT_FOUND;
         }
         else {
@@ -178,6 +178,59 @@ public class DiaryController {
         HttpStatus status;
 
         List<DiaryDto> diares = diaryService.searchDiariesByWord(word, userId);
+
+        if (diares != null) {
+            status = HttpStatus.OK;
+        }
+        else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        return new ResponseEntity<>(diares, status);
+    }
+
+    @GetMapping("/allword")
+    @ApiOperation(value = "전체 사용자가 선택한 단어들", notes = "전체 사용자가 선택한 단어들 보기", response = String.class)
+    public ResponseEntity<List<String>> readAllword() {
+        HttpStatus status;
+
+        List<String> allwords = diaryService.readAllword();
+
+        if (allwords == null) {
+            status = HttpStatus.NOT_FOUND;
+        }
+        else {
+            status = HttpStatus.OK;
+        }
+
+        return new ResponseEntity<>(allwords, status);
+
+    }
+
+    @GetMapping("/searchallcontent")
+    @ApiOperation(value = "전체 다이어리 내용별 검색", notes = "전체 내용별 검색하기", response = String.class)
+    public ResponseEntity<List<DiaryDto>> searchAllDiaryByContent(@RequestParam String keyword) {
+        HttpStatus status;
+
+        System.out.println("키워드" + keyword);
+        List<DiaryDto> diares = diaryService.searchAllDiariesByContent(keyword);
+
+        if (diares != null) {
+            status = HttpStatus.OK;
+        }
+        else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        return new ResponseEntity<>(diares, status);
+    }
+
+    @GetMapping("/searchallword")
+    @ApiOperation(value = "전체 다이어리 단어별 검색", notes = "전체 단어별 검색하기", response = String.class)
+    public ResponseEntity<List<DiaryDto>> searchAllDiaryByWord(@RequestParam String word) {
+        HttpStatus status;
+
+        List<DiaryDto> diares = diaryService.searchAllDiariesByWord(word);
 
         if (diares != null) {
             status = HttpStatus.OK;
