@@ -16,7 +16,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken'
 const axios = getAxios()
 
 function loadUsedrAPI(data) {
-  return axios.get(`/user/read`, { params: { userId: data } })
+  return axios.get(`/user/read`, { params: { userId: data.userId } })
 }
 
 function* loadUser(action) {
@@ -46,9 +46,13 @@ function* logIn(action) {
     localStorage.setItem('jwtToken', token)
     setAuthorizationToken(token)
     const { navigate } = action.data
+    let test = ''
+    yield axios.get(`/user/read`, { params: { userId: action.data.userId } }).then((res) => {
+      test = res.data.user
+    })
     yield put({
       type: LOG_IN_SUCCESS,
-      data: action.data,
+      data: test,
     })
     navigate('/')
   } catch (err) {
