@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { List, Skeleton, Divider } from 'antd'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import ArticleListItem from './ArticleListItem'
-import Search from 'antd/lib/input/Search'
-import { useDispatch, useSelector } from 'react-redux'
-import { articleListRequestAction } from '../reducers/article'
-import { getAxios } from '../api'
-import moment from 'moment'
 import 'moment/locale/ko'
-import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
 import { Select } from 'antd'
+import { getAxios } from '../api'
+import Search from 'antd/lib/input/Search'
+import { useNavigate } from 'react-router-dom'
+import { List, Skeleton, Divider } from 'antd'
+import ArticleListItem from './ArticleListItem'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import {
+  articleListRequestAction,
+  diarySearchWordRequestAction,
+  diarySearchContentRequestAction,
+} from '../reducers/article'
 
 const { Option } = Select
 
 function ArticleListForm(props) {
   const dispatch = useDispatch()
-  const { me } = useSelector((state) => state.user)
-  const { articleList } = useSelector((state) => state.article)
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState([])
-  const axios = getAxios()
   const navigate = useNavigate()
+  const [data, setData] = useState([])
+  const [boolean, setBoolean] = useState('boolean')
+  const [loading, setLoading] = useState(false)
+  const { me } = useSelector((state) => state.user)
   const [searchKind, setSearchKind] = useState(null)
+  const { articleList } = useSelector((state) => state.article)
 
   const loadMoreData = (userId) => {
     if (loading) {
@@ -46,22 +50,17 @@ function ArticleListForm(props) {
 
   const onSearch = (value) => {
     searchKind === 'searchword'
-      ? axios
-          .get(`diary/${searchKind}`, { params: { userId: me.userId, word: value } })
-          .then((res) => {
-            setData(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
-      : axios
-          .get(`diary/${searchKind}`, { params: { userId: me.userId, keyword: value } })
-          .then((res) => {
-            setData(res.data)
-          })
-          .catch((err) => {
-            console.log('err', err)
-          })
+      ? dispatch(
+          diarySearchWordRequestAction({ userId: me.userId, word: value, searchKind, setData }),
+        )
+      : dispatch(
+          diarySearchContentRequestAction({
+            userId: me.userId,
+            keyword: value,
+            searchKind,
+            setData,
+          }),
+        )
   }
 
   const pageMove = (dno, e) => {
@@ -71,9 +70,10 @@ function ArticleListForm(props) {
   function handleChange(value) {
     setSearchKind(value)
     if (value === 'all') {
-      axios.get('user/read', { params: { userId: me.userId } }).then((res) => {
-        setData(res.data.user.dairies)
-      })
+      setBoolean('boolean')
+      setData([...articleList])
+    } else {
+      setBoolean('')
     }
   }
 
@@ -96,6 +96,7 @@ function ArticleListForm(props) {
           size="large"
           style={{ width: '80%' }}
           onSearch={onSearch}
+          disabled={boolean}
         />
       </div>
       <div

@@ -1,14 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
-import ImageFileInput from '../components/ImageFileInput'
-import { useDispatch, useSelector } from 'react-redux'
-import { articleAddRequestAction } from '../reducers/article'
-import { Upload, message } from 'antd'
-import { InboxOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-
-const { Dragger } = Upload
+import React, { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import ImageFileInput from '../components/ImageFileInput'
+import { articleAddRequestAction } from '../reducers/article'
 
 const Word = styled.h1`
   margin: 10px auto;
@@ -33,7 +29,6 @@ const Submit = styled(Button)`
 
 function ArticleForm({ imageUploader, data }) {
   const { me } = useSelector((state) => state.user)
-  const { articleAddDone } = useSelector((state) => state.article)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const formRef = useRef()
