@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import { List, Skeleton, Divider } from 'antd'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import ArticleListItem from './ArticleListItem'
-import Search from 'antd/lib/input/Search'
+import 'moment/locale/ko'
+import moment from 'moment'
 import { Select } from 'antd'
-import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { getAxios } from '../api'
+import Search from 'antd/lib/input/Search'
+import { useNavigate } from 'react-router-dom'
+import { List, Skeleton, Divider } from 'antd'
+import ArticleListItem from './ArticleListItem'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import {
+  articleListRequestAction,
+  diarySearchWordRequestAction,
+  diarySearchContentRequestAction,
+} from '../reducers/article'
+
+const { Option } = Select
 
 function ArticleListForm(props) {
-  const { me } = useSelector((state) => state.user)
-  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [data, setData] = useState([])
-  const [userId, setserId] = useState(null)
+  const [boolean, setBoolean] = useState('boolean')
+  const [loading, setLoading] = useState(false)
+  const { me } = useSelector((state) => state.user)
+  const [searchKind, setSearchKind] = useState(null)
+  const { articleList } = useSelector((state) => state.article)
 
   const loadMoreData = (userId) => {
     if (loading) {
       return
     }
+    dispatch(articleListRequestAction({ userId }))
     setLoading(true)
-    axios
-      .get(`http://localhost:8080/user/read/${userId}`)
-      .then((res) => {
-        setData([...data, ...res.data.user.dairies])
-        setLoading(false)
-      })
-      .catch(() => {
-        setLoading(false)
-      })
   }
   useEffect(() => {
     if (me != null) {
@@ -36,17 +42,61 @@ function ArticleListForm(props) {
     }
   }, [me])
 
-  const onSearch = (value) => console.log(value)
+  useEffect(() => {
+    if (articleList != null) {
+      setData([...articleList])
+    }
+  }, [articleList])
+
+  const onSearch = (value) => {
+    searchKind === 'searchword'
+      ? dispatch(
+          diarySearchWordRequestAction({ userId: me.userId, word: value, searchKind, setData }),
+        )
+      : dispatch(
+          diarySearchContentRequestAction({
+            userId: me.userId,
+            keyword: value,
+            searchKind,
+            setData,
+          }),
+        )
+  }
+
+  const pageMove = (dno, e) => {
+    navigate(`/diary/read/${dno}`)
+  }
+
+  function handleChange(value) {
+    setSearchKind(value)
+    if (value === 'all') {
+      setBoolean('boolean')
+      setData([...articleList])
+    } else {
+      setBoolean('')
+    }
+  }
 
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
-      <div style={{ marginBottom: '10px' }}>
+      <div style={{ width: '100%', marginBottom: '10px' }}>
+        <Select
+          defaultValue="전체보기"
+          size="large"
+          onChange={handleChange}
+          style={{ float: 'left', width: '19%', marginRight: '5px' }}>
+          <Option value="all">전체보기</Option>
+          <Option value="searchword">단어</Option>
+          <Option value="searchcontent">내용</Option>
+        </Select>
         <Search
           placeholder="input search text"
           allowClear
           enterButton="검색"
           size="large"
+          style={{ width: '80%' }}
           onSearch={onSearch}
+          disabled={boolean}
         />
       </div>
       <div
@@ -66,11 +116,15 @@ function ArticleListForm(props) {
           <List
             dataSource={data}
             renderItem={(item) => (
-              <List.Item key={item.id}>
+              <List.Item
+                key={item.id}
+                onClick={(e) => {
+                  pageMove(item.dno, e)
+                }}>
                 <ArticleListItem
                   picture={item.image}
                   title={item.word}
-                  createdat={item.createdat}
+                  createdat={moment(item.createdat).format('YYYY-MM-DD HH:mm:ss')}
                 />
               </List.Item>
             )}

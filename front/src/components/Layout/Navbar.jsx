@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { Layout, Typography, Row, Col } from 'antd'
+import { Layout, Typography, Row, Col, Menu, Dropdown, Space, Avatar } from 'antd'
+import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,8 +16,29 @@ function Navbar() {
   const dispatch = useDispatch()
 
   const onLogOut = () => {
+    console.log('logout')
     dispatch(logoutRequestAction({ navigate }))
   }
+
+  const menu = (
+    <>
+      <Menu>
+        <Menu.Item>
+          <Link to="/my/profile">
+            <p>마이페이지</p>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/my/articleList">
+            <p>내 글 목록</p>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <p onClick={onLogOut}>로그아웃</p>
+        </Menu.Item>
+      </Menu>
+    </>
+  )
 
   useEffect(() => {
     if (localStorage.getItem('jwtToken') != null) {
@@ -24,45 +46,46 @@ function Navbar() {
       const userId = decode_token.sub
       dispatch(loadUserRequestAction({ userId }))
     }
+    console.log('menu: ', menu)
   }, [])
 
   return (
     <Header style={{ background: '#C1E17D' }}>
       <Row justify="start">
         <Col span={4}>
-          <StyledTitle level={5} onClick={() => navigate('/')}>
-            지금 나의 하루는
-          </StyledTitle>
+          <Space align="center">
+            <StyledTitle level={5} onClick={() => navigate('/')}>
+              지금 나의 하루는
+            </StyledTitle>
+          </Space>
         </Col>
         <Col span={16}>
-          <nav className="nav-link">
+          <Space align="center">
             {me && (
               <>
-                <StyledLink to="/my/article">
-                  <strong>글 작성</strong>
-                </StyledLink>
-                <StyledLink to="/my/articleList">
-                  <strong>글 목록</strong>
-                </StyledLink>
                 <StyledLink to="/my/search">
-                  <strong>글 검색</strong>
-                </StyledLink>
-                <StyledLink to="/my/detail">
-                  <strong>글 보기</strong>
+                  <strong>둘러보기</strong>
                 </StyledLink>
               </>
             )}
-          </nav>
+          </Space>
         </Col>
 
         <Col span={4}>
           {me ? (
-            <nav className="nav-user">
-              <StyledLink to="/my/profile">
-                <strong>마이페이지</strong>
-              </StyledLink>
-              <strong onClick={onLogOut}>로그아웃</strong>
-            </nav>
+            <Space align="center" size="middle">
+              <Avatar
+                icon={me.image === undefined ? <UserOutlined /> : <img src={me.image}></img>}
+              />
+              <Dropdown overlay={menu} trigger={['click']}>
+                <a onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    {me.userId}
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+            </Space>
           ) : (
             <nav className="nav-user">
               <StyledLink to="/user/login">

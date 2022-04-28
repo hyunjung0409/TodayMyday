@@ -1,37 +1,71 @@
-import React, { useState } from 'react'
-import { Card, Avatar, Space, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Card, Avatar, Space, Typography, Image } from 'antd'
+import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const { Meta } = Card
 const { Text } = Typography
 
-function DiaryCard() {
-  const [comment, setComment] = useState(0)
+function DiaryCard({ card }) {
+  // const [dno, setDno] = useState('')
+  const [date, setDate] = useState('')
+  const { me } = useSelector((state) => state.user)
+
+  const navigate = useNavigate()
+
+  const onClick = async () => {
+    console.log('click: ', card.dno)
+    navigate(`/diary/read/${card.dno}`)
+  }
+
+  // useEffect(() => {
+  //   setDate(card.createdat)
+  // }, [card.createdat])
 
   return (
     <Card
+      className="card"
       hoverable
-      style={{ width: 300 }}
+      style={{ width: '15vw', height: '50vh', border: '3px solid blue' }}
       cover={
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
+        <StyledImageArea>
+          <StyledImage src={card.image} />
+        </StyledImageArea>
       }
-      // actions={[
-      //   <SettingOutlined key="setting" />,
-      //   <EditOutlined key="edit" />,
-      //   <EllipsisOutlined key="ellipsis" />,
-      // ]}
-    >
-      <Space>
-        <MessageOutlined style={{ fontSize: '20px', color: '#08c' }} />
-        <CommentOutlined style={{ fontSize: '20px', color: '#08c' }} />
-        <Text>{comment}</Text>
-      </Space>
-      <Meta avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />} title="Nickname" />
+      onClick={onClick}>
+      {/* <Space>
+        <MessageOutlined style={{ fontSize: '1rem', color: '#08c' }} />
+        <CommentOutlined style={{ fontSize: '1rem', color: '#08c' }} />
+        <Text>내용: {card.content}</Text>
+      </Space> */}
+
+      <Meta avatar={<Avatar src={me.image} />} title={card.nickname} description={card.createdat} />
     </Card>
   )
 }
+
+const StyledImageArea = styled.div`
+  width: 14vw;
+  height: 25vh;
+  overflow: hidden;
+  // border: 1px solid red;
+`
+
+const StyledImage = styled.img`
+  width: 14vw;
+  // height: 100%;
+  object-fit: cover;
+`
+const StyledUserArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+`
+const StyledText = styled(Text)`
+  font-size: x-small;
+  margin: 1em 0;
+`
 
 export default DiaryCard

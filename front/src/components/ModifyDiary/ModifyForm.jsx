@@ -1,10 +1,17 @@
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import React, { useRef, useState } from 'react'
+import ImageFileInput from '../../components/ImageFileInput'
 import { useDispatch, useSelector } from 'react-redux'
-import ImageFileInput from '../components/ImageFileInput'
-import { articleAddRequestAction } from '../reducers/article'
+import { articleAddRequestAction } from '../../reducers/article'
+import { Upload, message } from 'antd'
+import { useParams, useNavigate } from 'react-router-dom'
+import { getAxios } from '../../api'
+import ImageUploader from '../../service/image_uploader'
+
+const { Dragger } = Upload
+
+const imageUploader = new ImageUploader()
 
 const Word = styled.h1`
   margin: 10px auto;
@@ -27,14 +34,19 @@ const Submit = styled(Button)`
   margin-top: 10px;
 `
 
-function ArticleForm({ imageUploader, data }) {
+function ModifyForm({ imageUploader, data }) {
+  const axios = getAxios()
   const { me } = useSelector((state) => state.user)
+  const { articleAddDone } = useSelector((state) => state.article)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const formRef = useRef()
   const messageRef = useRef()
-  const [file, setFile] = useState({ fileName: null, fileURL: null })
   const { word, message, fileURL } = data
+  const [file, setFile] = useState({ fileName: null, fileURL: fileURL })
+  const [content, setContent] = useState('')
+  const { dno } = useParams()
+
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -44,13 +56,33 @@ function ArticleForm({ imageUploader, data }) {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    const data = {
-      content: messageRef.current.value || '',
-      word: word,
-      image: file.fileURL || fileURL,
+    // const data = {
+    //   content: messageRef.current.value || '',
+    //   word: word,
+    //   image: file.fileURL || '',
+    // }
+    // dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
+    // formRef.current.reset()
+    try {
+      axios.put(
+        `diary/${dno}`,
+        {
+          content: content,
+          image: file.fileURL,
+        },
+        {
+          params: { dno: dno, userId: me.userId },
+        },
+      )
+      console.log('완료')
+    } catch (err) {
+      console.log(err)
     }
-    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
-    formRef.current.reset()
+  }
+
+  const onChange = (e) => {
+    console.log('e.target.value: ', e.target.value)
+    setContent(e.target.value)
   }
 
   return (
@@ -81,7 +113,15 @@ function ArticleForm({ imageUploader, data }) {
         </Col>
         <Col span={16}>
           <WritingLayout>
-            <textarea ref={messageRef} name="message" placeholder={message}></textarea>
+            {/* <input
+              type="text"
+              name="message"
+              ref={messageRef}
+              defaultValue={message}
+              onChange={onChange}>
+              {message}
+            </input> */}
+            <textarea ref={messageRef} name="message" defaultValue={message}></textarea>
           </WritingLayout>
         </Col>
       </Row>
@@ -92,4 +132,4 @@ function ArticleForm({ imageUploader, data }) {
   )
 }
 
-export default ArticleForm
+export default ModifyForm

@@ -7,11 +7,12 @@ import Main from './pages/Main'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import SearchMy from './pages/SearchMyDiary'
-import MyDetail from './pages/MyDetail'
 import Navbar from './components/Layout/Navbar'
 import Article from './pages/Article'
 import ArticleList from './pages/ArticleList'
 import Profile from './pages/Profile'
+import ReadDiary from './pages/ReadDiary'
+import ModifyDiary from './pages/ModifyDiary'
 const { Content, Footer } = Layout
 
 function App() {
@@ -27,10 +28,11 @@ function App() {
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/signup" element={<Signup />} />
                 <Route path="/my/search" element={<SearchMy />} />
-                <Route path="/my/detail" element={<MyDetail />} />
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
-                <Route path="/my/profile/" element={<Profile />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/diary/read/:dno" element={<ReadDiary />} />
+                <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
               </Routes>
             </StyledContentArea>
           </div>
@@ -44,7 +46,7 @@ function App() {
 }
 
 const StyledContentArea = styled.div`
-  min-height: 30rem;
+  min-height: 80vh;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.5);
 `
