@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MyPicture from '../components/Profile/MyPicture'
 import MyNickName from '../components/Profile/MyNickname'
 import MyAge from '../components/Profile/MyAge'
@@ -9,8 +9,8 @@ import Change from '../components/Profile/Change'
 import Search from '../components/Profile/Search'
 import { Col, Row } from 'antd'
 import ImageUploader from '../service/image_uploader'
+import { loadUserRequestAction } from '../reducers/user'
 import jwt_decode from 'jwt-decode'
-import { loadUserRequestAction } from './../reducers/user'
 import { useDispatch } from 'react-redux'
 
 const imageUploader = new ImageUploader()
