@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import { Layout } from 'antd'
 import styled from 'styled-components'
@@ -13,9 +13,22 @@ import ArticleList from './pages/ArticleList'
 import Profile from './pages/Profile'
 import ReadDiary from './pages/ReadDiary'
 import ModifyDiary from './pages/ModifyDiary'
+import jwt_decode from 'jwt-decode'
+import { useDispatch } from 'react-redux'
+import { loadUserRequestAction } from './reducers/user'
 const { Content, Footer } = Layout
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (localStorage.getItem('jwtToken') != null) {
+      const decode_token = jwt_decode(localStorage.getItem('jwtToken'))
+      const userId = decode_token.sub
+      dispatch(loadUserRequestAction({ userId }))
+    }
+  }, [])
+
   return (
     <Layout className="layout">
       <BrowserRouter>

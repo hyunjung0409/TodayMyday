@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import MyWord from '../MyWord'
 
 const Words = styled.div`
   width: 90%;
@@ -17,7 +18,10 @@ function PickWords() {
   return (
     <div>
       <Words>
-        내가 선택한 단어 <Search></Search>
+        <div style={{ marginBottom: '20px' }}>
+          내가 선택한 단어 <Search></Search>
+        </div>
+        <MyWord />
       </Words>
     </div>
   )

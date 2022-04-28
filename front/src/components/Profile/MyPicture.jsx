@@ -22,7 +22,6 @@ const Submit = styled(Button)`
 `
 function MyPicture({ imageUploader, data }) {
   const { me } = useSelector((state) => state.user)
-  console.log(me)
   const axios = getAxios()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
