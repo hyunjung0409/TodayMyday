@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Image } from 'antd'
 import { useSelector } from 'react-redux'
-import ArticleForm from '../components/ArticleForm'
 import ImageUploader from '../service/image_uploader'
 import { getAxios } from '../api'
 import { useParams } from 'react-router-dom'
+import ModifyForm from '../components/ModifyDiary/ModifyForm'
 
 function ModifyDiary() {
   const axios = getAxios()
@@ -32,7 +31,7 @@ function ModifyDiary() {
 
   return (
     <div>
-      <ArticleForm imageUploader={ImageUploader} data={data} />
+      <ModifyForm imageUploader={ImageUploader} data={data} />
     </div>
   )
 }

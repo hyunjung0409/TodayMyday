@@ -9,7 +9,6 @@ const axios = getAxios()
 
 function DiaryFooter({ dno }) {
   const { me } = useSelector((state) => state.user)
-  const [size, setSize] = useState(8)
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const navigate = useNavigate()
@@ -53,7 +52,7 @@ function DiaryFooter({ dno }) {
     <Row>
       <Col span={24}>
         <StyledContainer>
-          <Space size={size}>
+          <Space size="middle">
             <Button type="primary" onClick={handleModify}>
               수정
             </Button>
