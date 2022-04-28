@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Layout, Typography, Row, Col, Menu, Dropdown, Button, Space, Avatar } from 'antd'
+import React, { useEffect } from 'react'
+import { Layout, Typography, Row, Col, Menu, Dropdown, Space, Avatar } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,8 +11,6 @@ const { Header } = Layout
 const { Title } = Typography
 
 function Navbar() {
-  const [state, setState] = useState(false)
-
   const navigate = useNavigate()
   const { me } = useSelector((state) => state.user)
   const dispatch = useDispatch()
@@ -22,17 +20,9 @@ function Navbar() {
     dispatch(logoutRequestAction({ navigate }))
   }
 
-  const handleMenuClick = () => {
-    setState(false)
-  }
-
-  const handleVisibleChange = () => {
-    setState(true)
-  }
-
   const menu = (
     <>
-      <Menu onClick={handleMenuClick}>
+      <Menu>
         <Menu.Item>
           <Link to="/my/profile">
             <p>마이페이지</p>
@@ -63,12 +53,14 @@ function Navbar() {
     <Header style={{ background: '#C1E17D' }}>
       <Row justify="start">
         <Col span={4}>
-          <StyledTitle level={5} onClick={() => navigate('/')}>
-            지금 나의 하루는
-          </StyledTitle>
+          <Space align="center">
+            <StyledTitle level={5} onClick={() => navigate('/')}>
+              지금 나의 하루는
+            </StyledTitle>
+          </Space>
         </Col>
         <Col span={16}>
-          <nav className="nav-link">
+          <Space align="center">
             {me && (
               <>
                 <StyledLink to="/my/search">
@@ -76,20 +68,17 @@ function Navbar() {
                 </StyledLink>
               </>
             )}
-          </nav>
+          </Space>
         </Col>
 
         <Col span={4}>
           {me ? (
-            <Space>
-              <Avatar icon={me.image === null ? <UserOutlined /> : <img src={me.image}></img>} />
-              <Dropdown
-                overlay={menu}
-                trigger={['click']}
-                onVisibleChange={handleVisibleChange}
-                visible={state}>
-                <a onClick={handleMenuClick}>
-                  {/* <a onClick={(e) => e.preventDefault()}> */}
+            <Space align="center" size="middle">
+              <Avatar
+                icon={me.image === undefined ? <UserOutlined /> : <img src={me.image}></img>}
+              />
+              <Dropdown overlay={menu} trigger={['click']}>
+                <a onClick={(e) => e.preventDefault()}>
                   <Space>
                     {me.userId}
                     <DownOutlined />
