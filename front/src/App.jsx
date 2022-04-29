@@ -61,16 +61,17 @@ function App() {
 }
 
 const StyledContent = styled(Content)`
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding: 3rem;
-  border: 1px solid red;
+  // border: 1px solid red;
   background-image: url('/images/background.PNG');
 `
 
 const StyledContentArea = styled.div`
   min-height: 80vh;
   padding: 1rem;
-  background: rgba(200, 200, 200, 0.5);
+  // background: rgba(200, 200, 200, 0.5);
+  background: #fff;
 `
 
 export default App
