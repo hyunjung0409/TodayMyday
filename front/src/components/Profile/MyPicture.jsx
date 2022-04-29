@@ -42,8 +42,8 @@ function MyPicture({ imageUploader, data }) {
       me.userId !== null &&
       (await axios.put(
         'user/modify',
-        { image: file2.fileURL },
-        { age: values.ageRange },
+        { image: file2.fileURL, age: me.age, gender: me.gender },
+        // { age: values.ageRange },
 
         { params: { userId: me.userId } },
         // userId: me.userId,
@@ -57,30 +57,26 @@ function MyPicture({ imageUploader, data }) {
     })
   }
 
-  useEffect(() => {
-    try {
-      setFile2({ fileName: me.name, fileURL: me.image })
-    } catch (err) {
-      console.log(err)
-    }
-  }, [])
   return (
     <div>
       <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
-        <Form.Item>
-          <div className="MyPic">
-            <ImageFileInput
-              name={file2.fileName}
-              imageUploader={imageUploader}
-              onFileChange={onFileChange}
-              file={file2 !== null && file2}
-              // form={form}
-              data={data}
-              setFile={setFile2}
-              className="profileImage"
-            />
-          </div>{' '}
-        </Form.Item>
+        <Avatar
+          size={260}
+          icon={
+            <Form.Item>
+              <ImageFileInput
+                name={file2.fileName}
+                imageUploader={imageUploader}
+                onFileChange={onFileChange}
+                file={file2}
+                // form={form}
+                data={data}
+                setFile={setFile2}
+              />
+            </Form.Item>
+          }
+        />
+
         <Form.Item>
           <Button type="primary" htmlType="submit" onClick={success}>
             등록

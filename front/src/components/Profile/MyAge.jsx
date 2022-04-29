@@ -4,7 +4,6 @@ import { EditOutlined } from '@ant-design/icons'
 import { useSelector } from 'react-redux'
 import { Form, Input, Button, Select, Modal } from 'antd'
 import { getAxios } from '../../api'
-
 const { Option } = Select
 
 const Age = styled.div`
@@ -22,10 +21,10 @@ function MyAge() {
       me.userId !== null &&
       (await axios.put(
         'user/modify',
-        { image: me.image },
-        { age: values.ageRange },
+        { age: values.ageRange, image: me.image, gender: me.gender },
         { params: { userId: me.userId } },
       ))
+    me.age = values.ageRange
   }
 
   const success = () => {

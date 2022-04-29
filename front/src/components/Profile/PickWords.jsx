@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { getAxios } from '../../api'
 import { useSelector } from 'react-redux'
@@ -23,12 +23,6 @@ function PickWords() {
   const axios = getAxios()
   const [words, setWords] = useState([])
 
-  // const request =
-  //   me !== null &&
-  //   me.userId !== null &&
-  //   axios.get('diary/myword', { params: { userId: me.userId } })
-  // console.log(body)
-  // console.log(data)
   const getWords = async (res) => {
     const request =
       me !== null &&
@@ -37,7 +31,9 @@ function PickWords() {
     // console.log(request, '하이')
     console.log(res)
   }
-  console.log(words)
+  // useEffect(() => {
+  //   me
+  // }, [])
   return (
     <div>
       <Words>
@@ -45,15 +41,20 @@ function PickWords() {
         <hr />
         <Row gutter={16}>
           {me !== null &&
-            me.dairies.map((a, i) => {
-              return (
-                <Col key={i} className="gutter-row" span={6}>
-                  {a.word}
-                </Col>
-              )
+            me.dairies
+              .map((a, i) => {
+                return a.word
+              })
+              .reduce((ac, v) => (ac.includes(v) ? ac : [...ac, v]), [])
+              .map((a, i) => {
+                return (
+                  <Col key={i} className="gutter-row" span={6}>
+                    {a}
+                  </Col>
+                )
 
-              // <div key={i}>{a.word}</div>
-            })}
+                // <div key={i}>{a.word}</div>
+              })}
         </Row>
       </Words>
     </div>
