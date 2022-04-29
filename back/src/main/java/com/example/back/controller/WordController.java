@@ -24,7 +24,7 @@ public class WordController {
     private final WordRepository wordRepository;
 
     @GetMapping("/readAll")
-    @ApiOperation(value = "단어 추가", notes = "단어 추가하기(관리자용)", response = String.class)
+    @ApiOperation(value = "단어 불러오기", notes = "단어 불러오기(관리자용)", response = String.class)
     public ResponseEntity<List<String>> recommandWord(@RequestBody UserDto userDto){
 //        List<String> words = wordService.pickRandomeWords();
         List<String> words = wordService.pickRandomWords(userDto);
@@ -33,11 +33,11 @@ public class WordController {
 
     @PostMapping("/create")
     @ApiOperation(value = "단어 추가", notes = "단어 추가하기(관리자용)", response = String.class)
-    public ResponseEntity<Map<String, Object>> createWord(@RequestParam String word){
+    public ResponseEntity<Map<String, Object>> createWord(@RequestParam String userId, @RequestParam String word){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        wordService.createWord(word);
+        wordService.createWord(userId, word);
 
         hashMap.put("word", word);
         hashMap.put("status", HttpStatus.OK);

@@ -25,24 +25,28 @@ public class WordServiceImpl implements WordService{
     private final DiaryRepository diaryRepository;
 
     @Override
-    public void createWord(String word) {
+    public void createWord(String userId, String word) {
 
         if(word.trim().isEmpty() || word == null)
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
-        Word save = Word.builder()
-                .word(word)
-                .teens(0)
-                .twenties(0)
-                .thirties(0)
-                .fourties(0)
-                .fifties(0)
-                .oversixties(0)
-                .male(0)
-                .female(0)
-                .build();
+//        Word str = wordRepository.findWordByWord(word);
+        User user = userRepository.findByUserId(userId);
+        System.out.println(user.getAge()+" "+user.getGender());
+        Word str = wordRepository.findWordByWordAndGender(word, user.getGender());
 
-        wordRepository.save(save);
+        //System.out.println("str2 : "+str2.getWord());
+        if(str == null) {
+            str = Word.builder()
+                    .word(word)
+                    .age(user.getAge())
+                    .gender(user.getGender())
+                    .build();
+        } else {
+            str.setCount(str.getCount()+1);
+        }
+
+        wordRepository.save(str);
     }
 
     @Override
@@ -52,29 +56,6 @@ public class WordServiceImpl implements WordService{
 
         if(user == null || word == null)
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
-
-        String gender = user.getGender();
-        String age = user.getAge();
-
-        if(gender.equals("male")){
-            word.setMale(word.getMale()+1);
-        } else if(gender.equals("female")){
-            word.setFemale(word.getFemale()+1);
-        }
-
-        if(age.equals("1")){
-            word.setTeens(word.getTeens()+1);
-        }else if(age.equals("2")) {
-            word.setTwenties(word.getTwenties()+1);
-        }else if(age.equals("3")) {
-            word.setThirties(word.getThirties()+1);
-        }else if(age.equals("4")) {
-            word.setFourties(word.getFourties()+1);
-        }else if(age.equals("5")) {
-            word.setFifties(word.getFifties()+1);
-        } else {
-            word.setOversixties(word.getOversixties()+1);
-        }
 
         wordRepository.save(word);
 
@@ -103,64 +84,6 @@ public class WordServiceImpl implements WordService{
         int len = 0;
         int index = 0;
         String year = "";
-//        for (int i = 0; i < wordList.size(); i++) {
-//            System.out.println("word : "+wordList.get(i).split(",")[0]);
-//        }
-
-        switch (age){
-            case "1":
-                year = "teens";
-                break;
-            case "2":
-                year = "twenties";
-                break;
-            case "3":
-                year = "thirties";
-                break;
-            case "4":
-                year = "fourties";
-                break;
-            case "5":
-                year = "fifties";
-                break;
-            case "6":
-                year = "oversixties";
-
-        }
-
-        System.out.println("year : "+year);
-        System.out.println("gender : "+gender);
-
-        switch (condition) {
-            case 0: // 연령대 + 성별
-                wordList = wordRepository.findWordsByGenderAndAge("male");
-                if(wordList.size() > 20) len = wordList.size();
-                else len = wordList.size();
-
-                for (int i = 0; i < wordList.size(); i++) {
-                    System.out.println("word : "+wordList.get(i));
-                }
-
-                index = (int)(Math.random()*len);
-                selectedWord = wordList.get(index);
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
-            case 5:
-
-                break;
-        }
-
 
         return selectedWord;
     }

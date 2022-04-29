@@ -14,36 +14,26 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class Word {
+
     @Id
     @NotNull
     private String word;
 
-    private long teens;
+    @NotNull
+    private String gender;
 
-    private long twenties;
+    @NotNull
+    private String age;
 
-    private long thirties;
-
-    private long fourties;
-
-    private long fifties;
-
-    private long oversixties;
-
-    private long male;
-
-    private long female;
+    @NotNull
+    private long count;
 
     @Builder
-    public Word (String word, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female){
+    public Word (String word, String gender, String age, long count){
         this.word = word;
-        this.teens = teens;
-        this.twenties = twenties;
-        this.thirties = thirties;
-        this.fourties = fourties;
-        this.fifties = fifties;
-        this.oversixties = oversixties;
-        this.male = male;
-        this.female = female;
+        this.gender = gender;
+        this.age = age;
+        this.count = count;
     }
+
 }
