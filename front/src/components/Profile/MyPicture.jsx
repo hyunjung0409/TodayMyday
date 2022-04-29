@@ -5,7 +5,8 @@ import { getAxios } from '../../api'
 import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
 import { useSelector } from 'react-redux'
-import { Form, Button, Modal } from 'antd'
+import { Form, Button, Modal, Avatar } from 'antd'
+import { DownOutlined, UserOutlined } from '@ant-design/icons'
 
 // const MyPic = styled.div`
 //   margin-left: auto;
@@ -35,29 +36,15 @@ function MyPicture({ imageUploader, data }) {
     })
   }
 
-  // const onSubmit = (event) => {
-  //   event.preventDefault()
-  //   const data = {
-  //     image: file2.fileURL || '',
-  //   }
-  //   axios
-  //     .post(`dairy/${me.userId}`, data)
-  //     .then((res) => {
-  //       console.log(res)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  //   formRef.current.reset()
-  // }
-  // console.log(file2, '확인')
   const onFinish = async (values) => {
     const axios = getAxios()
     me !== null &&
       me.userId !== null &&
       (await axios.put(
         'user/modify',
-        { image: values.image },
+        { image: file2.fileURL },
+        { age: values.ageRange },
+
         { params: { userId: me.userId } },
         // userId: me.userId,
         // values.ageRange,
@@ -69,37 +56,7 @@ function MyPicture({ imageUploader, data }) {
       // onOk: handleMove,
     })
   }
-  // console.log(file2.fileURL)
-  // const formRef = useRef()
 
-  // const onSubmit = (event) => {
-  //   event.preventDefault()
-  //   const data = {
-  //     id: Date.now(), // uuid
-  //     fileName: file2.fileName || '',
-  //     fileURL: file2.fileURL || '',
-  //   }
-  //   formRef.current.reset()
-  // }
-  // const onLoadFile = (e) => {
-  //   const file = e.target.files[0]
-  //   setFiles(file)
-  // }
-  // const preview = () => {
-  //   let profile_image = null
-  //   const imgEl = document.querySelector('.img__box')
-  //   const reader = new FileReader()
-  //   if (file !== '') {
-  //     profile_image = <img className="profile_image" src={file}></img>
-  //   }
-  //   reader.onload = () => (imgEl.style.backgroundImage = `url(${reader.result})`)
-  //   reader.readAsDataURL(file)
-  // }
-
-  // const imageInput = useRef()
-  // const onClickImageUpload = () => {
-  //   imageInput.current.click()
-  // }
   useEffect(() => {
     try {
       setFile2({ fileName: me.name, fileURL: me.image })
@@ -116,7 +73,7 @@ function MyPicture({ imageUploader, data }) {
               name={file2.fileName}
               imageUploader={imageUploader}
               onFileChange={onFileChange}
-              file={file2}
+              file={file2 !== null && file2}
               // form={form}
               data={data}
               setFile={setFile2}

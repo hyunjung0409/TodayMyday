@@ -13,29 +13,21 @@ const Age = styled.div`
 function MyAge() {
   const { me } = useSelector((state) => state.user)
   const [form] = Form.useForm()
-
   const [editable, setEditable] = useState(false)
   const [age, setAge] = useState('')
+
   const onFinish = async (values) => {
     const axios = getAxios()
     me !== null &&
       me.userId !== null &&
       (await axios.put(
         'user/modify',
+        { image: me.image },
         { age: values.ageRange },
         { params: { userId: me.userId } },
-        // userId: me.userId,
-        // values.ageRange,
       ))
-    // console.log(values)
   }
-  // console.log(me)
-  // const getAge = async (values) => {
-  //   const axios = getAxios()
-  //   await axios.get('user/read', {
-  //     age: values.ageRange,
-  //   })
-  // }
+
   const success = () => {
     Modal.success({
       content: '회원정보 수정이 완료되었습니다.',
@@ -56,10 +48,6 @@ function MyAge() {
       ) : (
         <Age>
           나이 :
-          {/* <input
-            type="text"
-            value="api로 값 받아오면 됨"
-            onChange={(e) => setAge(e.target.value)}></input> */}
           <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
             <Form.Item
               label="연령대"
