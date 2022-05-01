@@ -16,6 +16,7 @@ import ModifyDiary from './pages/ModifyDiary'
 import jwt_decode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
+import Landing from './pages/Landing'
 const { Content, Footer } = Layout
 
 function App() {
@@ -33,11 +34,12 @@ function App() {
     <Layout className="layout">
       <BrowserRouter>
         <Navbar />
-        <Content style={{ padding: '3rem', border: '1px solid red' }}>
+        <StyledContent>
           <div className="App">
             <StyledContentArea>
               <Routes>
-                <Route path="/" element={<Main />} />
+                <Route path="/" element={<Landing />} />
+                <Route path="/main" element={<Main />} />
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/signup" element={<Signup />} />
                 <Route path="/search" element={<Search />} />
@@ -49,7 +51,7 @@ function App() {
               </Routes>
             </StyledContentArea>
           </div>
-        </Content>
+        </StyledContent>
         <Footer style={{ background: '#C1E17D', textAlign: 'center' }}>
           지금 나의 하루는 ©2022 Created by Ginny-us{' '}
         </Footer>
@@ -58,10 +60,18 @@ function App() {
   )
 }
 
+const StyledContent = styled(Content)`
+  margin-top: 2rem;
+  padding: 3rem;
+  // border: 1px solid red;
+  background-image: url('/images/background.PNG');
+`
+
 const StyledContentArea = styled.div`
   min-height: 80vh;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.5);
+  // background: rgba(200, 200, 200, 0.5);
+  background: #fff;
 `
 
 export default App

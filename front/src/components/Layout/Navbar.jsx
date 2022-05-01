@@ -49,7 +49,7 @@ function Navbar() {
   }, [])
 
   return (
-    <Header style={{ background: '#C1E17D' }}>
+    <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: '#C1E17D' }}>
       <Row justify="start">
         <Col span={4}>
           <Space align="center">
@@ -62,6 +62,9 @@ function Navbar() {
           <Space align="center">
             {me && (
               <>
+                <StyledLink to="/main">
+                  <strong>글 작성</strong>
+                </StyledLink>
                 <StyledLink to="/search">
                   <strong>둘러보기</strong>
                 </StyledLink>

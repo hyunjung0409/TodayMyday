@@ -30,20 +30,23 @@ function ModifyForm({ imageUploader, data }) {
     event.preventDefault()
     console.log(copyContent)
     try {
-      axios.put(
-        `diary/${dno}`,
-        {
-          word: word,
-          content: copyContent === '' ? content : copyContent,
-          image: file.fileURL === null ? fileURL : file.fileURL,
-        },
-        {
-          params: { dno: dno, userId: me.userId },
-        },
-      )
+      axios
+        .put(
+          `diary/${dno}`,
+          {
+            word: word,
+            content: copyContent === '' ? content : copyContent,
+            image: file.fileURL === null ? fileURL : file.fileURL,
+          },
+          {
+            params: { dno: dno, userId: me.userId },
+          },
+        )
+        .then(() => {
+          navigate(`/diary/read/${dno}`, { replace: true })
+        })
       console.log('완료')
       // message.success('This is a success message')
-      navigate(`/diary/read/${dno}`)
     } catch (err) {
       console.log(err)
     }
