@@ -26,7 +26,19 @@ function MyAge() {
       ))
     me.age = values.ageRange
   }
-
+  const showAge = (e) => {
+    if (e == 1) {
+      return '어린이 (0~9)'
+    } else if (e == 2) {
+      return '청소년 (10~19)'
+    } else if (e == 3) {
+      return '청년 (20~29)'
+    } else if (e == 4) {
+      return '중/장년 (30~59)'
+    } else if (e == 5) {
+      return '노년 (60~)'
+    }
+  }
   const success = () => {
     Modal.success({
       content: '회원정보 수정이 완료되었습니다.',
@@ -38,7 +50,7 @@ function MyAge() {
     <div>
       {editable === false ? (
         <Age>
-          나이 : {me !== null && me.age}{' '}
+          연령대 : {me !== null && showAge(me.age)}{' '}
           <EditOutlined
             onClick={(e) => {
               setEditable(!editable)
@@ -67,7 +79,7 @@ function MyAge() {
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" onClick={success}>
-                Register
+                등록
               </Button>
             </Form.Item>
           </Form>

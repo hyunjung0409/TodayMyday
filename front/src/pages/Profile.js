@@ -17,19 +17,19 @@ const imageUploader = new ImageUploader()
 
 function Profile() {
   const { me } = useSelector((state) => state.user)
-
+  console.log(me)
   const dispatch = useDispatch()
   // const [data, setData] = useState({
   //   fileURL: '/images/기본이미지.jpg',
   // })
 
-  useEffect(() => {
-    if (localStorage.getItem('jwtToken') != null) {
-      const decode_token = jwt_decode(localStorage.getItem('jwtToken'))
-      const userId = decode_token.sub
-      dispatch(loadUserRequestAction({ userId }))
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem('jwtToken') != null) {
+  //     const decode_token = jwt_decode(localStorage.getItem('jwtToken'))
+  //     const userId = decode_token.sub
+  //     dispatch(loadUserRequestAction({ userId }))
+  //   }
+  // }, [])
   return (
     <div>
       <Row>
