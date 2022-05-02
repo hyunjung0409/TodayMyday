@@ -1,7 +1,9 @@
 import { Spin } from 'antd'
 import React, { useRef, useState } from 'react'
-
+import { useSelector } from 'react-redux'
 function ImageFileInput({ imageUploader, onFileChange, file, data }) {
+  const { me } = useSelector((state) => state.user)
+
   const inputRef = useRef()
   const [loading, setLoading] = useState(false)
   const { fileURL } = data
@@ -36,7 +38,11 @@ function ImageFileInput({ imageUploader, onFileChange, file, data }) {
         <button
           style={{ backgroundColor: '#ffff', border: 'none', cursor: 'pointer' }}
           onClick={onButtonClick}>
-          <img src={file.fileURL || fileURL} alt="img" width="100%" />
+          <img
+            src={file.fileURL || fileURL || (fileURL !== null && me.image !== null && me.image)}
+            alt="img"
+            width="100%"
+          />
         </button>
       )}
       {loading && (

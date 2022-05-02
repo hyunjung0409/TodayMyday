@@ -1,12 +1,15 @@
 import './WordCard.css'
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import $, { data, get } from 'jquery'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { RedoOutlined } from '@ant-design/icons'
 
 function WordCard() {
   const navigate = useNavigate()
   const { wordGet } = useSelector((state) => state.word)
+  const [word, setWord] = useState([])
+
   const pageMove = (e) => {
     navigate('/my/article', { state: e.target.innerHTML })
   }
@@ -27,6 +30,7 @@ function WordCard() {
             </div>
           ))
         : null}
+      <RedoOutlined />
     </>
   )
   // <div>

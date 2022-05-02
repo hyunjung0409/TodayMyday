@@ -8,7 +8,10 @@ const { Option } = Select
 
 function SignupForm({ imageUploader, data }) {
   const [form] = Form.useForm()
-  const [file, setFile] = useState({ fileName: null, fileURL: null })
+  const [image, setImage] = useState({
+    fileURL: '/images/기본사진.png',
+  })
+  const [file, setFile] = useState({ fileName: '기본사진', fileURL: image.fileURL })
   const navigate = useNavigate()
 
   const onFileChange = (file) => {

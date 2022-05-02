@@ -58,10 +58,9 @@ function MyAge() {
         </Age>
       ) : (
         <Age>
-          나이 :
+          연령대 :
           <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
             <Form.Item
-              label="연령대"
               name="ageRange"
               rules={[
                 {

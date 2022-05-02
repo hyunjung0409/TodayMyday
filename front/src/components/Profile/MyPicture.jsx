@@ -31,14 +31,16 @@ function MyPicture({ imageUploader, data }) {
   const formRef = useRef()
   const [editable, setEditable] = useState(false)
   const [loading, setLoading] = useState(false)
-
+  const [isImage, setisImage] = useState(false)
   const onFileChange = (file2) => {
     setFile2({
       fileName: file2.name,
       fileURL: file2.url,
     })
   }
-
+  const [image, setImage] = useState({
+    fileURL: '/images/기본사진.png',
+  })
   const onFinish = async (values) => {
     const axios = getAxios()
     me !== null &&
@@ -47,6 +49,17 @@ function MyPicture({ imageUploader, data }) {
       (await axios.put(
         'user/modify',
         { image: file2.fileURL, age: me.age, gender: me.gender },
+        { params: { userId: me.userId } },
+      ))
+    dispatch(loadUserRequestAction({ userId: me.userId }))
+  }
+  const onDelete = async (values) => {
+    const axios = getAxios()
+    me !== null &&
+      me.userId !== null &&
+      (await axios.put(
+        'user/modify',
+        { image: image.fileURL, age: me.age, gender: me.gender },
         { params: { userId: me.userId } },
       ))
     dispatch(loadUserRequestAction({ userId: me.userId }))
@@ -88,7 +101,7 @@ function MyPicture({ imageUploader, data }) {
           <Avatar
             size={260}
             icon={
-              <Form.Item>
+              me.image !== null && (
                 <ImageFileInput
                   name={file2.fileName}
                   imageUploader={imageUploader}
@@ -98,14 +111,18 @@ function MyPicture({ imageUploader, data }) {
                   data={data}
                   setFile={setFile2}
                 />
-              </Form.Item>
+              )
             }
           />
 
           <Form.Item>
+            <Button type="danger" htmlType="submit" onClick={onDelete}>
+              삭제
+            </Button>
             <Button type="primary" htmlType="submit" onClick={success}>
               등록
             </Button>
+
             <EditOutlined
               onClick={(e) => {
                 setEditable(!editable)
