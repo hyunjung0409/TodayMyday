@@ -15,6 +15,7 @@
     "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.3",
+    "nginx": "^1.0.7",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-calendar": "^3.7.0",
