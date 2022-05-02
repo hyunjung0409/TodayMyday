@@ -2,22 +2,17 @@ package com.example.back.controller;
 
 import com.example.back.dto.TestWordDto;
 import com.example.back.entity.Diary;
-import com.example.back.entity.TestWord;
-import com.example.back.entity.Word;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
-import com.example.back.repository.WordRepository;
-import com.example.back.service.WordService;
+import com.example.back.service.TestWordService;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
@@ -25,7 +20,7 @@ import java.util.Map;
 public class TestController {
 
     private final DiaryRepository diaryRepository;
-    private final WordService wordService;
+    private final TestWordService testWordService;
 
     @GetMapping("/test1")
     public String test() {
@@ -43,7 +38,7 @@ public class TestController {
     @GetMapping("/word")
     @ApiOperation(value = "단어 뽑기", notes = "랜덤 단어 5개 뽑기", response = String.class)
     public ResponseEntity<List<String>> recomandWord(){
-        List<String> words = wordService.pickWords();
+        List<String> words = testWordService.pickWords();
         return ResponseEntity.ok().body(words);
     }
 
@@ -51,7 +46,7 @@ public class TestController {
     @ApiOperation(value = "단어 추가", notes = "테스트용 단어 추가하기", response = String.class)
     public ResponseEntity<Object> createWord(@RequestBody TestWordDto wordDto){
 
-        wordService.createWord(wordDto);
+        testWordService.createWord(wordDto);
 
         return ResponseEntity.ok().body(HttpStatus.OK);
 
