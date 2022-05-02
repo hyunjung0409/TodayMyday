@@ -97,6 +97,7 @@ public class DiaryServiceImpl implements DiaryService{
                     diaryDto.setImage(diary.getImage());
                     diaryDto.setWord(diary.getWord());
                     diaryDto.setNickname(diary.getUser().getNickname());
+                    diaryDto.setProfile_image(diary.getUser().getImage());
                     my_daires.add(diaryDto);
                 }
             }
@@ -151,6 +152,7 @@ public class DiaryServiceImpl implements DiaryService{
                     diaryDto.setImage(diary.getImage());
                     diaryDto.setWord(diary.getWord());
                     diaryDto.setNickname(diary.getUser().getNickname());
+                    diaryDto.setProfile_image(diary.getUser().getImage());
                     my_daires.add(diaryDto);
                 }
             }
