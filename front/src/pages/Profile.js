@@ -27,7 +27,9 @@ function Profile() {
     <div>
       <Row>
         <Col span={12}>
-          {me !== null && <MyPicture imageUploader={imageUploader} data={me.image}></MyPicture>}{' '}
+          {me !== null && (
+            <MyPicture imageUploader={imageUploader} data={me !== null && me.image}></MyPicture>
+          )}{' '}
           <MyNickName></MyNickName>
           <MyAge></MyAge>
           <MyGender></MyGender>
