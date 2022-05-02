@@ -14,19 +14,39 @@ public class WordDto {
     private String word;
 
     @NotNull
-    private String gender;
+    private long teens;
 
     @NotNull
-    private String age;
+    private long twenties;
 
     @NotNull
-    private long count;
+    private long thirties;
+
+    @NotNull
+    private long fourties;
+
+    @NotNull
+    private long fifties;
+
+    @NotNull
+    private long oversixties;
+
+    @NotNull
+    private long male;
+
+    @NotNull
+    private long female;
 
     @Builder
-    public WordDto (String word, String gender, String age, long count){
+    public WordDto(String word, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female) {
         this.word = word;
-        this.gender = gender;
-        this.age = age;
-        this.count = count;
+        this.teens = teens;
+        this.twenties = twenties;
+        this.thirties = thirties;
+        this.fourties = fourties;
+        this.fifties = fifties;
+        this.oversixties = oversixties;
+        this.male = male;
+        this.female = female;
     }
 }

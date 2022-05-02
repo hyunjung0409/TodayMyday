@@ -25,26 +25,22 @@ public class WordServiceImpl implements WordService{
     private final DiaryRepository diaryRepository;
 
     @Override
-    public void createWord(String userId, String word) {
+    public void createWord(String word) {
 
         if(word.trim().isEmpty() || word == null)
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
-//        Word str = wordRepository.findWordByWord(word);
-        User user = userRepository.findByUserId(userId);
-        System.out.println(user.getAge()+" "+user.getGender());
-        Word str = wordRepository.findWordByWordAndGender(word, user.getGender());
-
-        //System.out.println("str2 : "+str2.getWord());
-        if(str == null) {
-            str = Word.builder()
+           Word str = Word.builder()
                     .word(word)
-                    .age(user.getAge())
-                    .gender(user.getGender())
-                    .build();
-        } else {
-            str.setCount(str.getCount()+1);
-        }
+                   .teens(0)
+                   .twenties(0)
+                   .thirties(0)
+                   .fourties(0)
+                   .fifties(0)
+                   .oversixties(0)
+                   .male(0)
+                   .female(0)
+                   .build();
 
         wordRepository.save(str);
     }
@@ -57,20 +53,41 @@ public class WordServiceImpl implements WordService{
         if(user == null || word == null)
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
+        if(user.getAge().equals("1")){
+            word.setTeens(word.getTeens()+1);
+        } else if(user.getAge().equals("2")){
+            word.setTwenties(word.getTwenties()+1);
+        } else if(user.getAge().equals("3")){
+            word.setThirties(word.getThirties()+1);
+        } else if(user.getAge().equals("4")){
+            word.setFourties(word.getFourties()+1);
+        } else if(user.getAge().equals("5")){
+            word.setFifties(word.getFifties()+1);
+        } else if(user.getAge().equals("6")){
+            word.setOversixties(word.getOversixties()+1);
+        }
+
+        if(user.getGender().equals("male")) {
+            word.setMale(word.getMale()+1);
+        } else {
+            word.setFemale(word.getFemale()+1);
+        }
+
         wordRepository.save(word);
 
         return word;
     }
 
     @Override
-    public List<String> pickRandomWords(UserDto userDto) {
+    public List<String> pickRandomWords(String userId) {
         // 각 조건에 따른 각각의 5개의 단어들을 담을 배열
         List<String> pickedWords = new ArrayList<>();
-        String gender = userDto.getGender();
-        String age = userDto.getAge();
+        User user = userRepository.findByUserId(userId);
+        String gender = user.getGender();
+        String age = user.getAge();
 
-        for(int i = 0; i < 5; i++){
-            String selectedWord = pickWordByCondition(i, gender, age);
+        for(int i = 1; i <= 5; i++){
+            String selectedWord = pickWordByCondition(5, gender, age);
             pickedWords.add(selectedWord);
         }
 
@@ -81,9 +98,73 @@ public class WordServiceImpl implements WordService{
     public String pickWordByCondition(int condition, String gender, String age) {
         String selectedWord = "";
         List<String> wordList = new ArrayList<>();
-        int len = 0;
-        int index = 0;
-        String year = "";
+
+        switch (condition){
+            case 1:
+                if(gender.equals("male")) {
+                    if(age.equals("1")) {
+                        wordList = wordRepository.findWordByTeensAndMale();
+                    } else if(age.equals("2")) {
+                        wordList = wordRepository.findWordByTwentiesAndMale();
+                    } else if(age.equals("3")) {
+                        wordList = wordRepository.findWordByThirtiesAndMale();
+                    } else if(age.equals("4")) {
+                        wordList = wordRepository.findWordByFourtiesAndMale();
+                    } else if(age.equals("5")) {
+                        wordList = wordRepository.findWordByFiftiesAndMale();
+                    } else if(age.equals("6")) {
+                        wordList = wordRepository.findWordByOversixtiesAndMale();
+                    }
+                } else if (gender.equals("female")){
+                    if(age.equals("1")) {
+                        wordList = wordRepository.findWordByTeensAndFemale();
+                    } else if(age.equals("2")) {
+                        wordList = wordRepository.findWordByTwentiesAndFemale();
+                    } else if(age.equals("3")) {
+                        wordList = wordRepository.findWordByThirtiesAndFemale();
+                    } else if(age.equals("4")) {
+                        wordList = wordRepository.findWordByFourtiesAndFemale();
+                    } else if(age.equals("5")) {
+                        wordList = wordRepository.findWordByFiftiesAndFemale();
+                    } else if(age.equals("6")) {
+                        wordList = wordRepository.findWordByOversixtiesAndFemale();
+                    }
+                }
+                break;
+            case 2:
+                if(age.equals("1")) {
+                    wordList = wordRepository.findWordByTeens();
+                } else if(age.equals("2")) {
+                    wordList = wordRepository.findWordByTwenties();
+                } else if(age.equals("3")) {
+                    wordList = wordRepository.findWordByThirties();
+                } else if(age.equals("4")) {
+                    wordList = wordRepository.findWordByFourties();
+                } else if(age.equals("5")) {
+                    wordList = wordRepository.findWordByFifties();
+                } else if(age.equals("6")) {
+                    wordList = wordRepository.findWordByOversixties();
+                }
+                break;
+            case 3:
+                if(gender.equals("male")){
+                    wordList = wordRepository.findWordByMale();
+                } else if(gender.equals("female")) {
+                    wordList = wordRepository.findWordByFemale();
+                }
+                break;
+            case 4:
+                wordList = wordRepository.findWordByAll();
+                break;
+            case 5:
+                wordList = wordRepository.findWordByRandom();
+                break;
+        }
+
+
+        int val = wordList.size();
+        int ranValue = (int)(Math.random() * val);
+        selectedWord = wordList.get(ranValue);
 
         return selectedWord;
     }
