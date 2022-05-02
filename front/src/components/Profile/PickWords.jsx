@@ -41,12 +41,6 @@ function PickWords() {
   return (
     <div>
       <Words>
-<<<<<<< HEAD
-        <div style={{ marginBottom: '20px' }}>
-          내가 선택한 단어 <Search></Search>
-        </div>
-        <MyWord />
-=======
         내가 선택한 단어 <Search></Search>
         <hr />
         <Row gutter={16}>
@@ -61,7 +55,6 @@ function PickWords() {
               // <div key={i}>{a.word}</div>
             })}
         </Row>
->>>>>>> cb8804133e005f9d0a440528245e5dffc9a3024d
       </Words>
     </div>
   )
