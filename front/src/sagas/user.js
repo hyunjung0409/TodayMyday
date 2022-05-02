@@ -54,7 +54,7 @@ function* logIn(action) {
       type: LOG_IN_SUCCESS,
       data: test,
     })
-    navigate('/')
+    navigate('/main')
   } catch (err) {
     yield put({
       type: LOG_IN_FAILURE,
