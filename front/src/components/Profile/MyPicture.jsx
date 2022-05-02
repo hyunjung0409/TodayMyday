@@ -22,10 +22,10 @@ const Submit = styled(Button)`
   margin-top: 10px;
 `
 function MyPicture({ imageUploader, data }) {
+  const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
   const [form] = Form.useForm()
   const axios = getAxios()
-  const dispatch = useDispatch()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
   const formRef = useRef()
