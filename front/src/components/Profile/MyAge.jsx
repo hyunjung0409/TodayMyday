@@ -2,26 +2,55 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { EditOutlined } from '@ant-design/icons'
 import { useSelector } from 'react-redux'
-import { Form, Select } from 'antd'
+import { Form, Input, Button, Select, Modal } from 'antd'
+import { getAxios } from '../../api'
 const { Option } = Select
 
 const Age = styled.div`
   margin-top: 5%;
 `
 function MyAge() {
-  // 비동기 처리 해야된다
-
   const { me } = useSelector((state) => state.user)
   const [form] = Form.useForm()
-
   const [editable, setEditable] = useState(false)
   const [age, setAge] = useState('')
+
+  const onFinish = async (values) => {
+    const axios = getAxios()
+    me !== null &&
+      me.userId !== null &&
+      (await axios.put(
+        'user/modify',
+        { age: values.ageRange, image: me.image, gender: me.gender },
+        { params: { userId: me.userId } },
+      ))
+    me.age = values.ageRange
+  }
+  const showAge = (e) => {
+    if (e == 1) {
+      return '어린이 (0~9)'
+    } else if (e == 2) {
+      return '청소년 (10~19)'
+    } else if (e == 3) {
+      return '청년 (20~29)'
+    } else if (e == 4) {
+      return '중/장년 (30~59)'
+    } else if (e == 5) {
+      return '노년 (60~)'
+    }
+  }
+  const success = () => {
+    Modal.success({
+      content: '회원정보 수정이 완료되었습니다.',
+      // onOk: handleMove,
+    })
+  }
 
   return (
     <div>
       {editable === false ? (
         <Age>
-          나이 : {me != null && me.age}{' '}
+          연령대 : {me !== null && showAge(me.age)}{' '}
           <EditOutlined
             onClick={(e) => {
               setEditable(!editable)
@@ -30,17 +59,7 @@ function MyAge() {
       ) : (
         <Age>
           나이 :
-          <input
-            type="text"
-            value="api로 값 받아오면 됨"
-            onChange={(e) => setAge(e.target.value)}></input>
-          <Form
-            form={form}
-            // name="signup"
-            // onSubmit={onSubmit}
-
-            autoComplete="off"
-            layout="vertical">
+          <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
             <Form.Item
               label="연령대"
               name="ageRange"
@@ -57,6 +76,11 @@ function MyAge() {
                 <Option value="4">중/장년 (30~59)</Option>
                 <Option value="5">노년 (60~)</Option>
               </Select>
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" onClick={success}>
+                등록
+              </Button>
             </Form.Item>
           </Form>
           <EditOutlined
