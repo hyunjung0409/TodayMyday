@@ -16,6 +16,7 @@ import {
   diarySearchWordRequestAction,
   diarySearchContentRequestAction,
 } from '../../reducers/article'
+import MyWord from '../MyWord'
 // const style = { background: '#0092ff', padding: '8px 0' }
 const { Option } = Select
 
@@ -36,6 +37,7 @@ const Words = styled.div`
 function PickWords() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const axios = getAxios()
 
   const [visible, setVisible] = useState(false)
   const dispatch = useDispatch()
@@ -43,21 +45,16 @@ function PickWords() {
   const [searchKind, setSearchKind] = useState(null)
   const [data, setData] = useState([])
   const { articleList } = useSelector((state) => state.article)
+  const [test, setTest] = useState(null)
+  const [word, setWord] = useState(null)
 
   const { me } = useSelector((state) => state.user)
   const onSearch = (value) => {
-    searchKind === 'searchword'
-      ? dispatch(
-          diarySearchWordRequestAction({ userId: me.userId, word: value, searchKind, setData }),
-        )
-      : dispatch(
-          diarySearchContentRequestAction({
-            userId: me.userId,
-            keyword: value,
-            searchKind,
-            setData,
-          }),
-        )
+    setTest([value])
+    searchKind === 'searchword' &&
+      dispatch(
+        diarySearchWordRequestAction({ userId: me.userId, word: value, searchKind, setData }),
+      )
   }
   const loadMoreData = (userId) => {
     if (loading) {
@@ -73,11 +70,21 @@ function PickWords() {
     setSearchKind(value)
     if (value === 'all') {
       setBoolean('boolean')
-      setData([...articleList])
+      axios.get(`/diary/myword`, { params: { userId: me.userId } }).then((res) => {
+        setWord(res.data)
+      })
     } else {
       setBoolean('')
     }
   }
+
+  useEffect(() => {
+    me !== null &&
+      axios.get(`/diary/myword`, { params: { userId: me.userId } }).then((res) => {
+        setWord(res.data)
+      })
+  }, [me])
+
   return (
     <div>
       <Words>
@@ -102,75 +109,7 @@ function PickWords() {
           />
         </div>
         <hr />
-        <div
-          id="scrollableDiv"
-          style={{
-            height: 200,
-            overflow: 'auto',
-            padding: '0 16px',
-            border: '1px solid rgba(140, 140, 140, 0.35)',
-          }}>
-          <InfiniteScroll
-            dataLength={data.length}
-            next={loadMoreData}
-            loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-            scrollableTarget="scrollableDiv">
-            {boolean === '' ? (
-              <List
-                dataSource={data}
-                renderItem={(item) => (
-                  <List.Item
-                    key={item.id}
-                    onClick={(e) => {
-                      pageMove(item.dno, e)
-                    }}>
-                    <ArticleListItem
-                      picture={item.image}
-                      title={item.word}
-                      createdat={moment(item.createdat).format('YYYY-MM-DD HH:mm:ss')}
-                    />
-                  </List.Item>
-                )}
-              />
-            ) : (
-              <Row gutter={16}>
-                {me !== null &&
-                  me.dairies
-                    // .map((a, i) => {
-                    //   return a.word
-                    // })
-                    // .reduce((ac, v) => (ac.includes(v) ? ac : [...ac, v]), [])
-                    // .map((a, i) => {
-                    //   return (
-                    .map((a, i) => {
-                      return (
-                        <Col key={i} className="gutter-row" span={6}>
-                          <p
-                            onClick={(e) => {
-                              pageMove(a.dno, e)
-                            }}>
-                            {a.word}{' '}
-                          </p>
-                          <Modal
-                            title="Modal 1000px width"
-                            centered
-                            visible={visible}
-                            onOk={() => setVisible(false)}
-                            onCancel={() => setVisible(false)}
-                            width={1000}>
-                            {' '}
-                            {a.word}
-                          </Modal>
-                        </Col>
-                      )
-
-                      // <div key={i}>{a.word}</div>
-                    })}
-              </Row>
-            )}
-          </InfiniteScroll>
-        </div>
+        <MyWord test={test} data={data} setWord={setWord} word={word} />
       </Words>
     </div>
   )

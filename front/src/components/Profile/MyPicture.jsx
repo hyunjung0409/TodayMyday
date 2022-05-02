@@ -4,9 +4,10 @@ import { ConsoleSqlOutlined, EditOutlined } from '@ant-design/icons'
 import { getAxios } from '../../api'
 import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
+import { loadUserRequestAction } from '../../reducers/user'
 
 // const MyPic = styled.div`
 //   margin-left: auto;
@@ -22,6 +23,7 @@ const Submit = styled(Button)`
   margin-top: 10px;
 `
 function MyPicture({ imageUploader, data }) {
+  const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
   const [form] = Form.useForm()
   const axios = getAxios()
@@ -49,6 +51,7 @@ function MyPicture({ imageUploader, data }) {
         // userId: me.userId,
         // values.ageRange,
       ))
+    dispatch(loadUserRequestAction({ userId: me.userId }))
   }
   const success = () => {
     Modal.success({
