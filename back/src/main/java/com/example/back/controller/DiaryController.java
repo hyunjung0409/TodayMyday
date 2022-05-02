@@ -57,18 +57,21 @@ public class DiaryController {
         HttpStatus status;
 
         User user = userRepository.findByUserId(userId);
-        if (diaryService.createDiary(diaryDto, user)) {
-            // 단어 정보 수집
-            Word word = wordService.increaseFrequency(userId, diaryDto);
-            hashMap.put("word", word);
-            hashMap.put("Message", "SUCCESS");
-            status = HttpStatus.OK;
-            hashMap.put("Status", status);
-        } else {
-            hashMap.put("Message", "FAIL");
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
-            hashMap.put("ERROR", "빈 값이 들어있습니다.");
-            hashMap.put("Status", status);
+
+        Diary diary = diaryService.createDiary(diaryDto, user);
+
+//        if (diaryService.createDiary(diaryDto, user)) {
+//            // 단어 정보 수집
+//            Word word = wordService.increaseFrequency(userId, diaryDto);
+//            hashMap.put("word", word);
+//            hashMap.put("Message", "SUCCESS");
+//            status = HttpStatus.OK;
+//            hashMap.put("Status", status);
+//        } else {
+//            hashMap.put("Message", "FAIL");
+//            status = HttpStatus.INTERNAL_SERVER_ERROR;
+//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
+//            hashMap.put("Status", status);
 
         hashMap.put("diary", diary);
         hashMap.put("Message", "SUCCESS");
