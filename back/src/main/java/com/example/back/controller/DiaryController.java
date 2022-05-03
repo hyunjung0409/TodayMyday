@@ -2,11 +2,14 @@ package com.example.back.controller;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
+import com.example.back.entity.Liked;
 import com.example.back.entity.User;
 import com.example.back.entity.Word;
 import com.example.back.repository.DiaryRepository;
+import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DiaryService;
+import com.example.back.service.LikedService;
 import com.example.back.service.UserService;
 import com.example.back.service.WordService;
 import io.swagger.annotations.Api;
@@ -31,8 +34,7 @@ public class DiaryController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final DiaryRepository diaryRepository;
-    private final WordService wordService;
-
+    private final LikedService likedService;
 
     @GetMapping("/")
     @ApiOperation(value = "다이어리 전체 검색", notes = "모든 다이어리 출력", response = String.class)
