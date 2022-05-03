@@ -6,7 +6,8 @@
   margin: 0px;
   text-align: center;
   box-sizing: border-box;
-  font-family: Consolas, monospace;
+  font-family: 'Noto Sans KR', sans-serif;
+  /* font-family: Consolas, monospace; */
   border: 1px solid green;
 }
 

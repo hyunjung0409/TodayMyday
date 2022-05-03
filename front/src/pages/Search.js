@@ -12,8 +12,7 @@ function Search() {
 
   return (
     <div>
-      <h3>SearchMy page</h3>
-      <div className="search-bar">
+      <div className="search-bar" style={{ margin: '2rem 0 3rem 0' }}>
         <SearchBar
           optionBool={optionBool}
           setOptionBool={setOptionBool}
@@ -29,8 +28,15 @@ function Search() {
       {keyword === '' ? (
         <div>검색어를 입력해주세요</div>
       ) : (
-        <div className="diary-carousel-written" style={{ background: '#FFDAE5', margin: '1rem' }}>
-          <h3 style={{ textAlign: 'left', padding: '1rem' }}>
+        <div
+          className="diary-carousel-written"
+          style={{ background: '#FFDAE5', margin: '1rem auto', width: '90%' }}>
+          <h3
+            style={{
+              textAlign: 'left',
+              padding: '1.5rem 1rem 1rem 1rem',
+              marginLeft: '1.2rem',
+            }}>
             '{keyword}' {optionBool === false ? '단어가 주제로 쓰여진 글' : '단어가 포함된 글'}
           </h3>
           <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} />
