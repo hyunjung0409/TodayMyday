@@ -36,6 +36,7 @@ public class DiaryServiceImpl implements DiaryService{
                 .createdat(LocalDateTime.now())
                 .user(user)
                 .word(diaryDto.getWord())
+                .view(0)
                 .build();
 
         diaryRepository.save(save);
@@ -225,6 +226,21 @@ public class DiaryServiceImpl implements DiaryService{
         }
 
         return allwords;
+    }
+
+    @Override
+    public Diary updateView(Long dno) {
+        Diary diary = diaryRepository.findDiaryByDno(dno);
+
+        if (diary == null) {
+            return null;
+        }
+
+        diary.setView(diary.getView() + 1);
+
+        diaryRepository.save(diary);
+
+        return diary;
     }
 
 
