@@ -37,18 +37,21 @@ public class Diary {
     @CreatedDate
     private LocalDateTime createdat;
 
+    private int view;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     @JsonIgnore
     User user;
 
     @Builder
-    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user){
+    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user, int view){
         this.dno = dno;
         this.word = word;
         this.image = image;
         this.content = content;
         this.createdat = createdat;
         this.user = user;
+        this.view = view;
     }
 }

@@ -260,4 +260,24 @@ public class DiaryController {
 
         return new ResponseEntity<>(diares, status);
     }
+
+    @PutMapping("/view")
+    @ApiOperation(value = "다이어리 조회수 추가", notes = "다이어리 조회수 증가하기", response = String.class)
+    public ResponseEntity<Map<String, Object>> updateView(@RequestParam Long dno) {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        Diary diary = diaryService.updateView(dno);
+
+        if (diary == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diary", diary);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
 }

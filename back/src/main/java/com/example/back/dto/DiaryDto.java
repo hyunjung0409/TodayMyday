@@ -25,8 +25,10 @@ public class DiaryDto {
 
     private String profile_image;
 
+    private Long view;
 
-    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno, String profile_image){
+
+    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno, String profile_image, Long view){
         this.word = word;
         this.image = image;
         this.content = content;
@@ -34,6 +36,7 @@ public class DiaryDto {
         this.nickname = nickname;
         this.dno = dno;
         this.profile_image = profile_image;
+        this.view = view;
     }
 
 }
