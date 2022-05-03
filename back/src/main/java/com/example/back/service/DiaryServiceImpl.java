@@ -6,6 +6,7 @@ import com.example.back.entity.User;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
+import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class DiaryServiceImpl implements DiaryService{
                 .build();
 
         diaryRepository.save(save);
+
         return save;
     }
 

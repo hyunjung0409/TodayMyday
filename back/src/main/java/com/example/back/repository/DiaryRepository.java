@@ -23,6 +23,6 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
     List<Diary>findAll();
 
 
-//    @Query(value = "select * from diary where content like '%:keyword%'")
+//    @Query(value = "select * from diary where content liked '%:keyword%'")
 //    List<Diary>searchDiares(@Param("keyword") String keyword);
 }
