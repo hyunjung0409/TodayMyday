@@ -30,8 +30,22 @@ function MyPicture({ imageUploader, data }) {
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
   const formRef = useRef()
   const [editable, setEditable] = useState(false)
+  console.log(me)
+  console.log(editable, 'true면 수정 가능 / false면 수정 불가능')
   const [loading, setLoading] = useState(false)
   const [isImage, setisImage] = useState(false)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
   const onFileChange = (file2) => {
     setFile2({
       fileName: file2.name,
@@ -63,6 +77,7 @@ function MyPicture({ imageUploader, data }) {
         { params: { userId: me.userId } },
       ))
     dispatch(loadUserRequestAction({ userId: me.userId }))
+    setEditable(!editable)
   }
   const success = () => {
     Modal.success({
@@ -70,6 +85,7 @@ function MyPicture({ imageUploader, data }) {
       // onOk: handleMove,
     })
   }
+
   const loadMoreData = (userId) => {
     if (loading) {
       return
@@ -84,7 +100,6 @@ function MyPicture({ imageUploader, data }) {
       }
     }
   }, [me])
-
   return (
     <div>
       {editable === false ? (
@@ -113,21 +128,29 @@ function MyPicture({ imageUploader, data }) {
                 />
               )
             }
-          />
-
+          />{' '}
           <Form.Item>
-            <Button type="danger" htmlType="submit" onClick={onDelete}>
+            <Button type="danger" htmlType="submit" onClick={showModal}>
               삭제
             </Button>
-            <Button type="primary" htmlType="submit" onClick={success}>
+            <Modal
+              title="프로필 이미지 삭제"
+              visible={isModalVisible}
+              onOk={() => {
+                onDelete()
+                handleCancel()
+              }}
+              onCancel={handleCancel}>
+              <p>삭제하시겠습니까?</p>
+            </Modal>
+            <Button type="primary" htmlType="submit" onClick={onFinish}>
               등록
             </Button>
-
             <EditOutlined
               onClick={(e) => {
                 setEditable(!editable)
-              }}></EditOutlined>
-          </Form.Item>
+              }}></EditOutlined>{' '}
+          </Form.Item>{' '}
         </Form>
       )}
 
