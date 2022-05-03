@@ -4,12 +4,14 @@ import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
 import com.example.back.entity.Liked;
 import com.example.back.entity.User;
+import com.example.back.entity.Word;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DiaryService;
 import com.example.back.service.LikedService;
 import com.example.back.service.UserService;
+import com.example.back.service.WordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +59,21 @@ public class DiaryController {
         HttpStatus status;
 
         User user = userRepository.findByUserId(userId);
+
         Diary diary = diaryService.createDiary(diaryDto, user);
+
+//        if (diaryService.createDiary(diaryDto, user)) {
+//            // 단어 정보 수집
+//            Word word = wordService.increaseFrequency(userId, diaryDto);
+//            hashMap.put("word", word);
+//            hashMap.put("Message", "SUCCESS");
+//            status = HttpStatus.OK;
+//            hashMap.put("Status", status);
+//        } else {
+//            hashMap.put("Message", "FAIL");
+//            status = HttpStatus.INTERNAL_SERVER_ERROR;
+//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
+//            hashMap.put("Status", status);
 
         hashMap.put("diary", diary);
         hashMap.put("Message", "SUCCESS");

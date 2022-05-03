@@ -1,21 +1,15 @@
-package com.example.back.entity;
+package com.example.back.dto;
 
+import com.example.back.entity.Word;
 import com.sun.istack.NotNull;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+@Data
+@NoArgsConstructor
+public class WordDto {
 
-@Entity
-@RequiredArgsConstructor
-@Getter
-@Setter
-public class Word {
-
-    @Id
     @NotNull
     private String word;
 
@@ -44,7 +38,7 @@ public class Word {
     private long female;
 
     @Builder
-    public Word(String word, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female) {
+    public WordDto(String word, long teens, long twenties, long thirties, long fourties, long fifties, long oversixties, long male, long female) {
         this.word = word;
         this.teens = teens;
         this.twenties = twenties;

@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
 
 
+    // 204 NO_CONTENT : 내용 없음
+    DATA_NOT_FOUND(HttpStatus.NO_CONTENT, "데이터를 찾을 수 없습니다"),
+
     // 400 BAD_REQUEST : 잘못된 요청
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
 

@@ -1,14 +1,15 @@
 package com.example.back.service;
 
-import com.example.back.dto.TestWordDto;
-import com.example.back.entity.TestWord;
+import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Word;
 
 import java.util.List;
 
 public interface WordService {
 
-    boolean createWord(TestWordDto testWordDto);
-    List<String> pickWords();
+    void createWord(String word);
+    Word increaseFrequency(String userId, DiaryDto diaryDto);
+    List<String> pickRandomWords(String userId);
+    String pickWordByCondition(int condition, String gender, String age);
 
 }
