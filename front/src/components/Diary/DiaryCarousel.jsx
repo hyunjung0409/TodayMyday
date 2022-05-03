@@ -11,10 +11,11 @@ const MyCarousel = styled(Carousel)`
   > .slick-dots-bottom li button:before {
     display: none;
   }
-  // > .ant-carousel .slick-dots {
-  //   margin-left: 0;
-  //   margin-right: 0;
-  // }
+
+  > .slick-dots {
+    margin-right: 0;
+    margin-left: 0;
+  }
 `
 
 function DiaryCarousel({ diaryList, setDiaryList, me }) {
@@ -50,9 +51,9 @@ function DiaryCarousel({ diaryList, setDiaryList, me }) {
 const StyledCardlArea = styled.div`
   display: flex;
   justify-content: space-evenly;
-  border: 1px solid red;
-  padding: 2rem;
-  height: 60vh;
+  padding: 0 0 2rem 2.5rem;
+  height: 55vh;
+  // border: 1px solid red;
 `
 
 export default DiaryCarousel

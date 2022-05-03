@@ -72,7 +72,7 @@ const SearchBar = ({
         </Select>
         <Input.Search
           allowClear
-          style={{ width: '80%' }}
+          style={{ width: '70rem' }}
           placeholder="input search text"
           onSearch={onSearch}
         />

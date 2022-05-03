@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Avatar, Space, Typography, Image } from 'antd'
+import { Card, Avatar, Space, Typography, Row, Col } from 'antd'
 import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import moment from 'moment'
 
 const { Meta } = Card
 const { Text } = Typography
 
 function DiaryCard({ card }) {
-  const { me } = useSelector((state) => state.user)
-
   const navigate = useNavigate()
+  const length = 123
 
   const onClick = async () => {
     console.log('click: ', card.dno)
@@ -29,26 +27,30 @@ function DiaryCard({ card }) {
         </StyledImageArea>
       }
       onClick={onClick}>
-      {/* <Space>
-        <MessageOutlined style={{ fontSize: '1rem', color: '#08c' }} />
-        <CommentOutlined style={{ fontSize: '1rem', color: '#08c' }} />
-        <Text>내용: {card.content}</Text>
-      </Space> */}
-
-      {/* <Meta
+      <Meta
         avatar={<Avatar src={card.profile_image} />}
         title={card.nickname}
-        description={moment(card.createdat).format('YYYY-MM-DD HH:mm:ss')}
-      /> */}
+        // description={moment(card.createdat).format('YYYY-MM-DD')}
+      />
+      {/* <Row justify="space-evenly" align="middle">
+        <Col span={24}>
+          <Space size="small">
+            <Avatar src={card.profile_image} />
+            <Space direction="vertical" size={1}>
+              <StyledText>{card.nickname}</StyledText>
+              <StyledText>{moment(card.createdat).format('YYYY-MM-DD')}</StyledText>
+            </Space>
+          </Space>
+        </Col>
+      </Row> */}
 
-      <Space direction="vertical" size="middle" style={{ display: 'flex', alignItems: 'start' }}>
-        <Space>
-          <Avatar src={card.profile_image} />
-          <StyledText>{card.nickname}</StyledText>
-        </Space>
-        <StyledText>#{card.word}</StyledText>
-        <StyledText>{card.content}</StyledText>
-      </Space>
+      {/* <StyledText>#{card.word}</StyledText> */}
+      <div style={{ marginTop: '1rem' }}>
+        <StyledText>
+          {card.content}
+          {/* {card.content.length > length ? card.content.substr(0, length - 2) + '...' : card.content} */}
+        </StyledText>
+      </div>
     </StyledCard>
   )
 }
@@ -64,11 +66,7 @@ const StyledImage = styled.img`
   height: 100%;
   object-fit: cover;
 `
-const StyledUserArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-`
+
 const StyledCard = styled(Card)`
   width: 15vw;
   height: 50vh;
