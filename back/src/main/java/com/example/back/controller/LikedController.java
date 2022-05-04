@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/liked")
+@RequestMapping("/api/liked")
 @RequiredArgsConstructor
 @Api(tags = {"좋아요 컨트롤러"})
 public class LikedController {
