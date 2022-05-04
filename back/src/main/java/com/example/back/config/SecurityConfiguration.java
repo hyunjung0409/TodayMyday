@@ -46,7 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
-                .antMatchers(HttpMethod.POST, "/user/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/test/**").permitAll()
                 .antMatchers("/diary/**").permitAll()
                 .antMatchers("/user/**").permitAll()
@@ -75,14 +76,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 //        config.setAllowedOrigins("http://localhost:3000");
-        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedOrigin("http://k6c205.p.ssafy.io");
-        config.addAllowedOrigin("http://k6c205.p.ssafy.io:3000");
-        config.addAllowedOrigin("http://k6c205.p.ssafy.io:8080");
+        config.addAllowedOrigin("*");
+//        config.addAllowedOrigin("http://k6c205.p.ssafy.io");
+//        config.addAllowedOrigin("http://k6c205.p.ssafy.io:3000");
+//        config.addAllowedOrigin("http://k6c205.p.ssafy.io:8080");
         config.addAllowedOriginPattern("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.setMaxAge(3600L);
+//        config.setMaxAge(3600L);
 //        config.setAllowedOrigins(Arrays.asList("*"));
 //        config.setAllowedOrigins("h");
 //        config.setAllowedMethods(Arrays.asList("*"));

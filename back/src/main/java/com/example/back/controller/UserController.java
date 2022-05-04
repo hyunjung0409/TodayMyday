@@ -19,10 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 @Api(tags = {"유저 컨트롤러"})
-@CrossOrigin(origins = "http://k6c205.p.ssafy.io:3000")
+//@CrossOrigin(origins = "http://k6c205.p.ssafy.io:3000")
 public class UserController {
 
     private final UserService userService;
