@@ -18,7 +18,7 @@ public class BackApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://5.79.186.9:3000");
+				registry.addMapping("/**").allowedOrigins("http://52.79.186.9:3000");
 			}
 		};
 	}
