@@ -79,9 +79,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         config.addAllowedOrigin("http://k6c205.p.ssafy.io");
         config.addAllowedOrigin("http://k6c205.p.ssafy.io:3000");
         config.addAllowedOrigin("http://k6c205.p.ssafy.io:8080");
+        config.addAllowedOriginPattern("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.setMaxAge((long)3600);
+        config.setMaxAge(3600L);
 //        config.setAllowedOrigins(Arrays.asList("*"));
 //        config.setAllowedOrigins("h");
 //        config.setAllowedMethods(Arrays.asList("*"));
