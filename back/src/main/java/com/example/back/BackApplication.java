@@ -13,14 +13,14 @@ public class BackApplication {
 		SpringApplication.run(BackApplication.class, args);
 	}
 
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-//			}
-//		};
-//	}
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("http://k6c205.p.ssafy.io:3000");
+			}
+		};
+	}
 
 }
