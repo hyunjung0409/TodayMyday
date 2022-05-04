@@ -63,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors().disable()      // cors 비활성화
                 .headers().frameOptions().disable()
                 .and()
-                .addFilterBefore(new LoginFilter("/user/login", authenticationManager()),
+                .addFilterBefore(new LoginFilter("api/user/login", authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new AuthenticationFilter(),
                         UsernamePasswordAuthenticationFilter.class);
