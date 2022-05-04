@@ -90,7 +90,7 @@ function MyPicture({ imageUploader, data }) {
     if (loading) {
       return
     }
-    dispatch(loadUserRequestAction({ userId }))
+    dispatch(loadUserRequestAction({ userId: me.userId }))
     setLoading(true)
   }
   useEffect(() => {
