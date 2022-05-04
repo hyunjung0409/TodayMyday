@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/diary")
+@RequestMapping("/api/diary")
 @RequiredArgsConstructor
 @Api(tags = {"다이어리 컨트롤러"})
 public class DiaryController {
