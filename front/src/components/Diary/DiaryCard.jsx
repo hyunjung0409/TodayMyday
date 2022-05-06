@@ -10,7 +10,6 @@ const { Text } = Typography
 
 function DiaryCard({ card }) {
   const navigate = useNavigate()
-  const length = 123
 
   const onClick = async () => {
     console.log('click: ', card.dno)
@@ -46,10 +45,7 @@ function DiaryCard({ card }) {
 
       {/* <StyledText>#{card.word}</StyledText> */}
       <div style={{ marginTop: '1rem' }}>
-        <StyledText>
-          {card.content}
-          {/* {card.content.length > length ? card.content.substr(0, length - 2) + '...' : card.content} */}
-        </StyledText>
+        <StyledText>{card.content}</StyledText>
       </div>
     </StyledCard>
   )
@@ -74,6 +70,16 @@ const StyledCard = styled(Card)`
 
 const StyledText = styled(Text)`
   font-size: small;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2;
+  height: 6em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 `
 
 export default DiaryCard

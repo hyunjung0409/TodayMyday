@@ -19,6 +19,8 @@ const MyCarousel = styled(Carousel)`
 `
 
 function DiaryCarousel({ diaryList, setDiaryList, me }) {
+  console.log('diaryList: ', diaryList)
+
   const rendering = () => {
     const result = []
     for (let index = 0; index < diaryList.length; index += 5) {
@@ -37,14 +39,16 @@ function DiaryCarousel({ diaryList, setDiaryList, me }) {
   }
 
   return (
-    <>
-      <MyCarousel
-        afterChange={onChange}
-        dotPosition="bottom"
-        style={{ listStyle: 'none', overflow: 'hidden' }}>
-        {rendering()}
-      </MyCarousel>
-    </>
+    <div className="carousel">
+      {diaryList !== [] && (
+        <MyCarousel
+          afterChange={onChange}
+          dotPosition="bottom"
+          style={{ listStyle: 'none', overflow: 'hidden' }}>
+          {rendering()}
+        </MyCarousel>
+      )}
+    </div>
   )
 }
 
