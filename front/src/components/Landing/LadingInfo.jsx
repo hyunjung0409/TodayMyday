@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import Fade from 'react-reveal/Fade'
 import { Space, Button, Typography } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
+import diaryImage from '../../assets/diary-3.PNG'
 
 function LandingInfo() {
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ function LandingInfo() {
         </Fade>
         <Fade right>
           <StyledImage>
-            <img src="/images/diary-3.png" style={{ width: '100%' }} />
+            <img src={diaryImage} style={{ width: '100%' }} />
           </StyledImage>
         </Fade>
         <Fade left>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import Fade from 'react-reveal/Fade'
+import diaryImage from '../../assets/diary-2.PNG'
 
 function LandingImage() {
   const navigate = useNavigate()
@@ -18,7 +19,7 @@ function LandingImage() {
       </StyledTitle>
 
       <StyledImage>
-        <img src="/images/diary-2.png" style={{ width: '100%', opacity: '80%' }} />
+        <img src={diaryImage} style={{ width: '100%', opacity: '80%' }} />
       </StyledImage>
       <Fade left>
         <StyledSubTitle style={{ marginTop: '-1.5rem', marginLeft: '-12rem' }}>
