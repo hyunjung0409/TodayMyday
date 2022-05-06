@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components'
 import Fade from 'react-reveal/Fade'
 import { Space, Button, Typography } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
-import diaryImage from '../../assets/diary-3.PNG'
 
 function LandingInfo() {
   const navigate = useNavigate()
@@ -16,15 +15,15 @@ function LandingInfo() {
     <>
       <StyledContainer>
         <Fade>
-          <StyledTitle src="/images/title-007.png" />
+          <StyledTitle src={process.env.PUBLIC_URL + '/images/title-007.png'} />
         </Fade>
         <Fade right>
           <StyledImage>
-            <img src={diaryImage} style={{ width: '100%' }} />
+            <img src={process.env.PUBLIC_URL + '/images/diary-3.PNG'} style={{ width: '100%' }} />
           </StyledImage>
         </Fade>
         <Fade left>
-          <StyledSubTitle src="/images/title-008.png" />
+          <StyledSubTitle src={process.env.PUBLIC_URL + '/images/title-008.png'} />
           <StyledButton onClick={onClick}>시작하기</StyledButton>
         </Fade>
       </StyledContainer>
@@ -37,7 +36,7 @@ const StyledContainer = styled.div`
   height: 40rem;
   overflow: hidden;
   background: #fff;
-  //   border: solid 1px black;
+  // border: solid 1px black;
 `
 
 const StyledTitle = styled.img`
