@@ -62,4 +62,9 @@ public class LikedController {
     public void test(){
         System.out.println("테스트야");
     }
+    @GetMapping("/test2")
+    @ApiOperation(value = "반영되는가222", notes = "반영되라222", response = String.class)
+    public void test2(){
+        System.out.println("테스트야222");
+    }
 }
