@@ -1,34 +1,29 @@
-import { useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import Fade from 'react-reveal/Fade'
-import diaryImage from '../../assets/diary-2.PNG'
 
 function LandingImage() {
-  const navigate = useNavigate()
-
-  const onClick = () => {
-    navigate('/user/login')
-  }
-
   return (
     <StyledContainer>
       <StyledBackground />
 
       <StyledTitle>
-        <img src="/images/title-004.png" style={{ width: '60rem' }} />
+        <img src={process.env.PUBLIC_URL + '/images/title-004.png'} style={{ width: '60rem' }} />
       </StyledTitle>
 
       <StyledImage>
-        <img src={diaryImage} style={{ width: '100%', opacity: '80%' }} />
+        <img
+          src={process.env.PUBLIC_URL + '/images/diary-2.PNG'}
+          style={{ width: '100%', opacity: '80%' }}
+        />
       </StyledImage>
       <Fade left>
         <StyledSubTitle style={{ marginTop: '-1.5rem', marginLeft: '-12rem' }}>
-          <img src="/images/title-005.png" style={{ width: '60rem' }} />
+          <img src={process.env.PUBLIC_URL + '/images/title-005.png'} style={{ width: '60rem' }} />
         </StyledSubTitle>
       </Fade>
       <Fade right>
         <StyledSubTitle style={{ marginTop: '-7rem', marginRight: '-15rem' }}>
-          <img src="/images/title-006.png" style={{ width: '60rem' }} />
+          <img src={process.env.PUBLIC_URL + '/images/title-006.png'} style={{ width: '60rem' }} />
         </StyledSubTitle>
       </Fade>
     </StyledContainer>
