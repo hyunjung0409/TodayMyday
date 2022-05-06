@@ -76,12 +76,22 @@ public class UserController {
     @GetMapping("/read")
     @ApiOperation(value = "사용자 조회", notes = "아이디로 사용자 조회", response = String.class)
     public ResponseEntity<Map<String, Object>> readUser(@RequestParam String userId){
-        Map<String, Object> map = new HashMap<>();
-        User user = userRepository.findByUserId(userId);
+        HttpStatus status;
 
+        Map<String, Object> map = new HashMap<>();
+        User user = userService.readUser(userId);
+
+        if (user == null) {
+            status = HttpStatus.NOT_FOUND;
+            map.put("Message", "USER NOT FOUND");
+        }
+        else {
+            status = HttpStatus.OK;
+            map.put("Message", "SUCCESS");
+        }
         map.put("user", user);
 
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return new ResponseEntity<>(map, status);
     }
 
     @PutMapping("/modify")

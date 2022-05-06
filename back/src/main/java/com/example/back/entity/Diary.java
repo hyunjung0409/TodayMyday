@@ -44,8 +44,10 @@ public class Diary {
     @JsonIgnore
     User user;
 
+    int liked;
+
     @Builder
-    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user, int view){
+    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user, int view, int liked){
         this.dno = dno;
         this.word = word;
         this.image = image;
@@ -53,5 +55,6 @@ public class Diary {
         this.createdat = createdat;
         this.user = user;
         this.view = view;
+        this.liked = liked;
     }
 }

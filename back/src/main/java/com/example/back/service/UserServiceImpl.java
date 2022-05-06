@@ -2,7 +2,9 @@ package com.example.back.service;
 
 import com.example.back.dto.UserDto;
 import com.example.back.entity.Diary;
+import com.example.back.entity.Liked;
 import com.example.back.entity.User;
+import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +23,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final LikedService likedService;
 
     @Override
     public boolean signup(UserDto user) {
@@ -91,6 +94,21 @@ public class UserServiceImpl implements UserService {
         }
 
         return jandis;
+    }
+
+    @Override
+    public User readUser(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        if (user == null) {
+            return null;
+        }
+
+        for (Diary diary : user.getDairies()) {
+            diary.setLiked(likedService.readLiked(diary.getDno()));
+        }
+
+        return user;
     }
 
     public boolean validateDuplicateUser(UserDto user) {

@@ -37,6 +37,7 @@ public class DiaryServiceImpl implements DiaryService{
                 .user(user)
                 .word(diaryDto.getWord())
                 .view(0)
+                .liked(0)
                 .build();
 
         diaryRepository.save(save);

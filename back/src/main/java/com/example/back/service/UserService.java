@@ -11,4 +11,5 @@ public interface UserService extends UserDetailsService {
     void deleteUser(String userId);
     User modifyUser(String userId, UserDto userDto);
     List<Integer> readJandi(String userId, int month);
+    User readUser(String userId);
 }
