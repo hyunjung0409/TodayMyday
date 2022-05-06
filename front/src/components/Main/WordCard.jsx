@@ -5,12 +5,18 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { RedoOutlined, HeartOutlined, PlusOutlined, ExclamationOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import styled from 'styled-components'
+import Zoom from 'react-reveal/Zoom'
+import LightSpeed from 'react-reveal/LightSpeed'
 
-// import styled from 'styled-components'
-
-// const cardPlace = styled.div`
-//   display: inline-block;
-// `
+const MainExplain = styled.h1`
+  padding-top: 5%;
+  font-size: 300%;
+  color: #38532e;
+`
+const MainBack = styled.div`
+  background-color: pink;
+`
 
 function WordCard() {
   const navigate = useNavigate()
@@ -58,29 +64,34 @@ function WordCard() {
             </div>
           ))
         : null} */}
-      {wordGet != null
-        ? wordGet.map((item, i) => (
-            <div key={item} className="bg-wrapper">
-              <div className="envelope-wrapper">
-                <div className="envelope">
-                  <div className="card">
-                    <span className="fa fa-close close-icon">X</span>
-                    <div className="text" style={{ cursor: 'pointer' }} onClick={pageMove}>
-                      {item}
+      <MainBack>
+        {' '}
+        <MainExplain>오늘의 단어를 선택해보세요</MainExplain>
+        {wordGet != null
+          ? wordGet.map((item, i) => (
+              <Zoom>
+                <div key={item} className="bg-wrapper">
+                  <div className="envelope-wrapper">
+                    <div className="envelope">
+                      <div className="card">
+                        <span className="fa fa-close close-icon">X</span>
+                        <div className="text" style={{ cursor: 'pointer' }} onClick={pageMove}>
+                          {item}
+                        </div>
+                      </div>
+                    </div>
+                    <div key={i} className="heart">
+                      <ExclamationOutlined style={{ color: 'transparent' }} />
+                      {/* <PlusOutlined style={{ color: '#c51803' }} /> */}
                     </div>
                   </div>
                 </div>
-                <div key={i} className="heart">
-                  {' '}
-                  <ExclamationOutlined style={{ color: '#c51803' }} />
-                  {/* <PlusOutlined style={{ color: '#c51803' }} /> */}
-                </div>
-              </div>
-            </div>
-          ))
-        : null}
-      <Button>전체 열기</Button>{' '}
-      <RedoOutlined style={{ fontSize: '150%', cursor: 'pointer' }} onClick={wordShuffle} />
+              </Zoom>
+            ))
+          : null}
+        {/* <Button>전체 열기</Button>{' '} */}
+        <RedoOutlined style={{ fontSize: '150%', cursor: 'pointer' }} onClick={wordShuffle} />
+      </MainBack>
     </>
   )
   // <div>
