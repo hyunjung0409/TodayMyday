@@ -96,7 +96,7 @@ public class WordServiceImpl implements WordService{
 
     @Override
     public String pickWordByCondition(int condition, String gender, String age) {
-        String selectedWord = "";
+        Word selectedWord;
         List<String> wordList = new ArrayList<>();
 
         switch (condition){
@@ -164,9 +164,32 @@ public class WordServiceImpl implements WordService{
 
         int val = wordList.size();
         int ranValue = (int)(Math.random() * val);
-        selectedWord = wordList.get(ranValue);
+        selectedWord = wordRepository.findWordByWord(wordList.get(ranValue));
 
-        return selectedWord;
+        if(age.equals("1")) {
+            selectedWord.setTeens(selectedWord.getTeens()+1);
+        } else if(age.equals("2")) {
+            selectedWord.setTwenties(selectedWord.getTwenties()+1);
+        } else if(age.equals("3")) {
+           selectedWord.setThirties(selectedWord.getThirties()+1);
+        } else if(age.equals("4")) {
+            selectedWord.setFourties(selectedWord.getFourties()+1);
+        } else if(age.equals("5")) {
+            selectedWord.setFifties(selectedWord.getFifties()+1);
+        } else if(age.equals("6")) {
+            selectedWord.setOversixties(selectedWord.getOversixties()+1);
+        }
+
+        if(gender.equals("male")){
+            selectedWord.setMale(selectedWord.getMale()+1);
+        } else if(gender.equals("female")) {
+           selectedWord.setFemale(selectedWord.getFemale()+1);
+        }
+
+        wordRepository.save(selectedWord);
+
+
+        return selectedWord.getWord();
     }
 
 }
