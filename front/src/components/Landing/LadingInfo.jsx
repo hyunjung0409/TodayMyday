@@ -33,15 +33,15 @@ function LandingInfo() {
     <>
       <StyledContainer>
         <Fade>
-          <StyledTitle src="/images/title-007.png" />
+          <StyledTitle src={process.env.PUBLIC_URL + '/images/title-007.png'} />
         </Fade>
         <Fade right>
           <StyledImage>
-            <img src="/images/diary-3.png" style={{ width: '100%' }} />
+            <img src={process.env.PUBLIC_URL + '/images/diary-3.PNG'} style={{ width: '100%' }} />
           </StyledImage>
         </Fade>
         <Fade left>
-          <StyledSubTitle src="/images/title-008.png" />
+          <StyledSubTitle src={process.env.PUBLIC_URL + '/images/title-008.png'} />
           <StyledButton onClick={showModal}>시작하기</StyledButton>
           <Modal
             visible={isModalVisible}
@@ -62,7 +62,7 @@ const StyledContainer = styled.div`
   height: 40rem;
   overflow: hidden;
   background: #fff;
-  //   border: solid 1px black;
+  // border: solid 1px black;
 `
 
 const StyledTitle = styled.img`

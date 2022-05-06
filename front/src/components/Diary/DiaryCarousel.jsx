@@ -37,23 +37,24 @@ function DiaryCarousel({ diaryList, setDiaryList, me }) {
   }
 
   return (
-    <>
-      <MyCarousel
-        afterChange={onChange}
-        dotPosition="bottom"
-        style={{ listStyle: 'none', overflow: 'hidden' }}>
-        {rendering()}
-      </MyCarousel>
-    </>
+    <div className="carousel">
+      {diaryList !== [] && (
+        <MyCarousel
+          afterChange={onChange}
+          dotPosition="bottom"
+          style={{ listStyle: 'none', overflow: 'hidden' }}>
+          {rendering()}
+        </MyCarousel>
+      )}
+    </div>
   )
 }
 
 const StyledCardlArea = styled.div`
   display: flex;
   justify-content: space-evenly;
-  padding: 0 0 2rem 2.5rem;
   height: 55vh;
-  // border: 1px solid red;
+  // border: 1px solid rgba(50, 50, 50, 0.2);
 `
 
 export default DiaryCarousel
