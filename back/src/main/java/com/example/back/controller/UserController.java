@@ -16,6 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -103,5 +104,27 @@ public class UserController {
         map.put("message", "삭제되었습니다");
 
         return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    @GetMapping("/jandi")
+    @ApiOperation(value = "사용자 잔디 정보 조회", notes = "사용자의 아이디(String)와 월(int)의 정보를 받으면 해당 월의 다이어리를 쓴 일자들 Integer형 배열로 반환", response = String.class)
+    public ResponseEntity<Map<String, Object>> readJandi(@RequestParam String userId, @RequestParam int month){
+        Map<String, Object> map = new HashMap<>();
+        HttpStatus status;
+
+        List<Integer> jandis = userService.readJandi(userId, month);
+
+        if (jandis == null) {
+            status = HttpStatus.NOT_FOUND;
+            map.put("Message", "INCORRECT USER OR MONTH");
+        }
+        else {
+            status = HttpStatus.OK;
+            map.put("Message", "SUCCESS");
+        }
+
+        map.put("jandis", jandis);
+
+        return new ResponseEntity<>(map, status);
     }
 }

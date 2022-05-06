@@ -1,6 +1,7 @@
 package com.example.back.service;
 
 import com.example.back.dto.UserDto;
+import com.example.back.entity.Diary;
 import com.example.back.entity.User;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -65,6 +68,29 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return user;
+    }
+
+    @Override
+    public List<Integer> readJandi(String userId, int month) {
+        User user = userRepository.findByUserId(userId);
+
+        if (user == null) {
+            return null;
+        }
+        List<Integer> jandis = new ArrayList<>();
+
+        for (Diary diary : user.getDairies()) {
+            if (month == diary.getCreatedat().getMonthValue()) {
+                jandis.add(diary.getCreatedat().getDayOfMonth());
+            }
+        }
+
+        if (jandis.isEmpty()) {
+            System.out.println("여기로 들어온다");
+            return null;
+        }
+
+        return jandis;
     }
 
     public boolean validateDuplicateUser(UserDto user) {
