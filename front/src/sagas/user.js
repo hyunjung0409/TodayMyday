@@ -64,13 +64,15 @@ function* logIn(action) {
 }
 
 function* logOut(action) {
+  console.log('action', action)
   try {
     const { navigate } = action.data
-    yield delay(1000)
+    yield delay(500)
     localStorage.removeItem('jwtToken')
     yield put({
       type: LOG_OUT_SUCCESS,
     })
+    action.data.setIsModalVisible(false)
     navigate('/')
   } catch (err) {
     yield put({

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Typography, Row, Col, Menu, Dropdown, Space, Avatar } from 'antd'
+import { Layout, Typography, Row, Col, Menu, Dropdown, Space, Avatar, Modal, Button } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction, logoutRequestAction } from '../../reducers/user'
 import jwt_decode from 'jwt-decode'
+import LoginForm from '../LoginForm'
 import Item from 'antd/lib/list/Item'
 
 const { Header } = Layout
@@ -17,8 +18,21 @@ function Navbar() {
   const dispatch = useDispatch()
 
   const onLogOut = () => {
-    console.log('logout')
-    dispatch(logoutRequestAction({ navigate }))
+    dispatch(logoutRequestAction({ navigate, setIsModalVisible }))
+  }
+
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
   }
 
   const menu = (
@@ -91,9 +105,17 @@ function Navbar() {
             </Space>
           ) : (
             <nav className="nav-user">
-              <StyledLink to="/user/login">
+              <StyledLink to="" onClick={showModal}>
                 <strong>로그인</strong>
               </StyledLink>
+              <Modal
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                width={350}
+                footer={null}>
+                <LoginForm />
+              </Modal>
               <StyledLink to="/user/signup">
                 <strong>회원가입</strong>
               </StyledLink>
