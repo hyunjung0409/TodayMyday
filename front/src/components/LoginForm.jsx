@@ -8,6 +8,11 @@ import { loginRequestAction } from '../reducers/user'
 const Title = styled.h3``
 const MyButton = styled(Button)`
   margin-bottom: 10px;
+  width: 100%;
+  &&& {
+    background-color: #e86f8b;
+    border: 0px solid;
+  }
 `
 
 function LoginForm() {
@@ -24,29 +29,33 @@ function LoginForm() {
 
   return (
     <>
-      <Title>로그인</Title>
       <Form
         name="basic"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         layout="vertical">
-        <Form.Item label="ID" name="userId">
-          <Input />
-        </Form.Item>
+        <div style={{ width: '100%', textAlign: 'center' }}>
+          <Form.Item label="ID" name="userId">
+            <Input />
+          </Form.Item>
 
-        <Form.Item label="Password" name="password">
-          <Input.Password />
-        </Form.Item>
+          <Form.Item label="Password" name="password">
+            <Input.Password />
+          </Form.Item>
 
-        <Form.Item>
-          <MyButton type="primary" htmlType="submit">
-            Login
-          </MyButton>
-          <div>
-            <Link to="/user/signup">Signup</Link>
-          </div>
-        </Form.Item>
+          <Form.Item>
+            <MyButton type="primary" htmlType="submit">
+              로그인
+            </MyButton>
+            <div style={{ marginTop: '10px' }}>
+              계정이 없으신가요?{'  '}
+              <Link style={{ color: '#e86f8b' }} to="/user/signup">
+                회원가입
+              </Link>
+            </div>
+          </Form.Item>
+        </div>
       </Form>
     </>
   )
