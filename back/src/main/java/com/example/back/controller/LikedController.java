@@ -57,4 +57,9 @@ public class LikedController {
 
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
+    @GetMapping
+    @ApiOperation(value = "반영되는가", notes = "반영되라", response = String.class)
+    public void test(){
+        System.out.println("테스트야");
+    }
 }
