@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Input, Select } from 'antd'
+import { Input, Select, Row, Col } from 'antd'
 import { getAxios } from '../../api'
 import jwt_decode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
@@ -64,20 +64,19 @@ const SearchBar = ({
   // }, [])
 
   return (
-    <>
-      <Input.Group compact>
-        <Select defaultValue="word" onChange={onChange}>
-          <Option value="word">단어</Option>
-          <Option value="content">내용</Option>
-        </Select>
-        <Input.Search
-          allowClear
-          style={{ width: '70rem' }}
-          placeholder="input search text"
-          onSearch={onSearch}
-        />
-      </Input.Group>
-    </>
+    <Input.Group style={{ width: '100%' }}>
+      <Select defaultValue="word" onChange={onChange} style={{ float: 'left', width: '10%' }}>
+        <Option value="word">단어</Option>
+        <Option value="content">내용</Option>
+      </Select>
+
+      <Input.Search
+        allowClear
+        placeholder="input search text"
+        onSearch={onSearch}
+        style={{ width: '90%' }}
+      />
+    </Input.Group>
   )
 }
 
