@@ -100,6 +100,7 @@ function MyPicture({ imageUploader, data }) {
       }
     }
   }, [me])
+
   return (
     <div>
       {editable === false ? (
