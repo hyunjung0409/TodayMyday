@@ -74,7 +74,7 @@ public interface WordRepository extends JpaRepository<Word, String> {
     @Query(value = "select word, female from word group by word order by female DESC", nativeQuery = true)
     List<String> findWordByFemale();
 
-    @Query(value = "select word, sum(teens+twenties+thirties+fourties+fifties+oversixties+male+female) as res from word group by word order by res DESC", nativeQuery = true)
+    @Query(value = "select word, sum(teens+twenties+thirties+fourties+fifties+oversixties+male+female) as res from word group by word order by res ASC", nativeQuery = true)
     List<String> findWordByAll();
 
     @Query(value = "select word from word order by rand() limit 5", nativeQuery = true)
