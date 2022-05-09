@@ -13,7 +13,6 @@ function Signup() {
   return (
     <StyledContainer>
       <StyledFormArea className="styled-form-area">
-        <h3>Signup page</h3>
         <SignupForm imageUploader={imageUploader} data={data} />
       </StyledFormArea>
     </StyledContainer>
@@ -29,8 +28,11 @@ const StyledContainer = styled.div`
 `
 
 const StyledFormArea = styled.div`
-  border: 3px solid red;
-  width: 50%;
+  border: 1px solid rgba(100, 100, 100, 0.3);
+  border-radius: 3px;
+  width: 20%;
+  padding: 1rem;
+  margin: 3rem;
 `
 
 export default Signup

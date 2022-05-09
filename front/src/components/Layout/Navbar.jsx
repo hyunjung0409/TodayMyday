@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction, logoutRequestAction } from '../../reducers/user'
 import jwt_decode from 'jwt-decode'
+import Item from 'antd/lib/list/Item'
 
 const { Header } = Layout
 const { Title } = Typography
@@ -23,17 +24,17 @@ function Navbar() {
   const menu = (
     <>
       <Menu>
-        <Menu.Item>
+        <Menu.Item key="profile">
           <Link to="/my/profile">
             <p>마이페이지</p>
           </Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="articleList">
           <Link to="/my/articleList">
             <p>내 글 목록</p>
           </Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="logout">
           <p onClick={onLogOut}>로그아웃</p>
         </Menu.Item>
       </Menu>
