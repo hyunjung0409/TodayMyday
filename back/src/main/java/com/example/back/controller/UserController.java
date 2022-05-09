@@ -122,7 +122,7 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
         HttpStatus status;
 
-        List<Integer> jandis = userService.readJandi(userId, month);
+        List<String> jandis = userService.readJandi(userId, month);
 
         if (jandis == null) {
             status = HttpStatus.NOT_FOUND;

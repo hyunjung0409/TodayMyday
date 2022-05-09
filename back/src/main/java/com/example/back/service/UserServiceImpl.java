@@ -74,17 +74,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Integer> readJandi(String userId, int month) {
+    public List<String> readJandi(String userId, int month) {
         User user = userRepository.findByUserId(userId);
 
         if (user == null) {
             return null;
         }
-        List<Integer> jandis = new ArrayList<>();
+        List<String> jandis = new ArrayList<>();
 
         for (Diary diary : user.getDairies()) {
             if (month == diary.getCreatedat().getMonthValue()) {
-                jandis.add(diary.getCreatedat().getDayOfMonth());
+                jandis.add(diary.getCreatedat().getYear() + "-" + diary.getCreatedat().getMonthValue() + "-" + diary.getCreatedat().getDayOfMonth());
             }
         }
 
