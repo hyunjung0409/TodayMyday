@@ -8,7 +8,7 @@ import com.example.back.entity.Liked;
 import java.util.List;
 
 public interface LikedService {
-    Liked createLiked(LikedDto likedDto);
+    boolean createLiked(LikedDto likedDto);
     int readLiked(Long dno);
     List<Long> readTopLiked();
 }

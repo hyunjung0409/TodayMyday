@@ -27,15 +27,16 @@ public class LikedController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        Liked liked = likedService.createLiked(likedDto);
+        boolean liked = likedService.createLiked(likedDto);
 
-        if (liked == null) {
-            status = HttpStatus.CONFLICT;
-            hashMap.put("Message", "ALREADY LIKED");
+        if (!liked) {
+            status = HttpStatus.OK;
+
+            hashMap.put("Message", "CANCEL LIKED");
         }
         else {
             status = HttpStatus.OK;
-            hashMap.put("Message", "SUCCESS");
+            hashMap.put("Message", "SUCCESS LIKED");
         }
 
 

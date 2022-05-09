@@ -11,6 +11,6 @@ public interface UserService extends UserDetailsService {
     boolean signup(UserDto user);
     void deleteUser(String userId);
     User modifyUser(String userId, UserDto userDto);
-    List<String> readJandi(JandiDto jandiDto);
+    List<String> readJandi(String userId, int year, int month);
     User readUser(String userId);
 }

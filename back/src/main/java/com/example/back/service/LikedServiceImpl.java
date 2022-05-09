@@ -19,12 +19,13 @@ public class LikedServiceImpl implements LikedService {
     private final LikedRepository likedRepository;
 
     @Override
-    public Liked createLiked(LikedDto likedDto) {
+    public boolean createLiked(LikedDto likedDto) {
         List<Liked> likeds = likedRepository.findLikedByDno(likedDto.getDno());
 
         for (Liked liked : likeds) {
             if (liked.getUserId().equals(likedDto.getUserId())) { //좋아요 이미 눌렀으면 null 반환
-                return null;
+                likedRepository.delete(liked);
+                return false;
             }
         }
 
@@ -35,7 +36,7 @@ public class LikedServiceImpl implements LikedService {
 
         likedRepository.save(liked);
 
-        return liked;
+        return true;
 
     }
 
