@@ -75,17 +75,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Integer> readJandi(JandiDto jandiDto) {
+    public List<String> readJandi(JandiDto jandiDto) {
         User user = userRepository.findByUserId(jandiDto.getUserId());
 
         if (user == null) {
             return null;
         }
-        List<Integer> jandis = new ArrayList<>();
+        List<String> jandis = new ArrayList<>();
 
         for (Diary diary : user.getDairies()) {
             if (jandiDto.getYear() == diary.getCreatedat().getYear() && jandiDto.getMonth() == diary.getCreatedat().getMonthValue()) {
-                jandis.add(diary.getCreatedat().getDayOfMonth());
+                jandis.add(diary.getCreatedat().getYear() + "-" + diary.getCreatedat().getMonthValue() + "-" + diary.getCreatedat().getDayOfMonth());
             }
         }
 
