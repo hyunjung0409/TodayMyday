@@ -117,7 +117,7 @@ public class UserController {
     }
 
     @GetMapping("/jandi")
-    @ApiOperation(value = "사용자 잔디 정보 조회", notes = "사용자의 아이디(String)와 월(int)의 정보를 받으면 해당 월의 다이어리를 쓴 일자들 Integer형 배열로 반환", response = String.class)
+    @ApiOperation(value = "사용자 잔디 정보 조회", notes = "사용자의 아이디(String)와 월(int)의 정보를 받으면 해당 월의 다이어리를 쓴 일자들 String 배열(YYYY-MM-DD)로 반환", response = String.class)
     public ResponseEntity<Map<String, Object>> readJandi(@RequestParam String userId, @RequestParam int month){
         Map<String, Object> map = new HashMap<>();
         HttpStatus status;
