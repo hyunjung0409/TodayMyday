@@ -49,4 +49,9 @@ public class LikedServiceImpl implements LikedService {
         }
         return count;
     }
+
+    @Override
+    public List<Long> readTopLiked() {
+        return null;
+    }
 }
