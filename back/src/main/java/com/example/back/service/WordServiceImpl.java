@@ -106,44 +106,45 @@ public class WordServiceImpl implements WordService{
         User user = userRepository.findByUserId(userId);
         String gender = user.getGender();
         String age = user.getAge();
+        Word countWord;
 
         Set<String> randomPickhSet = new HashSet<>();
         Set<String> selectedSet = new HashSet<>();
 
-//        List<WordLog> wordLogsList = wordLogRepository.findWordLogsByUserId(userId);
-//        if(wordLogsList != null) {
-//            for (int i = 0; i < wordLogsList.size(); i++) {
-//                selectedSet.add(wordLogsList.get(i).getWord());
-//            }
-//        }
-        // 1. 현재 상태 5분이내에 추천받은 단어는 추천 안하려고 하는데 wordLogsList가 null 오류 발생함
-        // 2. 아래 5가지의 조건으로 단어리스트를 불러오는 함수가 호출이 안됨 단어는 불러와도 리스트에 null이 담기는 오류가 발생
-        // 해결
-
-        for(int i = 1; i <= 5; i++){
-            int hSize = randomPickhSet.size();
-            //int sSize = selectedSet.size();
-            String selectedWord = pickWordByCondition(i, gender, age);
-            randomPickhSet.add(selectedWord);
-            selectedSet.add(selectedWord);
-            if(randomPickhSet.size() == hSize) {
-                i--;
-                continue;
+        // 5분 이내에 추천받은 단어 로그
+        List<WordLog> wordLogsList = wordLogRepository.findWordLogsByUserId(userId);
+        if(wordLogsList != null) {
+            for (int i = 0; i < wordLogsList.size(); i++) {
+                selectedSet.add(wordLogsList.get(i).getWord());
             }
         }
 
+        // 랜덤 추출 알고리즘
+        for(int i = 1; i <= 5; i++){
+            String selectedWord = pickWordByCondition(i, gender, age);
+            if(randomPickhSet.contains(selectedWord) || selectedSet.contains(selectedWord)) {
+                i--;
+                continue;
+            }
+            randomPickhSet.add(selectedWord);
+            selectedSet.add(selectedWord);
+            countWord = wordRepository.findWordByWord(selectedWord);
+            increaseFrequencyByAge(countWord, age);
+            increaseFrequencyByGender(countWord, gender);
+            wordRepository.save(countWord);
+        }
+
+        // 로그 기록하기
         for (String selectedWord : randomPickhSet){
             createWordLog(selectedWord, userId);
             pickedWords.add(selectedWord);
         }
-
 
         return pickedWords;
     }
 
     @Override
     public String pickWordByCondition(int condition, String gender, String age) {
-        Word selectedWord;
         List<String> wordList = new ArrayList<>();
 
         switch (condition){
@@ -208,22 +209,15 @@ public class WordServiceImpl implements WordService{
                 break;
         }
 
-        for (int i = 0; i < wordList.size(); i++) {
-            System.out.println("here : \n"+wordList.get(i));
-        }
+//        for (int i = 0; i < wordList.size(); i++) {
+//            System.out.println("here : \n"+wordList.get(i));
+//        }
 
         int val = wordList.size();
         int ranValue = (int)(Math.random() * val);
         String[] wordListStr = wordList.get(ranValue).split(",");
-        //System.out.println("요기 : "+wordListStr[0]);
 
-        selectedWord = wordRepository.findWordByWord(wordListStr[0]);
-        increaseFrequencyByAge(selectedWord, age);
-        increaseFrequencyByGender(selectedWord, gender);
-        //System.out.println("여기 : "+selectedWord);
-
-        wordRepository.save(selectedWord);
-        return selectedWord.getWord();
+        return wordListStr[0];
     }
 
     @Override

@@ -26,10 +26,10 @@ public interface WordRepository extends JpaRepository<Word, String> {
     @Query(value = "select word, sum(twenties+female) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByTwentiesAndFemale();
 
-    @Query(value = "select word, sum(thirtes+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
+    @Query(value = "select word, sum(thirties+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByThirtiesAndMale();
 
-    @Query(value = "select word, sum(thirtes+female) as cnt from word group by word order by cnt DESC", nativeQuery = true)
+    @Query(value = "select word, sum(thirties+female) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByThirtiesAndFemale();
 
     @Query(value = "select word, sum(fourties+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)

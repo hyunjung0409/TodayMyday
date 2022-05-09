@@ -18,7 +18,7 @@ public class WordLog {
     @Id
     @NotNull
     @GeneratedValue
-    private Long lno;
+    private Long lid;
 
     @NotNull
     private String userId;
@@ -30,8 +30,8 @@ public class WordLog {
     private LocalDateTime selectedat;
 
     @Builder
-    public WordLog(Long lno, String userId, String word, LocalDateTime selectedat) {
-        this.lno = lno;
+    public WordLog(Long lid, String userId, String word, LocalDateTime selectedat) {
+        this.lid = lid;
         this.userId = userId;
         this.word = word;
         this.selectedat = selectedat;
