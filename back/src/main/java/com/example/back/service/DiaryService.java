@@ -19,4 +19,5 @@ public interface DiaryService {
     List<DiaryDto> searchAllDiariesByWord(String word);
     List<String> readAllword();
     Diary updateView(Long dno);
+    List<Diary>readAllDiary();
 }

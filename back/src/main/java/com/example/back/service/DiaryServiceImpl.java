@@ -21,6 +21,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     private final DiaryRepository diaryRepository;
     private final UserRepository userRepository;
+    private final LikedService likedService;
 
 
     @Override
@@ -112,6 +113,7 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public Diary readDiary(long dno) {
         Diary diary = diaryRepository.findDiaryByDno(dno);
+        diary.setLiked(likedService.readLiked(dno));
 
         return diary;
     }
@@ -242,6 +244,17 @@ public class DiaryServiceImpl implements DiaryService{
         diaryRepository.save(diary);
 
         return diary;
+    }
+
+    @Override
+    public List<Diary> readAllDiary() {
+        List<Diary> diaries = diaryRepository.findAll();
+
+        for (Diary diary : diaries) {
+            diary.setLiked(likedService.readLiked(diary.getDno()));
+        }
+
+        return diaries;
     }
 
 

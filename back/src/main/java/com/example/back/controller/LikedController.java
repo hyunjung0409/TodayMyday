@@ -22,7 +22,7 @@ public class LikedController {
     private final LikedService likedService;
 
     @PostMapping
-    @ApiOperation(value = "좋아요 누르기", notes = "좋아요 증가", response = String.class)
+    @ApiOperation(value = "좋아요 기능", notes = "userId와 dno값을 받아서 해당 사용자가 해당 다이어리의 좋아요를 안 눌렀으면 좋아요 데이터 입력 && true 반환, 이미 눌러있다면 좋아요 데이터 삭제 && false 반환, 데이터 ", response = String.class)
     public ResponseEntity<Map<String, Object>> updateLiked(@RequestBody LikedDto likedDto){
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;

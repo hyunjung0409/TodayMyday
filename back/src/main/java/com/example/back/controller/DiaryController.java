@@ -42,12 +42,12 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Diary> dairies = diaryRepository.findAll();
+        List<Diary> diaries = diaryService.readAllDiary();
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
         hashMap.put("Status", status);
-        hashMap.put("dairies", dairies);
+        hashMap.put("dairies", diaries);
 
         return new ResponseEntity<>(hashMap, status);
     }
