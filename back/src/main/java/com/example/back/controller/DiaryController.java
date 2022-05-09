@@ -263,7 +263,7 @@ public class DiaryController {
 
     @PutMapping("/view")
     @ApiOperation(value = "다이어리 조회수 추가", notes = "다이어리 조회수 증가하기", response = String.class)
-    public ResponseEntity<Map<String, Object>> updateView(@RequestParam long dno) {
+    public ResponseEntity<Map<String, Object>> updateView(@RequestParam Long dno) {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
