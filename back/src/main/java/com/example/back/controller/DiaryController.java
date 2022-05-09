@@ -35,6 +35,7 @@ public class DiaryController {
     private final UserRepository userRepository;
     private final DiaryRepository diaryRepository;
     private final LikedService likedService;
+    private final WordService wordService;
 
     @GetMapping("/")
     @ApiOperation(value = "다이어리 전체 검색", notes = "모든 다이어리 출력", response = String.class)
@@ -61,7 +62,7 @@ public class DiaryController {
         User user = userRepository.findByUserId(userId);
 
         Diary diary = diaryService.createDiary(diaryDto, user);
-
+        wordService.increaseFrequency(userId, diaryDto);
 //        if (diaryService.createDiary(diaryDto, user)) {
 //            // 단어 정보 수집
 //            Word word = wordService.increaseFrequency(userId, diaryDto);
