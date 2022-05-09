@@ -1,5 +1,6 @@
 package com.example.back.controller;
 
+import com.example.back.dto.JandiDto;
 import com.example.back.dto.UserDto;
 import com.example.back.entity.User;
 import com.example.back.exception.CustomException;
@@ -118,11 +119,11 @@ public class UserController {
 
     @GetMapping("/jandi")
     @ApiOperation(value = "사용자 잔디 정보 조회", notes = "사용자의 아이디(String)와 월(int)의 정보를 받으면 해당 월의 다이어리를 쓴 일자들 Integer형 배열로 반환", response = String.class)
-    public ResponseEntity<Map<String, Object>> readJandi(@RequestParam String userId, @RequestParam int month){
+    public ResponseEntity<Map<String, Object>> readJandi(@RequestBody JandiDto jandiDto){
         Map<String, Object> map = new HashMap<>();
         HttpStatus status;
 
-        List<Integer> jandis = userService.readJandi(userId, month);
+        List<Integer> jandis = userService.readJandi(jandiDto);
 
         if (jandis == null) {
             status = HttpStatus.NOT_FOUND;
