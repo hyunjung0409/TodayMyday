@@ -3,6 +3,7 @@ import { Form, Input, Button, Select, Modal } from 'antd'
 import ImageFileInput from '../ImageFileInput'
 import { getAxios } from '../../api'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const { Option } = Select
 
@@ -66,14 +67,16 @@ function SignupForm({ imageUploader, data }) {
             message: 'Please upload your profile picture!',
           },
         ]}>
-        <ImageFileInput
-          name={file.fileName}
-          imageUploader={imageUploader}
-          onFileChange={onFileChange}
-          file={file}
-          data={data}
-          setFile={setFile}
-        />
+        <StyledImage className="image-file-input">
+          <ImageFileInput
+            name={file.fileName}
+            imageUploader={imageUploader}
+            onFileChange={onFileChange}
+            file={file}
+            data={data}
+            setFile={setFile}
+          />
+        </StyledImage>
       </Form.Item>
 
       <Form.Item
@@ -177,5 +180,14 @@ function SignupForm({ imageUploader, data }) {
     </Form>
   )
 }
+
+const StyledImage = styled.div`
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid rgba(100, 100, 100, 0.3);
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto;
+`
 
 export default SignupForm
