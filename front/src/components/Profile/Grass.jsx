@@ -54,6 +54,10 @@ const StyledCalender = styled.div`
 //   }
 // `
 const MyCalender = styled(Calendar)`
+  abbr[title],
+  abbr[data-original-title] {
+    text-decoration: none;
+  }
   .react-calendar__tile--active {
     position: relative;
     background: #ffdae5;
