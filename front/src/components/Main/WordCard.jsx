@@ -43,16 +43,22 @@ function WordCard() {
   //     $('.envelope-wrapper').removeClass('flap')
   //   })
   // })
-  $(document).ready(function () {
-    $('.envelope-wrapper .heart').click(function () {
-      $('.envelope-wrapper').addClass('flap')
-    })
+  for (let index = 0; index < 5; index++) {
+    $(document).ready(function () {
+      $('.envelope-wrapper .open' + index).click(function () {
+        $('.card' + index).addClass('flap')
+      })
 
-    $('.envelope-wrapper .close-icon').click(function () {
-      $('.envelope-wrapper').removeClass('flap')
+      $('.envelope-wrapper .close' + index).click(function () {
+        $('.card' + index).removeClass('flap')
+      })
+    })
+  }
+  $(document).ready(function () {
+    $('.all .allopen').click(function () {
+      $('.all').addClass('flap')
     })
   })
-
   return (
     <>
       {/* {wordGet != null
@@ -71,16 +77,16 @@ function WordCard() {
           ? wordGet.map((item, i) => (
               <Zoom>
                 <div key={item} className="bg-wrapper">
-                  <div className="envelope-wrapper">
+                  <div className={'envelope-wrapper card' + i}>
                     <div className="envelope">
                       <div className="card">
-                        <span className="fa fa-close close-icon">X</span>
+                        <span className={'fa fa-close close-icon close' + i}>X</span>
                         <div className="text" style={{ cursor: 'pointer' }} onClick={pageMove}>
                           {item}
                         </div>
                       </div>
                     </div>
-                    <div key={i} className="heart">
+                    <div className={'heart open' + i}>
                       <ExclamationOutlined style={{ color: 'transparent' }} />
                       {/* <PlusOutlined style={{ color: '#c51803' }} /> */}
                     </div>
@@ -89,7 +95,9 @@ function WordCard() {
               </Zoom>
             ))
           : null}
-        {/* <Button>전체 열기</Button>{' '} */}
+        <div className="all">
+          <Button className="allopen">전체 열기</Button>{' '}
+        </div>
         <RedoOutlined style={{ fontSize: '150%', cursor: 'pointer' }} onClick={wordShuffle} />
       </MainBack>
     </>
