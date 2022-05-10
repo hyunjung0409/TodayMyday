@@ -74,9 +74,9 @@ function DiaryHeader({ diary }) {
         <StyledUserArea>
           {me !== null ? (
             me.image === null ? (
-              <Avatar icon={<UserOutlined />} />
+              <StyledAvatar icon={<UserOutlined />} />
             ) : (
-              <Avatar src={<Image src={me.image} style={{ width: 32 }} />} />
+              <StyledAvatar src={<img src={me.image} style={{ width: 32 }} />} />
             )
           ) : null}
           <Title level={5}>{me !== null && me.nickname}</Title>
@@ -95,6 +95,9 @@ const StyledWordTitle = styled(Title)`
   align-items: center;
   // margin: 1.2em 1em 1em 1em;
   padding: 0.4em 0.2em 0.2em 0.2em;
+`
+const StyledAvatar = styled(Avatar)`
+  margin: 0 0.5rem;
 `
 
 const StyledUserArea = styled.div`

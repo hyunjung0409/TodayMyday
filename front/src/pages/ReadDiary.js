@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button } from 'antd'
+import { Button, Image } from 'antd'
 import DiaryContent from '../components/Detail/DiaryContent'
 import DiaryFooter from '../components/Detail/DiaryFooter'
 import DiaryHeader from '../components/Detail/DiaryHeader'
@@ -27,8 +27,8 @@ function MyDetail() {
 
   return (
     <StyledContainer>
-      <StyledImageArea>
-        <StyledImage src={diary.image} />
+      <StyledImageArea className="image-area">
+        <Image src={diary.image} width="100%" height="100%" style={{ objectFit: 'cover' }} />
       </StyledImageArea>
 
       <StyledFormArea className="styled-form-area">
@@ -51,13 +51,9 @@ const StyledContainer = styled.div`
 
 const StyledImageArea = styled.div`
   width: 50%;
+  height: 50%;
   overflow: hidden;
-  border: 1px solid blue;
-`
-
-const StyledImage = styled.img`
-  width: 100%;
-  object-fit: cover;
+  // border: 1px solid blue;
 `
 
 const StyledFormArea = styled.div`
