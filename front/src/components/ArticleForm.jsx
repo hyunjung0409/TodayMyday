@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import ImageFileInput from '../components/ImageFileInput'
 import { articleAddRequestAction } from '../reducers/article'
 import ImageArticle from './ImageArticle'
 
@@ -96,7 +95,7 @@ function ArticleForm({ imageUploader, data }) {
       word: word,
       image: file.fileURL || fileURL,
     }
-    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
+    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
     formRef.current.reset()
   }
 
@@ -128,7 +127,6 @@ function ArticleForm({ imageUploader, data }) {
               </Col>
               <Col span={12}>
                 <TitleWord>{word}</TitleWord>
-                {/* <textarea ref={messageRef} name="message" placeholder={message}></textarea> */}
                 <MyTextarea ref={messageRef} placeholder="Your message"></MyTextarea>
                 <div style={{ textAlign: 'right', marginBottom: '10px' }}>
                   <Submit type="primary" onClick={onSubmit}>

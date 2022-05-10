@@ -25,12 +25,17 @@ function* articleAdd(action) {
   const navigate = action.data.navigate
   try {
     const res = yield call(articleAddAPI, action.data)
+    console.log('res', res)
     yield put({
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
     })
-    yield alert('글 작성 성공')
-    yield navigate(`/diary/read/${res.data.diary.dno}`)
+    action.data.Modal.success({
+      content: '글 등록 완료',
+      onOk() {
+        navigate(`/diary/read/${res.data.diary.dno}`)
+      },
+    })
   } catch (err) {
     yield put({
       type: ARTICLE_ADD_FAILURE,
