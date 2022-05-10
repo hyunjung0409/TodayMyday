@@ -66,12 +66,13 @@
   }
 } */
 .bg-wrapper {
-  height: 100vh;
+  height: 50vh;
   display: inline-block;
   justify-content: center;
   align-items: center;
-  padding-top: 20%;
+  margin-top: 10%;
   margin-right: 4%;
+
   /* background: #444; */
 }
 .bg-wrapper .envelope-wrapper {
@@ -79,7 +80,8 @@
 }
 .bg-wrapper .envelope-wrapper .envelope {
   position: relative;
-  width: 150px;
+  width: 200px;
+  /* width: 150px 이었음 */
   height: 100px;
   right: 50%;
   /* right 추가 */
@@ -89,6 +91,8 @@
   position: absolute;
   top: 0px;
   z-index: 2;
+  width: 200px;
+  /* width:200px 추가했음 */
   border-top: 55px solid #d3eafd;
   border-right: 75px solid transparent;
   border-left: 75px solid transparent;
@@ -99,7 +103,9 @@
   content: '';
   position: absolute;
   z-index: 2;
-  width: 0px;
+  /* z-index: 0; */
+  width: 200px;
+  /* width:0px 이었음 */
   height: 0px;
   border-top: 50px solid transparent;
   border-right: 75px solid #b4d2ee;
@@ -112,6 +118,7 @@
   left: 70%;
   bottom: 0;
   width: 60%;
+  /* width: 80%; */
   height: 89%;
   background: #fff;
   text-align: center;
@@ -160,6 +167,7 @@
 }
 .bg-wrapper .envelope-wrapper .heart:before {
   top: -7.5px;
+  right: 1%;
 }
 .bg-wrapper .envelope-wrapper .heart:after {
   right: 7.5px;
