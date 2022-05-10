@@ -26,6 +26,7 @@ function ArticleListForm(props) {
   const { me } = useSelector((state) => state.user)
   const [searchKind, setSearchKind] = useState(null)
   const { articleList } = useSelector((state) => state.article)
+  const axios = getAxios()
 
   const loadMoreData = (userId) => {
     if (loading) {
@@ -64,7 +65,9 @@ function ArticleListForm(props) {
   }
 
   const pageMove = (dno, e) => {
-    navigate(`/diary/read/${dno}`)
+    axios.get('/diary/view', { params: { dno: dno } }).then(() => {
+      navigate(`/diary/read/${dno}`)
+    })
   }
 
   function handleChange(value) {
@@ -124,6 +127,8 @@ function ArticleListForm(props) {
                 <ArticleListItem
                   picture={item.image}
                   title={item.word}
+                  view={item.view}
+                  liked={item.liked}
                   createdat={moment(item.createdat).format('YYYY-MM-DD HH:mm:ss')}
                 />
               </List.Item>

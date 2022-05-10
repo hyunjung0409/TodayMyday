@@ -1,22 +1,74 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Typography, Avatar, Image } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
+import { BsHeart, BsHeartFill } from 'react-icons/bs'
+import { getAxios } from '../../api'
+import { useParams } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
+import { loadUserRequestAction } from '../../reducers/user'
 
 const { Title, Text } = Typography
 
 function DiaryHeader({ diary }) {
-  const [word, setWord] = useState('')
-  const [user, setUser] = useState('')
-  const [date, setDate] = useState('')
   const { me } = useSelector((state) => state.user)
+  const [state, setState] = useState(false)
+  const axios = getAxios()
+  const params = useParams()
+  const [liked, setLiked] = useState(null)
+
+  const onChangeLiked = () => {
+    if (state) {
+      // 좋아요 -> 안좋아요
+      axios.post('/liked', { dno: params.dno, userId: me.userId }).then((res) => {
+        setState(res.data.liked)
+        axios.get('liked', { params: { dno: params.dno } }).then((res) => {
+          setLiked(res.data)
+        })
+      })
+    } else {
+      // 안좋아요 -> 좋아요
+      axios.post('/liked', { dno: params.dno, userId: me.userId }).then((res) => {
+        setState(res.data.liked)
+        axios.get('/liked', { params: { dno: params.dno } }).then((res) => {
+          setLiked(res.data)
+        })
+      })
+    }
+  }
+
+  useEffect(() => {
+    axios.get('/liked', { params: { dno: params.dno } }).then((res) => {
+      setLiked(res.data)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (me !== null) {
+      axios.get('/liked/status', { params: { dno: params.dno, userId: me.userId } }).then((res) => {
+        setState(res.data.result)
+      })
+    }
+  }, [me])
 
   return (
     <Row>
       <Col span={12}>
         <StyledWordTitle level={3}>#{diary.word}</StyledWordTitle>
+        {state ? (
+          <>
+            <StyledUnLiked onClick={onChangeLiked} />
+            {liked !== null && liked}
+          </>
+        ) : (
+          <>
+            <StyledLiked onClick={onChangeLiked} />
+            {liked !== null && liked}
+          </>
+        )}
+        <div>조회수 : {diary.view}</div>
       </Col>
       <Col span={12}>
         <StyledUserArea>
@@ -55,6 +107,14 @@ const StyledDateText = styled(Text)`
   display: flex;
   justify-content: end;
   align-items: center;
+`
+
+const StyledLiked = styled(BsHeart)`
+  cursor: pointer;
+`
+
+const StyledUnLiked = styled(BsHeartFill)`
+  cursor: pointer;
 `
 
 export default DiaryHeader
