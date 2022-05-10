@@ -21,4 +21,6 @@ public interface DiaryService {
     Diary updateView(Long dno);
     List<Diary>readAllDiary();
     List<Diary>readTopLiked();
+    List<Diary>readMyDiaryTopLiked(String userId);
+    List<Diary>readMyDiaryTopView(String userId);
 }

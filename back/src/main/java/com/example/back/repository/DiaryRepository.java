@@ -22,6 +22,12 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
     List<Diary>findAll();
 
+    @Query(value = "select * from diary d where d.user_id = :userId order by liked desc limit 5", nativeQuery = true)
+    List<Diary>findMyDiaryByTopLiked(@Param("userId") String userId);
+
+    @Query(value = "select * from diary d where d.user_id = :userId order by view desc limit 5", nativeQuery = true)
+    List<Diary>findMyDiaryByTopView(@Param("userId") String userId);
+
 
 //    @Query(value = "select * from diary where content liked '%:keyword%'")
 //    List<Diary>searchDiares(@Param("keyword") String keyword);

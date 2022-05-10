@@ -24,6 +24,7 @@ public class DiaryServiceImpl implements DiaryService{
     private final UserRepository userRepository;
     private final LikedService likedService;
     private final LikedRepository likedRepository;
+    private final UserService userService;
 
 
     @Override
@@ -262,6 +263,7 @@ public class DiaryServiceImpl implements DiaryService{
 
         for (Diary diary : diaries) {
             diary.setLiked(likedService.readLiked(diary.getDno()));
+            diaryRepository.save(diary);
         }
 
         return diaries;
@@ -278,6 +280,35 @@ public class DiaryServiceImpl implements DiaryService{
 
         for (Diary diary : diaries) {
             diary.setLiked(likedService.readLiked(diary.getDno()));
+            diaryRepository.save(diary);
+        }
+
+        return diaries;
+    }
+
+    @Override
+    public List<Diary> readMyDiaryTopLiked(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        if (user == null) {
+            return null;
+        }
+
+        for (Diary diary : user.getDairies()) {
+            diary.setLiked(likedService.readLiked(diary.getDno()));
+            diaryRepository.save(diary);
+        }
+
+        List<Diary> diaries = diaryRepository.findMyDiaryByTopLiked(userId);
+
+        return diaries;
+    }
+
+    @Override
+    public List<Diary> readMyDiaryTopView(String userId) {
+        List<Diary> diaries = diaryRepository.findMyDiaryByTopView(userId);
+        if (diaries == null) {
+            return null;
         }
 
         return diaries;
