@@ -28,11 +28,8 @@ const Words = styled.div`
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2%;
+  margin-top: 3%;
 `
-// const Search = styled.input`
-//   margin-right: 3%;
-//   float: right;
-// `
 
 function PickWords() {
   const navigate = useNavigate()

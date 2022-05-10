@@ -105,10 +105,13 @@ function MyPicture({ imageUploader, data }) {
   }, [me])
 
   return (
-    <div>
+    <div className="myPic">
       {editable === false ? (
         <div>
-          <Avatar size={260} icon={<img src={me !== null && me.image}></img>}></Avatar>
+          <Avatar
+            size={300}
+            style={{ background: '#ccc', border: 'soild' }}
+            icon={<img src={me !== null && me.image}></img>}></Avatar>
 
           <EditOutlined
             onClick={(e) => {
@@ -118,7 +121,7 @@ function MyPicture({ imageUploader, data }) {
       ) : (
         <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
           <Avatar
-            size={260}
+            size={300}
             icon={
               me.image !== null && (
                 <ImageFileInput
