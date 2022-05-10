@@ -53,20 +53,22 @@ function DiaryFooter({ diary, dno }) {
     <Row>
       <Col span={24}>
         <StyledContainer>
-          <Space size="middle">
-            <StyledPrimaryBtn type="text" onClick={handleModify}>
-              수정
-            </StyledPrimaryBtn>
-            <StyledDangerBtn type="text" onClick={handleModify}>
-              삭제
-            </StyledDangerBtn>
-            {/* <Button type="primary" onClick={handleModify}>
+          {me.nickname === diary.nickname ? (
+            <Space size="middle">
+              <StyledPrimaryBtn type="text" onClick={handleModify}>
+                수정
+              </StyledPrimaryBtn>
+              <StyledDangerBtn type="text" onClick={handleModify}>
+                삭제
+              </StyledDangerBtn>
+              {/* <Button type="primary" onClick={handleModify}>
               수정
             </Button>
             <Button type="danger" onClick={showModal}>
               삭제
             </Button> */}
-          </Space>
+            </Space>
+          ) : null}
         </StyledContainer>
         <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <p>해당 글을 삭제하시겠습니까?</p>
