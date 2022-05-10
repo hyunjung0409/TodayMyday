@@ -13,7 +13,7 @@ import jwt_decode from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
-
+import MainProfile from '../components/Profile/MainProfile'
 const imageUploader = new ImageUploader()
 
 const Place = styled.div`
@@ -35,14 +35,15 @@ function Profile() {
     <div>
       <Row>
         <Col span={12}>
-          {me !== null && (
+          {/* {me !== null && (
             <MyPicture imageUploader={imageUploader} data={me !== null && me.image}></MyPicture>
           )}{' '}
           <MyNickName></MyNickName>
           <MyAge></MyAge>
-          <MyGender></MyGender>
+          <MyGender></MyGender> */}
           {/* <Change></Change> */}
-          <Search></Search>
+          {/* <Search></Search> */}
+          <MainProfile imageUploader={imageUploader} data={me !== null && me.image}></MainProfile>
         </Col>
         <Col span={12}>
           <Place>
