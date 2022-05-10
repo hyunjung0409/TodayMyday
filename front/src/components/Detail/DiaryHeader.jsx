@@ -77,14 +77,15 @@ function DiaryHeader({ diary }) {
       </Col>
       <Col span={12}>
         <StyledUserArea>
-          {me !== null ? (
+          {/* {me !== null ? (
             me.image === null ? (
               <StyledAvatar icon={<UserOutlined />} />
             ) : (
               <StyledAvatar src={<img src={me.image} style={{ width: 32 }} />} />
             )
-          ) : null}
-          <Title level={5}>{me !== null && me.nickname}</Title>
+          ) : null} */}
+          <StyledAvatar src={<img src={diary.profile_image} style={{ width: 32 }} />} />
+          <Title level={5}>{diary.nickname}</Title>
         </StyledUserArea>
         <StyledDateText level={5}>
           {moment(diary.createdat).format('YYYY-MM-DD HH:mm:ss')}

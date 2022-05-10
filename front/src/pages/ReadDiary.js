@@ -6,13 +6,11 @@ import DiaryFooter from '../components/Detail/DiaryFooter'
 import DiaryHeader from '../components/Detail/DiaryHeader'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getAxios } from '../api'
-import { useSelector } from 'react-redux'
 
 function MyDetail() {
   const axios = getAxios()
   const navigate = useNavigate()
   const { dno } = useParams()
-  const { me } = useSelector((state) => state.user)
 
   const [diary, setDiary] = useState({})
 
@@ -35,7 +33,7 @@ function MyDetail() {
       <StyledFormArea className="styled-form-area">
         <DiaryHeader diary={diary} />
         <DiaryContent diary={diary} />
-        <DiaryFooter dno={dno} />
+        <DiaryFooter diary={diary} dno={dno} />
       </StyledFormArea>
     </StyledContainer>
   )

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const axios = getAxios()
 
-function DiaryFooter({ dno }) {
+function DiaryFooter({ diary, dno }) {
   const { me } = useSelector((state) => state.user)
   const [isModalVisible, setIsModalVisible] = useState(false)
 
