@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ArticleListItem({ picture, title, createdat }) {
+function ArticleListItem({ picture, title, createdat, view, liked }) {
   return (
     <div style={{ border: '5px solid red', width: '90%', margin: '10px auto' }}>
       <div style={{ width: '30%', boxSizing: 'border-box', float: 'left' }}>
@@ -25,8 +25,8 @@ function ArticleListItem({ picture, title, createdat }) {
           marginTop: '30px',
         }}>
         <ul style={{ listStyle: 'none', textAlign: 'right', marginRight: '10px' }}>
-          <li>조회수: 0</li>
-          <li>좋아요: 0</li>
+          <li>조회수: {view}</li>
+          <li>좋아요: {liked}</li>
           <li>날짜: {createdat}</li>
         </ul>
       </div>
