@@ -12,7 +12,7 @@ public interface DiaryService {
     Diary modifyDiary(Long dno, String userId, DiaryDto diaryDto);
     Boolean deleteDiary(Long dno, String userId);
     List<DiaryDto> searchDiariesByContent(String keyword, String userId);
-    Diary readDiary(long dno);
+    DiaryDto readDiary(long dno);
     List<String> readMyword(String userId);
     List<DiaryDto> searchDiariesByWord(String word, String userId);
     List<DiaryDto> searchAllDiariesByContent(String keyword);
@@ -20,4 +20,7 @@ public interface DiaryService {
     List<String> readAllword();
     Diary updateView(Long dno);
     List<Diary>readAllDiary();
+    List<Diary>readTopLiked();
+    List<Diary>readMyDiaryTopLiked(String userId);
+    List<Diary>readMyDiaryTopView(String userId);
 }

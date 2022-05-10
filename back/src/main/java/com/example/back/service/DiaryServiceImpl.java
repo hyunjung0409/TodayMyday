@@ -2,6 +2,7 @@ package com.example.back.service;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
+import com.example.back.entity.Liked;
 import com.example.back.entity.User;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
@@ -22,6 +23,8 @@ public class DiaryServiceImpl implements DiaryService{
     private final DiaryRepository diaryRepository;
     private final UserRepository userRepository;
     private final LikedService likedService;
+    private final LikedRepository likedRepository;
+    private final UserService userService;
 
 
     @Override
@@ -103,6 +106,8 @@ public class DiaryServiceImpl implements DiaryService{
                     diaryDto.setWord(diary.getWord());
                     diaryDto.setNickname(diary.getUser().getNickname());
                     diaryDto.setProfile_image(diary.getUser().getImage());
+                    diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                    diaryDto.setView(diary.getView());
                     my_daires.add(diaryDto);
                 }
             }
@@ -111,11 +116,23 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public Diary readDiary(long dno) {
+    public DiaryDto readDiary(long dno) {
         Diary diary = diaryRepository.findDiaryByDno(dno);
         diary.setLiked(likedService.readLiked(dno));
 
-        return diary;
+        DiaryDto diaryDto = new DiaryDto();
+
+        diaryDto.setDno(diary.getDno());
+        diaryDto.setCreatedat(diary.getCreatedat());
+        diaryDto.setNickname(diary.getUser().getNickname());
+        diaryDto.setProfile_image(diary.getUser().getImage());
+        diaryDto.setView(diary.getView());
+        diaryDto.setLiked(diary.getLiked());
+        diaryDto.setWord(diary.getWord());
+        diaryDto.setImage(diary.getImage());
+        diaryDto.setContent(diary.getContent());
+
+        return diaryDto;
     }
 
     @Override
@@ -159,6 +176,8 @@ public class DiaryServiceImpl implements DiaryService{
                     diaryDto.setWord(diary.getWord());
                     diaryDto.setNickname(diary.getUser().getNickname());
                     diaryDto.setProfile_image(diary.getUser().getImage());
+                    diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                    diaryDto.setView(diary.getView());
                     my_daires.add(diaryDto);
                 }
             }
@@ -185,6 +204,8 @@ public class DiaryServiceImpl implements DiaryService{
                 diaryDto.setWord(diary.getWord());
                 diaryDto.setNickname(diary.getUser().getNickname());
                 diaryDto.setProfile_image(diary.getUser().getImage());
+                diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                diaryDto.setView(diary.getView());
                 all_diaries.add(diaryDto);
             }
             return all_diaries;
@@ -210,6 +231,8 @@ public class DiaryServiceImpl implements DiaryService{
                 diaryDto.setWord(diary.getWord());
                 diaryDto.setNickname(diary.getUser().getNickname());
                 diaryDto.setProfile_image(diary.getUser().getImage());
+                diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                diaryDto.setView(diary.getView());
                 all_diaries.add(diaryDto);
             }
             return all_diaries;
@@ -252,6 +275,52 @@ public class DiaryServiceImpl implements DiaryService{
 
         for (Diary diary : diaries) {
             diary.setLiked(likedService.readLiked(diary.getDno()));
+            diaryRepository.save(diary);
+        }
+
+        return diaries;
+    }
+
+    @Override
+    public List<Diary> readTopLiked() {
+        List<Liked> likeds = likedRepository.findTopLiked();
+        List<Diary> diaries = new ArrayList<>();
+
+        for (Liked liked : likeds) {
+            diaries.add(diaryRepository.findDiaryByDno(liked.getDno()));
+        }
+
+        for (Diary diary : diaries) {
+            diary.setLiked(likedService.readLiked(diary.getDno()));
+            diaryRepository.save(diary);
+        }
+
+        return diaries;
+    }
+
+    @Override
+    public List<Diary> readMyDiaryTopLiked(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        if (user == null) {
+            return null;
+        }
+
+        for (Diary diary : user.getDairies()) {
+            diary.setLiked(likedService.readLiked(diary.getDno()));
+            diaryRepository.save(diary);
+        }
+
+        List<Diary> diaries = diaryRepository.findMyDiaryByTopLiked(userId);
+
+        return diaries;
+    }
+
+    @Override
+    public List<Diary> readMyDiaryTopView(String userId) {
+        List<Diary> diaries = diaryRepository.findMyDiaryByTopView(userId);
+        if (diaries == null) {
+            return null;
         }
 
         return diaries;

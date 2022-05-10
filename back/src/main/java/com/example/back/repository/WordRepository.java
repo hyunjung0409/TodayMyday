@@ -14,6 +14,8 @@ public interface WordRepository extends JpaRepository<Word, String> {
 
     Word findWordByWord(String word);
 
+    Boolean existsByWord(String word);
+
     @Query(value = "select word, sum(teens+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByTeensAndMale();
 

@@ -25,12 +25,12 @@ public class DiaryDto {
 
     private String profile_image;
 
-    private Long view;
+    private int view;
 
     private int liked;
 
 
-    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno, String profile_image, Long view, int liked){
+    public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno, String profile_image, int view, int liked){
         this.word = word;
         this.image = image;
         this.content = content;

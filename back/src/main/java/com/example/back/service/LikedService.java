@@ -11,4 +11,5 @@ public interface LikedService {
     boolean createLiked(LikedDto likedDto);
     int readLiked(Long dno);
     List<Long> readTopLiked();
+    boolean readLikedStatus(String userId, long dno);
 }

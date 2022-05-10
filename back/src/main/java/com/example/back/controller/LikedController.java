@@ -59,5 +59,19 @@ public class LikedController {
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 
+    @GetMapping("/status")
+    @ApiOperation(value = "좋아요 눌렀는지 상태 보기", notes = "좋아요 눌렀으면 true, 안 눌렀으면 false 반환", response = String.class)
+    public ResponseEntity<Map<String, Object>> readLikedStatus(@RequestParam String userId, @RequestParam long dno){
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        boolean result = likedService.readLikedStatus(userId, dno);
+
+        hashMap.put("Message", "SUCCESS");
+        hashMap.put("result", result);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
 
 }
