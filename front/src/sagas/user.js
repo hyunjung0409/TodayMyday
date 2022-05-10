@@ -60,6 +60,9 @@ function* logIn(action) {
       type: LOG_IN_FAILURE,
       error: err.response.data,
     })
+    yield action.data.Modal.error({
+      content: '아이디와 비밀번호를 확인해주세요.',
+    })
   }
 }
 

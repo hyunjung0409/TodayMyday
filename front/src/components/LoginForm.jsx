@@ -1,11 +1,10 @@
 import React from 'react'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Modal } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { loginRequestAction } from '../reducers/user'
 
-const Title = styled.h3``
 const MyButton = styled(Button)`
   margin-bottom: 10px;
   width: 100%;
@@ -20,7 +19,9 @@ function LoginForm() {
   const navigate = useNavigate()
 
   const onFinish = (values) => {
-    dispatch(loginRequestAction({ userId: values.userId, password: values.password, navigate }))
+    dispatch(
+      loginRequestAction({ userId: values.userId, password: values.password, navigate, Modal }),
+    )
   }
 
   const onFinishFailed = (errorInfo) => {
