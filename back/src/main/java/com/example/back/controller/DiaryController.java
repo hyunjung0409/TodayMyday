@@ -283,7 +283,7 @@ public class DiaryController {
     }
 
     @GetMapping("/topliked")
-    @ApiOperation(value = "전체 다이어리 좋아요 top 3 반환", notes = "전체 다이어리 좋아요 수 top 3", response = String.class)
+    @ApiOperation(value = "전체 다이어리 좋아요 top 15 반환", notes = "전체 다이어리 좋아요 수 top 15", response = String.class)
     public ResponseEntity<Map<String, Object>> readTopLiked() {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
