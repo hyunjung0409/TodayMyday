@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import WordCard from '../components/Main/WordCard'
 import { wordGetRequestAction } from '../reducers/word'
 
@@ -15,10 +15,14 @@ import { wordGetRequestAction } from '../reducers/word'
 
 function Main() {
   const dispatch = useDispatch()
+  const { me } = useSelector((state) => state.user)
 
   useEffect(() => {
-    dispatch(wordGetRequestAction())
-  }, [])
+    if (me !== null) {
+      console.log('me', me)
+      dispatch(wordGetRequestAction({ userId: me.userId }))
+    }
+  }, [me])
 
   return <WordCard />
 }
