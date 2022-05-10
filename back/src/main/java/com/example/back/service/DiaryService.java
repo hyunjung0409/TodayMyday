@@ -20,4 +20,5 @@ public interface DiaryService {
     List<String> readAllword();
     Diary updateView(Long dno);
     List<Diary>readAllDiary();
+    List<Diary>readTopLiked();
 }

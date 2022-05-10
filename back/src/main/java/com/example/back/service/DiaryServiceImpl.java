@@ -2,6 +2,7 @@ package com.example.back.service;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
+import com.example.back.entity.Liked;
 import com.example.back.entity.User;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
@@ -22,6 +23,7 @@ public class DiaryServiceImpl implements DiaryService{
     private final DiaryRepository diaryRepository;
     private final UserRepository userRepository;
     private final LikedService likedService;
+    private final LikedRepository likedRepository;
 
 
     @Override
@@ -257,6 +259,22 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public List<Diary> readAllDiary() {
         List<Diary> diaries = diaryRepository.findAll();
+
+        for (Diary diary : diaries) {
+            diary.setLiked(likedService.readLiked(diary.getDno()));
+        }
+
+        return diaries;
+    }
+
+    @Override
+    public List<Diary> readTopLiked() {
+        List<Liked> likeds = likedRepository.findTopLiked();
+        List<Diary> diaries = new ArrayList<>();
+
+        for (Liked liked : likeds) {
+            diaries.add(diaryRepository.findDiaryByDno(liked.getDno()));
+        }
 
         for (Diary diary : diaries) {
             diary.setLiked(likedService.readLiked(diary.getDno()));
