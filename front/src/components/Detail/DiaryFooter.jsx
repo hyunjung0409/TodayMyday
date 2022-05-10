@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const axios = getAxios()
 
-function DiaryFooter({ dno }) {
+function DiaryFooter({ diary, dno }) {
   const { me } = useSelector((state) => state.user)
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -53,14 +53,22 @@ function DiaryFooter({ dno }) {
     <Row>
       <Col span={24}>
         <StyledContainer>
-          <Space size="middle">
-            <Button type="primary" onClick={handleModify}>
+          {me.nickname === diary.nickname ? (
+            <Space size="middle">
+              <StyledPrimaryBtn type="text" onClick={handleModify}>
+                수정
+              </StyledPrimaryBtn>
+              <StyledDangerBtn type="text" onClick={handleModify}>
+                삭제
+              </StyledDangerBtn>
+              {/* <Button type="primary" onClick={handleModify}>
               수정
             </Button>
             <Button type="danger" onClick={showModal}>
               삭제
-            </Button>
-          </Space>
+            </Button> */}
+            </Space>
+          ) : null}
         </StyledContainer>
         <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <p>해당 글을 삭제하시겠습니까?</p>
@@ -74,6 +82,17 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+`
+
+const StyledPrimaryBtn = styled(Button)`
+  span {
+    color: #188fff;
+  }
+`
+const StyledDangerBtn = styled(Button)`
+  span {
+    color: #ff4d4f;
+  }
 `
 
 export default DiaryFooter
