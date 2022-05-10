@@ -76,8 +76,8 @@ public class DiaryController {
 //            hashMap.put("ERROR", "빈 값이 들어있습니다.");
 //            hashMap.put("Status", status);
 
-        hashMap.put("diary", diary);
         hashMap.put("Message", "SUCCESS");
+        hashMap.put("diary", diary);
 //        if (diaryService.createDiary(diaryDto, user)) {
 //            hashMap.put("Message", "SUCCESS");
 //            status = HttpStatus.OK;
