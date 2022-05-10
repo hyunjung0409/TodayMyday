@@ -11,9 +11,11 @@ public interface WordService {
     void createWordLog(String word, String userId);
     void increaseFrequencyByAge(Word selectedWord, String age);
     void increaseFrequencyByGender(Word selectedWord, String gender);
+
     Word increaseFrequency(String userId, DiaryDto diaryDto);
     List<String> pickRandomWords(String userId);
     String pickWordByCondition(int condition, String gender, String age);
+    Boolean duplicateWord(String word);
 
 //    Boolean getWordLogList(String userId);
 
