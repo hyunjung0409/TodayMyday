@@ -36,9 +36,10 @@ public class UserController {
         Map<String, Object> result = new HashMap<>();
         HttpStatus status;
 
-        if (userDto == null) {
+        if (userDto == null || userService.validationCheck(userDto.getUserId())) {
             throw new CustomException(ErrorCode.METHOD_NOT_ALLOWED);
         }
+
         else {
             if (userService.signup(userDto)) {
                 userService.signup(userDto);
