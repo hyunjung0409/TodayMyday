@@ -68,9 +68,16 @@ function Navbar() {
       <Row justify="start">
         <Col span={4}>
           <Space align="center">
-            <StyledTitle level={5} onClick={() => navigate('/')}>
-              지금 나의 하루는
-            </StyledTitle>
+            <img
+              src={process.env.PUBLIC_URL + '/images/logo.png'}
+              onClick={() => navigate('/')}
+              style={{
+                width: '130px',
+                height: '60px',
+                objectFit: 'cover',
+                marginTop: '-0.4rem',
+              }}
+            />
           </Space>
         </Col>
         <Col span={16}>
@@ -97,7 +104,7 @@ function Navbar() {
               <Dropdown overlay={menu} trigger={['click']}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space>
-                    {me.userId}
+                    {me.nickname}
                     <DownOutlined />
                   </Space>
                 </a>
@@ -126,12 +133,6 @@ function Navbar() {
     </Header>
   )
 }
-
-const StyledTitle = styled(Title)`
-  text-align: center;
-  margin: 1.2rem 1rem 1rem 1rem;
-  background: rgba(255, 255, 255, 0.3);
-`
 
 const StyledLink = styled(Link)`
   color: #38532e;
