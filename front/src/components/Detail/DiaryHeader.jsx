@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Typography, Avatar, Image } from 'antd'
+import { Row, Col, Typography, Avatar, Image, Space } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { BsHeart, BsHeartFill } from 'react-icons/bs'
+import { EyeOutlined } from '@ant-design/icons'
 import { getAxios } from '../../api'
 import { useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
@@ -57,18 +58,22 @@ function DiaryHeader({ diary }) {
     <Row>
       <Col span={12}>
         <StyledWordTitle level={3}>#{diary.word}</StyledWordTitle>
-        {state ? (
-          <>
-            <StyledUnLiked onClick={onChangeLiked} />
-            {liked !== null && liked}
-          </>
-        ) : (
-          <>
-            <StyledLiked onClick={onChangeLiked} />
-            {liked !== null && liked}
-          </>
-        )}
-        <div>조회수 : {diary.view}</div>
+        <StyledSpace>
+          {state ? (
+            <StyledLikeArea>
+              <StyledUnLiked onClick={onChangeLiked} />
+              {liked !== null && liked}
+            </StyledLikeArea>
+          ) : (
+            <StyledLikeArea>
+              <StyledLiked onClick={onChangeLiked} />
+              {liked !== null && liked}
+            </StyledLikeArea>
+          )}
+          <div>
+            <EyeOutlined /> {diary.view}
+          </div>
+        </StyledSpace>
       </Col>
       <Col span={12}>
         <StyledUserArea>
@@ -93,8 +98,6 @@ const StyledWordTitle = styled(Title)`
   display: flex;
   justify-content: start;
   align-items: center;
-  // margin: 1.2em 1em 1em 1em;
-  padding: 0.4em 0.2em 0.2em 0.2em;
 `
 const StyledAvatar = styled(Avatar)`
   margin: 0 0.5rem;
@@ -104,6 +107,7 @@ const StyledUserArea = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+  margin-bottom: 0.5rem;
 `
 
 const StyledDateText = styled(Text)`
@@ -114,10 +118,28 @@ const StyledDateText = styled(Text)`
 
 const StyledLiked = styled(BsHeart)`
   cursor: pointer;
+  width: 13px;
+  margin-top: 0.1em;
+  margin-right: 0.3em;
 `
 
 const StyledUnLiked = styled(BsHeartFill)`
   cursor: pointer;
+  width: 13px;
+  margin-top: 0.1em;
+  margin-right: 0.3em;
+`
+
+const StyledSpace = styled(Space)`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+const StyledLikeArea = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
 `
 
 export default DiaryHeader

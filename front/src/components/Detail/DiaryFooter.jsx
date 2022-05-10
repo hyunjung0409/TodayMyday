@@ -54,12 +54,18 @@ function DiaryFooter({ dno }) {
       <Col span={24}>
         <StyledContainer>
           <Space size="middle">
-            <Button type="primary" onClick={handleModify}>
+            <StyledPrimaryBtn type="text" onClick={handleModify}>
+              수정
+            </StyledPrimaryBtn>
+            <StyledDangerBtn type="text" onClick={handleModify}>
+              삭제
+            </StyledDangerBtn>
+            {/* <Button type="primary" onClick={handleModify}>
               수정
             </Button>
             <Button type="danger" onClick={showModal}>
               삭제
-            </Button>
+            </Button> */}
           </Space>
         </StyledContainer>
         <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
@@ -74,6 +80,17 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+`
+
+const StyledPrimaryBtn = styled(Button)`
+  span {
+    color: #188fff;
+  }
+`
+const StyledDangerBtn = styled(Button)`
+  span {
+    color: #ff4d4f;
+  }
 `
 
 export default DiaryFooter

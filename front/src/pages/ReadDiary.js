@@ -19,6 +19,7 @@ function MyDetail() {
   const match = async () => {
     let result = await axios.get(`/diary/read/${dno}`)
     setDiary(result.data)
+    console.log(result.data)
   }
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const StyledImageArea = styled.div`
 const StyledFormArea = styled.div`
   width: 50%;
   background: #ffdae5;
-  padding: 1rem;
+  padding: 2rem;
 `
 
 export default MyDetail
