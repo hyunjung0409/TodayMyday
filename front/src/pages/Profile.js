@@ -12,8 +12,16 @@ import { loadUserRequestAction } from '../reducers/user'
 import jwt_decode from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
 
 const imageUploader = new ImageUploader()
+
+const Place = styled.div`
+  border: 1px solid #d3d3d3;
+  border-radius: 1%;
+  padding: 5%;
+  padding-right: 10%;
+`
 
 function Profile() {
   const { me } = useSelector((state) => state.user)
@@ -37,8 +45,10 @@ function Profile() {
           <Search></Search>
         </Col>
         <Col span={12}>
-          <PickWords></PickWords>
-          <Grass></Grass>
+          <Place>
+            <PickWords></PickWords>
+            <Grass></Grass>
+          </Place>
         </Col>
       </Row>
     </div>

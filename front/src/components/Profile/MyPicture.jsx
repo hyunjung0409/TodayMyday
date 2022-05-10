@@ -28,6 +28,7 @@ function MyPicture({ imageUploader, data }) {
   const axios = getAxios()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
+  console.log('file2', file2)
   const formRef = useRef()
   const [editable, setEditable] = useState(false)
   console.log(me)
@@ -76,8 +77,10 @@ function MyPicture({ imageUploader, data }) {
         { image: image.fileURL, age: me.age, gender: me.gender },
         { params: { userId: me.userId } },
       ))
+    setFile2({ fileName: null, fileURL: null })
     dispatch(loadUserRequestAction({ userId: me.userId }))
     setEditable(!editable)
+    console.log('file2', file2)
   }
   const success = () => {
     Modal.success({
@@ -102,10 +105,13 @@ function MyPicture({ imageUploader, data }) {
   }, [me])
 
   return (
-    <div>
+    <div className="myPic">
       {editable === false ? (
         <div>
-          <Avatar size={260} icon={<img src={me !== null && me.image}></img>}></Avatar>
+          <Avatar
+            size={300}
+            style={{ background: '#ccc', border: 'soild' }}
+            icon={<img src={me !== null && me.image}></img>}></Avatar>
 
           <EditOutlined
             onClick={(e) => {
@@ -115,7 +121,7 @@ function MyPicture({ imageUploader, data }) {
       ) : (
         <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
           <Avatar
-            size={260}
+            size={300}
             icon={
               me.image !== null && (
                 <ImageFileInput
