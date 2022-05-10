@@ -57,11 +57,11 @@ public class LikedServiceImpl implements LikedService {
     }
 
     @Override
-    public boolean readLikedStatus(LikedDto likedDto) {
-        List<Liked> likeds = likedRepository.findLikedByDno(likedDto.getDno());
+    public boolean readLikedStatus(String userId, long dno) {
+        List<Liked> likeds = likedRepository.findLikedByDno(dno);
 
         for (Liked liked : likeds) {
-            if (liked.getUserId().equals(likedDto.getUserId())) { //좋아요 이미 눌렀으면 true 반환
+            if (liked.getUserId().equals(userId)) { //좋아요 이미 눌렀으면 true 반환
                 return true;
             }
         }
