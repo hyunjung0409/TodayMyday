@@ -302,7 +302,7 @@ public class DiaryController {
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 
-    @GetMapping("/mydiary/topliked")
+    @GetMapping("/mytopliked")
     @ApiOperation(value = "내 다이어리 좋아요 top 5 반환", notes = "내 다이어리 좋아요 수 top 5", response = String.class)
     public ResponseEntity<Map<String, Object>> readMyDiaryTopLiked(@RequestParam String userId) {
         Map<String, Object> hashMap = new HashMap<>();
@@ -322,7 +322,7 @@ public class DiaryController {
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 
-    @GetMapping("/mydiary/topview")
+    @GetMapping("/mytopview")
     @ApiOperation(value = "내 다이어리 조회수 top 5 반환", notes = "내 다이어리 조회수 top 5", response = String.class)
     public ResponseEntity<Map<String, Object>> readMyDiaryTopView(@RequestParam String userId) {
         Map<String, Object> hashMap = new HashMap<>();
