@@ -33,7 +33,7 @@ public class WordServiceImpl implements WordService{
     @Override
     public void createWord(String word) {
 
-        if(word.trim().isEmpty() || word == null)
+        if(word.trim().isEmpty() || word == null || duplicateWord(word))
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
            Word str = Word.builder()
@@ -218,6 +218,11 @@ public class WordServiceImpl implements WordService{
         String[] wordListStr = wordList.get(ranValue).split(",");
 
         return wordListStr[0];
+    }
+
+    @Override
+    public Boolean duplicateWord(String word) {
+        return wordRepository.existsByWord(word);
     }
 
     @Override
