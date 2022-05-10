@@ -55,4 +55,16 @@ public class LikedServiceImpl implements LikedService {
     public List<Long> readTopLiked() {
         return null;
     }
+
+    @Override
+    public boolean readLikedStatus(LikedDto likedDto) {
+        List<Liked> likeds = likedRepository.findLikedByDno(likedDto.getDno());
+
+        for (Liked liked : likeds) {
+            if (liked.getUserId().equals(likedDto.getUserId())) { //좋아요 이미 눌렀으면 true 반환
+                return true;
+            }
+        }
+        return false;
+    }
 }
