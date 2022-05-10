@@ -283,5 +283,6 @@ public class DiaryController {
     }
 
 //    @GetMapping("/topliked")
-//    @ApiOperation(value = "다이어리 조회수 추가", notes = "다이어리 조회수 증가하기", response = String.class)
+//    @ApiOperation(value = "전체 다이어리 좋아요 탑 5 반환", notes = "다이어리 조회수 증가하기", response = String.class)
+
 }

@@ -103,6 +103,8 @@ public class DiaryServiceImpl implements DiaryService{
                     diaryDto.setWord(diary.getWord());
                     diaryDto.setNickname(diary.getUser().getNickname());
                     diaryDto.setProfile_image(diary.getUser().getImage());
+                    diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                    diaryDto.setView(diary.getView());
                     my_daires.add(diaryDto);
                 }
             }
@@ -159,6 +161,8 @@ public class DiaryServiceImpl implements DiaryService{
                     diaryDto.setWord(diary.getWord());
                     diaryDto.setNickname(diary.getUser().getNickname());
                     diaryDto.setProfile_image(diary.getUser().getImage());
+                    diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                    diaryDto.setView(diary.getView());
                     my_daires.add(diaryDto);
                 }
             }
@@ -185,6 +189,8 @@ public class DiaryServiceImpl implements DiaryService{
                 diaryDto.setWord(diary.getWord());
                 diaryDto.setNickname(diary.getUser().getNickname());
                 diaryDto.setProfile_image(diary.getUser().getImage());
+                diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                diaryDto.setView(diary.getView());
                 all_diaries.add(diaryDto);
             }
             return all_diaries;
@@ -210,6 +216,8 @@ public class DiaryServiceImpl implements DiaryService{
                 diaryDto.setWord(diary.getWord());
                 diaryDto.setNickname(diary.getUser().getNickname());
                 diaryDto.setProfile_image(diary.getUser().getImage());
+                diaryDto.setLiked(likedService.readLiked(diary.getDno()));
+                diaryDto.setView(diary.getView());
                 all_diaries.add(diaryDto);
             }
             return all_diaries;
