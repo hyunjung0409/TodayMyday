@@ -282,7 +282,24 @@ public class DiaryController {
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 
-//    @GetMapping("/topliked")
-//    @ApiOperation(value = "전체 다이어리 좋아요 탑 5 반환", notes = "다이어리 조회수 증가하기", response = String.class)
+    @GetMapping("/topliked")
+    @ApiOperation(value = "전체 다이어리 좋아요 top 3 반환", notes = "전체 다이어리 좋아요 수 top 3", response = String.class)
+    public ResponseEntity<Map<String, Object>> readTopLiked() {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Diary> diaries = diaryService.readTopLiked();
+
+        if (diaries == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diaries", diaries);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
 
 }
