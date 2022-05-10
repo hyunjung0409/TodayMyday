@@ -78,7 +78,9 @@ function Grass() {
           if (mark.find((x) => x === moment(date).format('YYYY-M-D'))) {
             return (
               <>
-                <div className="flex justify-center items-center absoluteDiv">
+                <div
+                  className="flex justify-center items-center absoluteDiv"
+                  style={{ position: 'relative', zIndex: '0' }}>
                   <StyledDot />
                 </div>
               </>
@@ -108,6 +110,11 @@ const MyCalender = styled(Calendar)`
     text-decoration: none;
   }
 
+  abbr {
+    position: relative;
+    z-index: 2;
+  }
+
   .highlight {
     background-color: rgba(255, 218, 229, 0.5);
   }
@@ -117,9 +124,20 @@ const MyCalender = styled(Calendar)`
     background: #ffdae5;
     color: #000000d9;
   }
-  .react-calendar__tile--now {
-    background: rgba(209, 247, 129, 0.7);
+  .react-calendar__tile--active:focus {
+    background: #ffdae5;
   }
+  .react-calendar__tile--active:hover {
+    background: rgba(255, 143, 176, 0.7);
+  }
+
+  .react-calendar__tile--now {
+    background: rgba(210, 250, 130, 0.7);
+  }
+  .react-calendar__tile--now:hover {
+    background: #ebebeb;
+  }
+
   .react-calendar__month-view__days__day--neighboringMonth {
     color: #bababa;
   }
@@ -128,11 +146,11 @@ const StyledDot = styled.div`
   position: absolute;
   height: 25px;
   width: 25px;
-  background-color: rgba(255, 218, 229, 0.5);
+  background-color: rgba(255, 218, 229, 1);
   border-radius: 50%;
   display: flex;
   margin: -20px 5px 0 6px;
-  z-index: 0;
+  // z-index: 0;
 `
 
 export default Grass
