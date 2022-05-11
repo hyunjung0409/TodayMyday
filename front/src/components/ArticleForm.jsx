@@ -8,11 +8,12 @@ import { articleAddRequestAction } from '../reducers/article'
 import ImageArticle from './ImageArticle'
 
 const ImageLayout = styled.div`
-  width: 450px;
+  width: 100%;
+  height: 20rem;
   display: inline-block;
-  background-color: #ffff;
+  // background-color: #ffff;
   border-radius: 20px;
-  margin-top: 80px;
+  padding: 0.5rem 1rem;
 `
 
 const Submit = styled(Button)`
@@ -27,17 +28,17 @@ const Wrapper = styled.div`
   display: inline-block;
 `
 const Letter = styled.div`
-  width: 80rem;
+  width: 80vw;
 `
 
 const Side = styled.div`
   vertical-align: middle;
   height: 8rem;
   background-color: #fcfcf8;
-  border-radius: 30px;
+  border-radius: 10px;
   outline: 1px solid transparent;
   &:nth-of-type(1) {
-    padding: 2rem 2rem 0;
+    padding: 2rem;
     box-shadow: inset 0 0.75rem 2rem rgba(229, 225, 187, 0.5);
     height: 100%;
   }
@@ -52,12 +53,10 @@ const Side = styled.div`
 
 const TitleWord = styled.h1`
   font-size: 2rem;
-  font-family: 'Dancing Script';
 `
 
 const MyTextarea = styled.textarea`
   line-height: 1.5rem;
-  margin-bottom: 2rem;
   border: 0;
   outline: none;
   font-family: inherit;
@@ -65,7 +64,7 @@ const MyTextarea = styled.textarea`
   color: #4e5e72;
   background-color: transparent;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='24'><rect fill='rgb(229, 225, 187)' x='0' y='23' width='10' height='1'/></svg>");
-  width: 100%;
+  width: 98%;
   height: 20rem;
   resize: none;
   &:focus {
@@ -110,10 +109,15 @@ function ArticleForm({ imageUploader, data }) {
         margin: '0 auto',
         padding: '20px',
       }}>
-      <Wrapper>
-        <Letter>
-          <Side>
-            <Row>
+      <Wrapper className="wrapper">
+        <Letter className="letter">
+          <Side className="side">
+            <Row className="row">
+              <Col span={24}>
+                <TitleWord>#{word}</TitleWord>
+              </Col>
+            </Row>
+            <Row className="row">
               <Col span={12}>
                 <ImageLayout>
                   <ImageArticle
@@ -127,10 +131,9 @@ function ArticleForm({ imageUploader, data }) {
                 </ImageLayout>
               </Col>
               <Col span={12}>
-                <TitleWord>{word}</TitleWord>
                 {/* <textarea ref={messageRef} name="message" placeholder={message}></textarea> */}
-                <MyTextarea ref={messageRef} placeholder="Your message"></MyTextarea>
-                <div style={{ textAlign: 'right', marginBottom: '10px' }}>
+                <MyTextarea ref={messageRef} placeholder="내용을 입력하세요..."></MyTextarea>
+                <div style={{ textAlign: 'right' }}>
                   <Submit type="primary" onClick={onSubmit}>
                     등록
                   </Submit>

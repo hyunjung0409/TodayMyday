@@ -38,8 +38,8 @@ function DiaryFooter({ diary, dno }) {
   }
 
   const handleMove = () => {
-    // navigate('/')
-    navigate(-1)
+    navigate('/my/articleList')
+    // navigate(-1)
   }
 
   const success = () => {
@@ -51,8 +51,15 @@ function DiaryFooter({ diary, dno }) {
 
   return (
     <Row>
-      <Col span={24}>
-        <StyledContainer>
+      <Col span={12}>
+        <StyledStratContainer>
+          <StyledPrimaryBtn type="text" onClick={handleMove}>
+            내 글 목록
+          </StyledPrimaryBtn>
+        </StyledStratContainer>
+      </Col>
+      <Col span={12}>
+        <StyledEndContainer>
           {me.nickname === diary.nickname ? (
             <Space size="middle">
               <StyledPrimaryBtn type="text" onClick={handleModify}>
@@ -69,7 +76,7 @@ function DiaryFooter({ diary, dno }) {
             </Button> */}
             </Space>
           ) : null}
-        </StyledContainer>
+        </StyledEndContainer>
         <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <p>해당 글을 삭제하시겠습니까?</p>
         </Modal>
@@ -78,9 +85,15 @@ function DiaryFooter({ diary, dno }) {
   )
 }
 
-const StyledContainer = styled.div`
+const StyledStratContainer = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+const StyledEndContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 `
 
