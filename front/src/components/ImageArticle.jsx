@@ -31,7 +31,7 @@ function ImageArticle({ imageUploader, onFileChange, file, data }) {
   }
 
   return (
-    <ImageLayout>
+    <StyledImageArea className="styled-image-area">
       <input
         style={{ display: 'none' }}
         ref={inputRef}
@@ -43,23 +43,39 @@ function ImageArticle({ imageUploader, onFileChange, file, data }) {
 
       {!loading && (
         <button
-          style={{ width: '100%', backgroundColor: '#fcfcf8', border: 'none', cursor: 'pointer' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            // backgroundColor: '#fcfcf8',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '0',
+          }}
           onClick={onButtonClick}>
           <img
-            style={{ borderRadius: '20px' }}
+            style={{ objectFit: 'cover' }}
             src={file.fileURL || fileURL || me.image}
             alt="img"
             width="100%"
+            height="100%"
           />
         </button>
       )}
       {loading && (
         <div style={{ width: '100%', textAlign: 'center', lineHeight: '250px' }}>
-          <Spin size="large" tip="Loading..." />,
+          <Spin size="large" tip="Loading..." />
         </div>
       )}
-    </ImageLayout>
+    </StyledImageArea>
   )
 }
+
+const StyledImageArea = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // border: 1px solid blue;
+  border-radius: 10px;
+`
 
 export default ImageArticle

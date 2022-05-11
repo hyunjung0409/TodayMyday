@@ -40,16 +40,16 @@ function Navbar() {
       <Menu>
         <Menu.Item key="profile">
           <Link to="/my/profile">
-            <p>마이페이지</p>
+            <StyledParagraph>마이페이지</StyledParagraph>
           </Link>
         </Menu.Item>
         <Menu.Item key="articleList">
           <Link to="/my/articleList">
-            <p>내 글 목록</p>
+            <StyledParagraph>내 글 목록</StyledParagraph>
           </Link>
         </Menu.Item>
         <Menu.Item key="logout">
-          <p onClick={onLogOut}>로그아웃</p>
+          <StyledParagraph onClick={onLogOut}>로그아웃</StyledParagraph>
         </Menu.Item>
       </Menu>
     </>
@@ -68,9 +68,16 @@ function Navbar() {
       <Row justify="start">
         <Col span={4}>
           <Space align="center">
-            <StyledTitle level={5} onClick={() => navigate('/')}>
-              지금 나의 하루는
-            </StyledTitle>
+            <img
+              src={process.env.PUBLIC_URL + '/images/logo.png'}
+              onClick={() => navigate('/')}
+              style={{
+                width: '130px',
+                height: '60px',
+                objectFit: 'cover',
+                marginTop: '-0.4rem',
+              }}
+            />
           </Space>
         </Col>
         <Col span={16}>
@@ -95,12 +102,12 @@ function Navbar() {
                 icon={me.image === undefined ? <UserOutlined /> : <img src={me.image}></img>}
               />
               <Dropdown overlay={menu} trigger={['click']}>
-                <a onClick={(e) => e.preventDefault()}>
+                <StyledAnchor onClick={(e) => e.preventDefault()}>
                   <Space>
-                    {me.userId}
+                    {me.nickname}
                     <DownOutlined />
                   </Space>
-                </a>
+                </StyledAnchor>
               </Dropdown>
             </Space>
           ) : (
@@ -127,15 +134,26 @@ function Navbar() {
   )
 }
 
-const StyledTitle = styled(Title)`
-  text-align: center;
-  margin: 1.2rem 1rem 1rem 1rem;
-  background: rgba(255, 255, 255, 0.3);
-`
-
 const StyledLink = styled(Link)`
   color: #38532e;
   padding: 0 1rem;
+  &:hover {
+    color: #0a1e00;
+  }
+`
+
+const StyledAnchor = styled.a`
+  color: #38532e;
+  &:hover {
+    color: #0a1e00;
+  }
+`
+
+const StyledParagraph = styled.p`
+  color: #38532e;
+  &:hover {
+    color: #0a1e00;
+  }
 `
 
 export default Navbar
