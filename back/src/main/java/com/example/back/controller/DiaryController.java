@@ -15,10 +15,13 @@ import com.example.back.service.WordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -340,6 +343,13 @@ public class DiaryController {
         hashMap.put("diaries", diaries);
 
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/paging")
+    public ResponseEntity retrievePosts(final Pageable pageable) {
+        Page<Diary> posts = diaryRepository.findAll(pageable);
+
+        return new ResponseEntity<>(posts,HttpStatus.OK);
     }
 
 }

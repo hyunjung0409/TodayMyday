@@ -6,6 +6,7 @@ import com.example.back.entity.Diary;
 import com.example.back.entity.Liked;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
+import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.LikedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 public class LikedServiceImpl implements LikedService {
 
     private final LikedRepository likedRepository;
+    private final DiaryRepository diaryRepository;
 
     @Override
     public boolean createLiked(LikedDto likedDto) {
