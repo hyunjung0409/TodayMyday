@@ -17,7 +17,13 @@ const MainExplain = styled.h1`
 const MainBack = styled.div`
   background-color: pink;
 `
-
+const allOpen = styled.div`
+  margin-bottom: 10px;
+`
+const MainLook = styled.div`
+  margin-top: 5%;
+  background-color: pink;
+`
 function WordCard() {
   const navigate = useNavigate()
   const { wordGet } = useSelector((state) => state.word)
@@ -54,9 +60,14 @@ function WordCard() {
       })
     })
   }
+  // $(document).ready(function () {
+  //   $('.all .allopen').click(function () {
+  //     $('.all').addClass('flap')
+  //   })
+  // })
   $(document).ready(function () {
-    $('.all .allopen').click(function () {
-      $('.all').addClass('flap')
+    $('.all').click(function () {
+      $('.envelope-wrapper').addClass('flap')
     })
   })
   return (
@@ -95,11 +106,12 @@ function WordCard() {
               </Zoom>
             ))
           : null}
-        <div className="all">
-          <Button className="allopen">전체 열기</Button>{' '}
-        </div>
+        <allOpen className="all">
+          <Button>전체 열기</Button>{' '}
+        </allOpen>
         <RedoOutlined style={{ fontSize: '150%', cursor: 'pointer' }} onClick={wordShuffle} />
       </MainBack>
+      <MainLook>hi</MainLook>
     </>
   )
   // <div>

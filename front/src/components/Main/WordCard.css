@@ -66,12 +66,13 @@
   }
 } */
 .bg-wrapper {
-  height: 50vh;
+  height: 32vh;
   display: inline-block;
   justify-content: center;
   align-items: center;
   margin-top: 10%;
-  margin-right: 4%;
+  margin-right: 2%;
+  margin-left: 2%;
 
   /* background: #444; */
 }

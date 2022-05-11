@@ -1,9 +1,12 @@
 import { useState } from 'react'
-import { Button, Modal, Space } from 'antd'
+import { Button, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { getAxios } from '../../api'
+import { useSelector } from 'react-redux'
 
 function DeleteAccount() {
+  const { me } = useSelector((state) => state.user)
+
   let navigate = useNavigate()
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -17,12 +20,11 @@ function DeleteAccount() {
     await Modal.success({
       content: '회원탈퇴가 완료되었습니다.',
     })
-    navigate('/', { replace: true })
   }
   const getDelete = async () => {
     try {
       const axios = getAxios()
-      let res = await axios.delete('/user/delete')
+      let res = await axios.delete('user/delete', { params: { userId: me.userId } })
       console.log(res.data)
     } catch (err) {
       console.log(err)
@@ -42,7 +44,8 @@ function DeleteAccount() {
           handleClose()
           getDelete()
           onClickDelete()
-          localStorage.removeItem('token')
+          localStorage.removeItem('jwtToken')
+          navigate('/', { replace: true })
         }}
         onCancel={handleClose}>
         <p>회원탈퇴 하시겠습니까?</p>
