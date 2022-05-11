@@ -5,6 +5,8 @@ import com.example.back.dto.UserDto;
 import com.example.back.entity.Diary;
 import com.example.back.entity.Liked;
 import com.example.back.entity.User;
+import com.example.back.exception.CustomException;
+import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
@@ -19,6 +21,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +35,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean signup(UserDto user) {
         String password = user.getPassword();
+        if (!validationPasswd(password)) {
+            throw new CustomException(ErrorCode.INVALID_PASSWORD_ERROR);
+        }
         String encPass = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("확인해보자" + user.getPassword());
 
@@ -132,5 +139,15 @@ public class UserServiceImpl implements UserService {
 
         return new org.springframework.security.core.userdetails.User(user.getUserId(), user.getPassword(),
                 Arrays.asList(new SimpleGrantedAuthority("user")));
+    }
+
+    private static boolean validationPasswd(String pw){
+        Pattern p = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$");
+        Matcher m = p.matcher(pw);
+
+        if(m.matches()){
+            return true;
+        }
+        return false;
     }
 }
