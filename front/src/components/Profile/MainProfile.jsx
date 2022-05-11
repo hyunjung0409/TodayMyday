@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar, Select } from 'antd'
 import { loadUserRequestAction } from '../../reducers/user'
 import { useNavigate } from 'react-router-dom'
-
+import DeleteAccount from './DeleteAccount'
 const { Option } = Select
 const Gender = styled.div`
   margin-top: 5%;
@@ -31,6 +31,7 @@ const Age = styled.div`
 function MainProfile({ imageUploader, data }) {
   const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
+  console.log(me)
   const [form] = Form.useForm()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
@@ -206,11 +207,11 @@ function MainProfile({ imageUploader, data }) {
                 name="ageRange"
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: 'Please select ageRange!',
                   },
                 ]}>
-                <Select placeholder="Select your ageRange">
+                <Select defaultValue={me.age} placeholder="Select your ageRange">
                   <Option value="1">어린이 (0~9)</Option>
                   <Option value="2">청소년 (10~19)</Option>
                   <Option value="3">청년 (20~29)</Option>
@@ -228,6 +229,8 @@ function MainProfile({ imageUploader, data }) {
         )}
       </div>
       <Gender>성별 : {checkGender()}</Gender>
+      <br></br>
+      <DeleteAccount></DeleteAccount>
     </div>
   )
 }
