@@ -65,7 +65,7 @@ function DiaryFooter({ diary, dno }) {
               <StyledPrimaryBtn type="text" onClick={handleModify}>
                 수정
               </StyledPrimaryBtn>
-              <StyledDangerBtn type="text" onClick={handleModify}>
+              <StyledDangerBtn type="text" onClick={showModal}>
                 삭제
               </StyledDangerBtn>
               {/* <Button type="primary" onClick={handleModify}>
