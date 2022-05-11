@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 function LandingInfo() {
   const { me } = useSelector((state) => state.user)
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [state, setState] = useState(false)
+  const [state, setState] = useState(null)
   const navigate = useNavigate()
 
   const showModal = () => {
@@ -26,7 +26,7 @@ function LandingInfo() {
   }
 
   useEffect(() => {
-    me !== null && setState(true)
+    me !== null ? setState(true) : setState(false)
   }, [me, setState])
 
   return (

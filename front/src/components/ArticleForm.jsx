@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import ImageFileInput from '../components/ImageFileInput'
 import { articleAddRequestAction } from '../reducers/article'
 import ImageArticle from './ImageArticle'
 
@@ -95,7 +94,7 @@ function ArticleForm({ imageUploader, data }) {
       word: word,
       image: file.fileURL || fileURL,
     }
-    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate }))
+    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
     formRef.current.reset()
   }
 

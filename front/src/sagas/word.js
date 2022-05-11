@@ -4,13 +4,13 @@ import { WORD_GET_FAILURE, WORD_GET_REQUEST, WORD_GET_SUCCESS } from '../reducer
 
 const axios = getAxios()
 
-function wordGetAPI() {
-  return axios.get('test/word')
+function wordGetAPI(data) {
+  return axios.get('/word/readAll', { params: { userId: data.userId } })
 }
 
-function* wordGet() {
+function* wordGet(action) {
   try {
-    const res = yield call(wordGetAPI)
+    const res = yield call(wordGetAPI, action.data)
     yield put({
       type: WORD_GET_SUCCESS,
       data: res.data,

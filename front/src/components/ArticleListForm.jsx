@@ -24,7 +24,7 @@ function ArticleListForm(props) {
   const [boolean, setBoolean] = useState('boolean')
   const [loading, setLoading] = useState(false)
   const { me } = useSelector((state) => state.user)
-  const [searchKind, setSearchKind] = useState(null)
+  const [searchKind, setSearchKind] = useState('searchword')
   const { articleList } = useSelector((state) => state.article)
   const axios = getAxios()
 
@@ -71,24 +71,43 @@ function ArticleListForm(props) {
   }
 
   function handleChange(value) {
+    console.log('value', value)
     setSearchKind(value)
-    if (value === 'all') {
-      setBoolean('boolean')
-      setData([...articleList])
-    } else {
-      setBoolean('')
+  }
+
+  function timeForToday(value) {
+    let tData = new Date(value)
+    tData.setHours(tData.getHours() + 9)
+    const today = new Date()
+    const timeValue = new Date(tData)
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60)
+    if (betweenTime < 1) return '방금 전'
+    if (betweenTime < 60) {
+      return `${betweenTime}분 전`
     }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60)
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간 전`
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24)
+    if (betweenTimeDay < 8) {
+      return `${betweenTimeDay}일 전`
+    }
+
+    return `${value}`
   }
 
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
       <div style={{ width: '100%', marginBottom: '10px' }}>
         <Select
-          defaultValue="전체보기"
+          defaultValue="단어"
           size="large"
           onChange={handleChange}
           style={{ float: 'left', width: '19%', marginRight: '5px' }}>
-          <Option value="all">전체보기</Option>
           <Option value="searchword">단어</Option>
           <Option value="searchcontent">내용</Option>
         </Select>
@@ -99,7 +118,6 @@ function ArticleListForm(props) {
           size="large"
           style={{ width: '80%' }}
           onSearch={onSearch}
-          disabled={boolean}
         />
       </div>
       <div
@@ -127,9 +145,10 @@ function ArticleListForm(props) {
                 <ArticleListItem
                   picture={item.image}
                   title={item.word}
+                  content={item.content}
                   view={item.view}
                   liked={item.liked}
-                  createdat={moment(item.createdat).format('YYYY-MM-DD HH:mm:ss')}
+                  createdat={timeForToday(item.createdat)}
                 />
               </List.Item>
             )}
