@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Boolean validationCheck(String userId) {
+        return userRepository.existsById(userId);
+    }
+
+    @Override
     public void deleteUser(String userId) {
         User user = userRepository.findByUserId(userId);
 

@@ -47,8 +47,6 @@ public class TestController {
     public ResponseEntity<Object> createWord(@RequestBody TestWordDto wordDto){
 
         testWordService.createWord(wordDto);
-
         return ResponseEntity.ok().body(HttpStatus.OK);
-
     }
 }
