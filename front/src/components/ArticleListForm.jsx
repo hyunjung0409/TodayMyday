@@ -24,7 +24,7 @@ function ArticleListForm(props) {
   const [boolean, setBoolean] = useState('boolean')
   const [loading, setLoading] = useState(false)
   const { me } = useSelector((state) => state.user)
-  const [searchKind, setSearchKind] = useState(null)
+  const [searchKind, setSearchKind] = useState('searchword')
   const { articleList } = useSelector((state) => state.article)
   const axios = getAxios()
 
@@ -71,24 +71,18 @@ function ArticleListForm(props) {
   }
 
   function handleChange(value) {
+    console.log('value', value)
     setSearchKind(value)
-    if (value === 'all') {
-      setBoolean('boolean')
-      setData([...articleList])
-    } else {
-      setBoolean('')
-    }
   }
 
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
       <div style={{ width: '100%', marginBottom: '10px' }}>
         <Select
-          defaultValue="전체보기"
+          defaultValue="단어"
           size="large"
           onChange={handleChange}
           style={{ float: 'left', width: '19%', marginRight: '5px' }}>
-          <Option value="all">전체보기</Option>
           <Option value="searchword">단어</Option>
           <Option value="searchcontent">내용</Option>
         </Select>
@@ -99,7 +93,6 @@ function ArticleListForm(props) {
           size="large"
           style={{ width: '80%' }}
           onSearch={onSearch}
-          disabled={boolean}
         />
       </div>
       <div
