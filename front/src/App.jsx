@@ -70,8 +70,9 @@ const StyledContent = styled(Content)`
 const StyledContentArea = styled.div`
   min-height: 80vh;
   padding: 1rem;
-  // background: rgba(200, 200, 200, 0.5);
+  // background: rgba(250, 250, 250, 0.8);
   background: #fff;
+  border-radius: 5px;
 `
 
 export default App
