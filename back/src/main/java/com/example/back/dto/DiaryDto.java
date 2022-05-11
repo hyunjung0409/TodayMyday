@@ -10,25 +10,15 @@ import java.time.LocalDateTime;
 @Data
 public class DiaryDto {
 
-    @NotNull
     private String word;
-
     private String image;
-
     private String content;
-
     private LocalDateTime createdat;
-
     private String nickname;
-
     private long dno;
-
     private String profile_image;
-
     private int view;
-
     private int liked;
-
 
     public DiaryDto(String word, String image, String content, LocalDateTime createdat, String nickname, long dno, String profile_image, int view, int liked){
         this.word = word;

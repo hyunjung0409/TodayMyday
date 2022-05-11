@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "diary")
@@ -42,19 +43,23 @@ public class Diary {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     @JsonIgnore
-    User user;
+    private User user;
 
-    int liked;
+    private int liked;
+
+    @OneToMany(mappedBy = "diary", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
 
     @Builder
-    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user, int view, int liked){
+    public Diary(Long dno, String word, String image, String content, LocalDateTime createdat, int view, User user, int liked, List<Comment> comments) {
         this.dno = dno;
         this.word = word;
         this.image = image;
         this.content = content;
         this.createdat = createdat;
-        this.user = user;
         this.view = view;
+        this.user = user;
         this.liked = liked;
+        this.comments = comments;
     }
 }
