@@ -75,6 +75,31 @@ function ArticleListForm(props) {
     setSearchKind(value)
   }
 
+  function timeForToday(value) {
+    let tData = new Date(value)
+    tData.setHours(tData.getHours() + 9)
+    const today = new Date()
+    const timeValue = new Date(tData)
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60)
+    if (betweenTime < 1) return '방금 전'
+    if (betweenTime < 60) {
+      return `${betweenTime}분 전`
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60)
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간 전`
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24)
+    if (betweenTimeDay < 8) {
+      return `${betweenTimeDay}일 전`
+    }
+
+    return `${value}`
+  }
+
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
       <div style={{ width: '100%', marginBottom: '10px' }}>
@@ -120,9 +145,10 @@ function ArticleListForm(props) {
                 <ArticleListItem
                   picture={item.image}
                   title={item.word}
+                  content={item.content}
                   view={item.view}
                   liked={item.liked}
-                  createdat={moment(item.createdat).format('YYYY-MM-DD HH:mm:ss')}
+                  createdat={timeForToday(item.createdat)}
                 />
               </List.Item>
             )}
