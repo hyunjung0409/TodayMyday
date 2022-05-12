@@ -30,6 +30,9 @@ function DeleteAccount() {
       console.log(err)
     }
   }
+  const Refresh = () => {
+    window.location.reload()
+  }
 
   return (
     <div>
@@ -46,6 +49,7 @@ function DeleteAccount() {
           onClickDelete()
           localStorage.removeItem('jwtToken')
           navigate('/', { replace: true })
+          Refresh()
         }}
         onCancel={handleClose}>
         <p>회원탈퇴 하시겠습니까?</p>
