@@ -284,16 +284,8 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public List<Diary> readTopLiked() {
         List<Liked> likeds = likedRepository.findTopLiked();
-        List<Diary> diaries = new ArrayList<>();
+        List<Diary> diaries = diaryRepository.findTopLiked();
 
-        for (Liked liked : likeds) {
-            diaries.add(diaryRepository.findDiaryByDno(liked.getDno()));
-        }
-
-        for (Diary diary : diaries) {
-            diary.setLiked(likedService.readLiked(diary.getDno()));
-            diaryRepository.save(diary);
-        }
 
         return diaries;
     }
