@@ -72,8 +72,8 @@ const StyledContent = styled(Content)`
 const StyledContentArea = styled.div`
   min-height: 80vh;
   padding: 1rem;
-  // background: rgba(250, 250, 250, 0.8);
-  background: #fff;
+  background: rgba(220, 220, 220, 1);
+  // background: #fff;
   border-radius: 5px;
 `
 
