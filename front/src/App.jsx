@@ -17,6 +17,7 @@ import jwt_decode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
+import Test from './pages/Test'
 const { Content, Footer } = Layout
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/main" element={<Main />} />
+                <Route path="/test" element={<Test />} />
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/signup" element={<Signup />} />
                 <Route path="/search" element={<Search />} />
