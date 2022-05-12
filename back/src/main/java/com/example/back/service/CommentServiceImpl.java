@@ -48,4 +48,11 @@ public class CommentServiceImpl implements CommentService{
         List<Comment> comments = commentRepository.findAll();
         return comments;
     }
+
+    @Override
+    public List<Comment> readMyComment(String userId) {
+        List<Comment> comments = commentRepository.findCommentByUserId(userId);
+        return comments;
+
+    }
 }

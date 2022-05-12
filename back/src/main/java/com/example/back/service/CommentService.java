@@ -9,4 +9,5 @@ import java.util.List;
 public interface CommentService {
     Comment createComment(Long dno, CommentDto commentDto);
     List<Comment> readAllComment();
+    List<Comment> readMyComment(String userId);
 }

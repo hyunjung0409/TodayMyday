@@ -33,4 +33,10 @@ public class CommentController {
         return ResponseEntity.ok().body(comments);
     }
 
+    @GetMapping("/mycomment")
+    public ResponseEntity<List<Comment>> readMyComment(@RequestParam String userId){
+        List<Comment> comments = commentService.readMyComment(userId);
+        return ResponseEntity.ok().body(comments);
+    }
+
 }
