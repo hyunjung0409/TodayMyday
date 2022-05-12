@@ -80,6 +80,8 @@ function ArticleForm({ imageUploader, data }) {
   const messageRef = useRef()
   const [file, setFile] = useState({ fileName: null, fileURL: null })
   const { word, message, fileURL } = data
+  const [loading, setLoading] = useState(false)
+
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -89,12 +91,18 @@ function ArticleForm({ imageUploader, data }) {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    const data = {
-      content: messageRef.current.value || '',
-      word: word,
-      image: file.fileURL || fileURL,
+    if (messageRef.current.value !== '') {
+      const data = {
+        content: messageRef.current.value,
+        word: word,
+        image: file.fileURL || fileURL,
+      }
+      dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
+    } else {
+      Modal.warning({
+        title: '일기를 작성해 주세요.',
+      })
     }
-    dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
     formRef.current.reset()
   }
 
@@ -126,6 +134,8 @@ function ArticleForm({ imageUploader, data }) {
                     file={file}
                     data={data}
                     setFile={setFile}
+                    loading={loading}
+                    setLoading={setLoading}
                   />
                 </ImageLayout>
               </Col>
@@ -133,9 +143,15 @@ function ArticleForm({ imageUploader, data }) {
                 {/* <textarea ref={messageRef} name="message" placeholder={message}></textarea> */}
                 <MyTextarea ref={messageRef} placeholder="내용을 입력하세요..."></MyTextarea>
                 <div style={{ textAlign: 'right' }}>
-                  <Submit type="primary" onClick={onSubmit}>
-                    등록
-                  </Submit>
+                  {loading ? (
+                    <Submit type="primary" disabled>
+                      등록
+                    </Submit>
+                  ) : (
+                    <Submit type="primary" onClick={onSubmit}>
+                      등록
+                    </Submit>
+                  )}
                 </div>
               </Col>
             </Row>

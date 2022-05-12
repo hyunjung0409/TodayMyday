@@ -1,6 +1,6 @@
 import 'moment/locale/ko'
 import moment from 'moment'
-import { Select } from 'antd'
+import { Select, Tag } from 'antd'
 import { getAxios } from '../api'
 import Search from 'antd/lib/input/Search'
 import { useNavigate } from 'react-router-dom'
@@ -100,6 +100,24 @@ function ArticleListForm(props) {
     return `${value}`
   }
 
+  const viewSort = () => {
+    let tmp = [...data]
+    tmp.sort((a, b) => b.view - a.view)
+    setData(tmp)
+  }
+
+  const likedSort = () => {
+    let tmp = [...data]
+    tmp.sort((a, b) => b.liked - a.liked)
+    setData(tmp)
+  }
+
+  const createdatSort = () => {
+    let tmp = [...data]
+    tmp.sort((a, b) => new Date(b.createdat) - new Date(a.createdat))
+    setData(tmp)
+  }
+
   return (
     <div style={{ width: '100%', margin: '10rem auto' }}>
       <div style={{ width: '100%', marginBottom: '10px' }}>
@@ -127,6 +145,7 @@ function ArticleListForm(props) {
           overflow: 'auto',
           padding: '0 16px',
           border: '1px solid rgba(140, 140, 140, 0.35)',
+          marginBottom: '10px',
         }}>
         <InfiniteScroll
           dataLength={data.length}
@@ -154,6 +173,17 @@ function ArticleListForm(props) {
             )}
           />
         </InfiniteScroll>
+      </div>
+      <div style={{ textAlign: 'right' }}>
+        <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
+          최신순
+        </Tag>
+        <Tag style={{ cursor: 'pointer' }} color="green" onClick={viewSort}>
+          조회수
+        </Tag>
+        <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
+          좋아요
+        </Tag>
       </div>
     </div>
   )
