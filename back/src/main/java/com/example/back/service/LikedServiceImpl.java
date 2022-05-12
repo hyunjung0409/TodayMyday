@@ -22,13 +22,14 @@ public class LikedServiceImpl implements LikedService {
 
     @Override
     public boolean createLiked(LikedDto likedDto) {
-        List<Liked> likeds = likedRepository.findLikedByDno(likedDto.getDno());
+       Liked find_liked = likedRepository.findLikedUser(likedDto.getUserId(), likedDto.getDno());
+       Diary diary = diaryRepository.findDiaryByDno(likedDto.getDno());
 
-        for (Liked liked : likeds) {
-            if (liked.getUserId().equals(likedDto.getUserId())) { //좋아요 이미 눌렀으면 null 반환
-                likedRepository.delete(liked);
-                return false;
-            }
+        if (find_liked != null) { //좋아요 이미 눌렀으면 liked 테이블에서 데이터 삭제, false 반환
+            likedRepository.delete(find_liked);
+            diary.setLiked(diary.getLiked() - 1);
+            diaryRepository.save(diary);
+            return false;
         }
 
         Liked liked = Liked.builder()
@@ -37,6 +38,10 @@ public class LikedServiceImpl implements LikedService {
                 .build();
 
         likedRepository.save(liked);
+
+
+        diary.setLiked(diary.getLiked() + 1);
+        diaryRepository.save(diary);
 
         return true;
 

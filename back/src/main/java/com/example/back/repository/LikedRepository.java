@@ -5,6 +5,7 @@ import com.example.back.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface LikedRepository extends JpaRepository<Liked, Long> {
     @Query(value = "select lno, user_id, dno, count(*) from liked group by dno order by count(*) desc limit 15", nativeQuery = true)
     List<Liked>findTopLiked();
 
+    @Query(value = "select * from liked where user_id = :userId and dno = :dno", nativeQuery = true)
+    Liked findLikedUser(@Param("userId") String userId, @Param("dno") Long dno);
 }

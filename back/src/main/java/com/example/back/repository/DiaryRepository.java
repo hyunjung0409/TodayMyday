@@ -28,6 +28,8 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
     @Query(value = "select * from diary d where d.user_id = :userId order by view desc limit 5", nativeQuery = true)
     List<Diary>findMyDiaryByTopView(@Param("userId") String userId);
 
+    @Query(value = "select * from diary order by liked desc limit 15", nativeQuery = true)
+    List<Diary> findTopLiked();
 
 //    @Query(value = "select * from diary where content liked '%:keyword%'")
 //    List<Diary>searchDiares(@Param("keyword") String keyword);
