@@ -1,6 +1,7 @@
 package com.example.back.controller;
 
 import com.example.back.dto.CommentDto;
+import com.example.back.entity.Comment;
 import com.example.back.service.CommentService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/comment")
@@ -17,10 +20,17 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Object> createComment(@RequestParam Long dno, @RequestBody CommentDto commentDto) {
 
         commentService.createComment(dno, commentDto);
         return ResponseEntity.ok().body(HttpStatus.CREATED);
     }
+
+    @GetMapping("")
+    public ResponseEntity<List<Comment>> readAllComment(){
+        List<Comment> comments = commentService.readAllComment();
+        return ResponseEntity.ok().body(comments);
+    }
+
 }

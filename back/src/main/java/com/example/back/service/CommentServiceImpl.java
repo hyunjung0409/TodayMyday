@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -39,5 +40,12 @@ public class CommentServiceImpl implements CommentService{
 
         commentRepository.save(save);
         return save;
+    }
+
+    @Override
+    public List<Comment> readAllComment() {
+
+        List<Comment> comments = commentRepository.findAll();
+        return comments;
     }
 }
