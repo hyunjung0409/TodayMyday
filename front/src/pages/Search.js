@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import SearchBar from '../components/Diary/SearchBar'
 import SearchResult from '../components/Diary/SearchResult'
+import TopLiked from '../components/Diary/TopLiked'
 
 function Search() {
   const [optionBool, setOptionBool] = useState(false)
@@ -28,7 +29,9 @@ function Search() {
         />
       </div>
       {keyword === '' ? (
-        <div>검색어를 입력해주세요</div>
+        <div>
+          <TopLiked />
+        </div>
       ) : (
         <div>
           {diaryList.length === 0 ? (

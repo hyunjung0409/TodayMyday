@@ -18,7 +18,7 @@ const MyCarousel = styled(Carousel)`
   }
 `
 
-function DiaryCarousel({ diaryList, setDiaryList, me }) {
+function DiaryCarousel({ diaryList }) {
   const rendering = () => {
     const result = []
     for (let index = 0; index < diaryList.length; index += 5) {
