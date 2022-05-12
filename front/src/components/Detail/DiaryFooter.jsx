@@ -53,9 +53,11 @@ function DiaryFooter({ diary, dno }) {
     <Row>
       <Col span={12}>
         <StyledStratContainer>
-          <StyledPrimaryBtn type="text" onClick={handleMove}>
-            내 글 목록
-          </StyledPrimaryBtn>
+          {me.nickname === diary.nickname ? (
+            <StyledPrimaryBtn type="text" onClick={handleMove}>
+              내 글 목록
+            </StyledPrimaryBtn>
+          ) : null}
         </StyledStratContainer>
       </Col>
       <Col span={12}>

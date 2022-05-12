@@ -17,7 +17,11 @@ import jwt_decode from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
+<<<<<<< HEAD
 import Error from './pages/Error'
+=======
+import Test from './pages/Test'
+>>>>>>> feda3c5146916a0e34577742fe451cc5e870b06c
 const { Content, Footer } = Layout
 
 function App() {
@@ -91,8 +95,8 @@ const StyledContent = styled(Content)`
 const StyledContentArea = styled.div`
   min-height: 80vh;
   padding: 1rem;
-  // background: rgba(250, 250, 250, 0.8);
-  background: #fff;
+  background: rgba(220, 220, 220, 1);
+  // background: #fff;
   border-radius: 5px;
 `
 
