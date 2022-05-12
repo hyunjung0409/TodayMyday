@@ -49,7 +49,12 @@ function LikedImgCarousel({ liked }) {
         <Slider {...settings}>
           {liked.map((item, idx) => (
             <div key={idx} className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
-              <Card style={{ width: '200px' }} hoverable>
+              <Card
+                style={{ width: '200px' }}
+                hoverable
+                onClick={(e) => {
+                  pageMove(item.dno, e)
+                }}>
                 <div style={{ marginBottom: '10px' }}>{idx + 1}</div>
                 <div style={{ marginBottom: '10px' }}>
                   <img style={{ width: '150px' }} src={item.image} alt={item.image} />

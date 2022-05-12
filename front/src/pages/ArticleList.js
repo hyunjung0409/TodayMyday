@@ -43,16 +43,18 @@ function ArticleList(props) {
 
   return (
     <>
-      <Row>
-        <Col span={12}></Col>
-        <Col span={12}>
-          <ArticleListForm />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12}>{liked !== null && <LikedImgCarousel liked={liked} />}</Col>
-        <Col span={12}>{view !== null && <ViewImgCarousel view={view} />}</Col>
-      </Row>
+      <div style={{ backgroundColor: '#fff' }}>
+        <Row>
+          <Col span={12}></Col>
+          <Col span={12}>
+            <ArticleListForm />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>{liked !== null && <LikedImgCarousel liked={liked} />}</Col>
+          <Col span={12}>{view !== null && <ViewImgCarousel view={view} />}</Col>
+        </Row>
+      </div>
     </>
   )
 }
