@@ -119,7 +119,7 @@ function ArticleListForm(props) {
   }
 
   return (
-    <div style={{ width: '100%', margin: '10rem auto' }}>
+    <div style={{ width: '100%', marginTop: '1rem' }}>
       <div style={{ width: '100%', marginBottom: '10px' }}>
         <Select
           defaultValue="단어"

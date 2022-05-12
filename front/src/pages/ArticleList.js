@@ -9,8 +9,8 @@ import ViewImgCarousel from '../components/ViewmgCarousel'
 function ArticleList(props) {
   const axios = getAxios()
   const { me } = useSelector((state) => state.user)
-  const [likedImg, setLikedImg] = useState(null)
-  const [viewImg, setViewImg] = useState(null)
+  const [liked, setLiked] = useState(null)
+  const [view, setView] = useState(null)
 
   useEffect(() => {
     if (me !== null) {
@@ -19,9 +19,9 @@ function ArticleList(props) {
         .then((res) => {
           const tmp = []
           res.data.diaries.map((item, idx) => {
-            return tmp.push(item.image)
+            return tmp.push(item)
           })
-          setLikedImg(tmp)
+          setLiked(tmp)
         })
         .catch((err) => {
           console.log(err)
@@ -31,9 +31,9 @@ function ArticleList(props) {
         .then((res) => {
           const tmp = []
           res.data.diaries.map((item, idx) => {
-            return tmp.push(item.image)
+            return tmp.push(item)
           })
-          setViewImg(tmp)
+          setView(tmp)
         })
         .catch((err) => {
           console.log(err)
@@ -43,17 +43,16 @@ function ArticleList(props) {
 
   return (
     <>
-      <div>
-        <Row>
-          <Col span={12}>
-            {likedImg !== null && <LikedImgCarousel images={likedImg} />}
-            {likedImg !== null && <ViewImgCarousel images={viewImg} />}
-          </Col>
-          <Col span={12}>
-            <ArticleListForm />
-          </Col>
-        </Row>
-      </div>
+      <Row style={{ height: '50vh' }}>
+        <Col span={12}></Col>
+        <Col span={12}>
+          <ArticleListForm />
+        </Col>
+      </Row>
+      <Row style={{ height: '70vh' }}>
+        <Col span={12}>{liked !== null && <LikedImgCarousel liked={liked} />}</Col>
+        <Col span={12}>{view !== null && <ViewImgCarousel view={view} />}</Col>
+      </Row>
     </>
   )
 }
