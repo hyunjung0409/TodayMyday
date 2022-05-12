@@ -4,8 +4,11 @@ import Slider from 'react-slick'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import { Card } from 'antd'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 
 function ViewImgCarousel({ view }) {
+  const navigate = useNavigate()
+
   const NextArrow = ({ onClick }) => {
     return (
       <div className="arrow next" onClick={onClick}>
@@ -36,6 +39,10 @@ function ViewImgCarousel({ view }) {
     beforeChange: (current, next) => setImageIndex(next),
   }
 
+  const pageMove = (dno, e) => {
+    navigate(`/diary/read/${dno}`)
+  }
+
   return (
     <>
       <div className="Carousel">
@@ -43,7 +50,12 @@ function ViewImgCarousel({ view }) {
         <Slider {...settings}>
           {view.map((item, idx) => (
             <div key={idx} className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
-              <Card style={{ width: '200px' }} hoverable>
+              <Card
+                style={{ width: '200px' }}
+                hoverable
+                onClick={(e) => {
+                  pageMove(item.dno, e)
+                }}>
                 <div style={{ marginBottom: '10px' }}>{idx + 1}</div>
                 <div style={{ marginBottom: '10px' }}>
                   <img style={{ width: '150px' }} src={item.image} alt={item.image} />
