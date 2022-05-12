@@ -291,7 +291,7 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Diary> diaries = diaryService.readTopLiked();
+        List<DiaryDto> diaries = diaryService.readTopLiked();
 
         if (diaries == null) {
             hashMap.put("Message", "NO DIARY");
@@ -347,9 +347,9 @@ public class DiaryController {
 
     @GetMapping("/paging")
     public ResponseEntity retrievePosts(final Pageable pageable) {
-        Page<Diary> posts = diaryRepository.findAll(pageable);
+        Page<Diary> diaries = diaryRepository.findAll(pageable);
 
-        return new ResponseEntity<>(posts,HttpStatus.OK);
+        return new ResponseEntity<>(diaries,HttpStatus.OK);
     }
 
 }

@@ -14,7 +14,7 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
     Diary findDiaryByDno(Long dno);
     Diary deleteDiaryByDno(Long dno);
-    List<Diary> findByContentContains(String keyword);
+    List<Diary> findByContentContainsOrderByDnoAsc(String keyword);
     List<Diary>findDiaryByWord(String word);
 
     @Query(value = "select * from diary d where d.user_id = :userId", nativeQuery = true)
