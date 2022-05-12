@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Layout } from 'antd'
 import styled from 'styled-components'
@@ -14,14 +14,16 @@ import Profile from './pages/Profile'
 import ReadDiary from './pages/ReadDiary'
 import ModifyDiary from './pages/ModifyDiary'
 import jwt_decode from 'jwt-decode'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
+import Error from './pages/Error'
 import Test from './pages/Test'
 const { Content, Footer } = Layout
 
 function App() {
   const dispatch = useDispatch()
+  const { me } = useSelector((state) => state.user)
 
   useEffect(() => {
     if (localStorage.getItem('jwtToken') != null) {
@@ -31,6 +33,10 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    me !== null && console.log('me', me)
+  }, [me])
+
   return (
     <Layout className="layout">
       <BrowserRouter>
@@ -39,17 +45,32 @@ function App() {
           <div className="App">
             <StyledContentArea>
               <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/main" element={<Main />} />
-                <Route path="/test" element={<Test />} />
-                <Route path="/user/login" element={<Login />} />
-                <Route path="/user/signup" element={<Signup />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/my/article" element={<Article />} />
-                <Route path="/my/articleList" element={<ArticleList />} />
-                <Route path="/my/profile" element={<Profile />} />
-                <Route path="/diary/read/:dno" element={<ReadDiary />} />
-                <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
+                {me === null ? (
+                  <>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/main" element={<Error />} />
+                    <Route path="/user/login" element={<Login />} />
+                    <Route path="/user/signup" element={<Signup />} />
+                    <Route path="/search" element={<Error />} />
+                    <Route path="/my/article" element={<Error />} />
+                    <Route path="/my/articleList" element={<Error />} />
+                    <Route path="/my/profile" element={<Error />} />
+                    <Route path="/diary/read/:dno" element={<Error />} />
+                    <Route path="/diary/modify/:dno" element={<Error />} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/main" element={<Main />} />
+                    <Route path="/test" element={<Test />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/my/article" element={<Article />} />
+                    <Route path="/my/articleList" element={<ArticleList />} />
+                    <Route path="/my/profile" element={<Profile />} />
+                    <Route path="/diary/read/:dno" element={<ReadDiary />} />
+                    <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
+                  </>
+                )}
               </Routes>
             </StyledContentArea>
           </div>

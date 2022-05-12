@@ -9,7 +9,7 @@ function ArticleListItem({ picture, title, createdat, view, liked, content }) {
         <img width={100} src={picture} alt="" style={{ flex: 2 }} />
         <div style={{ flex: 2 }}>
           <div style={{ position: 'relative', top: '15px' }}>
-            <h1 style={{ fontWeight: 'bold', marginBottom: '20px' }}>#&nbsp;{title}</h1>
+            <h1 style={{ fontWeight: 'bold', marginBottom: '20px' }}>#{title}</h1>
             <p>{content.length >= 35 ? content.substr(0, 35) + '...' : content}</p>
             <div>{createdat}</div>
           </div>
