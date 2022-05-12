@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Layout, Typography, Row, Col, Menu, Dropdown, Space, Avatar, Modal, Button } from 'antd'
-import { DownOutlined, UserOutlined } from '@ant-design/icons'
+import { DownOutlined, PropertySafetyOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,6 +15,7 @@ const { Title } = Typography
 function Navbar() {
   const navigate = useNavigate()
   const { me } = useSelector((state) => state.user)
+
   const dispatch = useDispatch()
 
   const onLogOut = () => {
@@ -99,7 +100,13 @@ function Navbar() {
           {me ? (
             <Space align="center" size="middle">
               <Avatar
-                icon={me.image === undefined ? <UserOutlined /> : <img src={me.image}></img>}
+                icon={
+                  me.image === undefined ? (
+                    <UserOutlined />
+                  ) : (
+                    <img src={me.image} alt="profile"></img>
+                  )
+                }
               />
               <Dropdown overlay={menu} trigger={['click']}>
                 <StyledAnchor onClick={(e) => e.preventDefault()}>

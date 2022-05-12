@@ -31,13 +31,14 @@ const Age = styled.div`
 function MainProfile({ imageUploader, data }) {
   const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
-  console.log(me)
   const [form] = Form.useForm()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
   const [editable, setEditable] = useState(false)
   const [loading, setLoading] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [nick, setNick] = useState('')
+
   const showModal = () => {
     setIsModalVisible(true)
   }
@@ -54,6 +55,7 @@ function MainProfile({ imageUploader, data }) {
   const [image, setImage] = useState({
     fileURL: '/images/기본사진.png',
   })
+
   const onFinish = async (values) => {
     const axios = getAxios()
     me !== null &&
@@ -64,9 +66,10 @@ function MainProfile({ imageUploader, data }) {
         { image: file2.fileURL, age: me.age, gender: me.gender },
         { params: { userId: me.userId } },
       ))
-    await dispatch(loadUserRequestAction({ userId: me.userId }))
+    dispatch(loadUserRequestAction({ userId: me.userId }))
     changePic()
   }
+
   const onDelete = async (values) => {
     const axios = getAxios()
     me !== null &&
@@ -95,11 +98,21 @@ function MainProfile({ imageUploader, data }) {
       me.userId !== null &&
       (await axios.put(
         'user/modify',
-        { age: values.ageRange, image: me.image, gender: me.gender },
+        { age: values.ageRange, image: me.image, gender: me.gender, nickname: me.nickname },
         { params: { userId: me.userId } },
       ))
     me.age = values.ageRange
   }
+  const updateNickname = async (values) => {
+    const axios = getAxios()(
+      await axios.put(
+        'user/modify',
+        { age: me.age, image: me.image, gender: me.gender, nickname: nick },
+        { params: { userId: me.userId } },
+      ),
+    )
+  }
+
   const showAge = (e) => {
     if (e == 1) {
       return '어린이 (0~9)'
@@ -195,7 +208,20 @@ function MainProfile({ imageUploader, data }) {
           </Form>
         )}
       </div>
-      <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
+      <div>
+        {editable === false ? (
+          <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
+        ) : (
+          <MyNick>
+            닉네임 :{' '}
+            <input
+              type="text"
+              value={nick !== null && nick}
+              onChange={(e) => setNick(e.target.value)}></input>
+            <Button onClick={updateNickname(nick)}>저장</Button>
+          </MyNick>
+        )}
+      </div>
       <div>
         {editable === false ? (
           <Age>연령대 : {me !== null && showAge(me.age)} </Age>
