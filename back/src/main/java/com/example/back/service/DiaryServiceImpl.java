@@ -90,7 +90,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public List<DiaryDto> searchDiariesByContent(String keyword, String userId) {
-        List<Diary> diaries = diaryRepository.findByContentContains(keyword);
+        List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoAsc(keyword);
         if(diaries == null) {
             return null;
         }
@@ -187,7 +187,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public List<DiaryDto> searchAllDiariesByContent(String keyword) {
-        List<Diary> diaries = diaryRepository.findByContentContains(keyword);
+        List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoAsc(keyword);
 
         if(diaries == null) {
             return null;
@@ -282,12 +282,26 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<Diary> readTopLiked() {
-        List<Liked> likeds = likedRepository.findTopLiked();
+    public List<DiaryDto> readTopLiked() {
         List<Diary> diaries = diaryRepository.findTopLiked();
+        List<DiaryDto> all_diaries = new ArrayList<>();
+
+        for (Diary diary : diaries) {
+            DiaryDto diaryDto = new DiaryDto();
+            diaryDto.setDno(diary.getDno());
+            diaryDto.setCreatedat(diary.getCreatedat());
+            diaryDto.setContent(diary.getContent());
+            diaryDto.setImage(diary.getImage());
+            diaryDto.setWord(diary.getWord());
+            diaryDto.setNickname(diary.getUser().getNickname());
+            diaryDto.setProfile_image(diary.getUser().getImage());
+            diaryDto.setLiked(diary.getLiked());
+            diaryDto.setView(diary.getView());
+            all_diaries.add(diaryDto);
+        }
 
 
-        return diaries;
+        return all_diaries;
     }
 
     @Override
