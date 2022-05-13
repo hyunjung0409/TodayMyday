@@ -75,23 +75,23 @@ public class WordServiceImpl implements WordService{
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
         if(user.getAge().equals("1")){
-            word.setTeens(word.getTeens()+1);
+            word.setTeens(word.getTeens()+2);
         } else if(user.getAge().equals("2")){
-            word.setTwenties(word.getTwenties()+1);
+            word.setTwenties(word.getTwenties()+2);
         } else if(user.getAge().equals("3")){
-            word.setThirties(word.getThirties()+1);
+            word.setThirties(word.getThirties()+2);
         } else if(user.getAge().equals("4")){
-            word.setFourties(word.getFourties()+1);
+            word.setFourties(word.getFourties()+2);
         } else if(user.getAge().equals("5")){
-            word.setFifties(word.getFifties()+1);
+            word.setFifties(word.getFifties()+2);
         } else if(user.getAge().equals("6")){
             word.setOversixties(word.getOversixties()+1);
         }
 
         if(user.getGender().equals("male")) {
-            word.setMale(word.getMale()+1);
+            word.setMale(word.getMale()+2);
         } else {
-            word.setFemale(word.getFemale()+1);
+            word.setFemale(word.getFemale()+2);
         }
 
         wordRepository.save(word);
@@ -104,6 +104,9 @@ public class WordServiceImpl implements WordService{
         // 각 조건에 따른 각각의 5개의 단어들을 담을 배열
         List<String> pickedWords = new ArrayList<>();
         User user = userRepository.findByUserId(userId);
+
+        if(user == null) throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
         String gender = user.getGender();
         String age = user.getAge();
         Word countWord;
@@ -121,7 +124,7 @@ public class WordServiceImpl implements WordService{
 
         // 랜덤 추출 알고리즘
         for(int i = 1; i <= 5; i++){
-            String selectedWord = pickWordByCondition(i, gender, age);
+            String selectedWord = selectOne(i, gender, age);
             if(randomPickhSet.contains(selectedWord) || selectedSet.contains(selectedWord)) {
                 i--;
                 continue;
@@ -144,7 +147,7 @@ public class WordServiceImpl implements WordService{
     }
 
     @Override
-    public String pickWordByCondition(int condition, String gender, String age) {
+    public List<String> pickWordByCondition(int condition, String gender, String age) {
         List<String> wordList = new ArrayList<>();
 
         switch (condition){
@@ -213,6 +216,16 @@ public class WordServiceImpl implements WordService{
 //            System.out.println("here : \n"+wordList.get(i));
 //        }
 
+        return wordList;
+    }
+
+    @Override
+    public String selectOne(int condition, String gender, String age) {
+
+        List<String> wordList = pickWordByCondition(condition, gender, age);
+
+        if(wordList == null) throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
         int val = wordList.size();
         int ranValue = (int)(Math.random() * val);
         String[] wordListStr = wordList.get(ranValue).split(",");
@@ -223,6 +236,27 @@ public class WordServiceImpl implements WordService{
     @Override
     public Boolean duplicateWord(String word) {
         return wordRepository.existsByWord(word);
+    }
+
+    @Override
+    public List<String> wordRanking(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        if(user == null) throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
+        String userAge = user.getAge();
+        String userGender = user.getGender();
+
+
+        List<String> wordTop3 = pickWordByCondition(1, userGender, userAge);
+        List<String> wordList = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            wordList.add(wordTop3.get(i).split(",")[0]);
+//            System.out.println("잘되나? "+wordTop3.get(i).split(",")[0]);
+        }
+
+        return wordList;
     }
 
     @Override
