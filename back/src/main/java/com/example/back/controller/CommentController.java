@@ -27,7 +27,7 @@ public class CommentController {
         return ResponseEntity.ok().body(HttpStatus.CREATED);
     }
 
-    @GetMapping("")
+    @GetMapping("/readAll")
     public ResponseEntity<List<Comment>> readAllComment(){
         List<Comment> comments = commentService.readAllComment();
         return ResponseEntity.ok().body(comments);
@@ -38,5 +38,13 @@ public class CommentController {
         List<Comment> comments = commentService.readMyComment(userId);
         return ResponseEntity.ok().body(comments);
     }
+
+    @PutMapping("/{cno}")
+    public ResponseEntity<Comment> modifyComment(@PathVariable long cno, @RequestParam String userId, @RequestBody CommentDto commentDto){
+        Comment comment = commentService.modifyComment(cno, userId, commentDto);
+        return ResponseEntity.ok().body(comment);
+    }
+
+
 
 }
