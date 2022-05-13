@@ -10,4 +10,6 @@ public interface CommentService {
     Comment createComment(Long dno, CommentDto commentDto);
     List<Comment> readAllComment();
     List<Comment> readMyComment(String userId);
+    Comment modifyComment(Long cno, String userId, CommentDto commentDto);
+    void deleteComment(Long cno, String userId);
 }

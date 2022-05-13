@@ -55,4 +55,31 @@ public class CommentServiceImpl implements CommentService{
         return comments;
 
     }
+
+    @Override
+    public Comment modifyComment(Long cno, String userId, CommentDto commentDto) {
+        Comment comment = commentRepository.findCommentByCno(cno);
+        if(comment == null)
+            throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
+        if(!comment.getUserId().equals(userId))
+            throw new CustomException(ErrorCode.FORBIDDEN_AUTH);
+
+        comment.setContent(commentDto.getContent());
+        commentRepository.save(comment);
+
+        return comment;
+    }
+
+    @Override
+    public void deleteComment(Long cno, String userId) {
+        Comment comment = commentRepository.findCommentByCno(cno);
+        if(comment == null)
+            throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
+        if(!comment.getUserId().equals(userId))
+            throw new CustomException(ErrorCode.FORBIDDEN_AUTH);
+
+        commentRepository.delete(comment);
+    }
 }
