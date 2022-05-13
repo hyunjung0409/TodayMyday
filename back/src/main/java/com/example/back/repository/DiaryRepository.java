@@ -14,10 +14,10 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
     Diary findDiaryByDno(Long dno);
     Diary deleteDiaryByDno(Long dno);
-    List<Diary> findByContentContainsOrderByDnoAsc(String keyword);
-    List<Diary>findDiaryByWord(String word);
+    List<Diary> findByContentContainsOrderByDnoDesc(String keyword);
+    List<Diary>findDiaryByWordOrderByDnoDesc(String word);
 
-    @Query(value = "select * from diary d where d.user_id = :userId", nativeQuery = true)
+    @Query(value = "select * from diary d where d.user_id = :userId order by dno desc", nativeQuery = true)
     List<Diary>findByUserId(@Param("userId") String userId);
 
     List<Diary>findAll();

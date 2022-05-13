@@ -46,7 +46,7 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Diary> diaries = diaryService.readAllDiary();
+        List<DiaryDto> diaries = diaryService.readAllDiary();
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
