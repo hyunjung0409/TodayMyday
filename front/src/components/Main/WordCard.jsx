@@ -20,10 +20,7 @@ const MainBack = styled.div`
 const allOpen = styled.div`
   margin-bottom: 10px;
 `
-const MainLook = styled.div`
-  margin-top: 5%;
-  background-color: pink;
-`
+
 function WordCard() {
   const navigate = useNavigate()
   const { wordGet } = useSelector((state) => state.word)
@@ -111,7 +108,6 @@ function WordCard() {
         </allOpen>
         <RedoOutlined style={{ fontSize: '150%', cursor: 'pointer' }} onClick={wordShuffle} />
       </MainBack>
-      <MainLook>hi</MainLook>
     </>
   )
   // <div>

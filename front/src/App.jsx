@@ -45,32 +45,17 @@ function App() {
           <div className="App">
             <StyledContentArea>
               <Routes>
-                {me === null ? (
-                  <>
-                    <Route path="/" element={<Landing />} />
-                    <Route path="/main" element={<Error />} />
-                    <Route path="/user/login" element={<Login />} />
-                    <Route path="/user/signup" element={<Signup />} />
-                    <Route path="/search" element={<Error />} />
-                    <Route path="/my/article" element={<Error />} />
-                    <Route path="/my/articleList" element={<Error />} />
-                    <Route path="/my/profile" element={<Error />} />
-                    <Route path="/diary/read/:dno" element={<Error />} />
-                    <Route path="/diary/modify/:dno" element={<Error />} />
-                  </>
-                ) : (
-                  <>
-                    <Route path="/" element={<Landing />} />
-                    <Route path="/main" element={<Main />} />
-                    <Route path="/test" element={<Test />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="/my/article" element={<Article />} />
-                    <Route path="/my/articleList" element={<ArticleList />} />
-                    <Route path="/my/profile" element={<Profile />} />
-                    <Route path="/diary/read/:dno" element={<ReadDiary />} />
-                    <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
-                  </>
-                )}
+                <Route path="/" element={<Landing />} />
+                <Route path="/main" element={<Main />} />
+                <Route path="/test" element={<Test />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/user/login" element={<Login />} />
+                <Route path="/user/signup" element={<Signup />} />
+                <Route path="/my/article" element={<Article />} />
+                <Route path="/my/articleList" element={<ArticleList />} />
+                <Route path="/my/profile" element={<Profile />} />
+                <Route path="/diary/read/:dno" element={<ReadDiary />} />
+                <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
               </Routes>
             </StyledContentArea>
           </div>

@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import WordCard from '../components/Main/WordCard'
 import { wordGetRequestAction } from '../reducers/word'
+import DiaryList from '../components/Main/DiaryList'
+import { Row, Col } from 'antd'
 
 // const Cards = styled.div`
 //   background-color: #f9fafb;
@@ -24,7 +26,12 @@ function Main() {
     }
   }, [me])
 
-  return <WordCard />
+  return (
+    <>
+      <WordCard />
+      <DiaryList />
+    </>
+  )
 }
 
 export default Main
