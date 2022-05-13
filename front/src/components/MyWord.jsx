@@ -1,4 +1,4 @@
-import { Card, Modal } from 'antd'
+import { Card, Modal, Tag } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getAxios } from '../api'
@@ -14,6 +14,19 @@ function MyWord({ test, data, setWord, word }) {
   const [diary, setDiary] = useState(null)
   const [title, setTitle] = useState(null)
   const navigate = useNavigate()
+  const color = [
+    'magenta',
+    'red',
+    'volcano',
+    'orange',
+    'gold',
+    'lime',
+    'green',
+    'cyan',
+    'blue',
+    'geekblue',
+    'purple',
+  ]
 
   const settings = {
     dots: true,
@@ -58,7 +71,6 @@ function MyWord({ test, data, setWord, word }) {
     console.log('item', item)
     setTitle(item)
     axios.get(`/diary/searchword`, { params: { userId: me.userId, word: item } }).then((res) => {
-      console.log('res.data', res.data)
       setDiary(res.data)
     })
     setIsModalVisible(true)
@@ -80,21 +92,15 @@ function MyWord({ test, data, setWord, word }) {
     <div>
       {word != null &&
         word.map((item, idx) => (
-          <div
+          <Tag
+            style={{ marginBottom: '5px', cursor: 'pointer' }}
             key={idx}
-            style={{
-              width: '60px',
-              height: '30px',
-              textAlign: 'center',
-              float: 'left',
+            color={color[Math.floor(Math.random() * color.length)]}
+            onClick={(e) => {
+              showModal(item, e)
             }}>
-            <div
-              onClick={(e) => {
-                showModal(item, e)
-              }}>
-              {item}
-            </div>
-          </div>
+            {item}
+          </Tag>
         ))}
       {title != null && (
         <Modal
