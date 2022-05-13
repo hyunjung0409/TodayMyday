@@ -11,6 +11,7 @@ import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -119,10 +120,8 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
-        for (Diary diary : user.getDairies()) {
-            diary.setLiked(likedService.readLiked(diary.getDno()));
-            diaryRepository.save(diary);
-        }
+        List<Diary> diaries = diaryRepository.findByUserId(userId);
+        user.setDairies(diaries);
 
         return user;
     }
