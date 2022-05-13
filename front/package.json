@@ -17,6 +17,7 @@
     "moment": "^2.29.3",
     "nginx": "^1.0.7",
     "prop-types": "^15.8.1",
+    "rc-virtual-list": "^3.4.7",
     "react": "^18.0.0",
     "react-calendar": "^3.7.0",
     "react-dom": "^18.0.0",
