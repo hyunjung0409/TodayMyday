@@ -19,7 +19,7 @@ public interface DiaryService {
     List<DiaryDto> searchAllDiariesByWord(String word);
     List<String> readAllword();
     Diary updateView(Long dno);
-    List<Diary>readAllDiary();
+    List<DiaryDto>readAllDiary();
     List<DiaryDto>readTopLiked();
     List<Diary>readMyDiaryTopLiked(String userId);
     List<Diary>readMyDiaryTopView(String userId);

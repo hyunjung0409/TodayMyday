@@ -10,6 +10,7 @@ import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -90,7 +91,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public List<DiaryDto> searchDiariesByContent(String keyword, String userId) {
-        List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoAsc(keyword);
+        List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoDesc(keyword);
         if(diaries == null) {
             return null;
         }
@@ -159,7 +160,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public List<DiaryDto> searchDiariesByWord(String word, String userId) {
-        List<Diary> diaries = diaryRepository.findDiaryByWord(word);
+        List<Diary> diaries = diaryRepository.findDiaryByWordOrderByDnoDesc(word);
 
         if(diaries == null) {
             return null;
@@ -187,7 +188,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public List<DiaryDto> searchAllDiariesByContent(String keyword) {
-        List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoAsc(keyword);
+        List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoDesc(keyword);
 
         if(diaries == null) {
             return null;
@@ -215,7 +216,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public List<DiaryDto> searchAllDiariesByWord(String word) {
-        List<Diary> diaries = diaryRepository.findDiaryByWord(word);
+        List<Diary> diaries = diaryRepository.findDiaryByWordOrderByDnoDesc(word);
 
         if (diaries == null) {
             return null;
@@ -270,15 +271,25 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<Diary> readAllDiary() {
-        List<Diary> diaries = diaryRepository.findAll();
+    public List<DiaryDto> readAllDiary() {
+        List<Diary> diaries = diaryRepository.findAll(Sort.by(Sort.Direction.DESC, "dno"));
 
+        List<DiaryDto> all_diaries = new ArrayList<>();
         for (Diary diary : diaries) {
-            diary.setLiked(likedService.readLiked(diary.getDno()));
-            diaryRepository.save(diary);
+            DiaryDto diaryDto = new DiaryDto();
+            diaryDto.setDno(diary.getDno());
+            diaryDto.setCreatedat(diary.getCreatedat());
+            diaryDto.setContent(diary.getContent());
+            diaryDto.setImage(diary.getImage());
+            diaryDto.setWord(diary.getWord());
+            diaryDto.setNickname(diary.getUser().getNickname());
+            diaryDto.setProfile_image(diary.getUser().getImage());
+            diaryDto.setLiked(diary.getLiked());
+            diaryDto.setView(diary.getView());
+            all_diaries.add(diaryDto);
         }
+        return all_diaries;
 
-        return diaries;
     }
 
     @Override
