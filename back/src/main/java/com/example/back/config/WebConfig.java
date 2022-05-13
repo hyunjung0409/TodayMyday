@@ -2,6 +2,7 @@ package com.example.back.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -16,11 +17,14 @@ public class WebConfig implements WebMvcConfigurer {
         SortHandlerMethodArgumentResolver sortArgumentResolver = new SortHandlerMethodArgumentResolver();
         sortArgumentResolver.setSortParameter("sortBy");
         sortArgumentResolver.setPropertyDelimiter("-");
+        Sort defaultSort = Sort.by(new Sort.Order(Sort.Direction.DESC, "dno"));
+        sortArgumentResolver.setFallbackSort(defaultSort);
+
 
         PageableHandlerMethodArgumentResolver pageableArgumentResolver = new PageableHandlerMethodArgumentResolver(sortArgumentResolver);
         pageableArgumentResolver.setOneIndexedParameters(true);
         pageableArgumentResolver.setMaxPageSize(500);
-        pageableArgumentResolver.setFallbackPageable(PageRequest.of(0,10));
+        pageableArgumentResolver.setFallbackPageable(PageRequest.of(0,5));
         argumentResolvers.add(pageableArgumentResolver);
 
     }
