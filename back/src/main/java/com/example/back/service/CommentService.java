@@ -11,4 +11,5 @@ public interface CommentService {
     List<Comment> readAllComment();
     List<Comment> readMyComment(String userId);
     Comment modifyComment(Long cno, String userId, CommentDto commentDto);
+    void deleteComment(Long cno, String userId);
 }

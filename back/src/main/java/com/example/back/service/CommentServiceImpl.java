@@ -70,4 +70,16 @@ public class CommentServiceImpl implements CommentService{
 
         return comment;
     }
+
+    @Override
+    public void deleteComment(Long cno, String userId) {
+        Comment comment = commentRepository.findCommentByCno(cno);
+        if(comment == null)
+            throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
+        if(!comment.getUserId().equals(userId))
+            throw new CustomException(ErrorCode.FORBIDDEN_AUTH);
+
+        commentRepository.delete(comment);
+    }
 }
