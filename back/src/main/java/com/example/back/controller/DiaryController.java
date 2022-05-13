@@ -15,10 +15,13 @@ import com.example.back.service.WordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +46,7 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Diary> diaries = diaryService.readAllDiary();
+        List<DiaryDto> diaries = diaryService.readAllDiary();
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
@@ -76,8 +79,8 @@ public class DiaryController {
 //            hashMap.put("ERROR", "빈 값이 들어있습니다.");
 //            hashMap.put("Status", status);
 
-        hashMap.put("diary", diary);
         hashMap.put("Message", "SUCCESS");
+        hashMap.put("diary", diary);
 //        if (diaryService.createDiary(diaryDto, user)) {
 //            hashMap.put("Message", "SUCCESS");
 //            status = HttpStatus.OK;
@@ -142,8 +145,8 @@ public class DiaryController {
 
     @GetMapping("/read/{dno}")
     @ApiOperation(value = "다이어리 상세글", notes = "다이어리 상세 글 보기", response = String.class)
-    public ResponseEntity<Diary> readDiary(@PathVariable long dno) {
-        Diary diary = diaryService.readDiary(dno);
+    public ResponseEntity<DiaryDto> readDiary(@PathVariable long dno) {
+        DiaryDto diary = diaryService.readDiary(dno);
         HttpStatus status;
 
         if (diary != null) {
@@ -153,7 +156,7 @@ public class DiaryController {
             status = HttpStatus.NOT_FOUND;
         }
 
-        return new ResponseEntity<Diary>(diary, status);
+        return new ResponseEntity<DiaryDto>(diary, status);
     }
 
     @GetMapping("/myword")
@@ -288,7 +291,7 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Diary> diaries = diaryService.readTopLiked();
+        List<DiaryDto> diaries = diaryService.readTopLiked();
 
         if (diaries == null) {
             hashMap.put("Message", "NO DIARY");
@@ -300,6 +303,53 @@ public class DiaryController {
         hashMap.put("diaries", diaries);
 
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/mytopliked")
+    @ApiOperation(value = "내 다이어리 좋아요 top 5 반환", notes = "내 다이어리 좋아요 수 top 5", response = String.class)
+    public ResponseEntity<Map<String, Object>> readMyDiaryTopLiked(@RequestParam String userId) {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Diary> diaries = diaryService.readMyDiaryTopLiked(userId);
+
+        if (diaries == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diaries", diaries);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/mytopview")
+    @ApiOperation(value = "내 다이어리 조회수 top 5 반환", notes = "내 다이어리 조회수 top 5", response = String.class)
+    public ResponseEntity<Map<String, Object>> readMyDiaryTopView(@RequestParam String userId) {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Diary> diaries = diaryService.readMyDiaryTopView(userId);
+
+        if (diaries == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diaries", diaries);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/paging")
+    public ResponseEntity retrievePosts(final Pageable pageable) {
+        Page<Diary> diaries = diaryRepository.findAll(pageable);
+
+        return new ResponseEntity<>(diaries,HttpStatus.OK);
     }
 
 }

@@ -25,7 +25,9 @@ public enum ErrorCode {
     METHOD_NOT_ALLOWED(HttpStatus.METHOD_NOT_ALLOWED, "허용되지 않은 메서드입니다."),
 
     // 500 INTERNAL_SERVER_ERROR: 내부 서버 오류
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "내부 서버에서 오류가 발생하였습니다.");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "내부 서버에서 오류가 발생하였습니다."),
+
+    INVALID_PASSWORD_ERROR(HttpStatus.NOT_ACCEPTABLE, "잘못된 비밀번호 형식입니다");
 
     private final HttpStatus status;
     private final String message;
