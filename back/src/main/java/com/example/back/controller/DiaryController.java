@@ -346,6 +346,7 @@ public class DiaryController {
     }
 
     @GetMapping("/paging")
+    @ApiOperation(value = "전체 다이어리 페이지네이션", notes = "page번호 넘기면 해당 페이지 데이터 반환", response = String.class)
     public ResponseEntity retrievePosts(final Pageable pageable) {
         Page<Diary> diaries = diaryRepository.findAll(pageable);
 
