@@ -60,39 +60,15 @@ public class DiaryController {
     @ApiOperation(value = "다이어리 등록", notes = "현재 로그인 된 아이디로 다이어리 등록", response = String.class)
     public ResponseEntity<Map<String, Object>> createDiary(@RequestParam String userId, @RequestBody DiaryDto diaryDto){
         Map<String, Object> hashMap = new HashMap<>();
-        HttpStatus status;
 
         User user = userRepository.findByUserId(userId);
 
         Diary diary = diaryService.createDiary(diaryDto, user);
         wordService.increaseFrequency(userId, diaryDto);
-//        if (diaryService.createDiary(diaryDto, user)) {
-//            // 단어 정보 수집
-//            Word word = wordService.increaseFrequency(userId, diaryDto);
-//            hashMap.put("word", word);
-//            hashMap.put("Message", "SUCCESS");
-//            status = HttpStatus.OK;
-//            hashMap.put("Status", status);
-//        } else {
-//            hashMap.put("Message", "FAIL");
-//            status = HttpStatus.INTERNAL_SERVER_ERROR;
-//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
-//            hashMap.put("Status", status);
 
         hashMap.put("Message", "SUCCESS");
         hashMap.put("diary", diary);
-//        if (diaryService.createDiary(diaryDto, user)) {
-//            hashMap.put("Message", "SUCCESS");
-//            status = HttpStatus.OK;
-//            hashMap.put("Status", status);
-//
-//        } else {
-//            hashMap.put("Message", "FAIL");
-//            status = HttpStatus.INTERNAL_SERVER_ERROR;
-//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
-//            hashMap.put("Status", status);
-//
-//        }
+
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 

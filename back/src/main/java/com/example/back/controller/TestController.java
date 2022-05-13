@@ -6,6 +6,7 @@ import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.service.TestWordService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/test")
 @AllArgsConstructor
+@Api(tags = {"테스트 컨트롤러(관리자용)"})
 public class TestController {
 
     private final DiaryRepository diaryRepository;

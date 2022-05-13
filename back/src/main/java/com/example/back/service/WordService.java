@@ -14,8 +14,10 @@ public interface WordService {
 
     Word increaseFrequency(String userId, DiaryDto diaryDto);
     List<String> pickRandomWords(String userId);
-    String pickWordByCondition(int condition, String gender, String age);
+    List<String> pickWordByCondition(int condition, String gender, String age);
+    String selectOne(int condition, String gender, String age);
     Boolean duplicateWord(String word);
+    List<String> wordRanking(String userId);
 
 //    Boolean getWordLogList(String userId);
 
