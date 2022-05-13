@@ -5,6 +5,7 @@ import { getAxios } from '../api'
 import { useSelector } from 'react-redux'
 import LikedImgCarousel from '../components/LikedImgCarousel'
 import ViewImgCarousel from '../components/ViewmgCarousel'
+import MyBook from '../components/ArticleList/MyBook'
 
 function ArticleList(props) {
   const axios = getAxios()
@@ -45,7 +46,11 @@ function ArticleList(props) {
     <>
       <div style={{ backgroundColor: '#fff' }}>
         <Row>
-          <Col span={12}></Col>
+          <Col span={12}>
+            <div style={{ margin: '1rem' }}>
+              <MyBook />
+            </div>
+          </Col>
           <Col span={12}>
             <ArticleListForm />
           </Col>
