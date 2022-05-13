@@ -6,7 +6,7 @@ import DiaryFooter from '../components/Detail/DiaryFooter'
 import DiaryHeader from '../components/Detail/DiaryHeader'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getAxios } from '../api'
-
+import Comment from '../components/Diary/Comment'
 function MyDetail() {
   const axios = getAxios()
   const navigate = useNavigate()
@@ -35,6 +35,7 @@ function MyDetail() {
         <DiaryContent diary={diary} />
         <DiaryFooter diary={diary} dno={dno} />
       </StyledFormArea>
+      <Comment></Comment>
     </StyledContainer>
   )
 }
