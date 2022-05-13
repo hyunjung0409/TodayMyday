@@ -34,8 +34,8 @@ public class WordController {
     }
 
     @GetMapping("/readTop")
-    @ApiOperation(value = "연령+성별 단어 랭킹 3 불러오기", notes = "Top3 단어 불러오기", response = String.class)
-    public ResponseEntity<List<String>> readWordsTop3(@RequestParam String userId){
+    @ApiOperation(value = "연령+성별 단어 랭킹 10 불러오기", notes = "Top10 단어 불러오기", response = String.class)
+    public ResponseEntity<List<String>> readWordsTopList(@RequestParam String userId){
         List<String> words = wordService.wordRanking(userId);
         return ResponseEntity.ok().body(words);
     }

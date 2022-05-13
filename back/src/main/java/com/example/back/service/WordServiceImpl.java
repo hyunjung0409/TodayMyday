@@ -75,23 +75,23 @@ public class WordServiceImpl implements WordService{
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
         if(user.getAge().equals("1")){
-            word.setTeens(word.getTeens()+2);
+            word.setTeens(word.getTeens()+5);
         } else if(user.getAge().equals("2")){
-            word.setTwenties(word.getTwenties()+2);
+            word.setTwenties(word.getTwenties()+5);
         } else if(user.getAge().equals("3")){
-            word.setThirties(word.getThirties()+2);
+            word.setThirties(word.getThirties()+5);
         } else if(user.getAge().equals("4")){
-            word.setFourties(word.getFourties()+2);
+            word.setFourties(word.getFourties()+5);
         } else if(user.getAge().equals("5")){
-            word.setFifties(word.getFifties()+2);
+            word.setFifties(word.getFifties()+5);
         } else if(user.getAge().equals("6")){
-            word.setOversixties(word.getOversixties()+1);
+            word.setOversixties(word.getOversixties()+5);
         }
 
         if(user.getGender().equals("male")) {
-            word.setMale(word.getMale()+2);
+            word.setMale(word.getMale()+5);
         } else {
-            word.setFemale(word.getFemale()+2);
+            word.setFemale(word.getFemale()+5);
         }
 
         wordRepository.save(word);
@@ -251,7 +251,7 @@ public class WordServiceImpl implements WordService{
         List<String> wordTop3 = pickWordByCondition(1, userGender, userAge);
         List<String> wordList = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             wordList.add(wordTop3.get(i).split(",")[0]);
 //            System.out.println("잘되나? "+wordTop3.get(i).split(",")[0]);
         }
