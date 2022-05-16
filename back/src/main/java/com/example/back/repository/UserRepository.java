@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface UserRepository extends JpaRepository<User, String> {
 
     User findByUserId(String userId);
