@@ -7,6 +7,8 @@ import DiaryHeader from '../components/Detail/DiaryHeader'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getAxios } from '../api'
 import Comment from '../components/Diary/Comment'
+// import { useSelector } from 'react-redux'
+
 function MyDetail() {
   const axios = getAxios()
   const navigate = useNavigate()
@@ -61,5 +63,16 @@ const StyledFormArea = styled.div`
   background: #ffdae5;
   padding: 2rem;
 `
+// const ReadComments = styled.div``
+// const WriteComment = styled.textarea`
+//   min-height: 70px;
+//   resize: none;
+// `
+// const ReadComment = styled.div`
+//     display: flex;
+//     width: 100%
+//     margin-top: 5%;
+//     margin-bottom: 5%;
 
+// `
 export default MyDetail
