@@ -37,8 +37,7 @@ function MainProfile({ imageUploader, data }) {
   const [editable, setEditable] = useState(false)
   const [loading, setLoading] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [nick, setNick] = useState('')
-
+  // const [nick, setNick] = useState('')
   const showModal = () => {
     setIsModalVisible(true)
   }
@@ -90,6 +89,7 @@ function MainProfile({ imageUploader, data }) {
     }
     dispatch(loadUserRequestAction({ userId: me.userId }))
     setLoading(true)
+    // setNick(me.nickname)
   }
 
   const onAge = async (values) => {
@@ -103,15 +103,17 @@ function MainProfile({ imageUploader, data }) {
       ))
     me.age = values.ageRange
   }
-  const updateNickname = async (values) => {
-    const axios = getAxios()(
-      await axios.put(
-        'user/modify',
-        { age: me.age, image: me.image, gender: me.gender, nickname: nick },
-        { params: { userId: me.userId } },
-      ),
-    )
-  }
+
+  // const updateNickname = async () => {
+  //   const axios = getAxios()
+  //   // me !== null &&
+  //   //   me.userId !== null &&
+  //   const res = await axios.put(
+  //     'user/modify',
+  //     { age: me.age, image: me.image, gender: me.gender, nickname: nick },
+  //     { params: { userId: me.userId } },
+  //   )
+  // }
 
   const showAge = (e) => {
     if (e == 1) {
@@ -209,18 +211,31 @@ function MainProfile({ imageUploader, data }) {
         )}
       </div>
       <div>
-        {editable === false ? (
+        {/* {editable === false ? (
           <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
         ) : (
           <MyNick>
             닉네임 :{' '}
-            <input
-              type="text"
-              value={nick !== null && nick}
-              onChange={(e) => setNick(e.target.value)}></input>
-            <Button onClick={updateNickname(nick)}>저장</Button>
+            <Form
+              form={form}
+              name="modify"
+              onFinish={updateNickname}
+              autoComplete="off"
+              layout="vertical">
+              <Form.Item>
+                <input type="text" value={nick} onChange={(e) => setNick(e.target.value)}></input>
+                <Button
+                  type="primary"
+                  onClick={() => {
+                    updateNickname()
+                  }}>
+                  등록
+                </Button>
+              </Form.Item>
+            </Form>
           </MyNick>
-        )}
+        )} */}
+        <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
       </div>
       <div>
         {editable === false ? (
