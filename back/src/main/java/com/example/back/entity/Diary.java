@@ -2,6 +2,7 @@ package com.example.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -47,7 +48,7 @@ public class Diary {
 //    private String userId;
 //
     private String profileImage;
-//
+
     private String nickname;
 
     private int liked;

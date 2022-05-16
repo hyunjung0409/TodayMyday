@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
@@ -328,5 +329,14 @@ public class DiaryController {
 
         return new ResponseEntity<>(diaries,HttpStatus.OK);
     }
+
+    @GetMapping("/mypaging")
+    @ApiOperation(value = "내 다이어리 페이지네이션", notes = "userId와 page번호 넘기면 해당 페이지 데이터 반환", response = String.class)
+    public ResponseEntity retrieveMyPosts(@RequestParam String userId, @PageableDefault(size = 3) final Pageable pageable) {
+        Page<Diary> diaries = diaryRepository.findByUserUserId(userId, pageable);
+
+        return new ResponseEntity<>(diaries,HttpStatus.OK);
+    }
+
 
 }
