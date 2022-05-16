@@ -23,7 +23,6 @@ const { Content, Footer } = Layout
 
 function App() {
   const dispatch = useDispatch()
-  const { me } = useSelector((state) => state.user)
 
   useEffect(() => {
     if (localStorage.getItem('jwtToken') != null) {
@@ -32,10 +31,6 @@ function App() {
       dispatch(loadUserRequestAction({ userId }))
     }
   }, [])
-
-  useEffect(() => {
-    me !== null && console.log('me', me)
-  }, [me])
 
   return (
     <Layout className="layout">
