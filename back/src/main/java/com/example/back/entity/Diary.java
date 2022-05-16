@@ -2,10 +2,7 @@ package com.example.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -15,10 +12,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "diary")
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Diary {
     @Id
     @NotNull
@@ -45,21 +44,15 @@ public class Diary {
     @JsonIgnore
     private User user;
 
+//    private String userId;
+//
+    private String profileImage;
+//
+    private String nickname;
+
     private int liked;
 
     @OneToMany(mappedBy = "diary", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
-    @Builder
-    public Diary(Long dno, String word, String image, String content, LocalDateTime createdat, int view, User user, int liked, List<Comment> comments) {
-        this.dno = dno;
-        this.word = word;
-        this.image = image;
-        this.content = content;
-        this.createdat = createdat;
-        this.view = view;
-        this.user = user;
-        this.liked = liked;
-        this.comments = comments;
-    }
 }

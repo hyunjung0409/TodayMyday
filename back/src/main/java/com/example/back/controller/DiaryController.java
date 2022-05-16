@@ -46,7 +46,7 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<DiaryDto> diaries = diaryService.readAllDiary();
+        List<Diary> diaries = diaryService.readAllDiary();
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
@@ -61,9 +61,9 @@ public class DiaryController {
     public ResponseEntity<Map<String, Object>> createDiary(@RequestParam String userId, @RequestBody DiaryDto diaryDto){
         Map<String, Object> hashMap = new HashMap<>();
 
-        User user = userRepository.findByUserId(userId);
+//        User user = userRepository.findByUserId(userId);
 
-        Diary diary = diaryService.createDiary(diaryDto, user);
+        Diary diary = diaryService.createDiary(diaryDto, userId);
         wordService.increaseFrequency(userId, diaryDto);
 
         hashMap.put("Message", "SUCCESS");
@@ -121,8 +121,8 @@ public class DiaryController {
 
     @GetMapping("/read/{dno}")
     @ApiOperation(value = "다이어리 상세글", notes = "다이어리 상세 글 보기", response = String.class)
-    public ResponseEntity<DiaryDto> readDiary(@PathVariable long dno) {
-        DiaryDto diary = diaryService.readDiary(dno);
+    public ResponseEntity<Diary> readDiary(@PathVariable long dno) {
+        Diary diary = diaryService.readDiary(dno);
         HttpStatus status;
 
         if (diary != null) {
@@ -132,7 +132,7 @@ public class DiaryController {
             status = HttpStatus.NOT_FOUND;
         }
 
-        return new ResponseEntity<DiaryDto>(diary, status);
+        return new ResponseEntity<>(diary, status);
     }
 
     @GetMapping("/myword")
@@ -155,11 +155,11 @@ public class DiaryController {
 
     @GetMapping("/searchcontent")
     @ApiOperation(value = "내 다이어리 내용별 검색", notes = "내가 등록한 다이어리 내용별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchDiaryByContent(@RequestParam String keyword, @RequestParam String userId) {
+    public ResponseEntity<List<Diary>> searchDiaryByContent(@RequestParam String keyword, @RequestParam String userId) {
         HttpStatus status;
 
         System.out.println("키워드" + keyword);
-        List<DiaryDto> diares = diaryService.searchDiariesByContent(keyword, userId);
+        List<Diary> diares = diaryService.searchDiariesByContent(keyword, userId);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -173,10 +173,10 @@ public class DiaryController {
 
     @GetMapping("/searchword")
     @ApiOperation(value = "내 다이어리 단어별 검색", notes = "내가 등록한 다이어리 단어별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchDiaryByWord(@RequestParam String word, @RequestParam String userId) {
+    public ResponseEntity<List<Diary>> searchDiaryByWord(@RequestParam String word, @RequestParam String userId) {
         HttpStatus status;
 
-        List<DiaryDto> diares = diaryService.searchDiariesByWord(word, userId);
+        List<Diary> diares = diaryService.searchDiariesByWord(word, userId);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -208,11 +208,11 @@ public class DiaryController {
 
     @GetMapping("/searchallcontent")
     @ApiOperation(value = "전체 다이어리 내용별 검색", notes = "전체 내용별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchAllDiaryByContent(@RequestParam String keyword) {
+    public ResponseEntity<List<Diary>> searchAllDiaryByContent(@RequestParam String keyword) {
         HttpStatus status;
 
         System.out.println("키워드" + keyword);
-        List<DiaryDto> diares = diaryService.searchAllDiariesByContent(keyword);
+        List<Diary> diares = diaryService.searchAllDiariesByContent(keyword);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -226,10 +226,10 @@ public class DiaryController {
 
     @GetMapping("/searchallword")
     @ApiOperation(value = "전체 다이어리 단어별 검색", notes = "전체 단어별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchAllDiaryByWord(@RequestParam String word) {
+    public ResponseEntity<List<Diary>> searchAllDiaryByWord(@RequestParam String word) {
         HttpStatus status;
 
-        List<DiaryDto> diares = diaryService.searchAllDiariesByWord(word);
+        List<Diary> diares = diaryService.searchAllDiariesByWord(word);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -267,7 +267,7 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<DiaryDto> diaries = diaryService.readTopLiked();
+        List<Diary> diaries = diaryService.readTopLiked();
 
         if (diaries == null) {
             hashMap.put("Message", "NO DIARY");
