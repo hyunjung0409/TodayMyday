@@ -29,7 +29,9 @@ public class DiaryServiceImpl implements DiaryService{
 
 
     @Override
-    public Diary createDiary(DiaryDto diaryDto, User user) {
+    public Diary createDiary(DiaryDto diaryDto, String userId) {
+
+        User user = userRepository.findByUserId(userId);
 
         // 단어가 없거나 내용이 없으면 (유효성 검사)
         if(diaryDto.getWord().equals(null) || diaryDto.getContent().equals(null))
@@ -40,6 +42,9 @@ public class DiaryServiceImpl implements DiaryService{
                 .content(diaryDto.getContent())
                 .createdat(LocalDateTime.now())
                 .user(user)
+//                .userId(user.getUserId())
+                .nickname(user.getNickname())
+                .profileImage(user.getImage())
                 .word(diaryDto.getWord())
                 .view(0)
                 .liked(0)
@@ -47,6 +52,7 @@ public class DiaryServiceImpl implements DiaryService{
 
         diaryRepository.save(save);
 
+        System.out.println(save.getNickname()+" "+save.getProfileImage());
         return save;
     }
 
@@ -90,50 +96,22 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<DiaryDto> searchDiariesByContent(String keyword, String userId) {
+    public List<Diary> searchDiariesByContent(String keyword, String userId) {
         List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoDesc(keyword);
         if(diaries == null) {
             return null;
         }
-        else {
-            List<DiaryDto> my_daires = new ArrayList<>();
-            for (Diary diary : diaries) {
-                DiaryDto diaryDto = new DiaryDto();
-                if (diary.getUser().getUserId().equals(userId)) {
-                    diaryDto.setCreatedat(diary.getCreatedat());
-                    diaryDto.setDno(diary.getDno());
-                    diaryDto.setContent(diary.getContent());
-                    diaryDto.setImage(diary.getImage());
-                    diaryDto.setWord(diary.getWord());
-                    diaryDto.setNickname(diary.getUser().getNickname());
-                    diaryDto.setProfile_image(diary.getUser().getImage());
-                    diaryDto.setLiked(likedService.readLiked(diary.getDno()));
-                    diaryDto.setView(diary.getView());
-                    my_daires.add(diaryDto);
-                }
-            }
-            return my_daires;
-        }
+
+        return diaries;
+
     }
 
     @Override
-    public DiaryDto readDiary(long dno) {
+    public Diary readDiary(long dno) {
         Diary diary = diaryRepository.findDiaryByDno(dno);
         diary.setLiked(likedService.readLiked(dno));
 
-        DiaryDto diaryDto = new DiaryDto();
-
-        diaryDto.setDno(diary.getDno());
-        diaryDto.setCreatedat(diary.getCreatedat());
-        diaryDto.setNickname(diary.getUser().getNickname());
-        diaryDto.setProfile_image(diary.getUser().getImage());
-        diaryDto.setView(diary.getView());
-        diaryDto.setLiked(diary.getLiked());
-        diaryDto.setWord(diary.getWord());
-        diaryDto.setImage(diary.getImage());
-        diaryDto.setContent(diary.getContent());
-
-        return diaryDto;
+        return diary;
     }
 
     @Override
@@ -159,85 +137,38 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<DiaryDto> searchDiariesByWord(String word, String userId) {
+    public List<Diary> searchDiariesByWord(String word, String userId) {
         List<Diary> diaries = diaryRepository.findDiaryByWordOrderByDnoDesc(word);
 
         if(diaries == null) {
             return null;
         }
-        else {
-            List<DiaryDto> my_daires = new ArrayList<>();
-            for (Diary diary : diaries) {
-                DiaryDto diaryDto = new DiaryDto();
-                if (diary.getUser().getUserId().equals(userId)) {
-                    diaryDto.setDno(diary.getDno());
-                    diaryDto.setCreatedat(diary.getCreatedat());
-                    diaryDto.setContent(diary.getContent());
-                    diaryDto.setImage(diary.getImage());
-                    diaryDto.setWord(diary.getWord());
-                    diaryDto.setNickname(diary.getUser().getNickname());
-                    diaryDto.setProfile_image(diary.getUser().getImage());
-                    diaryDto.setLiked(likedService.readLiked(diary.getDno()));
-                    diaryDto.setView(diary.getView());
-                    my_daires.add(diaryDto);
-                }
-            }
-            return my_daires;
-        }
+
+        return diaries;
+
     }
 
     @Override
-    public List<DiaryDto> searchAllDiariesByContent(String keyword) {
+    public List<Diary> searchAllDiariesByContent(String keyword) {
         List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoDesc(keyword);
 
         if(diaries == null) {
             return null;
         }
 
-        else {
-            List<DiaryDto> all_diaries = new ArrayList<>();
-            for (Diary diary : diaries) {
-                DiaryDto diaryDto = new DiaryDto();
-                diaryDto.setCreatedat(diary.getCreatedat());
-                diaryDto.setDno(diary.getDno());
-                diaryDto.setContent(diary.getContent());
-                diaryDto.setImage(diary.getImage());
-                diaryDto.setWord(diary.getWord());
-                diaryDto.setNickname(diary.getUser().getNickname());
-                diaryDto.setProfile_image(diary.getUser().getImage());
-                diaryDto.setLiked(likedService.readLiked(diary.getDno()));
-                diaryDto.setView(diary.getView());
-                all_diaries.add(diaryDto);
-            }
-            return all_diaries;
-        }
+        return diaries;
 
     }
 
     @Override
-    public List<DiaryDto> searchAllDiariesByWord(String word) {
+    public List<Diary> searchAllDiariesByWord(String word) {
         List<Diary> diaries = diaryRepository.findDiaryByWordOrderByDnoDesc(word);
 
         if (diaries == null) {
             return null;
         }
-        else {
-            List<DiaryDto> all_diaries = new ArrayList<>();
-            for (Diary diary : diaries) {
-                DiaryDto diaryDto = new DiaryDto();
-                diaryDto.setDno(diary.getDno());
-                diaryDto.setCreatedat(diary.getCreatedat());
-                diaryDto.setContent(diary.getContent());
-                diaryDto.setImage(diary.getImage());
-                diaryDto.setWord(diary.getWord());
-                diaryDto.setNickname(diary.getUser().getNickname());
-                diaryDto.setProfile_image(diary.getUser().getImage());
-                diaryDto.setLiked(likedService.readLiked(diary.getDno()));
-                diaryDto.setView(diary.getView());
-                all_diaries.add(diaryDto);
-            }
-            return all_diaries;
-        }
+
+        return diaries;
     }
 
     @Override
@@ -271,48 +202,19 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public List<DiaryDto> readAllDiary() {
+    public List<Diary> readAllDiary() {
         List<Diary> diaries = diaryRepository.findAll(Sort.by(Sort.Direction.DESC, "dno"));
 
-        List<DiaryDto> all_diaries = new ArrayList<>();
-        for (Diary diary : diaries) {
-            DiaryDto diaryDto = new DiaryDto();
-            diaryDto.setDno(diary.getDno());
-            diaryDto.setCreatedat(diary.getCreatedat());
-            diaryDto.setContent(diary.getContent());
-            diaryDto.setImage(diary.getImage());
-            diaryDto.setWord(diary.getWord());
-            diaryDto.setNickname(diary.getUser().getNickname());
-            diaryDto.setProfile_image(diary.getUser().getImage());
-            diaryDto.setLiked(diary.getLiked());
-            diaryDto.setView(diary.getView());
-            all_diaries.add(diaryDto);
-        }
-        return all_diaries;
+        return diaries;
 
     }
 
     @Override
-    public List<DiaryDto> readTopLiked() {
+    public List<Diary> readTopLiked() {
         List<Diary> diaries = diaryRepository.findTopLiked();
         List<DiaryDto> all_diaries = new ArrayList<>();
 
-        for (Diary diary : diaries) {
-            DiaryDto diaryDto = new DiaryDto();
-            diaryDto.setDno(diary.getDno());
-            diaryDto.setCreatedat(diary.getCreatedat());
-            diaryDto.setContent(diary.getContent());
-            diaryDto.setImage(diary.getImage());
-            diaryDto.setWord(diary.getWord());
-            diaryDto.setNickname(diary.getUser().getNickname());
-            diaryDto.setProfile_image(diary.getUser().getImage());
-            diaryDto.setLiked(diary.getLiked());
-            diaryDto.setView(diary.getView());
-            all_diaries.add(diaryDto);
-        }
-
-
-        return all_diaries;
+        return diaries;
     }
 
     @Override
