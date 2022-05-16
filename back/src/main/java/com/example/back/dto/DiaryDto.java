@@ -1,10 +1,12 @@
 package com.example.back.dto;
 
+import com.example.back.entity.Comment;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @Data
