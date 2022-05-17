@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getAxios } from '../../api'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 import { Button, Modal } from 'antd'
+import UpdateComments from './UpdateComments'
 let CommentContent = styled.div`
   display: flex;
   margin-bottom: 5%;
@@ -64,10 +65,16 @@ function Comment() {
     const axios = getAxios()
 
     axios
-      .get('comment/readAll', { params: { userId: me.userId } })
+      .get(`diary/read/${dno}`, { params: { userId: me.userId } })
       .then((res) => {
         console.log(res)
-        setComments(res.data.content)
+        setComments(res.data.comments)
+        console.log(res.data.comments)
+        // setComments(res.data.comments.content)
+        // res.data.comments.map((a) => {
+        //   return a
+        // }),
+        console.log(comments)
       })
       .catch((err) => {
         alert('잘못된 접근입니다')
@@ -85,6 +92,9 @@ function Comment() {
 
     await axios.delete(`comment/${cno}`, { params: { userId: me.userId } })
   }
+  useEffect(() => {
+    getComment()
+  }, [])
   return (
     <div>
       <ReadComment>
@@ -102,53 +112,47 @@ function Comment() {
           등록
         </Button>
       </ReadComment>
-      <ReadComments>
-        {comments.map((a) => {
-          return <Comment key={a.comment_id} content={a.content} getComment={getComment}></Comment>
-        })}
-      </ReadComments>
 
-      {editable === false ? (
+      {/* {editable === false ? (
         <div>
-          {/* <CommentSize>{comment}</CommentSize> */}
+          <ReadComments>
+            {comments &&
+              comments.map((a, i) => {
+                return (
+                  <div key={i}>
+                    <p>{a}</p>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => {
+                        setEditable(!editable)
+                      }}>
+                      수정
+                    </Button>
 
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => {
-              setEditable(!editable)
-            }}>
-            수정
-          </Button>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => {
+                        handleShow()
+                      }}>
+                      삭제
+                    </Button>
 
-          <Button
-            variant="danger"
-            size="sm"
-            onClick={() => {
-              handleShow()
-            }}>
-            삭제
-          </Button>
-
-          <Modal
-            title="댓글 삭제"
-            visible={isModalVisible}
-            onOk={() => {
-              deleteComment()
-              handleCancel()
-            }}
-            onCancle={handleCancel}>
-            <p>삭제하시겠습니까?</p>
-          </Modal>
-
-          <Button
-            type="primary"
-            htmlType="submit"
-            onClick={() => {
-              updateComment()
-            }}>
-            등록
-          </Button>
+                    <Modal
+                      title="댓글 삭제"
+                      visible={isModalVisible}
+                      onOk={() => {
+                        // deleteComment()
+                        handleCancel()
+                      }}
+                      onCancel={handleCancel}>
+                      <p>삭제하시겠습니까?</p>
+                    </Modal>
+                  </div>
+                )
+              })}
+          </ReadComments>
         </div>
       ) : (
         <div>
@@ -170,7 +174,21 @@ function Comment() {
             취소
           </Button>
         </div>
-      )}
+      )} */}
+      <div>
+        <ReadComments>
+          {comments &&
+            comments.map((a, i) => {
+              return (
+                <UpdateComments
+                  key={i}
+                  cno={a.cno}
+                  content={a.content}
+                  getComment={getComment}></UpdateComments>
+              )
+            })}
+        </ReadComments>
+      </div>
     </div>
   )
 }

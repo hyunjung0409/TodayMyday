@@ -28,7 +28,6 @@ const Words = styled.div`
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2%;
-  margin-top: 3%;
 `
 
 function PickWords() {
