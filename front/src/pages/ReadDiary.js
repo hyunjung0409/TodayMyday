@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Image } from 'antd'
+import { Button, Image, Avatar, Row, Col } from 'antd'
 import DiaryContent from '../components/Detail/DiaryContent'
 import DiaryFooter from '../components/Detail/DiaryFooter'
 import DiaryHeader from '../components/Detail/DiaryHeader'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getAxios } from '../api'
 import Comment from '../components/Diary/Comment'
+
 // import { useSelector } from 'react-redux'
 
 function MyDetail() {
@@ -27,18 +28,24 @@ function MyDetail() {
   }, [])
 
   return (
-    <StyledContainer>
-      <StyledImageArea className="image-area">
-        <Image src={diary.image} width="100%" height="100%" style={{ objectFit: 'cover' }} />
-      </StyledImageArea>
+    <Row>
+      <Col span={12}>
+        <StyledContainer>
+          <StyledImageArea className="image-area">
+            <Image src={diary.image} width="100%" height="100%" style={{ objectFit: 'cover' }} />
+          </StyledImageArea>
 
-      <StyledFormArea className="styled-form-area">
-        <DiaryHeader diary={diary} />
-        <DiaryContent diary={diary} />
-        <DiaryFooter diary={diary} dno={dno} />
-      </StyledFormArea>
-      <Comment></Comment>
-    </StyledContainer>
+          <StyledFormArea className="styled-form-area">
+            <DiaryHeader diary={diary} />
+            <DiaryContent diary={diary} />
+            <DiaryFooter diary={diary} dno={dno} />
+          </StyledFormArea>
+        </StyledContainer>
+      </Col>
+      <Col span={12}>
+        <Comment></Comment>
+      </Col>
+    </Row>
   )
 }
 
@@ -52,14 +59,14 @@ const StyledContainer = styled.div`
 `
 
 const StyledImageArea = styled.div`
-  width: 50%;
+  width: 70%;
   height: 50%;
   overflow: hidden;
   // border: 1px solid blue;
 `
 
 const StyledFormArea = styled.div`
-  width: 50%;
+  width: 70%;
   background: #ffdae5;
   padding: 2rem;
 `
