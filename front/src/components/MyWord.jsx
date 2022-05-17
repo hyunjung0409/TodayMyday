@@ -1,4 +1,4 @@
-import { Card, Modal, Tag } from 'antd'
+import { Card, Modal, Tag, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getAxios } from '../api'
@@ -6,6 +6,9 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { useNavigate } from 'react-router-dom'
+import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
+
+const { Title } = Typography
 
 function MyWord({ test, data, setWord, word }) {
   const { me } = useSelector((state) => state.user)
@@ -32,35 +35,9 @@ function MyWord({ test, data, setWord, word }) {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   }
 
   useEffect(() => {
@@ -88,6 +65,31 @@ function MyWord({ test, data, setWord, word }) {
     navigate(`/diary/read/${dno}`)
   }
 
+  function timeForToday(value) {
+    let tData = new Date(value)
+    tData.setHours(tData.getHours() + 9)
+    const today = new Date()
+    const timeValue = new Date(tData)
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60)
+    if (betweenTime < 1) return '방금 전'
+    if (betweenTime < 60) {
+      return `${betweenTime}분 전`
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60)
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간 전`
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24)
+    if (betweenTimeDay < 8) {
+      return `${betweenTimeDay}일 전`
+    }
+
+    return `${value}`
+  }
+
   return (
     <div>
       {word != null &&
@@ -104,11 +106,11 @@ function MyWord({ test, data, setWord, word }) {
         ))}
       {title != null && (
         <Modal
-          title={title}
+          title={<Title level={3}>#{title}</Title>}
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
-          width={1000}>
+          footer={null}>
           <Slider {...settings}>
             {diary != null &&
               diary.map((item, idx) => (
@@ -118,16 +120,19 @@ function MyWord({ test, data, setWord, word }) {
                   onClick={(e) => {
                     pageMove(item.dno, e)
                   }}>
-                  <div className="card-top">
-                    <img src={item.image} alt="img" width={150} />
-                  </div>
-                  <div className="card-bottom">
-                    <img
-                      style={{ float: 'left', borderRadius: '50%', width: '30px', height: '30px' }}
-                      src={me.image}
-                      alt="img"
-                    />
-                    <p style={{ float: 'left' }}>{item.nickname}</p>
+                  <center>
+                    <img style={{ width: '150px', height: '100px' }} src={item.image} alt="img" />
+                  </center>
+                  <div className="card-bottom" style={{ textAlign: 'center', marginTop: '5px' }}>
+                    <div>
+                      <HeartFilled style={{ fontSize: '18px' }} />{' '}
+                      <span style={{ fontSize: '18px', marginRight: '20px' }}>{item.liked}</span>
+                      <EyeFilled style={{ fontSize: '18px' }} />{' '}
+                      <span style={{ fontSize: '18px', marginRight: '20px' }}>{item.view}</span>
+                      <MessageFilled style={{ fontSize: '18px' }} />{' '}
+                      <span style={{ fontSize: '18px' }}>0</span>
+                      <p style={{ marginTop: '5px' }}>{timeForToday(item.createdat)}</p>
+                    </div>
                   </div>
                 </Card>
               ))}
