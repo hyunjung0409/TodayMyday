@@ -23,6 +23,11 @@ function Search() {
     console.log(word)
   }
 
+  const onMove = () => {
+    navigate('/search', { replace: true })
+    setKeyword('')
+  }
+
   return (
     <div>
       <div className="search-bar" style={{ margin: '2rem auto 3rem auto', width: '90%' }}>
@@ -62,6 +67,9 @@ function Search() {
                 style={{ marginRight: '1rem' }}
                 onClick={(e) => onWrite(keyword)}>
                 해당 단어로 글쓰기
+              </Button>
+              <Button type="text" style={{ marginRight: '1rem' }} onClick={onMove}>
+                처음으로
               </Button>
             </div>
           ) : (

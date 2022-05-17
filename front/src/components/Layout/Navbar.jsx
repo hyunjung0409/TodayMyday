@@ -88,6 +88,7 @@ function Navbar() {
                 <StyledLink to="/main">
                   <strong>글 작성</strong>
                 </StyledLink>
+
                 <StyledLink to="/search">
                   <strong>둘러보기</strong>
                 </StyledLink>
