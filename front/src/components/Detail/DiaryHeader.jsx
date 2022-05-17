@@ -14,6 +14,7 @@ import { loadUserRequestAction } from '../../reducers/user'
 const { Title, Text } = Typography
 
 function DiaryHeader({ diary }) {
+  console.log('diary', diary)
   const { me } = useSelector((state) => state.user)
   const [state, setState] = useState(false)
   const axios = getAxios()
@@ -54,6 +55,31 @@ function DiaryHeader({ diary }) {
     }
   }, [me])
 
+  function timeForToday(value) {
+    let tData = new Date(value)
+    tData.setHours(tData.getHours() + 9)
+    const today = new Date()
+    const timeValue = new Date(tData)
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60)
+    if (betweenTime < 1) return '방금 전'
+    if (betweenTime < 60) {
+      return `${betweenTime}분 전`
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60)
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간 전`
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24)
+    if (betweenTimeDay < 8) {
+      return `${betweenTimeDay}일 전`
+    }
+
+    return `${value}`
+  }
+
   return (
     <Row>
       <Col span={12}>
@@ -87,9 +113,7 @@ function DiaryHeader({ diary }) {
           <StyledAvatar src={<img src={diary.profileImage} style={{ width: 32 }} />} />
           <Title level={5}>{diary.nickname}</Title>
         </StyledUserArea>
-        <StyledDateText level={5}>
-          {moment(diary.createdat).format('YYYY-MM-DD HH:mm:ss')}
-        </StyledDateText>
+        <StyledDateText level={5}>{timeForToday(diary.createdat)}</StyledDateText>
       </Col>
     </Row>
   )

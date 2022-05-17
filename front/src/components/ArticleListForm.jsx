@@ -1,6 +1,6 @@
 import 'moment/locale/ko'
 import moment from 'moment'
-import { Select, Tag } from 'antd'
+import { Avatar, Select, Tag } from 'antd'
 import { getAxios } from '../api'
 import Search from 'antd/lib/input/Search'
 import { useNavigate } from 'react-router-dom'
@@ -16,38 +16,38 @@ import {
 } from '../reducers/article'
 
 const { Option } = Select
+const PAGE_NUMBER = 1
 
 function ArticleListForm(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [data, setData] = useState([])
-  const [boolean, setBoolean] = useState('boolean')
+  const [page, setPage] = useState(PAGE_NUMBER)
   const [loading, setLoading] = useState(false)
   const { me } = useSelector((state) => state.user)
   const [searchKind, setSearchKind] = useState('searchword')
-  const { articleList } = useSelector((state) => state.article)
   const axios = getAxios()
 
-  const loadMoreData = (userId) => {
+  const loadMoreData = () => {
     if (loading) {
       return
     }
-    dispatch(articleListRequestAction({ userId }))
     setLoading(true)
+    fetch(`http://k6c205.p.ssafy.io:8080/api/diary/mypaging?page=${page}&userId=${me.userId}`)
+      .then((res) => res.json())
+      .then((body) => {
+        setData([...data, ...body.content])
+        setPage(page + 1)
+        setLoading(false)
+      })
+      .catch(() => {
+        setLoading(false)
+      })
   }
-  useEffect(() => {
-    if (me != null) {
-      if (me.userId != null) {
-        loadMoreData(me.userId)
-      }
-    }
-  }, [me])
 
   useEffect(() => {
-    if (articleList != null) {
-      setData([...articleList])
-    }
-  }, [articleList])
+    me !== null && loadMoreData()
+  }, [me])
 
   const onSearch = (value) => {
     searchKind === 'searchword'
@@ -150,13 +150,13 @@ function ArticleListForm(props) {
         <InfiniteScroll
           dataLength={data.length}
           next={loadMoreData}
-          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+          hasMore={data.length < 100}
           scrollableTarget="scrollableDiv">
           <List
             dataSource={data}
             renderItem={(item) => (
               <List.Item
+                style={{ cursor: 'pointer' }}
                 key={item.id}
                 onClick={(e) => {
                   pageMove(item.dno, e)
