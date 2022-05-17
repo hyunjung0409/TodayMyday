@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import WordCard from '../components/Main/WordCard'
 import { wordGetRequestAction } from '../reducers/word'
 import InfinityScoll from '../components/Main/InfinityScoll'
+import styled from 'styled-components'
 
 // const Cards = styled.div`
 //   background-color: #f9fafb;
@@ -12,6 +13,12 @@ import InfinityScoll from '../components/Main/InfinityScoll'
 //   padding-left: 5%;
 //   padding-right: 5%;
 // `
+
+const StyledBackground = styled.div`
+  background-color: #ffdae5;
+  padding: 2%;
+  border-radius: 5px;
+`
 
 function Main() {
   const dispatch = useDispatch()
@@ -25,10 +32,10 @@ function Main() {
   }, [me])
 
   return (
-    <>
+    <StyledBackground>
       <WordCard />
       <InfinityScoll />
-    </>
+    </StyledBackground>
   )
 }
 

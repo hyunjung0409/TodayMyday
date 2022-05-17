@@ -3,19 +3,29 @@ import React, { useState, useCallback, useEffect } from 'react'
 import $, { data, get } from 'jquery'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { RedoOutlined, HeartOutlined, PlusOutlined, ExclamationOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
+import {
+  RedoOutlined,
+  DownOutlined,
+  HeartOutlined,
+  PlusOutlined,
+  ExclamationOutlined,
+} from '@ant-design/icons'
+import { Button, Row, Space } from 'antd'
 import styled from 'styled-components'
 import Zoom from 'react-reveal/Zoom'
 import LightSpeed from 'react-reveal/LightSpeed'
 
 const MainExplain = styled.h1`
-  padding-top: 5%;
-  font-size: 300%;
+  // padding-top: 5%;
+  // font-size: 300%;
   color: #38532e;
+  margin: 0;
 `
 const MainBack = styled.div`
-  background-color: pink;
+  // background-color: pink;
+  background-color: white;
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  border-radius: 5px;
 `
 const allOpen = styled.div`
   margin-bottom: 10px;
@@ -79,8 +89,21 @@ function WordCard() {
           ))
         : null} */}
       <MainBack>
-        {' '}
-        <MainExplain>오늘의 단어를 선택해보세요</MainExplain>
+        <Row justify="space-around" align="center" style={{ paddingTop: '1.5rem' }}>
+          <Button type="disabled" style={{ width: '12rem' }}></Button>
+          <MainExplain>오늘의 단어를 선택해보세요</MainExplain>
+          <Space size={10}>
+            <allOpen className="all">
+              <Button type="text" icon={<DownOutlined />}>
+                전체 열기
+              </Button>
+            </allOpen>
+            <Button type="text" icon={<RedoOutlined />} onClick={wordShuffle}>
+              새로고침
+            </Button>
+            {/* <RedoOutlined style={{ fontSize: '110%', cursor: 'pointer' }} onClick={wordShuffle} /> */}
+          </Space>
+        </Row>
         {wordGet != null
           ? wordGet.map((item, i) => (
               <Zoom>
@@ -103,10 +126,6 @@ function WordCard() {
               </Zoom>
             ))
           : null}
-        <allOpen className="all">
-          <Button>전체 열기</Button>{' '}
-        </allOpen>
-        <RedoOutlined style={{ fontSize: '150%', cursor: 'pointer' }} onClick={wordShuffle} />
       </MainBack>
     </>
   )
