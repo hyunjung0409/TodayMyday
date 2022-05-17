@@ -156,7 +156,7 @@ public class UserController {
     }
 
     @GetMapping("/verifynk")
-    @ApiOperation(value = "아이디 중복 확인", notes = "userId로 아이디 중복 확인", response = String.class)
+    @ApiOperation(value = "닉네임 중복 확인", notes = "nickname으로 아이디 중복 확인", response = String.class)
     public Boolean verifyNickname(@RequestParam String nickname){
         boolean result = false;
 
