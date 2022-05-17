@@ -173,7 +173,11 @@ function SignupForm({ imageUploader, data }) {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" onClick={success}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          // onClick={success}
+        >
           Register
         </Button>
       </Form.Item>
