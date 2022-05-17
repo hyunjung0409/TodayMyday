@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import SearchBar from '../components/Diary/SearchBar'
 import SearchResult from '../components/Diary/SearchResult'
 import TopLiked from '../components/Diary/TopLiked'
+import TopWord from '../components/Diary/TopWord'
 
 function Search() {
   const [optionBool, setOptionBool] = useState(false)
@@ -30,6 +31,12 @@ function Search() {
       </div>
       {keyword === '' ? (
         <div>
+          <TopWord
+            keyword={keyword}
+            setKeyword={setKeyword}
+            diaryList={diaryList}
+            setDiaryList={setDiaryList}
+          />
           <TopLiked />
         </div>
       ) : (

@@ -9,7 +9,7 @@ function TopLiked() {
   const getResult = async () => {
     try {
       let result = await axios.get('diary/topliked')
-      console.log('result: ', result.data.diaries)
+      console.log('like-result: ', result.data.diaries)
       await setLikedList([...result.data.diaries])
     } catch (err) {
       console.log(err)
@@ -36,7 +36,7 @@ function TopLiked() {
           padding: '0.5em 0 0.2em 1em',
           color: '#424242',
         }}>
-        <strong>가장 많은 좋아요를 받은 글😮</strong>
+        <strong>가장 많은 좋아요를 받은 글은?😮</strong>
       </h2>
       <DiaryCarousel diaryList={likedList} />
     </div>
