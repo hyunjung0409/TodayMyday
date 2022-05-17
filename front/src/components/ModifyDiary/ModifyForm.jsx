@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Row, Col, Button } from 'antd'
-import ImageFileInput from '../../components/ImageFileInput'
 import { useSelector } from 'react-redux'
 import { message } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
