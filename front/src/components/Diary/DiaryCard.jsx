@@ -20,6 +20,8 @@ function DiaryCard({ card }) {
     })
   }
 
+  // console.log(card)
+
   return (
     <StyledCard
       className="card"
@@ -31,9 +33,9 @@ function DiaryCard({ card }) {
       }
       onClick={onClick}>
       <Meta
-        avatar={<Avatar src={card.profile_image} />}
+        avatar={<Avatar src={card.profileImage} />}
         title={card.nickname}
-        // description={moment(card.createdat).format('YYYY-MM-DD')}
+        description={`#${card.word}`}
       />
       {/* <Row justify="space-evenly" align="middle">
         <Col span={24}>
