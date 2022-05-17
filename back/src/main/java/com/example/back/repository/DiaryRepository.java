@@ -2,6 +2,8 @@ package com.example.back.repository;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -33,4 +35,6 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
 //    @Query(value = "select * from diary where content liked '%:keyword%'")
 //    List<Diary>searchDiares(@Param("keyword") String keyword);
+
+    Page <Diary>findByUserUserId(String userId, Pageable pageable);
 }
