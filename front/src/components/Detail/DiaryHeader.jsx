@@ -110,7 +110,7 @@ function DiaryHeader({ diary }) {
               <StyledAvatar src={<img src={me.image} style={{ width: 32 }} />} />
             )
           ) : null} */}
-          <StyledAvatar src={<img src={diary.profile_image} style={{ width: 32 }} />} />
+          <StyledAvatar src={<img src={diary.profileImage} style={{ width: 32 }} />} />
           <Title level={5}>{diary.nickname}</Title>
         </StyledUserArea>
         <StyledDateText level={5}>{timeForToday(diary.createdat)}</StyledDateText>

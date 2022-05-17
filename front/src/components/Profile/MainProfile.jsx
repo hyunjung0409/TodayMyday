@@ -5,7 +5,7 @@ import { getAxios } from '../../api'
 import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { Form, Button, Modal, Avatar, Select } from 'antd'
+import { Form, Button, Modal, Avatar, Select, Divider } from 'antd'
 import { loadUserRequestAction } from '../../reducers/user'
 import { useNavigate } from 'react-router-dom'
 import DeleteAccount from './DeleteAccount'
@@ -14,11 +14,13 @@ const Gender = styled.div`
   margin-top: 5%;
   text-align: left;
   margin-left: 25%;
+  font-size: 120%;
 `
 const MyNick = styled.div`
-  margin-top: 10%;
+  margin-top: 5%;
   text-align: left;
   margin-left: 25%;
+  font-size: 120%;
 `
 const Age = styled.div`
   margin-top: 5%;
@@ -26,8 +28,24 @@ const Age = styled.div`
   margin-left: 25%;
   width: 40%;
   display: flex;
+  font-size: 120%;
 `
-
+const UpdateIcon = styled.div`
+  margin-left: 83%;
+`
+const DiverPlace = styled.div`
+  margin-right: 2%;
+`
+const DeletePlace = styled.div`
+  margin-top: 10%;
+`
+const tailLayout = {
+  wrapperCol: { offset: 1, span: 16 },
+}
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+}
 function MainProfile({ imageUploader, data }) {
   const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
@@ -154,11 +172,11 @@ function MainProfile({ imageUploader, data }) {
   }, [me])
   return (
     <div>
-      <EditOutlined
+      {/* <EditOutlined
         onClick={(e) => {
           setEditable(!editable)
-        }}></EditOutlined>
-      <div className="myPic">
+        }}></EditOutlined> */}
+      {/* <div className="myPic">
         {editable === false ? (
           <div>
             <Avatar
@@ -209,32 +227,19 @@ function MainProfile({ imageUploader, data }) {
             </Form.Item>{' '}
           </Form>
         )}
-      </div>
+      </div> */}
+      <DiverPlace>
+        <Divider />
+      </DiverPlace>
+
+      <UpdateIcon>
+        <EditOutlined
+          onClick={(e) => {
+            setEditable(!editable)
+          }}></EditOutlined>
+      </UpdateIcon>
+
       <div>
-        {/* {editable === false ? (
-          <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
-        ) : (
-          <MyNick>
-            닉네임 :{' '}
-            <Form
-              form={form}
-              name="modify"
-              onFinish={updateNickname}
-              autoComplete="off"
-              layout="vertical">
-              <Form.Item>
-                <input type="text" value={nick} onChange={(e) => setNick(e.target.value)}></input>
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    updateNickname()
-                  }}>
-                  등록
-                </Button>
-              </Form.Item>
-            </Form>
-          </MyNick>
-        )} */}
         <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
       </div>
       <div>
@@ -245,6 +250,7 @@ function MainProfile({ imageUploader, data }) {
             연령대 :
             <Form form={form} name="modify" onFinish={onAge} autoComplete="off" layout="vertical">
               <Form.Item
+                {...tailLayout}
                 name="ageRange"
                 rules={[
                   {
@@ -252,7 +258,10 @@ function MainProfile({ imageUploader, data }) {
                     message: 'Please select ageRange!',
                   },
                 ]}>
-                <Select defaultValue={me.age} placeholder="Select your ageRange">
+                <Select
+                  defaultValue={me.age}
+                  style={{ width: 180 }}
+                  placeholder="Select your ageRange">
                   <Option value="1">어린이 (0~9)</Option>
                   <Option value="2">청소년 (10~19)</Option>
                   <Option value="3">청년 (20~29)</Option>
@@ -260,7 +269,7 @@ function MainProfile({ imageUploader, data }) {
                   <Option value="5">노년 (60~)</Option>
                 </Select>
               </Form.Item>
-              <Form.Item>
+              <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit" onClick={success}>
                   등록
                 </Button>
@@ -270,8 +279,9 @@ function MainProfile({ imageUploader, data }) {
         )}
       </div>
       <Gender>성별 : {checkGender()}</Gender>
-      <br></br>
-      <DeleteAccount></DeleteAccount>
+      <DeletePlace>
+        <DeleteAccount></DeleteAccount>
+      </DeletePlace>
     </div>
   )
 }

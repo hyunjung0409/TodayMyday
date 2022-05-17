@@ -4,6 +4,9 @@ import SearchBar from '../components/Diary/SearchBar'
 import SearchResult from '../components/Diary/SearchResult'
 import TopLiked from '../components/Diary/TopLiked'
 import TopWord from '../components/Diary/TopWord'
+import { Row, Col, Button } from 'antd'
+import { EditOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 
 function Search() {
   const [optionBool, setOptionBool] = useState(false)
@@ -11,8 +14,19 @@ function Search() {
   const [keyword, setKeyword] = useState('')
   const [diaryList, setDiaryList] = useState([{}])
   const { me } = useSelector((state) => state.user)
+  const navigate = useNavigate()
 
-  console.log('diaryList: ', diaryList)
+  // console.log('diaryList: ', diaryList)
+
+  const onWrite = (word) => {
+    navigate('/my/article', { state: word })
+    console.log(word)
+  }
+
+  const onMove = () => {
+    navigate('/search', { replace: true })
+    setKeyword('')
+  }
 
   return (
     <div>
@@ -42,7 +56,22 @@ function Search() {
       ) : (
         <div>
           {diaryList.length === 0 ? (
-            <div>'{keyword}'에 대한 검색결과가 없습니다.</div>
+            <div>
+              <h3>
+                <strong>'{keyword}'</strong>에 대한 검색결과가 없습니다.
+              </h3>
+
+              <Button
+                type="text"
+                icon={<EditOutlined />}
+                style={{ marginRight: '1rem' }}
+                onClick={(e) => onWrite(keyword)}>
+                해당 단어로 글쓰기
+              </Button>
+              <Button type="text" style={{ marginRight: '1rem' }} onClick={onMove}>
+                처음으로
+              </Button>
+            </div>
           ) : (
             <SearchResult keyword={keyword} diaryList={diaryList} setDiaryList={setDiaryList} />
           )}
