@@ -47,9 +47,7 @@ function ArticleList(props) {
       <div style={{ backgroundColor: '#fff' }}>
         <Row>
           <Col span={12}>
-            <div style={{ margin: '1rem' }}>
-              <MyBook />
-            </div>
+            <div style={{ margin: '1rem' }}>{/* <MyBook /> */}</div>
           </Col>
           <Col span={12}>
             <ArticleListForm />
