@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 import { Button, Modal } from 'antd'
 import UpdateComments from './UpdateComments'
+import AntComment from './AntComment'
 let CommentContent = styled.div`
   display: flex;
   margin-bottom: 5%;
@@ -18,13 +19,20 @@ const ReadComments = styled.div``
 const WriteComment = styled.textarea`
   min-height: 70px;
   resize: none;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
 `
 const ReadComment = styled.div`
     display: flex;
     width: 100%
-    margin-top: 5%;
     margin-bottom: 5%;
+    margin-top: 5%;
 
+`
+const EnrollButton = styled.div`
+  margin-left: 82%;
 `
 function Comment() {
   const { cno } = useParams()
@@ -68,7 +76,7 @@ function Comment() {
       .get(`diary/read/${dno}`, { params: { userId: me.userId } })
       .then((res) => {
         console.log(res)
-        setComments(res.data.comments)
+        setComments([...res.data.comments])
         console.log(res.data.comments)
         // setComments(res.data.comments.content)
         // res.data.comments.map((a) => {
@@ -81,17 +89,7 @@ function Comment() {
         // navigate('/')
       })
   }
-  const updateComment = () => {
-    const axios = getAxios()
 
-    axios.put(`comment/${cno}`, { content: comment }, { params: { userId: me.userId } })
-    setComment(comment)
-  }
-  const deleteComment = async () => {
-    const axios = getAxios()
-
-    await axios.delete(`comment/${cno}`, { params: { userId: me.userId } })
-  }
   useEffect(() => {
     getComment()
   }, [])
@@ -99,10 +97,13 @@ function Comment() {
     <div>
       <ReadComment>
         <WriteComment
+          placeholder="댓글을 입력해주세요"
           value={comment}
           onChange={(e) => {
             setComment(e.target.value)
           }}></WriteComment>
+      </ReadComment>
+      <EnrollButton>
         <Button
           variant="dark"
           size="sm"
@@ -111,84 +112,23 @@ function Comment() {
           }}>
           등록
         </Button>
-      </ReadComment>
+      </EnrollButton>
 
-      {/* {editable === false ? (
-        <div>
-          <ReadComments>
-            {comments &&
-              comments.map((a, i) => {
-                return (
-                  <div key={i}>
-                    <p>{a}</p>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => {
-                        setEditable(!editable)
-                      }}>
-                      수정
-                    </Button>
-
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => {
-                        handleShow()
-                      }}>
-                      삭제
-                    </Button>
-
-                    <Modal
-                      title="댓글 삭제"
-                      visible={isModalVisible}
-                      onOk={() => {
-                        // deleteComment()
-                        handleCancel()
-                      }}
-                      onCancel={handleCancel}>
-                      <p>삭제하시겠습니까?</p>
-                    </Modal>
-                  </div>
-                )
-              })}
-          </ReadComments>
-        </div>
-      ) : (
-        <div>
-          <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={(e) => {
-              setEditable(!editable)
-            }}>
-            저장
-          </Button>{' '}
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={(e) => {
-              setEditable(!editable)
-            }}>
-            취소
-          </Button>
-        </div>
-      )} */}
       <div>
         <ReadComments>
-          {comments &&
-            comments.map((a, i) => {
-              return (
-                <UpdateComments
-                  key={i}
-                  cno={a.cno}
-                  content={a.content}
-                  getComment={getComment}></UpdateComments>
-              )
-            })}
+          {comments.map((a) => {
+            return (
+              <UpdateComments
+                key={a.cno}
+                cno={a.cno}
+                content={a.content}
+                createdat={a.createdat}
+                getComment={getComment}></UpdateComments>
+            )
+          })}
         </ReadComments>
       </div>
+      {/* <AntComment></AntComment> */}
     </div>
   )
 }
