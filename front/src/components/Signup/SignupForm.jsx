@@ -32,21 +32,31 @@ function SignupForm({ imageUploader, data }) {
       age: values.ageRange,
       gender: values.gender,
     })
+
+    Modal.success({
+      content: '회원가입이 완료되었습니다.',
+      onOk: () => {
+        navigate('/')
+      },
+    })
+
     console.log('Success')
   }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+    console.log('Failed:', errorInfo.errorFields)
 
-  const handleMove = () => {
-    navigate('/')
-  }
+    const render = () => {
+      const result = []
+      for (let index = 0; index < errorInfo.errorFields.length; index++) {
+        result.push(<div>{errorInfo.errorFields[index].errors}</div>)
+      }
+      return result
+    }
 
-  const success = () => {
-    Modal.success({
-      content: '회원가입이 완료되었습니다.',
-      onOk: handleMove,
+    Modal.error({
+      title: '회원가입이 완료되지 않았습니다.',
+      content: render(),
     })
   }
 
@@ -85,7 +95,7 @@ function SignupForm({ imageUploader, data }) {
         rules={[
           {
             required: true,
-            message: 'Please input your id!',
+            message: '아이디를 입력하세요!',
           },
         ]}>
         <Input />
@@ -94,14 +104,20 @@ function SignupForm({ imageUploader, data }) {
       <Form.Item
         label="비밀번호"
         name="password"
+        tooltip="비밀번호는 문자, 숫자, 특수기호를 포함하며 8자 이상이어야 합니다.'"
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: '비밀번호를 입력하세요!',
+          },
+          {
+            pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
+            message: '비밀번호는 문자, 숫자, 특수기호를 포함하며 8자 이상이어야 합니다.',
           },
         ]}>
         <Input.Password />
       </Form.Item>
+
       <Form.Item
         label="비밀번호 확인"
         name="confirm"
@@ -110,7 +126,7 @@ function SignupForm({ imageUploader, data }) {
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            message: '비밀번호가 일치하지 않습니다!',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -118,7 +134,7 @@ function SignupForm({ imageUploader, data }) {
                 return Promise.resolve()
               }
 
-              return Promise.reject(new Error('The two passwords that you entered do not match!'))
+              return Promise.reject(new Error('비밀번호가 일치하지 않습니다!'))
             },
           }),
         ]}>
@@ -128,11 +144,10 @@ function SignupForm({ imageUploader, data }) {
       <Form.Item
         label="닉네임"
         name="nickname"
-        tooltip="What do you want others to call you?"
         rules={[
           {
             required: true,
-            message: 'Please input your nickname!',
+            message: '닉네임을 입력하세요!',
             whitespace: true,
           },
         ]}>
@@ -144,11 +159,11 @@ function SignupForm({ imageUploader, data }) {
         name="gender"
         rules={[
           {
-            required: false,
-            message: 'Please select gender!',
+            required: true,
+            message: '성별을 선택하세요!',
           },
         ]}>
-        <Select placeholder="Select your gender">
+        <Select placeholder="성별을 선택하세요">
           <Option value="male">남성</Option>
           <Option value="female">여성</Option>
         </Select>
@@ -159,11 +174,11 @@ function SignupForm({ imageUploader, data }) {
         name="ageRange"
         rules={[
           {
-            required: false,
-            message: 'Please select ageRange!',
+            required: true,
+            message: '연령대를 선택하세요!',
           },
         ]}>
-        <Select placeholder="Select your ageRange">
+        <Select placeholder="연령대를 선택하세요">
           <Option value="1">어린이 (0~9)</Option>
           <Option value="2">청소년 (10~19)</Option>
           <Option value="3">청년 (20~29)</Option>
