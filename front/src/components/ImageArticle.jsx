@@ -8,8 +8,9 @@ const ImageLayout = styled.div`
   background-color: #fcfcf8;
 `
 
-function ImageArticle({ imageUploader, onFileChange, file, data, loading, setLoading }) {
+function ImageArticle({ imageUploader, onFileChange, file, data }) {
   const { me } = useSelector((state) => state.user)
+  const [loading, setLoading] = useState(false)
 
   const inputRef = useRef()
   const { fileURL } = data

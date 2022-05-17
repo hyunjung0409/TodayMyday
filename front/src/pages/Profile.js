@@ -35,10 +35,10 @@ function Profile() {
     <div>
       <Row>
         <Col span={12}>
-          {/* {me !== null && (
+          {me !== null && (
             <MyPicture imageUploader={imageUploader} data={me !== null && me.image}></MyPicture>
           )}{' '}
-          <MyNickName></MyNickName>
+          {/* <MyNickName></MyNickName>
           <MyAge></MyAge>
           <MyGender></MyGender> */}
           {/* <Change></Change> */}

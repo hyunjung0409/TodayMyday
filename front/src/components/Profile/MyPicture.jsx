@@ -18,6 +18,9 @@ import { loadUserRequestAction } from '../../reducers/user'
 //   overflow: hidden;
 //   position: relative;
 // `
+const UpdateIcon = styled.div`
+  margin-left: 120%;
+`
 const Submit = styled(Button)`
   margin-top: 10px;
 `
@@ -84,7 +87,7 @@ function MyPicture({ imageUploader, data }) {
   }
   const success = () => {
     Modal.success({
-      content: '회원정보 수정이 완료되었습니다.',
+      content: '사진 등록이 완료되었습니다.',
       // onOk: handleMove,
     })
   }
@@ -106,17 +109,20 @@ function MyPicture({ imageUploader, data }) {
 
   return (
     <div className="myPic">
+      <UpdateIcon>
+        <EditOutlined
+          onClick={(e) => {
+            setEditable(!editable)
+          }}></EditOutlined>
+      </UpdateIcon>
       {editable === false ? (
         <div>
-          <Avatar
-            size={300}
-            style={{ background: '#ccc', border: 'soild' }}
-            icon={<img src={me !== null && me.image}></img>}></Avatar>
-
-          <EditOutlined
-            onClick={(e) => {
-              setEditable(!editable)
-            }}></EditOutlined>
+          <div>
+            <Avatar
+              size={300}
+              style={{ background: '#ccc', border: 'soild' }}
+              icon={<img src={me !== null && me.image}></img>}></Avatar>
+          </div>
         </div>
       ) : (
         <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
@@ -150,13 +156,19 @@ function MyPicture({ imageUploader, data }) {
               onCancel={handleCancel}>
               <p>삭제하시겠습니까?</p>
             </Modal>
-            <Button type="primary" htmlType="submit" onClick={onFinish}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={() => {
+                onFinish()
+                success()
+              }}>
               등록
             </Button>
-            <EditOutlined
+            {/* <EditOutlined
               onClick={(e) => {
                 setEditable(!editable)
-              }}></EditOutlined>{' '}
+              }}></EditOutlined>{' '} */}
           </Form.Item>{' '}
         </Form>
       )}
