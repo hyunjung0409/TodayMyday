@@ -1,10 +1,7 @@
-import styled from 'styled-components'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import WordCard from '../components/Main/WordCard'
 import { wordGetRequestAction } from '../reducers/word'
-import DiaryList from '../components/Main/DiaryList'
-import { Row, Col } from 'antd'
 import InfinityScoll from '../components/Main/InfinityScoll'
 
 // const Cards = styled.div`
@@ -30,7 +27,6 @@ function Main() {
   return (
     <>
       <WordCard />
-      {/* <DiaryList /> */}
       <InfinityScoll />
     </>
   )

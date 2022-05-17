@@ -36,7 +36,7 @@ function DeleteAccount() {
 
   return (
     <div>
-      <Button variant="danger" onClick={handleShow}>
+      <Button type="danger" onClick={handleShow}>
         회원탈퇴
       </Button>
 

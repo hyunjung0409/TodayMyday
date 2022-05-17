@@ -1,45 +1,101 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { getAxios } from '../../api'
+import { Avatar, Divider, List, Skeleton } from 'antd'
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
+
+const MainLook = styled.div`
+  margin-top: 5%;
+  background-color: pink;
+`
+const PAGE_NUMBER = 0
 
 function InfinityScoll(props) {
-  const axios = getAxios()
-  const [items, setItems] = useState([])
-  const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [ref, inView] = useInView()
+  const [data, setData] = useState([])
+  const [page, setPage] = useState(PAGE_NUMBER)
 
-  // 서버에서 아이템을 가지고 오는 함수
-  const getItems = useCallback(async () => {
-    setLoading(true)
-    await axios.get('/diary/paging', { params: { pageNumber: page } }).then((res) => {
-      console.log('res', res.data.content)
-      setItems((prevState) => [...prevState, res.data.content])
-    })
-    setLoading(false)
-  }, [page])
-
-  // `getItems` 가 바뀔 때 마다 함수 실행
-  useEffect(() => {
-    getItems()
-  }, [getItems])
-
-  useEffect(() => {
-    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView && !loading) {
-      setPage((prevState) => prevState + 1)
+  const loadMoreData = () => {
+    if (loading) {
+      return
     }
-  }, [inView, loading])
+    setLoading(true)
+    fetch(`http://k6c205.p.ssafy.io:8080/api/diary/paging?page=${page}`)
+      .then((res) => res.json())
+      .then((body) => {
+        setData([...data, ...body.content])
+        setPage(page + 1)
+        setLoading(false)
+      })
+      .catch(() => {
+        setLoading(false)
+      })
+  }
+
+  useEffect(() => {
+    loadMoreData()
+  }, [])
 
   return (
-    <div>
-      {items.map((item, idx) => (
-        <div key={idx}>
-          {/* {item.length - 1 == idx ? <div ref={ref}>{item.image}</div> : <div>{item.image}</div>} */}
-          {console.log('item', item)}
+    <>
+      <MainLook>
+        <h1>전체 글 리스트</h1>
+        <div
+          id="scrollableDiv"
+          style={{
+            height: 400,
+            overflow: 'auto',
+            padding: '0 16px',
+            border: '1px solid rgba(140, 140, 140, 0.35)',
+          }}>
+          <InfiniteScroll
+            dataLength={data.length}
+            next={loadMoreData}
+            hasMore={data.length < 100}
+            loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+            scrollableTarget="scrollableDiv">
+            <List
+              dataSource={data}
+              renderItem={(item) => (
+                <List.Item key={item.id}>
+                  <div style={{ width: '100%', height: '150px', display: 'flex' }}>
+                    <img width={50} src={item.image} alt="" style={{ flex: 2 }} />
+                    <div style={{ flex: 2 }}>
+                      <div style={{ position: 'relative', top: '15px' }}>
+                        <h1 style={{ fontWeight: 'bold', marginBottom: '20px' }}>#{item.word}</h1>
+                        <p>
+                          {item.content.length >= 35
+                            ? item.content.substr(0, 35) + '...'
+                            : item.content}
+                        </p>
+                        <div>{item.createdat}</div>
+                      </div>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ position: 'relative', top: '25px' }}>
+                        <div>
+                          <HeartFilled style={{ fontSize: '22px' }} />{' '}
+                          <span style={{ fontSize: '22px' }}>{item.liked}</span>
+                        </div>
+                        <div>
+                          <EyeFilled style={{ fontSize: '22px' }} />{' '}
+                          <span style={{ fontSize: '22px' }}>{item.view}</span>
+                        </div>
+                        <div>
+                          <MessageFilled style={{ fontSize: '22px' }} />{' '}
+                          <span style={{ fontSize: '22px' }}>0</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </List.Item>
+              )}
+            />
+          </InfiniteScroll>
         </div>
-      ))}
-    </div>
+      </MainLook>
+    </>
   )
 }
 
