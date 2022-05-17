@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Form, Input, Button, Select, Modal } from 'antd'
 import ImageFileInput from '../ImageFileInput'
 import { getAxios } from '../../api'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+const axios = getAxios()
 const { Option } = Select
 
 function SignupForm({ imageUploader, data }) {
+  const navigate = useNavigate()
+
+  const [id, setId] = useState('')
+  const [nickname, setNickname] = useState('')
+
   const [form] = Form.useForm()
+
   const [image, setImage] = useState({
     fileURL: '/images/기본사진.png',
   })
   const [file, setFile] = useState({ fileName: '기본사진', fileURL: image.fileURL })
-  const navigate = useNavigate()
 
   const onFileChange = (file) => {
     setFile({
@@ -22,8 +28,48 @@ function SignupForm({ imageUploader, data }) {
     })
   }
 
+  const changeNickname = async (e) => {
+    setNickname(e.target.value)
+    // axios
+    //   .get('user/verifyid', {
+    //     params: {
+    //       userId: nickname,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data)
+    //     if (!res.data) {
+    //       form.setFields([{ name: 'nickname', errors: ['사용중인 닉네임 입니다.'] }])
+    //     } else {
+    //       form.setFields([{ name: 'nickname', errors: ['사용가능한 닉네임 입니다.'] }])
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
+  }
+
+  const onBlurNickname = () => {
+    console.log(form.getFieldValue('nicknameee'))
+    // console.log(nickname)
+    // if (form.getFieldError('nickname').length === 0 && form.getFieldValue('nickname')) {
+    //   try {
+    //     let res = await axios.get('user/verifyid', {
+    //       params: {
+    //         userId: form.getFieldValue('nickname'),
+    //       },
+    //     })
+    //     console.log(res)
+    //     // if (!res.data) {
+    //     //   form.setFields([{ name: 'nickname', errors: ['사용중인 닉네임 입니다.'] }])
+    //     // }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
+  }
+
   const onFinish = async (values) => {
-    const axios = getAxios()
     await axios.post('user/signup', {
       image: file.fileURL,
       nickname: values.nickname,
@@ -143,7 +189,8 @@ function SignupForm({ imageUploader, data }) {
 
       <Form.Item
         label="닉네임"
-        name="nickname"
+        name="nicknameee"
+        hasFeedback
         rules={[
           {
             required: true,
@@ -151,7 +198,14 @@ function SignupForm({ imageUploader, data }) {
             whitespace: true,
           },
         ]}>
-        <Input />
+        <Input
+          placeholder="닉네임"
+          value={nickname}
+          onChange={changeNickname}
+          onBlur={onBlurNickname}
+          allowClear
+        />
+        <h5>{nickname}</h5>
       </Form.Item>
 
       <Form.Item
