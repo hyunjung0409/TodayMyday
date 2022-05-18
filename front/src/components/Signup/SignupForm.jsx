@@ -11,9 +11,13 @@ const { Option } = Select
 function SignupForm({ imageUploader, data }) {
   const navigate = useNavigate()
 
+  const [idStatus, setIdStatus] = useState(false)
+  const [nkStatus, setNkStatus] = useState(false)
+
   const [id, setId] = useState('')
   const [nickname, setNickname] = useState('')
 
+  const [formValues, setFormValues] = useState({})
   const [form] = Form.useForm()
 
   const [image, setImage] = useState({
@@ -28,46 +32,65 @@ function SignupForm({ imageUploader, data }) {
     })
   }
 
-  const changeNickname = async (e) => {
-    setNickname(e.target.value)
-    // axios
-    //   .get('user/verifyid', {
-    //     params: {
-    //       userId: nickname,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     if (!res.data) {
-    //       form.setFields([{ name: 'nickname', errors: ['사용중인 닉네임 입니다.'] }])
-    //     } else {
-    //       form.setFields([{ name: 'nickname', errors: ['사용가능한 닉네임 입니다.'] }])
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
+  const changeId = (e) => {
+    setId(e.target.value)
   }
 
-  const onBlurNickname = () => {
-    console.log(form.getFieldValue('nicknameee'))
-    // console.log(nickname)
-    // if (form.getFieldError('nickname').length === 0 && form.getFieldValue('nickname')) {
-    //   try {
-    //     let res = await axios.get('user/verifyid', {
-    //       params: {
-    //         userId: form.getFieldValue('nickname'),
-    //       },
-    //     })
-    //     console.log(res)
-    //     // if (!res.data) {
-    //     //   form.setFields([{ name: 'nickname', errors: ['사용중인 닉네임 입니다.'] }])
-    //     // }
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
+  const onBlurId = () => {
+    console.log(form.getFieldValue('id'))
+
+    if (form.getFieldError('id').length === 0 && form.getFieldValue('id')) {
+      axios
+        .get('user/verifyid', {
+          params: {
+            userId: form.getFieldValue('id'),
+          },
+        })
+        .then((res) => {
+          console.log('res.data', res.data)
+          if (!res.data) {
+            setIdStatus(false)
+            form.setFields([{ name: 'id', errors: ['사용 중인 아이디입니다.'] }])
+          } else {
+            setIdStatus(true)
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
+
+  const changeNickname = (e) => {
+    setNickname(e.target.value)
+  }
+
+  const onBlurNickname = useCallback(() => {
+    console.log(form.getFieldValue('nickname'))
+    console.log(form.getFieldsValue())
+
+    if (form.getFieldError('nickname').length === 0 && form.getFieldValue('nickname')) {
+      axios
+        .get('user/verifynk', {
+          params: {
+            nickname: form.getFieldValue('nickname'),
+          },
+        })
+        .then((res) => {
+          console.log('res.data', res.data)
+          if (!res.data) {
+            console.log('error: ', form.getFieldError('nickname'))
+            setNkStatus(false)
+            form.setFields([{ name: 'nickname', errors: ['사용 중인 닉네임입니다.'] }])
+          } else {
+            setNkStatus(true)
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [])
 
   const onFinish = async (values) => {
     await axios.post('user/signup', {
@@ -112,6 +135,7 @@ function SignupForm({ imageUploader, data }) {
       name="signup"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      onValuesChange={(_, values) => setFormValues(values)}
       autoComplete="off"
       layout="vertical">
       <Form.Item
@@ -144,7 +168,7 @@ function SignupForm({ imageUploader, data }) {
             message: '아이디를 입력하세요!',
           },
         ]}>
-        <Input />
+        <Input placeholder="아이디" value={id} onChange={changeId} onBlur={onBlurId} allowClear />
       </Form.Item>
 
       <Form.Item
@@ -189,8 +213,7 @@ function SignupForm({ imageUploader, data }) {
 
       <Form.Item
         label="닉네임"
-        name="nicknameee"
-        hasFeedback
+        name="nickname"
         rules={[
           {
             required: true,
@@ -205,7 +228,6 @@ function SignupForm({ imageUploader, data }) {
           onBlur={onBlurNickname}
           allowClear
         />
-        <h5>{nickname}</h5>
       </Form.Item>
 
       <Form.Item
@@ -242,13 +264,15 @@ function SignupForm({ imageUploader, data }) {
       </Form.Item>
 
       <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          // onClick={success}
-        >
-          Register
-        </Button>
+        {idStatus === true && nkStatus === true ? (
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+        ) : (
+          <Button type="primary" disabled>
+            Register
+          </Button>
+        )}
       </Form.Item>
     </Form>
   )
