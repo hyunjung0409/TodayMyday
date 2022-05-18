@@ -1,4 +1,4 @@
-import { Avatar, Divider, List, Skeleton, Tag } from 'antd'
+import { Avatar, Divider, List, Skeleton, Tag, Row, Col, Space } from 'antd'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -7,9 +7,26 @@ import { getAxios } from '../../api'
 import { useNavigate } from 'react-router-dom'
 
 const MainLook = styled.div`
-  margin-top: 5%;
-  background-color: pink;
+  margin-top: 1.5rem;
+  background-color: white;
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  border-radius: 5px;
 `
+const ImageLayout = styled.div`
+  width: 15rem;
+  height: 10rem;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.5rem 0;
+`
+
+const StyledImageArea = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+`
+
 const PAGE_NUMBER = 1
 
 function InfinityScoll(props) {
@@ -92,7 +109,7 @@ function InfinityScoll(props) {
   return (
     <>
       <MainLook>
-        <div style={{ textAlign: 'right' }}>
+        <div style={{ padding: '1rem', textAlign: 'right' }}>
           <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
             최신순
           </Tag>
@@ -106,10 +123,11 @@ function InfinityScoll(props) {
         <div
           id="scrollableDiv"
           style={{
-            height: 400,
+            height: '570px',
             overflow: 'auto',
             padding: '0 16px',
-            border: '1px solid rgba(140, 140, 140, 0.35)',
+            // border: '1px solid rgba(140, 140, 140, 0.35)',
+            border: '1px solid rgba(200, 200, 200, 0.35)',
           }}>
           <InfiniteScroll
             dataLength={data.length}
@@ -127,37 +145,82 @@ function InfinityScoll(props) {
                   onClick={(e) => {
                     pageMove(item.dno, e)
                   }}>
-                  <div style={{ width: '100%', height: '150px', display: 'flex' }}>
-                    <img src={item.image} alt="" style={{ flex: 1 }} />
-                    <div style={{ flex: 4 }}>
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '160px',
+                      display: 'flex',
+                      justifyContent: 'space-evenly',
+                    }}>
+                    {/* <Row justify="space-evenly" align="center"> */}
+                    <ImageLayout>
+                      <StyledImageArea>
+                        <img
+                          src={item.image}
+                          alt="content-image"
+                          width="100%"
+                          height="100%"
+                          // style={{ flex: 1 }}
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </StyledImageArea>
+                    </ImageLayout>
+                    {/* <div style={{ flex: 4 }}>
                       <div style={{ position: 'relative', top: '15px' }}>
-                        <h1 style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '20px' }}>
-                          #{item.word}
-                        </h1>
+                        <h1 style={{ fontWeight: 'bold', marginBottom: '20px' }}>#{item.word}</h1>
                         <p>
-                          {item.content.length >= 35
-                            ? item.content.substr(0, 35) + '...'
+                          {item.content.length >= 80
+                            ? item.content.substr(0, 80) + '...'
                             : item.content}
                         </p>
                         <div>{timeForToday(item.createdat)}</div>
                       </div>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ position: 'relative', top: '25px' }}>
-                        <div>
-                          <HeartFilled style={{ fontSize: '22px' }} />{' '}
-                          <span style={{ fontSize: '22px' }}>{item.liked}</span>
-                        </div>
-                        <div>
-                          <EyeFilled style={{ fontSize: '22px' }} />{' '}
-                          <span style={{ fontSize: '22px' }}>{item.view}</span>
-                        </div>
-                        <div>
-                          <MessageFilled style={{ fontSize: '22px' }} />{' '}
-                          <span style={{ fontSize: '22px' }}>0</span>
-                        </div>
+                    </div> */}
+                    <Space
+                      direction="vertical"
+                      size={1}
+                      style={{ display: 'flex', justifyContent: 'center', width: '50rem' }}>
+                      <h1 style={{ fontWeight: 'bold' }}>#{item.word}</h1>
+                      <p>
+                        {item.content.length >= 250
+                          ? item.content.substr(0, 250) + '...'
+                          : item.content}
+                      </p>
+                      <div>{timeForToday(item.createdat)}</div>
+                    </Space>
+
+                    <Space
+                      direction="vertical"
+                      size={1}
+                      style={{ display: 'flex', justifyContent: 'center' }}>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledFlexEnd>
+                          <HeartFilled style={{ fontSize: '1rem' }} />
+                        </StyledFlexEnd>
+                        <StyledFlexStart>
+                          <span style={{ fontSize: '1rem' }}>{item.liked}</span>
+                        </StyledFlexStart>
                       </div>
-                    </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledFlexEnd>
+                          <EyeFilled style={{ fontSize: '1rem' }} />
+                        </StyledFlexEnd>
+                        <StyledFlexStart>
+                          <span style={{ fontSize: '1rem' }}>{item.view}</span>
+                        </StyledFlexStart>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledFlexEnd>
+                          <MessageFilled style={{ fontSize: '1rem' }} />
+                        </StyledFlexEnd>
+                        <StyledFlexStart>
+                          <span style={{ fontSize: '1rem' }}>0</span>
+                        </StyledFlexStart>
+                      </div>
+                    </Space>
+                    {/* </Row> */}
                   </div>
                 </List.Item>
               )}
@@ -168,5 +231,19 @@ function InfinityScoll(props) {
     </>
   )
 }
+
+const StyledFlexEnd = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 5rem;
+  padding-right: 0.2rem;
+`
+
+const StyledFlexStart = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 5rem;
+  padding-left: 0.2rem;
+`
 
 export default InfinityScoll
