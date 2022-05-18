@@ -126,7 +126,8 @@ function InfinityScoll(props) {
             height: '570px',
             overflow: 'auto',
             padding: '0 16px',
-            border: '1px solid rgba(140, 140, 140, 0.35)',
+            // border: '1px solid rgba(140, 140, 140, 0.35)',
+            border: '1px solid rgba(200, 200, 200, 0.35)',
           }}>
           <InfiniteScroll
             dataLength={data.length}
@@ -192,17 +193,31 @@ function InfinityScoll(props) {
                       direction="vertical"
                       size={1}
                       style={{ display: 'flex', justifyContent: 'center' }}>
-                      <div>
-                        <HeartFilled style={{ fontSize: '1rem' }} />{' '}
-                        <span style={{ fontSize: '1rem' }}>{item.liked}</span>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledFlexEnd>
+                          <HeartFilled style={{ fontSize: '1rem' }} />
+                        </StyledFlexEnd>
+                        <StyledFlexStart>
+                          <span style={{ fontSize: '1rem' }}>{item.liked}</span>
+                        </StyledFlexStart>
                       </div>
-                      <div>
-                        <EyeFilled style={{ fontSize: '1rem' }} />{' '}
-                        <span style={{ fontSize: '1rem' }}>{item.view}</span>
+
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledFlexEnd>
+                          <EyeFilled style={{ fontSize: '1rem' }} />
+                        </StyledFlexEnd>
+                        <StyledFlexStart>
+                          <span style={{ fontSize: '1rem' }}>{item.view}</span>
+                        </StyledFlexStart>
                       </div>
-                      <div>
-                        <MessageFilled style={{ fontSize: '1rem' }} />{' '}
-                        <span style={{ fontSize: '1rem' }}>0</span>
+
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <StyledFlexEnd>
+                          <MessageFilled style={{ fontSize: '1rem' }} />
+                        </StyledFlexEnd>
+                        <StyledFlexStart>
+                          <span style={{ fontSize: '1rem' }}>0</span>
+                        </StyledFlexStart>
                       </div>
                     </Space>
                     {/* </Row> */}
@@ -216,5 +231,19 @@ function InfinityScoll(props) {
     </>
   )
 }
+
+const StyledFlexEnd = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 5rem;
+  padding-right: 0.2rem;
+`
+
+const StyledFlexStart = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 5rem;
+  padding-left: 0.2rem;
+`
 
 export default InfinityScoll
