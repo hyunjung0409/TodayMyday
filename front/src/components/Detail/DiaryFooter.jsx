@@ -24,7 +24,10 @@ function DiaryFooter({ diary, dno }) {
   const handleOk = () => {
     setIsModalVisible(false)
     deleteDiary()
-    success()
+    Modal.success({
+      content: '글 삭제가 완료되었습니다.',
+      onOk: handleMove,
+    })
   }
 
   const handleCancel = () => {
@@ -39,46 +42,50 @@ function DiaryFooter({ diary, dno }) {
 
   const handleMove = () => {
     navigate('/my/articleList')
-    // navigate(-1)
   }
 
-  const success = () => {
-    Modal.success({
-      content: '글 삭제가 완료되었습니다.',
-      onOk: handleMove,
-    })
+  const myList = (e) => {
+    if (me.nickname === diary.nickname) {
+      return (
+        <StyledPrimaryBtn type="text" onClick={handleMove}>
+          내 글 목록
+        </StyledPrimaryBtn>
+      )
+    } else {
+      return null
+    }
   }
 
-  return (
-    <Row>
-      <Col span={12}>
-        <StyledStratContainer>
-          {me.nickname === diary.nickname ? (
-            <StyledPrimaryBtn type="text" onClick={handleMove}>
-              내 글 목록
-            </StyledPrimaryBtn>
-          ) : null}
-        </StyledStratContainer>
-      </Col>
-      <Col span={12}>
-        <StyledEndContainer>
-          {me.nickname === diary.nickname ? (
-            <Space size="middle">
-              <StyledPrimaryBtn type="text" onClick={handleModify}>
-                수정
-              </StyledPrimaryBtn>
-              <StyledDangerBtn type="text" onClick={showModal}>
-                삭제
-              </StyledDangerBtn>
-              {/* <Button type="primary" onClick={handleModify}>
+  const myBtn = (e) => {
+    if (me.nickname === diary.nickname) {
+      return (
+        <Space size="middle">
+          <StyledPrimaryBtn type="text" onClick={handleModify}>
+            수정
+          </StyledPrimaryBtn>
+          <StyledDangerBtn type="text" onClick={showModal}>
+            삭제
+          </StyledDangerBtn>
+          {/* <Button type="primary" onClick={handleModify}>
               수정
             </Button>
             <Button type="danger" onClick={showModal}>
               삭제
             </Button> */}
-            </Space>
-          ) : null}
-        </StyledEndContainer>
+        </Space>
+      )
+    } else {
+      return null
+    }
+  }
+
+  return (
+    <Row>
+      <Col span={12}>
+        <StyledStratContainer>{me !== null && myList()}</StyledStratContainer>
+      </Col>
+      <Col span={12}>
+        <StyledEndContainer>{me !== null && myBtn()}</StyledEndContainer>
         <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <p>해당 글을 삭제하시겠습니까?</p>
         </Modal>
