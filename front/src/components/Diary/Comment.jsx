@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router'
 import { Button, Modal } from 'antd'
 import UpdateComments from './UpdateComments'
 import AntComment from './AntComment'
-let CommentContent = styled.div`
-  display: flex;
-  margin-bottom: 5%;
+const CommentContent = styled.div`
+  overflow: auto;
+  max-height: 80vh;
 `
 const CommentPlace = styled.div``
 let CommentSize = styled.p`
@@ -82,7 +82,8 @@ function Comment() {
         // res.data.comments.map((a) => {
         //   return a
         // }),
-        console.log(comments)
+
+        console.log(comments.nickname)
       })
       .catch((err) => {
         alert('잘못된 접근입니다')
@@ -114,20 +115,23 @@ function Comment() {
         </Button>
       </EnrollButton>
 
-      <div>
+      <CommentContent>
         <ReadComments>
           {comments.map((a) => {
             return (
               <UpdateComments
                 key={a.cno}
                 cno={a.cno}
+                id={a.userId}
+                profileImage={a.profileImage}
+                nickname={a.nickname}
                 content={a.content}
                 createdat={a.createdat}
                 getComment={getComment}></UpdateComments>
             )
           })}
         </ReadComments>
-      </div>
+      </CommentContent>
       {/* <AntComment></AntComment> */}
     </div>
   )
