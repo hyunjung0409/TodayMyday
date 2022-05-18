@@ -117,7 +117,12 @@ function WordCard() {
                         </div>
                       </div>
                     </div>
-                    <div className={'heart open' + i}>
+                    <div
+                      className={'heart open' + i}
+                      onClick={() => {
+                        const audio = new Audio('/bgm/button-14.mp3')
+                        audio.play()
+                      }}>
                       <ExclamationOutlined style={{ color: 'transparent' }} />
                       {/* <PlusOutlined style={{ color: '#c51803' }} /> */}
                     </div>

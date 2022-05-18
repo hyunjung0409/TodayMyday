@@ -19,7 +19,13 @@ const PageCover = React.forwardRef((props, ref) => {
 
 const Page = React.forwardRef((props, ref) => {
   return (
-    <StyledPage className="page" ref={ref}>
+    <StyledPage
+      className="page"
+      ref={ref}
+      onClick={() => {
+        const audio = new Audio('/bgm/page2.mp3')
+        audio.play()
+      }}>
       <div className="page-content">
         {/* <h2 className="page-header">Page header - {props.number}</h2> */}
         <div className="page-text">{props.children}</div>
