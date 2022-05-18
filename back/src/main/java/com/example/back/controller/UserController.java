@@ -140,4 +140,32 @@ public class UserController {
 
         return new ResponseEntity<>(map, status);
     }
+
+    @GetMapping("/verifyid")
+    @ApiOperation(value = "아이디 중복 확인", notes = "userId로 아이디 중복 확인", response = String.class)
+    public Boolean verifyUserId(@RequestParam String userId){
+        boolean result = false;
+
+        User user = userRepository.findByUserId(userId);
+        if (user != null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    @GetMapping("/verifynk")
+    @ApiOperation(value = "닉네임 중복 확인", notes = "nickname으로 아이디 중복 확인", response = String.class)
+    public Boolean verifyNickname(@RequestParam String nickname){
+        boolean result = false;
+
+        User user = userRepository.findByNickname(nickname);
+        if (user != null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
