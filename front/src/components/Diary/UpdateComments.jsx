@@ -36,7 +36,7 @@ const UpdateComments = (props) => {
 
   const [commento, setCommento] = useState('')
   const [newComment, setNewComment] = useState('')
-  const { cno, content, createdat, getComment } = props
+  const { cno, id, profileImage, nickname, content, createdat, getComment } = props
   const [editable, setEditable] = useState(false)
 
   const [show, setShow] = useState(false)
@@ -79,8 +79,8 @@ const UpdateComments = (props) => {
       {/* <CommentSize>{commento}</CommentSize> */}
       <CommentSize>
         <Comment
-          avatar={<Avatar src={me.image} alt={me.nickname} />}
-          author={me.nickname}
+          avatar={<Avatar src={profileImage} alt={nickname} />}
+          author={nickname}
           content={commento}
           datetime={
             <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
@@ -88,24 +88,28 @@ const UpdateComments = (props) => {
             </Tooltip>
           }></Comment>
       </CommentSize>
-      <ButtonPlace>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => {
-            setEditable(!editable)
-          }}>
-          수정
-        </Button>{' '}
-        <Button
-          variant="danger"
-          size="sm"
-          onClick={() => {
-            handleShow()
-          }}>
-          삭제
-        </Button>
-      </ButtonPlace>
+      {me.userId === id ? (
+        <ButtonPlace>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => {
+              setEditable(!editable)
+            }}>
+            수정
+          </Button>{' '}
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => {
+              handleShow()
+            }}>
+            삭제
+          </Button>
+        </ButtonPlace>
+      ) : (
+        <ButtonPlace></ButtonPlace>
+      )}
 
       <Modal
         title="댓글 삭제"
@@ -122,8 +126,8 @@ const UpdateComments = (props) => {
     <div>
       <CommentSize>
         <Comment
-          avatar={<Avatar src={me.image} alt={me.nickname} />}
-          author={me.nickname}
+          avatar={<Avatar src={profileImage} alt={nickname} />}
+          author={nickname}
           content={
             <Input
               type="text"
@@ -137,25 +141,29 @@ const UpdateComments = (props) => {
             </Tooltip>
           }></Comment>
       </CommentSize>
-      <DeleteButton>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={(e) => {
-            updateComment(props.cno)
-            setEditable(!editable)
-          }}>
-          저장
-        </Button>{' '}
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={(e) => {
-            setEditable(!editable)
-          }}>
-          취소
-        </Button>
-      </DeleteButton>
+      {me.userId === id ? (
+        <DeleteButton>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={(e) => {
+              updateComment(props.cno)
+              setEditable(!editable)
+            }}>
+            저장
+          </Button>{' '}
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={(e) => {
+              setEditable(!editable)
+            }}>
+            취소
+          </Button>
+        </DeleteButton>
+      ) : (
+        <DeleteButton></DeleteButton>
+      )}
     </div>
   )
 }
