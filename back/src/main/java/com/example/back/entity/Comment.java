@@ -23,6 +23,10 @@ public class Comment {
     @NotNull
     private String userId;
 
+    private String nickname;
+
+    private String profileImage;
+
     @NotBlank
     private String content;
 
@@ -33,4 +37,5 @@ public class Comment {
     @JoinColumn(name = "dno")
     @JsonIgnore
     private Diary diary;
+
 }
