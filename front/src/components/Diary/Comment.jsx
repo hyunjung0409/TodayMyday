@@ -15,24 +15,27 @@ const CommentPlace = styled.div``
 let CommentSize = styled.p`
   font-size: medium;
 `
-const ReadComments = styled.div``
+const ReadComments = styled.div`
+  // border: 1px solid red;
+`
 const WriteComment = styled.textarea`
   min-height: 70px;
   resize: none;
-  width: 90%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
+  border-color: rgba(100, 100, 100, 0.2);
 `
 const ReadComment = styled.div`
     display: flex;
     width: 100%
     margin-bottom: 5%;
     margin-top: 5%;
-
+    // border: 1px solid blue;
 `
 const EnrollButton = styled.div`
-  margin-left: 82%;
+  margin-right: 2%;
 `
 function Comment() {
   const { cno } = useParams()
@@ -98,22 +101,22 @@ function Comment() {
     <StyledBackground>
       <ReadComment>
         <WriteComment
-          placeholder="댓글을 입력해주세요"
+          placeholder="댓글을 입력해주세요..."
           value={comment}
           onChange={(e) => {
             setComment(e.target.value)
           }}></WriteComment>
+        <EnrollButton>
+          <Button
+            variant="dark"
+            size="sm"
+            onClick={(e) => {
+              createComment()
+            }}>
+            등록
+          </Button>
+        </EnrollButton>
       </ReadComment>
-      <EnrollButton>
-        <Button
-          variant="dark"
-          size="sm"
-          onClick={(e) => {
-            createComment()
-          }}>
-          등록
-        </Button>
-      </EnrollButton>
 
       <CommentContent>
         <ReadComments>
@@ -140,7 +143,8 @@ function Comment() {
 const StyledBackground = styled.div`
   background-color: #fff;
   padding: 2%;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
+  height: 100vh;
 `
 
 export default Comment
