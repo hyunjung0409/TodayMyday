@@ -18,6 +18,7 @@ import LightSpeed from 'react-reveal/LightSpeed'
 const MainExplain = styled.h1`
   // padding-top: 5%;
   // font-size: 300%;
+  font-size: 3rem;
   color: #38532e;
   margin: 0;
 `
