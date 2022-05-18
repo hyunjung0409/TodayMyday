@@ -66,7 +66,7 @@ function MyBook() {
   useEffect(() => {
     console.log(articleList)
     setData(articleList)
-  }, [articleList])
+  }, [])
 
   return data ? (
     <HTMLFlipBook

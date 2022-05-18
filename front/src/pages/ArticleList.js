@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import LikedImgCarousel from '../components/LikedImgCarousel'
 import ViewImgCarousel from '../components/ViewmgCarousel'
 import MyBook from '../components/ArticleList/MyBook'
+import styled from 'styled-components'
 
 function ArticleList(props) {
   const axios = getAxios()
@@ -43,11 +44,17 @@ function ArticleList(props) {
   }, [me])
 
   return (
-    <>
-      <div style={{ backgroundColor: '#fff' }}>
+    <StyledBackground>
+      <StyledContainer>
         <Row>
           <Col span={12}>
-            <div style={{ margin: '1rem' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginLeft: '0.5rem',
+                height: '640px',
+              }}>
               <MyBook />
             </div>
           </Col>
@@ -55,13 +62,25 @@ function ArticleList(props) {
             <ArticleListForm />
           </Col>
         </Row>
-        <Row>
+        <Row style={{ height: '550px', marginTop: '-100px' }}>
           <Col span={12}>{liked !== null && <LikedImgCarousel liked={liked} />}</Col>
           <Col span={12}>{view !== null && <ViewImgCarousel view={view} />}</Col>
         </Row>
-      </div>
-    </>
+      </StyledContainer>
+    </StyledBackground>
   )
 }
+
+const StyledBackground = styled.div`
+  background-color: #ffdae5;
+  padding: 2%;
+  border-radius: 5px;
+`
+
+const StyledContainer = styled.div`
+  background-color: #fff;
+  padding: 2%;
+  border-radius: 5px;
+`
 
 export default ArticleList

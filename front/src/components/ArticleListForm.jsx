@@ -14,6 +14,7 @@ import {
   diarySearchWordRequestAction,
   diarySearchContentRequestAction,
 } from '../reducers/article'
+import styled from 'styled-components'
 
 const { Option } = Select
 const PAGE_NUMBER = 1
@@ -130,7 +131,7 @@ function ArticleListForm(props) {
           <Option value="searchcontent">내용</Option>
         </Select>
         <Search
-          placeholder="input search text"
+          placeholder="검색어를 입력하세요..."
           allowClear
           enterButton="검색"
           size="large"
@@ -138,55 +139,70 @@ function ArticleListForm(props) {
           onSearch={onSearch}
         />
       </div>
-      <div
-        id="scrollableDiv"
-        style={{
-          height: 400,
-          overflow: 'auto',
-          padding: '0 16px',
-          border: '1px solid rgba(140, 140, 140, 0.35)',
-          marginBottom: '10px',
-        }}>
-        <InfiniteScroll
-          dataLength={data.length}
-          next={loadMoreData}
-          hasMore={data.length < 100}
-          scrollableTarget="scrollableDiv">
-          <List
-            dataSource={data}
-            renderItem={(item) => (
-              <List.Item
-                style={{ cursor: 'pointer' }}
-                key={item.id}
-                onClick={(e) => {
-                  pageMove(item.dno, e)
-                }}>
-                <ArticleListItem
-                  picture={item.image}
-                  title={item.word}
-                  content={item.content}
-                  view={item.view}
-                  liked={item.liked}
-                  createdat={timeForToday(item.createdat)}
-                />
-              </List.Item>
-            )}
-          />
-        </InfiniteScroll>
-      </div>
-      <div style={{ textAlign: 'right' }}>
-        <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
-          최신순
-        </Tag>
-        <Tag style={{ cursor: 'pointer' }} color="green" onClick={viewSort}>
-          조회수
-        </Tag>
-        <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
-          좋아요
-        </Tag>
-      </div>
+
+      <MainLook>
+        <div
+          style={{
+            padding: '1rem',
+            textAlign: 'right',
+          }}>
+          <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
+            최신순
+          </Tag>
+          <Tag style={{ cursor: 'pointer' }} color="green" onClick={viewSort}>
+            조회수
+          </Tag>
+          <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
+            좋아요
+          </Tag>
+        </div>
+
+        <div
+          id="scrollableDiv"
+          style={{
+            height: '500px',
+            overflow: 'auto',
+            padding: '0 16px',
+            border: '1px solid rgba(200, 200, 200, 0.5)',
+            borderRadius: '0 0 5px 5px',
+          }}>
+          <InfiniteScroll
+            dataLength={data.length}
+            next={loadMoreData}
+            hasMore={data.length < 100}
+            scrollableTarget="scrollableDiv">
+            <List
+              dataSource={data}
+              renderItem={(item) => (
+                <List.Item
+                  style={{ cursor: 'pointer' }}
+                  key={item.id}
+                  onClick={(e) => {
+                    pageMove(item.dno, e)
+                  }}>
+                  <ArticleListItem
+                    picture={item.image}
+                    title={item.word}
+                    content={item.content}
+                    view={item.view}
+                    liked={item.liked}
+                    createdat={timeForToday(item.createdat)}
+                  />
+                </List.Item>
+              )}
+            />
+          </InfiniteScroll>
+        </div>
+      </MainLook>
     </div>
   )
 }
+
+const MainLook = styled.div`
+  margin-top: 1.5rem;
+  background-color: white;
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  border-radius: 5px;
+`
 
 export default ArticleListForm
