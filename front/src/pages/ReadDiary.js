@@ -83,4 +83,10 @@ const StyledFormArea = styled.div`
   // border: 1px solid rgba(50, 50, 50, 0.2);
 `
 
+// const ReadComment = styled.div`
+//     display: flex;
+//     width: 100%
+//     margin-top: 5%;
+//     margin-bottom: 5%;
+
 export default MyDetail

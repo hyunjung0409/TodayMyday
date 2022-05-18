@@ -1,4 +1,4 @@
-import { Card, Modal, Tag, Typography } from 'antd'
+import { Button, Card, Modal, Tag, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getAxios } from '../api'
@@ -6,11 +6,11 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { useNavigate } from 'react-router-dom'
-import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
+import { EditOutlined, EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 
 const { Title } = Typography
 
-function MyWord({ test, data, setWord, word }) {
+function MyWord({ data, keyword, setWord, word }) {
   const { me } = useSelector((state) => state.user)
   const axios = getAxios()
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -35,17 +35,16 @@ function MyWord({ test, data, setWord, word }) {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     initialSlide: 0,
   }
 
   useEffect(() => {
-    setWord(test)
-  }, [test])
+    setWord(data)
+  }, [data])
 
   const showModal = (item) => {
-    console.log('item', item)
     setTitle(item)
     axios.get(`/diary/searchword`, { params: { userId: me.userId, word: item } }).then((res) => {
       setDiary(res.data)
@@ -90,9 +89,13 @@ function MyWord({ test, data, setWord, word }) {
     return `${value}`
   }
 
+  const onWrite = (word) => {
+    navigate('/my/article', { state: word })
+  }
+
   return (
     <div>
-      {word != null &&
+      {word !== null && word.length !== 0 ? (
         word.map((item, idx) => (
           <Tag
             style={{ marginBottom: '5px', cursor: 'pointer' }}
@@ -103,13 +106,30 @@ function MyWord({ test, data, setWord, word }) {
             }}>
             {item}
           </Tag>
-        ))}
+        ))
+      ) : (
+        <>
+          <div style={{ textAlign: 'center' }}>
+            <h3>
+              <strong>'{keyword}'</strong>에 대한 검색 결과가 없습니다.
+            </h3>
+            {/* <Button
+              type="text"
+              icon={<EditOutlined />}
+              style={{ marginRight: '1rem' }}
+              onClick={(e) => onWrite(keyword)}>
+              해당 단어로 글쓰기
+            </Button> */}
+          </div>
+        </>
+      )}
       {title != null && (
         <Modal
           title={<Title level={3}>#{title}</Title>}
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
+          width={1050}
           footer={null}>
           <Slider {...settings}>
             {diary != null &&
