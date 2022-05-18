@@ -7,6 +7,7 @@ import TopWord from '../components/Diary/TopWord'
 import { Row, Col, Button } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 function Search() {
   const [optionBool, setOptionBool] = useState(false)
@@ -29,8 +30,8 @@ function Search() {
   }
 
   return (
-    <div>
-      <div className="search-bar" style={{ margin: '2rem auto 3rem auto', width: '90%' }}>
+    <StyledContainer>
+      <div className="search-bar" style={{ margin: '2rem auto 1rem auto', width: '90%' }}>
         <SearchBar
           optionBool={optionBool}
           setOptionBool={setOptionBool}
@@ -61,13 +62,13 @@ function Search() {
                 <strong>'{keyword}'</strong>에 대한 검색결과가 없습니다.
               </h3>
 
-              <Button
+              {/* <Button
                 type="text"
                 icon={<EditOutlined />}
                 style={{ marginRight: '1rem' }}
                 onClick={(e) => onWrite(keyword)}>
                 해당 단어로 글쓰기
-              </Button>
+              </Button> */}
               <Button type="text" style={{ marginRight: '1rem' }} onClick={onMove}>
                 처음으로
               </Button>
@@ -77,8 +78,15 @@ function Search() {
           )}
         </div>
       )}
-    </div>
+    </StyledContainer>
   )
 }
+
+const StyledContainer = styled.div`
+  background-color: #ffdae5;
+  padding: 1rem;
+  border: 2px solid rgba(200, 200, 200, 0.3);
+  border-radius: 5px;
+`
 
 export default Search
