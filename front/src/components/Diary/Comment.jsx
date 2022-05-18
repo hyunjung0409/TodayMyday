@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router'
 import { Button, Modal } from 'antd'
 import UpdateComments from './UpdateComments'
 import AntComment from './AntComment'
+
 let CommentContent = styled.div`
   display: flex;
   margin-bottom: 5%;
@@ -94,7 +95,7 @@ function Comment() {
     getComment()
   }, [])
   return (
-    <div>
+    <StyledBackground>
       <ReadComment>
         <WriteComment
           placeholder="댓글을 입력해주세요"
@@ -129,7 +130,14 @@ function Comment() {
         </ReadComments>
       </div>
       {/* <AntComment></AntComment> */}
-    </div>
+    </StyledBackground>
   )
 }
+
+const StyledBackground = styled.div`
+  background-color: #fff;
+  padding: 2%;
+  border-radius: 5px;
+`
+
 export default Comment
