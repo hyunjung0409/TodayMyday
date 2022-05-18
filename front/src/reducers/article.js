@@ -11,6 +11,10 @@ export const initialState = {
   diarySearchWordDone: false,
   diarySearchWordError: null,
   diarySearchWord: null,
+  MySearchWordLoading: false,
+  MySearchWordDone: false,
+  MySearchWordError: null,
+  MySearchWord: null,
   diarySearchContentLoading: false,
   diarySearchContentDone: false,
   diarySearchContentError: null,
@@ -28,6 +32,10 @@ export const ARTICLE_LIST_FAILURE = 'ARTICLE_LIST_FAILURE'
 export const DIARY_SEARCH_WORD_REQUEST = 'DIARY_SEARCH_WORD_REQUEST'
 export const DIARY_SEARCH_WORD_SUCCESS = 'DIARY_SEARCH_WORD_SUCCESS'
 export const DIARY_SEARCH_WORD_FAILURE = 'DIARY_SEARCH_WORD_FAILURE'
+
+export const MY_SEARCH_WORD_REQUEST = 'MY_SEARCH_WORD_REQUEST'
+export const MY_SEARCH_WORD_SUCCESS = 'MY_SEARCH_WORD_SUCCESS'
+export const MY_SEARCH_WORD_FAILURE = 'MY_SEARCH_WORD_FAILURE'
 
 export const DIARY_SEARCH_CONTENT_REQUEST = 'DIARY_SEARCH_CONTENT_REQUEST'
 export const DIARY_SEARCH_CONTENT_SUCCESS = 'DIARY_SEARCH_CONTENT_SUCCESS'
@@ -50,6 +58,13 @@ export const articleListRequestAction = (data) => {
 export const diarySearchWordRequestAction = (data) => {
   return {
     type: DIARY_SEARCH_WORD_REQUEST,
+    data,
+  }
+}
+
+export const mySearchWordRequestAction = (data) => {
+  return {
+    type: MY_SEARCH_WORD_REQUEST,
     data,
   }
 }
@@ -122,6 +137,26 @@ const reducer = (state = initialState, action) => {
         ...state,
         diarySearchWordLoading: false,
         diarySearchWordError: action.error,
+      }
+    case MY_SEARCH_WORD_REQUEST:
+      return {
+        ...state,
+        mySearchWordLoading: true,
+        mySearchWordError: null,
+        mySearchWordDone: false,
+      }
+    case MY_SEARCH_WORD_SUCCESS:
+      return {
+        ...state,
+        mySearchWordLoading: false,
+        mySearchWordDone: true,
+        mySearchWord: action.data,
+      }
+    case MY_SEARCH_WORD_FAILURE:
+      return {
+        ...state,
+        mySearchWordLoading: false,
+        mySearchWordError: action.error,
       }
     case DIARY_SEARCH_CONTENT_REQUEST:
       return {

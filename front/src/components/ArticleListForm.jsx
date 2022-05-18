@@ -130,9 +130,8 @@ function ArticleListForm(props) {
           <Option value="searchcontent">내용</Option>
         </Select>
         <Search
-          placeholder="input search text"
+          placeholder="검색어를 입력하세요..."
           allowClear
-          enterButton="검색"
           size="large"
           style={{ width: '80%' }}
           onSearch={onSearch}
