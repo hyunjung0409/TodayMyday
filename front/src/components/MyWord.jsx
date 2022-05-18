@@ -61,7 +61,9 @@ function MyWord({ data, keyword, setWord, word }) {
   }
 
   const pageMove = (dno, e) => {
-    navigate(`/diary/read/${dno}`)
+    axios.get('/diary/view', { params: { dno: dno } }).then(() => {
+      navigate(`/diary/read/${dno}`)
+    })
   }
 
   function timeForToday(value) {

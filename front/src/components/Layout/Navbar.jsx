@@ -123,7 +123,7 @@ function Navbar() {
               onCancel={handleCancel}
               width={350}
               footer={null}>
-              <LoginForm />
+              <LoginForm setIsModalVisible={setIsModalVisible} />
             </Modal>
             <StyledLink to="/user/signup">
               <strong>회원가입</strong>

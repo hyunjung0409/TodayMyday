@@ -75,6 +75,19 @@ function ArticleListForm(props) {
     setSearchKind(value)
   }
 
+  const onChange = (e) => {
+    e.target.value === '' &&
+      fetch(`http://k6c205.p.ssafy.io:8080/api/diary/mypaging?page=1&userId=${me.userId}`)
+        .then((res) => res.json())
+        .then((body) => {
+          setData([...body.content])
+          setLoading(false)
+        })
+        .catch(() => {
+          setLoading(false)
+        })
+  }
+
   function timeForToday(value) {
     let tData = new Date(value)
     tData.setHours(tData.getHours() + 9)
@@ -130,12 +143,12 @@ function ArticleListForm(props) {
           <Option value="searchcontent">내용</Option>
         </Select>
         <Search
-          placeholder="input search text"
+          placeholder="검색어를 입력하세요..."
           allowClear
-          enterButton="검색"
           size="large"
           style={{ width: '80%' }}
           onSearch={onSearch}
+          onChange={onChange}
         />
       </div>
       <div
