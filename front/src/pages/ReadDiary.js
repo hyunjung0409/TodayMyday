@@ -79,7 +79,7 @@ const StyledDiaryContainer = styled.div`
 
 const StyledImageArea = styled.div`
   width: 80%;
-  height: 50%;
+  height: 25rem;
   // min-height: 20rem;
   overflow: hidden;
   border-radius: 5px 5px 0 0;
