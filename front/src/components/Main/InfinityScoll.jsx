@@ -50,6 +50,8 @@ function InfinityScoll(props) {
   const axios = getAxios()
   const navigate = useNavigate()
 
+  const max = Number.MAX_SAFE_INTEGER
+
   const loadMoreData = () => {
     if (loading) {
       return
@@ -155,7 +157,7 @@ function InfinityScoll(props) {
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}
-            hasMore={data.length < 100}
+            hasMore={data.length < max}
             loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
             endMessage={<Divider plain>마지막 글입니다 🤐</Divider>}
             scrollableTarget="scrollableDiv">
