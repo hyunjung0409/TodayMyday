@@ -10,6 +10,7 @@ import { getAxios } from '../../api'
 import { useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import { loadUserRequestAction } from '../../reducers/user'
+import '../Diary/Comment.css'
 
 const { Title, Text } = Typography
 
@@ -126,6 +127,8 @@ const StyledWordTitle = styled(Title)`
   display: flex;
   justify-content: start;
   align-items: center;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 25px;
 `
 const StyledAvatar = styled(Avatar)`
   margin: 0 0.5rem;

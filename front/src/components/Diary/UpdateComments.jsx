@@ -44,7 +44,10 @@ const UpdateComments = (props) => {
   const updateComment = async () => {
     const axios = getAxios()
     if (newComment === '') {
-      alert('댓글을 입력하세요')
+      Modal.error({
+        title: '댓글을 입력해주세요',
+        okText: '확인',
+      })
     } else if (newComment !== '') {
       await axios.put(
         `comment/${cno}`,
