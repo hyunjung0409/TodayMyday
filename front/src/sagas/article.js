@@ -50,8 +50,9 @@ function articleListAPI(data) {
 
 function* articleList(action) {
   try {
-    const result = yield call(articleListAPI, action.data)
+    const result = yield call(articleListAPI, action.data.userId)
     const dairies = result.data.user.dairies
+    yield action.data.setData(dairies)
     yield put({
       type: ARTICLE_LIST_SUCCESS,
       data: dairies,

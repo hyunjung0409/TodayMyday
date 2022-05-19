@@ -38,11 +38,9 @@ function MyBook() {
   const [data, setData] = useState(null)
   const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
-  const { articleList } = useSelector((state) => state.article)
 
   const renderrrr = () => {
     if (data) {
-      // console.log(data)
       return data.map((x, i) => (
         <Page number={i} key={i}>
           <h1>
@@ -62,17 +60,10 @@ function MyBook() {
   useEffect(() => {
     if (me != null) {
       if (me.userId != null) {
-        dispatch(articleListRequestAction({ userId: me.userId }))
-        console.log(me)
-        console.log(articleList)
+        dispatch(articleListRequestAction({ userId: me.userId, setData }))
       }
     }
   }, [me])
-
-  useEffect(() => {
-    console.log(articleList)
-    setData(articleList)
-  }, [articleList])
 
   return data ? (
     <HTMLFlipBook
@@ -106,9 +97,7 @@ function MyBook() {
         </div>
       </PageCover>
     </HTMLFlipBook>
-  ) : (
-    <div></div>
-  )
+  ) : null
 }
 
 const StyledPageCover = styled.div`

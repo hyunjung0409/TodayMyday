@@ -100,8 +100,6 @@ function ArticleForm({ imageUploader, data }) {
         image: file.fileURL || fileURL,
       }
       await dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
-      await dispatch(articleListRequestAction({ userId: me.userId }))
-      console.log('articleList', articleList)
     } else {
       Modal.warning({
         title: '일기를 작성해 주세요.',
