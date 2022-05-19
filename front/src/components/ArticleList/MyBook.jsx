@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Divider } from 'antd'
 import { articleListRequestAction } from '../../reducers/article'
-
+import '../Diary/Comment.css'
 const PageCover = React.forwardRef((props, ref) => {
   return (
     <StyledPageCover className="page page-cover" ref={ref} data-density="hard">
@@ -43,9 +43,9 @@ function MyBook() {
     if (data) {
       return data.map((x, i) => (
         <Page number={i} key={i}>
-          <h1>
+          <StyledTitle>
             <strong>#{x.word}</strong>
-          </h1>
+          </StyledTitle>
           <StyledImgArea>
             <StyledContentImg src={x.image} />
           </StyledImgArea>
@@ -140,7 +140,8 @@ const MyTextarea = styled.textarea`
   line-height: 1.5rem;
   border: 0;
   outline: none;
-  font-family: inherit;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 15px;
   appearance: none;
   color: #4e5e72;
   background-color: transparent;
@@ -151,5 +152,8 @@ const MyTextarea = styled.textarea`
   margin-top: 0.5em;
   padding: 0 0.2em;
 `
-
+const StyledTitle = styled.h1`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 25px;
+`
 export default MyBook

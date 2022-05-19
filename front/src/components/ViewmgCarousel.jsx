@@ -6,6 +6,7 @@ import { Card } from 'antd'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import './Diary/Comment.css'
 
 function ViewImgCarousel({ view }) {
   const navigate = useNavigate()
@@ -47,7 +48,7 @@ function ViewImgCarousel({ view }) {
   return (
     <>
       <div className="Carousel">
-        <h2>조회수 top5</h2>
+        <StyledFont>조회수 top5</StyledFont>
         <Slider {...settings}>
           {view.map((item, idx) => (
             <div key={idx} className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
@@ -74,7 +75,7 @@ function ViewImgCarousel({ view }) {
                   </StyledImageArea>
                 </ImageLayout>
 
-                <h3 style={{ fontWeight: 'bold' }}>#{item.word}</h3>
+                <StyledTitle style={{ fontWeight: 'bold' }}>#{item.word}</StyledTitle>
                 <span style={{ margin: '10px' }}>
                   <EyeFilled /> {item.view}
                 </span>
@@ -107,5 +108,11 @@ const StyledImageArea = styled.div`
   overflow: hidden;
   border-radius: 5px;
 `
-
+const StyledTitle = styled.h3`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
+`
+const StyledFont = styled.h2`
+  font-family: 'Cafe24';
+`
 export default ViewImgCarousel

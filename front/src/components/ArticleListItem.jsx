@@ -23,9 +23,11 @@ function ArticleListItem({ picture, title, createdat, view, liked, content, comm
           direction="vertical"
           size={1}
           style={{ display: 'flex', justifyContent: 'center', width: '18rem' }}>
-          <h2 style={{ fontWeight: 'bold' }}>#{title}</h2>
-          <p>{content.length >= 40 ? content.substr(0, 40) + '...' : content}</p>
-          <div>{createdat}</div>
+          <StyledTitle style={{ fontWeight: 'bold' }}>#{title}</StyledTitle>
+          <StyledContent>
+            {content.length >= 40 ? content.substr(0, 40) + '...' : content}
+          </StyledContent>
+          <StyledTime>{createdat}</StyledTime>
         </Space>
 
         <Space direction="vertical" size={1} style={{ display: 'flex', justifyContent: 'center' }}>
@@ -90,5 +92,15 @@ const StyledFlexStart = styled.div`
   width: 3rem;
   padding-left: 0.2rem;
 `
-
+const StyledTitle = styled.h2`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 25px;
+`
+const StyledContent = styled.p`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
+`
+const StyledTime = styled.div`
+  font-size: 10px;
+`
 export default ArticleListItem

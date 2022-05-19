@@ -50,7 +50,10 @@ function Comment() {
     const axios = getAxios()
 
     if (comment === '') {
-      alert('댓글을 입력하세요')
+      Modal.error({
+        title: '댓글을 입력해주세요',
+        okText: '확인',
+      })
     } else if (comment !== '') {
       axios
         .post('comment', { content: comment, userId: me.userId }, { params: { dno: dno } })
@@ -69,7 +72,10 @@ function Comment() {
         setComments([...res.data.comments])
       })
       .catch((err) => {
-        alert('잘못된 접근입니다')
+        Modal.error({
+          title: '잘못된 접근입니다',
+          okText: '확인',
+        })
       })
   }
 

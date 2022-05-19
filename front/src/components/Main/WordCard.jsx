@@ -15,18 +15,22 @@ import styled from 'styled-components'
 import Zoom from 'react-reveal/Zoom'
 import LightSpeed from 'react-reveal/LightSpeed'
 import '../Diary/Comment.css'
+
 const MainExplain = styled.h1`
   // padding-top: 5%;
+  padding-bottom: 5%;
   // font-size: 300%;
   font-size: 3rem;
   color: #38532e;
   margin: 0;
+  font-family: 'Cafe24';
 `
 const MainBack = styled.div`
   // background-color: pink;
   background-color: white;
   border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 5px;
+  font-family: 'Cafe24';
 `
 const AllOpen = styled.div``
 
