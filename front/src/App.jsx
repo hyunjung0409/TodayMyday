@@ -14,7 +14,7 @@ import Profile from './pages/Profile'
 import ReadDiary from './pages/ReadDiary'
 import ModifyDiary from './pages/ModifyDiary'
 import jwt_decode from 'jwt-decode'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
 import NotFound from './pages/NotFound'
@@ -53,6 +53,7 @@ const AudioButton2 = styled.div`
 function App() {
   const dispatch = useDispatch()
   const [state, setState] = useState(true)
+  const { me } = useSelector((state) => state.user)
 
   useEffect(() => {
     if (localStorage.getItem('jwtToken') != null) {
@@ -82,17 +83,25 @@ function App() {
           <div className="App">
             <StyledContentArea>
               <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/main" element={<Main />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/user/login" element={<Login />} />
-                <Route path="/user/signup" element={<Signup />} />
-                <Route path="/my/article" element={<Article />} />
-                <Route path="/my/articleList" element={<ArticleList />} />
-                <Route path="/my/profile" element={<Profile />} />
-                <Route path="/diary/read/:dno" element={<ReadDiary />} />
-                <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
-                <Route path="/*" element={<NotFound />} />
+                {localStorage.getItem('jwtToken') !== null ? (
+                  <>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/main" element={<Main />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/user/login" element={<Login />} />
+                    <Route path="/user/signup" element={<Signup />} />
+                    <Route path="/my/article" element={<Article />} />
+                    <Route path="/my/articleList" element={<ArticleList />} />
+                    <Route path="/my/profile" element={<Profile />} />
+                    <Route path="/diary/read/:dno" element={<ReadDiary />} />
+                    <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/*" element={<NotFound />} />
+                  </>
+                )}
               </Routes>
             </StyledContentArea>
           </div>
