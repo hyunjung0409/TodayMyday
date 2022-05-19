@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { BsHeart, BsHeartFill } from 'react-icons/bs'
-import { EyeOutlined } from '@ant-design/icons'
+import { EyeOutlined, MessageFilled } from '@ant-design/icons'
 import { getAxios } from '../../api'
 import { useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
@@ -98,6 +98,9 @@ function DiaryHeader({ diary }) {
           )}
           <div>
             <EyeOutlined /> {diary.view}
+          </div>
+          <div>
+            <MessageFilled /> {diary.comments && diary.comments.length}
           </div>
         </StyledSpace>
       </Col>

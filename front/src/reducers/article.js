@@ -51,7 +51,7 @@ export const articleAddRequestAction = (data) => {
 export const articleListRequestAction = (data) => {
   return {
     type: ARTICLE_LIST_REQUEST,
-    data: data.userId,
+    data,
   }
 }
 
