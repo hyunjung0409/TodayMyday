@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { EditOutlined } from '@ant-design/icons'
 import { getAxios } from '../../api'
-// import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar, Select, Divider } from 'antd'
 import { loadUserRequestAction } from '../../reducers/user'
-// import { useNavigate } from 'react-router-dom'
-// import DeleteAccount from './DeleteAccount'
+import '../Diary/Comment.css'
 const { Option } = Select
 const Gender = styled.div`
   margin-top: 5%;
   text-align: left;
   margin-left: 25%;
   font-size: 120%;
+  font-family: 'Noto Sans Korean Medium';
 `
 const MyNick = styled.div`
   margin-top: 5%;
   text-align: left;
   margin-left: 25%;
   font-size: 120%;
+  font-family: 'Noto Sans Korean Medium';
 `
 const Age = styled.div`
   margin-top: 5%;
@@ -29,12 +29,20 @@ const Age = styled.div`
   width: 40%;
   display: flex;
   font-size: 120%;
+  font-family: 'Noto Sans Korean Medium';
 `
 const UpdateIcon = styled.div`
   margin-left: 83%;
 `
 const DiverPlace = styled.div`
   margin-right: 2%;
+`
+const ChangeButton = styled(Button)`
+  &&& {
+    background: #fafafa;
+    border-color: #f0f0f0;
+    color: #e86f8b;
+  }
 `
 // const DeletePlace = styled.div`
 //   margin-top: 10%;
@@ -165,14 +173,14 @@ function MainProfile({ imageUploader, data }) {
       </UpdateIcon>
 
       <div>
-        <MyNick>닉네임 | {me !== null && me.nickname}</MyNick>
+        <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
       </div>
       <div>
         {editable === false ? (
-          <Age>연령대 | {me !== null && showAge(me.age)} </Age>
+          <Age>연령대 : {me !== null && showAge(me.age)} </Age>
         ) : (
           <Age>
-            연령대 |
+            연령대 :
             <Form form={form} name="modify" onFinish={onAge} autoComplete="off" layout="vertical">
               <Form.Item
                 {...tailLayout}
@@ -195,15 +203,15 @@ function MainProfile({ imageUploader, data }) {
                 </Select>
               </Form.Item>
               <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit" onClick={success}>
+                <ChangeButton htmlType="submit" onClick={success}>
                   등록
-                </Button>
+                </ChangeButton>
               </Form.Item>
             </Form>{' '}
           </Age>
         )}
       </div>
-      <Gender>성별 | {checkGender()}</Gender>
+      <Gender>성별 : {checkGender()}</Gender>
     </div>
   )
 }

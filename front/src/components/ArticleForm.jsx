@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { articleAddRequestAction, articleListRequestAction } from '../reducers/article'
 import ImageArticle from './ImageArticle'
+import './Diary/Comment.css'
 
 const ImageLayout = styled.div`
   width: 100%;
@@ -51,15 +52,16 @@ const Side = styled.div`
 `
 
 const TitleWord = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
 `
 
 const MyTextarea = styled.textarea`
-  font-size: 1rem;
   line-height: 28px;
   border: 0;
   outline: none;
-  font-family: inherit;
+  font-size: 2rem;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
   appearance: none;
   color: #4e5e72;
   background-color: transparent;

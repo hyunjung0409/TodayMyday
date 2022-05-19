@@ -45,3 +45,19 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Noto Sans Korean Bold';
+  src: url('../../font/NotoSansKR-Bold.otf');
+}
+@font-face {
+  font-family: 'Noto Sans Korean Medium';
+  src: url('../../font/NotoSansKR-Medium.otf');
+}
+@font-face {
+  font-family: 'Noto Sans Korean Regular';
+  src: url('../../font/NotoSansKR-Regular.otf');
+}
+@font-face {
+  font-family: 'Cafe24';
+  src: url('../../font/Cafe24Danjunghae.ttf');
+}

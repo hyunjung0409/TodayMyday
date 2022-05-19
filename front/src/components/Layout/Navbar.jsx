@@ -68,7 +68,7 @@ function Navbar() {
   return (
     <Header
       style={{
-        // position: 'fixed',
+        position: 'fixed',
         zIndex: 1,
         width: '100%',
         background: '#C1E17D',

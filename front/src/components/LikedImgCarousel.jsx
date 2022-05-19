@@ -6,7 +6,7 @@ import { Card } from 'antd'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-
+import './Diary/Comment.css'
 function LikedImgCarousel({ liked }) {
   const navigate = useNavigate()
   const NextArrow = ({ onClick }) => {
@@ -45,8 +45,13 @@ function LikedImgCarousel({ liked }) {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="Carousel">
         <h2>좋아요 top5</h2>
+=======
+      <div className="Carousel" style={{ padding: '1rem' }}>
+        <StyledFont>좋아요 top5</StyledFont>
+>>>>>>> 8c49f3bbf41e9e00e20fae7bea7dba71c1edc2fc
         <Slider {...settings}>
           {liked.map((item, idx) => (
             <div key={idx} className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
@@ -71,7 +76,7 @@ function LikedImgCarousel({ liked }) {
                     />
                   </StyledImageArea>
                 </ImageLayout>
-                <h3 style={{ fontWeight: 'bold' }}>#{item.word}</h3>
+                <StyledTitle style={{ fontWeight: 'bold' }}>#{item.word}</StyledTitle>
                 <span style={{ margin: '10px' }}>
                   <HeartFilled /> {item.liked}
                 </span>
@@ -104,5 +109,11 @@ const StyledImageArea = styled.div`
   overflow: hidden;
   border-radius: 5px;
 `
-
+const StyledTitle = styled.h3`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
+`
+const StyledFont = styled.h2`
+  font-family: 'Cafe24';
+`
 export default LikedImgCarousel
