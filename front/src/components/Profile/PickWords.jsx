@@ -5,20 +5,27 @@ import Search from 'antd/lib/input/Search'
 import { Select } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { articleListRequestAction, diarySearchWordRequestAction } from '../../reducers/article'
+import {
+  articleListRequestAction,
+  diarySearchWordRequestAction,
+  mySearchWordRequestAction,
+} from '../../reducers/article'
 import MyWord from '../MyWord'
 
 const { Option } = Select
 const Words = styled.div`
   width: 100%;
   height: 350px;
-  background-color: rgb(238, 167, 187);
+  // background-color: rgb(238, 167, 187);
+  background: #ffe6f0;
   text-align: left;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2%;
   margin-top: 3%;
   overflow: auto;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
 `
 
 function PickWords() {
@@ -32,7 +39,7 @@ function PickWords() {
   const onSearch = (value) => {
     setKeyword(value)
     dispatch(
-      diarySearchWordRequestAction({
+      mySearchWordRequestAction({
         userId: me.userId,
         word: value,
         searchKind: 'searchword',
@@ -61,7 +68,7 @@ function PickWords() {
         내가 선택한 단어 <hr />
         <div style={{ width: '100%', marginBottom: '10px' }}>
           <Search
-            placeholder="단어를 입력하세요."
+            placeholder="검색어를 입력하세요..."
             allowClear
             onSearch={onSearch}
             onChange={onChange}

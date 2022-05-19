@@ -14,7 +14,7 @@ const MyButton = styled(Button)`
   }
 `
 
-function LoginForm() {
+function LoginForm({ setIsModalVisible }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -26,6 +26,10 @@ function LoginForm() {
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
+  }
+
+  const pageMove = () => {
+    setIsModalVisible(false)
   }
 
   return (
@@ -51,7 +55,7 @@ function LoginForm() {
             </MyButton>
             <div style={{ marginTop: '10px' }}>
               계정이 없으신가요?{'  '}
-              <Link style={{ color: '#e86f8b' }} to="/user/signup">
+              <Link style={{ color: '#e86f8b' }} to="/user/signup" onClick={pageMove}>
                 회원가입
               </Link>
             </div>

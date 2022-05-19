@@ -18,6 +18,7 @@ import '../Diary/Comment.css'
 const MainExplain = styled.h1`
   // padding-top: 5%;
   // font-size: 300%;
+  font-size: 3rem;
   color: #38532e;
   margin: 0;
 `
@@ -115,7 +116,12 @@ function WordCard() {
                         </div>
                       </div>
                     </div>
-                    <div className={'heart open' + i}>
+                    <div
+                      className={'heart open' + i}
+                      onClick={() => {
+                        const audio = new Audio('/bgm/button-14.mp3')
+                        audio.play()
+                      }}>
                       <ExclamationOutlined style={{ color: 'transparent' }} />
                       {/* <PlusOutlined style={{ color: '#c51803' }} /> */}
                     </div>

@@ -177,4 +177,5 @@ function MyPicture({ imageUploader, data }) {
     </div>
   )
 }
+
 export default MyPicture

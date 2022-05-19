@@ -13,12 +13,12 @@ import {
   DIARY_SEARCH_CONTENT_REQUEST,
   DIARY_SEARCH_CONTENT_SUCCESS,
   DIARY_SEARCH_CONTENT_FAILURE,
+  MY_SEARCH_WORD_REQUEST,
 } from '../reducers/article'
 
 const axios = getAxios()
 
 function articleAddAPI(data) {
-  console.log('data', data)
   return axios.post('diary', data.data, { params: { userId: data.userId } })
 }
 
@@ -26,7 +26,6 @@ function* articleAdd(action) {
   const navigate = action.data.navigate
   try {
     const res = yield call(articleAddAPI, action.data)
-    console.log('res 메롱', res)
     yield put({
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
@@ -77,6 +76,30 @@ function* diarySearchWord(action) {
       type: DIARY_SEARCH_WORD_SUCCESS,
       data: result.data,
     })
+    // yield result.data.length !== 0
+    //   ? action.data.setData([result.data[0].word])
+    //   : action.data.setData(result.data)
+    yield action.data.setData(result.data)
+  } catch (err) {
+    yield put({
+      type: DIARY_SEARCH_WORD_FAILURE,
+      error: err.response.data,
+    })
+  }
+}
+
+function mySearchWordAPI(data) {
+  const searchKind = data.searchKind
+  return axios.get(`diary/${searchKind}`, { params: { userId: data.userId, word: data.word } })
+}
+
+function* mySearchWord(action) {
+  try {
+    const result = yield call(mySearchWordAPI, action.data)
+    yield put({
+      type: DIARY_SEARCH_WORD_SUCCESS,
+      data: result.data,
+    })
     yield result.data.length !== 0
       ? action.data.setData([result.data[0].word])
       : action.data.setData(result.data)
@@ -123,6 +146,10 @@ function* watchDiarySearchWord() {
   yield takeLatest(DIARY_SEARCH_WORD_REQUEST, diarySearchWord)
 }
 
+function* watchMySearchWord() {
+  yield takeLatest(MY_SEARCH_WORD_REQUEST, mySearchWord)
+}
+
 function* watchDiarySearchContent() {
   yield takeLatest(DIARY_SEARCH_CONTENT_REQUEST, diarySearchContent)
 }
@@ -133,5 +160,6 @@ export default function* userSaga() {
     fork(watchArticleList),
     fork(watchDiarySearchWord),
     fork(watchDiarySearchContent),
+    fork(watchMySearchWord),
   ])
 }

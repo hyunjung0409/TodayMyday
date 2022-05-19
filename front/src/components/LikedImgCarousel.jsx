@@ -5,6 +5,7 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import { Card } from 'antd'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 function LikedImgCarousel({ liked }) {
   const navigate = useNavigate()
@@ -44,7 +45,7 @@ function LikedImgCarousel({ liked }) {
 
   return (
     <>
-      <div className="Carousel">
+      <div className="Carousel" style={{ padding: '1rem' }}>
         <h2>좋아요 top5</h2>
         <Slider {...settings}>
           {liked.map((item, idx) => (
@@ -56,9 +57,20 @@ function LikedImgCarousel({ liked }) {
                   pageMove(item.dno, e)
                 }}>
                 <div style={{ marginBottom: '10px' }}>{idx + 1}</div>
-                <div style={{ marginBottom: '10px' }}>
+                {/* <div style={{ marginBottom: '10px' }}>
                   <img style={{ width: '150px' }} src={item.image} alt={item.image} />
-                </div>
+                </div> */}
+                <ImageLayout>
+                  <StyledImageArea>
+                    <img
+                      src={item.image}
+                      alt="content-image"
+                      width="100%"
+                      height="100%"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </StyledImageArea>
+                </ImageLayout>
                 <h3 style={{ fontWeight: 'bold' }}>#{item.word}</h3>
                 <span style={{ margin: '10px' }}>
                   <HeartFilled /> {item.liked}
@@ -77,5 +89,20 @@ function LikedImgCarousel({ liked }) {
     </>
   )
 }
+
+const ImageLayout = styled.div`
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.5rem 0;
+`
+
+const StyledImageArea = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+`
 
 export default LikedImgCarousel

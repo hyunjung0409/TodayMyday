@@ -179,7 +179,7 @@ function InfinityScoll(props) {
                     <Space
                       direction="vertical"
                       size={1}
-                      style={{ display: 'flex', justifyContent: 'center', width: '50rem' }}>
+                      style={{ display: 'flex', justifyContent: 'center', width: '40rem' }}>
                       <h1 style={{ fontWeight: 'bold' }}>#{item.word}</h1>
                       <p>
                         {item.content.length >= 250
