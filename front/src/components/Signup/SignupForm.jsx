@@ -104,6 +104,7 @@ function SignupForm({ imageUploader, data }) {
 
     Modal.success({
       content: '회원가입이 완료되었습니다.',
+      okText: '확인',
       onOk: () => {
         navigate('/')
       },
@@ -125,6 +126,7 @@ function SignupForm({ imageUploader, data }) {
 
     Modal.error({
       title: '회원가입이 완료되지 않았습니다.',
+      okText: '확인',
       content: render(),
     })
   }
@@ -266,11 +268,11 @@ function SignupForm({ imageUploader, data }) {
       <Form.Item>
         {idStatus === true && nkStatus === true ? (
           <Button type="primary" htmlType="submit">
-            Register
+            등록
           </Button>
         ) : (
           <Button type="primary" disabled>
-            Register
+            등록
           </Button>
         )}
       </Form.Item>

@@ -6,18 +6,8 @@ import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar } from 'antd'
-import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { loadUserRequestAction } from '../../reducers/user'
-// const MyPic = styled.div`
-//   margin-left: auto;
-//   margin-right: auto;
-//   width: 250px;
-//   height: 250px;
-//   border-radius: 50%;
-//   border: solid;
-//   overflow: hidden;
-//   position: relative;
-// `
+
 const UpdateIcon = styled.div`
   margin-left: 120%;
 `
@@ -31,13 +21,10 @@ function MyPicture({ imageUploader, data }) {
   const axios = getAxios()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
-  // console.log('file2', file2)
   const formRef = useRef()
   const [editable, setEditable] = useState(false)
-  // console.log(me)
-  // console.log(editable, 'true면 수정 가능 / false면 수정 불가능')
+
   const [loading, setLoading] = useState(false)
-  const [isImage, setisImage] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const showModal = () => {
     setIsModalVisible(true)
@@ -83,12 +70,10 @@ function MyPicture({ imageUploader, data }) {
     setFile2({ fileName: null, fileURL: null })
     dispatch(loadUserRequestAction({ userId: me.userId }))
     setEditable(!editable)
-    // console.log('file2', file2)
   }
   const success = () => {
     Modal.success({
       content: '사진 등록이 완료되었습니다.',
-      // onOk: handleMove,
     })
   }
 
@@ -165,15 +150,9 @@ function MyPicture({ imageUploader, data }) {
               }}>
               등록
             </Button>
-            {/* <EditOutlined
-              onClick={(e) => {
-                setEditable(!editable)
-              }}></EditOutlined>{' '} */}
           </Form.Item>{' '}
         </Form>
       )}
-
-      {/* <EditOutlined onClick={onClickImageUpload}></EditOutlined> */}
     </div>
   )
 }

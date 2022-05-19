@@ -6,12 +6,16 @@
   font-family: '나눔손글씨 동화또박';
   src: url('./font/나눔손글씨 동화또박.ttf');
 }
-
+@font-face {
+  font-family: 'Maru';
+  src: url('./font/MaruBuri-Regular.ttf');
+}
 .App {
   margin: 0px;
   text-align: center;
   box-sizing: border-box;
-  font-family: '나눔손글씨 동화또박';
+  /* font-family: 'Maru'; */
+  /* font-family: '나눔손글씨 동화또박'; */
 }
 
 .Carousel {

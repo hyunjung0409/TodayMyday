@@ -32,6 +32,7 @@ function* articleAdd(action) {
     })
     action.data.Modal.success({
       content: '글 등록 완료',
+      okText: '확인',
       onOk() {
         navigate(`/diary/read/${res.data.diary.dno}`)
       },
