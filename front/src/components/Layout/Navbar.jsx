@@ -66,7 +66,13 @@ function Navbar() {
   }, [])
 
   return (
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: '#C1E17D' }}>
+    <Header
+      style={{
+        // position: 'fixed',
+        zIndex: 1,
+        width: '100%',
+        background: '#C1E17D',
+      }}>
       <Row justify="space-between" align="center">
         {/* <Col span={4}> */}
         <img
