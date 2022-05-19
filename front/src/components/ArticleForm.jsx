@@ -105,6 +105,7 @@ function ArticleForm({ imageUploader, data }) {
     } else {
       Modal.warning({
         title: '일기를 작성해 주세요.',
+        okText: '확인',
       })
     }
     formRef.current.reset()

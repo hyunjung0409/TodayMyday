@@ -26,6 +26,7 @@ function DiaryFooter({ diary, dno }) {
     deleteDiary()
     Modal.success({
       content: '글 삭제가 완료되었습니다.',
+      okText: '확인',
       onOk: handleMove,
     })
   }
@@ -78,7 +79,13 @@ function DiaryFooter({ diary, dno }) {
       </Col>
       <Col span={12}>
         <StyledEndContainer>{me !== null && myBtn()}</StyledEndContainer>
-        <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Modal
+          title="글 삭제"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          okText="확인"
+          cancelText="취소">
           <p>해당 글을 삭제하시겠습니까?</p>
         </Modal>
       </Col>

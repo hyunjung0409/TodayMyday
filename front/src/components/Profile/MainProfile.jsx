@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { EditOutlined } from '@ant-design/icons'
 import { getAxios } from '../../api'
-import ImageFileInput from '../ImageFileInput'
+// import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar, Select, Divider } from 'antd'
 import { loadUserRequestAction } from '../../reducers/user'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import DeleteAccount from './DeleteAccount'
 const { Option } = Select
 const Gender = styled.div`
@@ -54,15 +54,7 @@ function MainProfile({ imageUploader, data }) {
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
   const [editable, setEditable] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [isModalVisible, setIsModalVisible] = useState(false)
-  // const [nick, setNick] = useState('')
-  const showModal = () => {
-    setIsModalVisible(true)
-  }
 
-  const handleCancel = () => {
-    setIsModalVisible(false)
-  }
   const onFileChange = (file2) => {
     setFile2({
       fileName: file2.name,
@@ -98,7 +90,6 @@ function MainProfile({ imageUploader, data }) {
       ))
     setFile2({ fileName: null, fileURL: null })
     dispatch(loadUserRequestAction({ userId: me.userId }))
-    // setEditable(!editable)
   }
 
   const loadMoreData = (userId) => {
@@ -107,7 +98,6 @@ function MainProfile({ imageUploader, data }) {
     }
     dispatch(loadUserRequestAction({ userId: me.userId }))
     setLoading(true)
-    // setNick(me.nickname)
   }
 
   const onAge = async (values) => {
@@ -121,17 +111,6 @@ function MainProfile({ imageUploader, data }) {
       ))
     me.age = values.ageRange
   }
-
-  // const updateNickname = async () => {
-  //   const axios = getAxios()
-  //   // me !== null &&
-  //   //   me.userId !== null &&
-  //   const res = await axios.put(
-  //     'user/modify',
-  //     { age: me.age, image: me.image, gender: me.gender, nickname: nick },
-  //     { params: { userId: me.userId } },
-  //   )
-  // }
 
   const showAge = (e) => {
     if (e == 1) {
@@ -149,11 +128,13 @@ function MainProfile({ imageUploader, data }) {
   const success = () => {
     Modal.success({
       content: '연령대 수정이 완료되었습니다.',
+      okText: '확인',
     })
   }
   const changePic = () => {
     Modal.success({
       content: '사진이 등록되었습니다.',
+      okText: '확인',
     })
   }
   const checkGender = () => {
@@ -172,62 +153,6 @@ function MainProfile({ imageUploader, data }) {
   }, [me])
   return (
     <div>
-      {/* <EditOutlined
-        onClick={(e) => {
-          setEditable(!editable)
-        }}></EditOutlined> */}
-      {/* <div className="myPic">
-        {editable === false ? (
-          <div>
-            <Avatar
-              size={300}
-              style={{ background: '#ccc', border: 'soild' }}
-              icon={<img src={me !== null && me.image}></img>}></Avatar>
-          </div>
-        ) : (
-          <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
-            <Avatar
-              size={300}
-              icon={
-                me.image !== null && (
-                  <ImageFileInput
-                    name={file2.fileName}
-                    imageUploader={imageUploader}
-                    onFileChange={onFileChange}
-                    file={file2}
-                    // form={form}
-                    data={data}
-                    setFile={setFile2}
-                  />
-                )
-              }
-            />{' '}
-            <Form.Item>
-              <Button type="danger" htmlType="submit" onClick={showModal}>
-                삭제
-              </Button>
-              <Modal
-                title="프로필 이미지 삭제"
-                visible={isModalVisible}
-                onOk={() => {
-                  onDelete()
-                  handleCancel()
-                }}
-                onCancel={handleCancel}>
-                <p>삭제하시겠습니까?</p>
-              </Modal>
-              <Button
-                type="primary"
-                htmlType="submit"
-                onClick={() => {
-                  onFinish()
-                }}>
-                등록
-              </Button>
-            </Form.Item>{' '}
-          </Form>
-        )}
-      </div> */}
       <DiverPlace>
         <Divider />
       </DiverPlace>
@@ -240,14 +165,14 @@ function MainProfile({ imageUploader, data }) {
       </UpdateIcon>
 
       <div>
-        <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
+        <MyNick>닉네임 | {me !== null && me.nickname}</MyNick>
       </div>
       <div>
         {editable === false ? (
-          <Age>연령대 : {me !== null && showAge(me.age)} </Age>
+          <Age>연령대 | {me !== null && showAge(me.age)} </Age>
         ) : (
           <Age>
-            연령대 :
+            연령대 |
             <Form form={form} name="modify" onFinish={onAge} autoComplete="off" layout="vertical">
               <Form.Item
                 {...tailLayout}
@@ -278,7 +203,7 @@ function MainProfile({ imageUploader, data }) {
           </Age>
         )}
       </div>
-      <Gender>성별 : {checkGender()}</Gender>
+      <Gender>성별 | {checkGender()}</Gender>
       <DeletePlace>
         <DeleteAccount></DeleteAccount>
       </DeletePlace>

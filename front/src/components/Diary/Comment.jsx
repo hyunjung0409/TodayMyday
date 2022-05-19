@@ -6,15 +6,11 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router'
 import { Button, Modal } from 'antd'
 import UpdateComments from './UpdateComments'
-import AntComment from './AntComment'
 const CommentContent = styled.div`
   overflow: auto;
   max-height: 80vh;
 `
-const CommentPlace = styled.div``
-let CommentSize = styled.p`
-  font-size: medium;
-`
+
 const ReadComments = styled.div`
   // border: 1px solid red;
 `
@@ -38,30 +34,16 @@ const EnrollButton = styled.div`
   margin-right: 2%;
 `
 function Comment() {
-  const { cno } = useParams()
   const { dno } = useParams()
 
-  const navigate = useNavigate()
   const { me } = useSelector((state) => state.user)
   const [comment, setComment] = useState('')
   const [comments, setComments] = useState([])
-  const [editable, setEditable] = useState(false)
-  const [show, setShow] = useState(false)
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-  const [isModalVisible, setIsModalVisible] = useState(false)
-  const showModal = () => {
-    setIsModalVisible(true)
-  }
-
-  const handleCancel = () => {
-    setIsModalVisible(false)
-  }
   const createComment = () => {
     const axios = getAxios()
 
-    if (comment == '') {
+    if (comment === '') {
       alert('댓글을 입력하세요')
     } else if (comment !== '') {
       axios
@@ -78,25 +60,16 @@ function Comment() {
     axios
       .get(`diary/read/${dno}`, { params: { userId: me.userId } })
       .then((res) => {
-        // console.log(res)
         setComments([...res.data.comments])
-        // console.log(res.data.comments)
-        // setComments(res.data.comments.content)
-        // res.data.comments.map((a) => {
-        //   return a
-        // }),
-
-        // console.log(comments.nickname)
       })
       .catch((err) => {
         alert('잘못된 접근입니다')
-        // navigate('/')
       })
   }
 
   useEffect(() => {
-    getComment()
-  }, [])
+    me && getComment()
+  }, [me])
   return (
     <StyledBackground>
       <ReadComment>
@@ -135,7 +108,6 @@ function Comment() {
           })}
         </ReadComments>
       </CommentContent>
-      {/* <AntComment></AntComment> */}
     </StyledBackground>
   )
 }
