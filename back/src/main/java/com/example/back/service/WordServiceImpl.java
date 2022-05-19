@@ -125,10 +125,20 @@ public class WordServiceImpl implements WordService{
         }
 
         // 랜덤 추출 알고리즘
+        int cnt = 0;
         for(int i = 1; i <= 5; i++){
             String selectedWord = selectOne(i, gender, age);
             if(randomPickhSet.contains(selectedWord) || selectedSet.contains(selectedWord)) {
                 i--;
+                cnt++;
+                if(cnt == 10) {
+                    randomPickhSet = new HashSet<>();
+                    while(randomPickhSet.size() < 5) {
+                        selectedWord = selectOne(5, gender, age);
+                        randomPickhSet.add(selectedWord);
+                    }
+                    break;
+                }
                 continue;
             }
             randomPickhSet.add(selectedWord);
@@ -138,6 +148,8 @@ public class WordServiceImpl implements WordService{
             increaseFrequencyByGender(countWord, gender);
             wordRepository.save(countWord);
         }
+
+
 
         // 로그 기록하기
         for (String selectedWord : randomPickhSet){
