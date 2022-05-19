@@ -78,8 +78,13 @@ function MyBook() {
       {renderrrr()}
 
       <PageCover>
-        <div style={{ textAlign: 'right', margin: '10em 1em' }}>
-          <h3>지금 나의 하루는</h3>
+        <div
+          style={{
+            textAlign: 'right',
+            margin: '10em 1em',
+            fontFamily: 'GangwonEduSaeeum_OTFMediumA',
+          }}>
+          <h1>지금 나의 하루는</h1>
           <div>
             {/* <img
               src={me.image}
@@ -92,7 +97,7 @@ function MyBook() {
                 borderRadius: '50%',
               }}
             /> */}
-            <h5>지은이: {me.nickname}</h5>
+            <h3>지은이: {me.nickname}</h3>
           </div>
         </div>
       </PageCover>
