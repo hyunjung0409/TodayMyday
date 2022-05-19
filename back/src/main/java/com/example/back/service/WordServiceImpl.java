@@ -91,9 +91,9 @@ public class WordServiceImpl implements WordService{
         }
 
         if(user.getGender().equals("male")) {
-            word.setMale(word.getMale()+100);
+            word.setMale(word.getMale()+25);
         } else {
-            word.setFemale(word.getFemale()+100);
+            word.setFemale(word.getFemale()+25);
         }
 
         wordRepository.save(word);
