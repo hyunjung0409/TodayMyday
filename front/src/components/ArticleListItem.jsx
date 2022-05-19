@@ -2,7 +2,7 @@ import React from 'react'
 import { BsHeartFill } from 'react-icons/bs'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 
-function ArticleListItem({ picture, title, createdat, view, liked, content }) {
+function ArticleListItem({ picture, title, createdat, view, liked, content, comment }) {
   return (
     <>
       <div style={{ width: '100%', height: '150px', display: 'flex' }}>
@@ -26,7 +26,7 @@ function ArticleListItem({ picture, title, createdat, view, liked, content }) {
             </div>
             <div>
               <MessageFilled style={{ fontSize: '22px' }} />{' '}
-              <span style={{ fontSize: '22px' }}>0</span>
+              <span style={{ fontSize: '22px' }}>{comment}</span>
             </div>
           </div>
         </div>

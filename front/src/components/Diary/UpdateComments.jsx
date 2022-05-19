@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Button, Modal, Avatar, Comment, Diver, Tooltip, Input } from 'antd'
 import moment from 'moment'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import './Comment.css'
 
 let CommentContent = styled.div`
   display: flex;
@@ -15,6 +15,8 @@ let CommentSize = styled.p`
   font-size: medium;
   text-align: left;
   margin-left: 5%;
+  font-family: 'LeeSeoyun';
+  font-size: 30px;
 `
 let DatePlace = styled.div`
   display: grid;
@@ -65,7 +67,7 @@ const UpdateComments = (props) => {
   }
   const deleteComment = async (a) => {
     const axios = getAxios()
-    console.log(a)
+    // console.log(a)
     await axios.delete(`comment/${a}`, { params: { userId: me.userId } })
     getComment()
   }

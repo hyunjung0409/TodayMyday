@@ -167,6 +167,7 @@ function ArticleListForm(props) {
                   content={item.content}
                   view={item.view}
                   liked={item.liked}
+                  comment={item.comments.length}
                   createdat={timeForToday(item.createdat)}
                 />
               </List.Item>

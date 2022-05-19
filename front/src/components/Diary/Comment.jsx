@@ -75,15 +75,15 @@ function Comment() {
     axios
       .get(`diary/read/${dno}`, { params: { userId: me.userId } })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         setComments([...res.data.comments])
-        console.log(res.data.comments)
+        // console.log(res.data.comments)
         // setComments(res.data.comments.content)
         // res.data.comments.map((a) => {
         //   return a
         // }),
 
-        console.log(comments.nickname)
+        // console.log(comments.nickname)
       })
       .catch((err) => {
         alert('잘못된 접근입니다')
