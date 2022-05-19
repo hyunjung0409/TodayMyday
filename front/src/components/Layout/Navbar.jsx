@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction, logoutRequestAction } from '../../reducers/user'
 import jwt_decode from 'jwt-decode'
 import LoginForm from '../LoginForm'
+import { articleListRequestAction } from '../../reducers/article'
 
 const { Header } = Layout
 const { Title } = Typography
@@ -60,6 +61,7 @@ function Navbar() {
       const decode_token = jwt_decode(localStorage.getItem('jwtToken'))
       const userId = decode_token.sub
       dispatch(loadUserRequestAction({ userId }))
+      // dispatch(articleListRequestAction({ userId: userId }))
     }
   }, [])
 

@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Divider } from 'antd'
 import { articleListRequestAction } from '../../reducers/article'
-import { EditOutlined } from '@ant-design/icons'
 
 const PageCover = React.forwardRef((props, ref) => {
   return (
@@ -65,6 +64,7 @@ function MyBook() {
       if (me.userId != null) {
         dispatch(articleListRequestAction({ userId: me.userId }))
         console.log(me)
+        console.log(articleList)
       }
     }
   }, [me])
@@ -72,7 +72,7 @@ function MyBook() {
   useEffect(() => {
     console.log(articleList)
     setData(articleList)
-  }, [])
+  }, [articleList])
 
   return data ? (
     <HTMLFlipBook
@@ -84,8 +84,6 @@ function MyBook() {
       <PageCover>
         <StyledCoverImg src={process.env.PUBLIC_URL + '/images/cover-2.png'} />
       </PageCover>
-      {/* {data !== null ? <div>{renderrrr()}</div> : null} */}
-      {/* <>{data && <div>{render()}</div>}</> */}
       {renderrrr()}
 
       <PageCover>
@@ -105,8 +103,6 @@ function MyBook() {
             /> */}
             <h5>지은이: {me.nickname}</h5>
           </div>
-
-          {/* <EditOutlined /> */}
         </div>
       </PageCover>
     </HTMLFlipBook>

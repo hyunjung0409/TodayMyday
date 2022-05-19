@@ -3,7 +3,7 @@ import { Row, Col, Button, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { articleAddRequestAction } from '../reducers/article'
+import { articleAddRequestAction, articleListRequestAction } from '../reducers/article'
 import ImageArticle from './ImageArticle'
 
 const ImageLayout = styled.div`
@@ -82,6 +82,8 @@ function ArticleForm({ imageUploader, data }) {
   const { word, message, fileURL } = data
   const [loading, setLoading] = useState(false)
 
+  const { articleList } = useSelector((state) => state.article)
+
   const onFileChange = (file) => {
     setFile({
       fileName: file.name,
@@ -89,7 +91,7 @@ function ArticleForm({ imageUploader, data }) {
     })
   }
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault()
     if (messageRef.current.value !== '') {
       const data = {
@@ -97,7 +99,9 @@ function ArticleForm({ imageUploader, data }) {
         word: word,
         image: file.fileURL || fileURL,
       }
-      dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
+      await dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
+      await dispatch(articleListRequestAction({ userId: me.userId }))
+      console.log('articleList', articleList)
     } else {
       Modal.warning({
         title: '일기를 작성해 주세요.',
