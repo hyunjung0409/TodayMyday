@@ -41,11 +41,11 @@ function LoginForm({ setIsModalVisible }) {
         autoComplete="off"
         layout="vertical">
         <div style={{ width: '100%', textAlign: 'center' }}>
-          <Form.Item label="ID" name="userId">
+          <Form.Item label="아이디" name="userId">
             <Input />
           </Form.Item>
 
-          <Form.Item label="Password" name="password">
+          <Form.Item label="비밀번호" name="password">
             <Input.Password />
           </Form.Item>
 

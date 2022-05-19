@@ -154,7 +154,7 @@ function InfinityScoll(props) {
             next={loadMoreData}
             hasMore={data.length < 100}
             loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+            endMessage={<Divider plain>마지막 글입니다 🤐</Divider>}
             scrollableTarget="scrollableDiv">
             <List
               dataSource={data}
