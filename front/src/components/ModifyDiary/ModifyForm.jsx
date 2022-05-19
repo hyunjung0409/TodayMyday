@@ -154,14 +154,16 @@ const Side = styled.div`
 `
 
 const TitleWord = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
 `
 
 const MyTextarea = styled.textarea`
   line-height: 1.5rem;
   border: 0;
   outline: none;
-  font-family: inherit;
+  font-size: 2rem;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
   appearance: none;
   color: #4e5e72;
   background-color: transparent;

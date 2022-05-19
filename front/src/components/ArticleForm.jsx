@@ -57,10 +57,10 @@ const TitleWord = styled.h1`
 `
 
 const MyTextarea = styled.textarea`
-  font-size: 2rem;
   line-height: 28px;
   border: 0;
   outline: none;
+  font-size: 2rem;
   font-family: 'GangwonEduSaeeum_OTFMediumA';
   appearance: none;
   color: #4e5e72;
