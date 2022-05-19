@@ -58,7 +58,7 @@ function TopWord({ setKeyword, setDiaryList }) {
           <strong>
             <StyledNumber>{index + 1}</StyledNumber>
           </strong>
-          <h3 style={{ margin: 0 }}>
+          <h3 style={{ margin: 0, cursor: 'pointer' }}>
             <strong>{wordList[index]}</strong>
           </h3>
         </Row>,

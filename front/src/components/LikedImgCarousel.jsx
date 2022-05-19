@@ -45,7 +45,7 @@ function LikedImgCarousel({ liked }) {
 
   return (
     <>
-      <div className="Carousel" style={{ padding: '1rem' }}>
+      <div className="Carousel">
         <h2>좋아요 top5</h2>
         <Slider {...settings}>
           {liked.map((item, idx) => (

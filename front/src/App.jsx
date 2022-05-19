@@ -17,8 +17,6 @@ import jwt_decode from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
-import Error from './pages/Error'
-import Test from './pages/Test'
 import NotFound from './pages/NotFound'
 const { Content, Footer } = Layout
 

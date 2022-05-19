@@ -116,7 +116,7 @@ function InfinityScoll(props) {
             </div>
           </Col>
           <Col span={12}>
-            <div style={{ padding: '1rem', textAlign: 'right' }}>
+            {/* <div style={{ padding: '1rem', textAlign: 'right' }}>
               <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
                 최신순
               </Tag>
@@ -126,7 +126,7 @@ function InfinityScoll(props) {
               <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
                 좋아요
               </Tag>
-            </div>
+            </div> */}
           </Col>
         </Row>
         <div
@@ -161,30 +161,17 @@ function InfinityScoll(props) {
                       display: 'flex',
                       justifyContent: 'space-evenly',
                     }}>
-                    {/* <Row justify="space-evenly" align="center"> */}
                     <ImageLayout>
                       <StyledImageArea>
                         <img
                           src={item.image}
-                          alt="content-image"
+                          alt="content_image"
                           width="100%"
                           height="100%"
-                          // style={{ flex: 1 }}
                           style={{ objectFit: 'cover' }}
                         />
                       </StyledImageArea>
                     </ImageLayout>
-                    {/* <div style={{ flex: 4 }}>
-                      <div style={{ position: 'relative', top: '15px' }}>
-                        <h1 style={{ fontWeight: 'bold', marginBottom: '20px' }}>#{item.word}</h1>
-                        <p>
-                          {item.content.length >= 80
-                            ? item.content.substr(0, 80) + '...'
-                            : item.content}
-                        </p>
-                        <div>{timeForToday(item.createdat)}</div>
-                      </div>
-                    </div> */}
                     <Space
                       direction="vertical"
                       size={1}
@@ -195,14 +182,44 @@ function InfinityScoll(props) {
                           ? item.content.substr(0, 250) + '...'
                           : item.content}
                       </p>
-                      <div>{timeForToday(item.createdat)}</div>
+                      <div>
+                        <span>{timeForToday(item.createdat)}</span>
+                      </div>
                     </Space>
 
                     <Space
                       direction="vertical"
                       size={1}
                       style={{ display: 'flex', justifyContent: 'center' }}>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <div style={{ marginBottom: '10px' }}>
+                        <img
+                          style={{
+                            width: '30px',
+                            height: '30px',
+                            borderRadius: '50%',
+                            marginRight: '10px',
+                          }}
+                          src={item.profileImage}
+                          alt="profile"
+                        />
+                        <span>{item.nickname}</span>
+                      </div>
+                      <div>
+                        <span style={{ marginRight: '10px' }}>
+                          <HeartFilled style={{ fontSize: '1rem' }} />{' '}
+                          <span style={{ fontSize: '1rem' }}>{item.liked}</span>
+                        </span>
+                        <span style={{ marginRight: '10px' }}>
+                          <EyeFilled style={{ fontSize: '1rem' }} />{' '}
+                          <span style={{ fontSize: '1rem' }}>{item.view}</span>
+                        </span>
+                        <span>
+                          <MessageFilled style={{ fontSize: '1rem' }} />{' '}
+                          <span style={{ fontSize: '1rem' }}>{item.comments.length}</span>
+                        </span>
+                      </div>
+
+                      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
                         <StyledFlexEnd>
                           <HeartFilled style={{ fontSize: '1rem' }} />
                         </StyledFlexEnd>
@@ -210,7 +227,6 @@ function InfinityScoll(props) {
                           <span style={{ fontSize: '1rem' }}>{item.liked}</span>
                         </StyledFlexStart>
                       </div>
-
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <StyledFlexEnd>
                           <EyeFilled style={{ fontSize: '1rem' }} />
@@ -219,7 +235,6 @@ function InfinityScoll(props) {
                           <span style={{ fontSize: '1rem' }}>{item.view}</span>
                         </StyledFlexStart>
                       </div>
-
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <StyledFlexEnd>
                           <MessageFilled style={{ fontSize: '1rem' }} />
@@ -227,9 +242,8 @@ function InfinityScoll(props) {
                         <StyledFlexStart>
                           <span style={{ fontSize: '1rem' }}>{item.comments.length}</span>
                         </StyledFlexStart>
-                      </div>
+                      </div> */}
                     </Space>
-                    {/* </Row> */}
                   </div>
                 </List.Item>
               )}
