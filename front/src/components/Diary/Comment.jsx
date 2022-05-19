@@ -10,7 +10,13 @@ const CommentContent = styled.div`
   overflow: auto;
   max-height: 80vh;
 `
-
+const StyledButton = styled(Button)`
+  &&& {
+    bacground: #fff;
+    border-color: rgb(220, 220, 220);
+    color: rgb(100, 100, 100);
+  }
+`
 const ReadComments = styled.div`
   // border: 1px solid red;
 `
@@ -80,14 +86,14 @@ function Comment() {
             setComment(e.target.value)
           }}></WriteComment>
         <EnrollButton>
-          <Button
+          <StyledButton
             variant="dark"
             size="sm"
             onClick={(e) => {
               createComment()
             }}>
             등록
-          </Button>
+          </StyledButton>
         </EnrollButton>
       </ReadComment>
 

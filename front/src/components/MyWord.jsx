@@ -152,7 +152,7 @@ function MyWord({ data, keyword, setWord, word }) {
                       <EyeFilled style={{ fontSize: '18px' }} />{' '}
                       <span style={{ fontSize: '18px', marginRight: '20px' }}>{item.view}</span>
                       <MessageFilled style={{ fontSize: '18px' }} />{' '}
-                      <span style={{ fontSize: '18px' }}>0</span>
+                      <span style={{ fontSize: '18px' }}>{item.comments.length}</span>
                       <p style={{ marginTop: '5px' }}>{timeForToday(item.createdat)}</p>
                     </div>
                   </div>

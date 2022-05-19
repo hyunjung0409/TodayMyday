@@ -14,6 +14,20 @@ const UpdateIcon = styled.div`
 const Submit = styled(Button)`
   margin-top: 10px;
 `
+const ChangeButton = styled(Button)`
+  &&& {
+    background: #fafafa;
+    border-color: #f0f0f0;
+    color: #e86f8b;
+  }
+`
+const DeleteButton = styled(Button)`
+  &&& {
+    background: #e86f8b;
+    border-color: #e86f8b;
+    color: #fff;
+  }
+`
 function MyPicture({ imageUploader, data }) {
   const dispatch = useDispatch()
   const { me } = useSelector((state) => state.user)
@@ -74,6 +88,7 @@ function MyPicture({ imageUploader, data }) {
   const success = () => {
     Modal.success({
       content: '사진 등록이 완료되었습니다.',
+      okText: '확인',
     })
   }
 
@@ -128,9 +143,9 @@ function MyPicture({ imageUploader, data }) {
             }
           />{' '}
           <Form.Item>
-            <Button type="danger" htmlType="submit" onClick={showModal}>
+            <DeleteButton type="danger" htmlType="submit" onClick={showModal}>
               삭제
-            </Button>
+            </DeleteButton>
             <Modal
               title="프로필 이미지 삭제"
               visible={isModalVisible}
@@ -138,10 +153,12 @@ function MyPicture({ imageUploader, data }) {
                 onDelete()
                 handleCancel()
               }}
-              onCancel={handleCancel}>
+              onCancel={handleCancel}
+              okText="확인"
+              cancelText="취소">
               <p>삭제하시겠습니까?</p>
             </Modal>
-            <Button
+            <ChangeButton
               type="primary"
               htmlType="submit"
               onClick={() => {
@@ -149,7 +166,7 @@ function MyPicture({ imageUploader, data }) {
                 success()
               }}>
               등록
-            </Button>
+            </ChangeButton>
           </Form.Item>{' '}
         </Form>
       )}
