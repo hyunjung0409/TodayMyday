@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { getAxios } from '../../api'
-import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Button, Modal, Avatar, Comment, Diver, Tooltip, Input } from 'antd'
+import { Button, Modal, Avatar, Comment, Tooltip, Input } from 'antd'
 import moment from 'moment'
 import './Comment.css'
+import { CloseCircleTwoTone } from '@ant-design/icons'
 
-let CommentContent = styled.div`
-  display: flex;
-  margin-bottom: 5%;
-`
-let CommentSize = styled.p`
+let CommentSize = styled.div`
   font-size: medium;
   text-align: left;
   margin-left: 5%;
   font-family: 'LeeSeoyun';
   font-size: 30px;
 `
-let DatePlace = styled.div`
-  display: grid;
-  justify-content: space-between;
-  float: right;
-`
-let NamePlace = styled.div`
-  margin-left: 100%;
-`
+
 const ButtonPlace = styled.div`
   margin-left: 75%;
 `
@@ -42,32 +31,25 @@ const UpdateComments = (props) => {
   const [editable, setEditable] = useState(false)
 
   const [show, setShow] = useState(false)
-  const [isModalVisible, setIsModalVisible] = useState(false)
-
-  const [showDone, setShowDone] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const showModal = () => {
-    setIsModalVisible(true)
-  }
 
-  const handleCancel = () => {
-    setIsModalVisible(false)
-  }
   const updateComment = async () => {
     const axios = getAxios()
-
-    await axios.put(
-      `comment/${cno}`,
-      { content: newComment, createdat: createdat },
-      { params: { userId: me.userId } },
-    )
-    setCommento(newComment)
+    if (newComment === '') {
+      alert('댓글을 입력하세요')
+    } else if (newComment !== '') {
+      await axios.put(
+        `comment/${cno}`,
+        { content: newComment, createdat: createdat },
+        { params: { userId: me.userId } },
+      )
+      setCommento(newComment)
+    }
   }
   const deleteComment = async (a) => {
     const axios = getAxios()
-    // console.log(a)
     await axios.delete(`comment/${a}`, { params: { userId: me.userId } })
     getComment()
   }
@@ -78,7 +60,6 @@ const UpdateComments = (props) => {
 
   return editable === false ? (
     <div>
-      {/* <CommentSize>{commento}</CommentSize> */}
       <CommentSize>
         <Comment
           avatar={<Avatar src={profileImage} alt={nickname} />}
@@ -90,6 +71,7 @@ const UpdateComments = (props) => {
             </Tooltip>
           }></Comment>
       </CommentSize>
+
       {me.userId === id ? (
         <ButtonPlace>
           <Button
@@ -120,8 +102,12 @@ const UpdateComments = (props) => {
           deleteComment(props.cno)
           handleClose()
         }}
+        okText="확인"
+        closeIcon={<CloseCircleTwoTone />}
+        okType="primary"
+        cancelText="취소"
         onCancel={handleClose}>
-        <p>삭제하시겠습니까?</p>
+        <p>해당 댓글을 삭제하시겠습니까?</p>
       </Modal>
     </div>
   ) : (

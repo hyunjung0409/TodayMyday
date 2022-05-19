@@ -46,15 +46,7 @@ function WordCard() {
     $('.cardRotate').addClass('backRotate').removeClass('cardRotate')
     $(this).addClass('cardRotate').removeClass('backRotate')
   })
-  // $(document).on('ready', function () {
-  //   $('.envelope-wrapper .heart').on('click', function () {
-  //     $('.envelope-wrapper').addClass('flap')
-  //   })
 
-  //   $('.envelope-wrapper .close-icon').on('click', function () {
-  //     $('.envelope-wrapper').removeClass('flap')
-  //   })
-  // })
   for (let index = 0; index < 5; index++) {
     $(document).ready(function () {
       $('.envelope-wrapper .open' + index).click(function () {
@@ -66,11 +58,7 @@ function WordCard() {
       })
     })
   }
-  // $(document).ready(function () {
-  //   $('.all .allopen').click(function () {
-  //     $('.all').addClass('flap')
-  //   })
-  // })
+
   $(document).ready(function () {
     $('.all').click(function () {
       $('.envelope-wrapper').addClass('flap')
@@ -78,15 +66,6 @@ function WordCard() {
   })
   return (
     <>
-      {/* {wordGet != null
-        ? wordGet.map((item) => (
-            <div key={item} className="card card1">
-              <div className="front" onClick={pageMove}>
-                {item}
-              </div>
-            </div>
-          ))
-        : null} */}
       <MainBack>
         <Row justify="space-around" align="center" style={{ paddingTop: '1.5rem' }}>
           <Button type="disabled" style={{ width: '12rem' }}></Button>
@@ -100,7 +79,6 @@ function WordCard() {
             <Button type="text" icon={<RedoOutlined />} onClick={wordShuffle}>
               새로고침
             </Button>
-            {/* <RedoOutlined style={{ fontSize: '110%', cursor: 'pointer' }} onClick={wordShuffle} /> */}
           </Space>
         </Row>
         {wordGet != null
@@ -123,7 +101,6 @@ function WordCard() {
                         audio.play()
                       }}>
                       <ExclamationOutlined style={{ color: 'transparent' }} />
-                      {/* <PlusOutlined style={{ color: '#c51803' }} /> */}
                     </div>
                   </div>
                 </div>
@@ -133,28 +110,6 @@ function WordCard() {
       </MainBack>
     </>
   )
-  // <div>
-  //   <div className="card card1">
-  //     <div className="front"></div>
-  //     <div className="back"></div>
-  //   </div>
-  //   <div className="card card2">
-  //     <div className="front"></div>
-  //     <div className="back"></div>
-  //   </div>
-  //   <div className="card card3">
-  //     <div className="front"></div>
-  //     <div className="back"></div>
-  //   </div>
-  //   <div className="card card4">
-  //     <div className="front"></div>
-  //     <div className="back"></div>
-  //   </div>
-  //   <div className="card card5">
-  //     <div className="front"></div>
-  //     <div className="back"></div>
-  //   </div>
-  // </div>
 }
 
 export default WordCard

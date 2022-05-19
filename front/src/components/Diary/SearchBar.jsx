@@ -35,14 +35,14 @@ const SearchBar = ({
         let result = await axios.get('diary/searchallword', {
           params: { word: value },
         })
-        console.log('result: ', result)
+        // console.log('result: ', result)
         await setDiaryList([...result.data])
         setOptionBool(false)
       } else if (option === 'content') {
         let result = await axios.get('diary/searchallcontent', {
           params: { keyword: value },
         })
-        console.log('result: ', result)
+        // console.log('result: ', result)
         await setDiaryList([...result.data])
         setOptionBool(true)
       }

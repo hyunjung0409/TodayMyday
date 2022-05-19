@@ -39,7 +39,6 @@ const StyledContainer = styled.div`
 
 function Profile() {
   const { me } = useSelector((state) => state.user)
-  console.log(me)
   const dispatch = useDispatch()
   // const [data, setData] = useState({
   //   fileURL: '/images/기본이미지.jpg',

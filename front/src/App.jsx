@@ -19,6 +19,7 @@ import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
 import Error from './pages/Error'
 import Test from './pages/Test'
+import NotFound from './pages/NotFound'
 const { Content, Footer } = Layout
 
 function App() {
@@ -42,7 +43,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/main" element={<Main />} />
-                <Route path="/test" element={<Test />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/signup" element={<Signup />} />
@@ -51,6 +51,7 @@ function App() {
                 <Route path="/my/profile" element={<Profile />} />
                 <Route path="/diary/read/:dno" element={<ReadDiary />} />
                 <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
+                <Route path="/*" element={<NotFound />} />
               </Routes>
             </StyledContentArea>
           </div>

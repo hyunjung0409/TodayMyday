@@ -8,10 +8,8 @@ function DeleteAccount() {
   const { me } = useSelector((state) => state.user)
 
   let navigate = useNavigate()
-  const [isModalVisible, setIsModalVisible] = useState(false)
 
   const [show, setShow] = useState(false)
-  const [showDone, setShowDone] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -19,15 +17,15 @@ function DeleteAccount() {
   const onClickDelete = async () => {
     await Modal.success({
       content: '회원탈퇴가 완료되었습니다.',
+      okText: '확인',
     })
   }
   const getDelete = async () => {
     try {
       const axios = getAxios()
       let res = await axios.delete('user/delete', { params: { userId: me.userId } })
-      console.log(res.data)
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
   const Refresh = () => {
@@ -51,7 +49,9 @@ function DeleteAccount() {
           navigate('/', { replace: true })
           Refresh()
         }}
-        onCancel={handleClose}>
+        onCancel={handleClose}
+        okText="확인"
+        cancelText="취소">
         <p>회원탈퇴 하시겠습니까?</p>
       </Modal>
     </div>

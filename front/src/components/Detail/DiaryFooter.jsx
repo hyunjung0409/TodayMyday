@@ -26,6 +26,7 @@ function DiaryFooter({ diary, dno }) {
     deleteDiary()
     Modal.success({
       content: '글 삭제가 완료되었습니다.',
+      okText: '확인',
       onOk: handleMove,
     })
   }
@@ -46,11 +47,7 @@ function DiaryFooter({ diary, dno }) {
 
   const myList = (e) => {
     if (me.nickname === diary.nickname) {
-      return (
-        <StyledPrimaryBtn type="text" onClick={handleMove}>
-          내 글 목록
-        </StyledPrimaryBtn>
-      )
+      return <StyledPrimaryBtn onClick={handleMove}>내 글 목록</StyledPrimaryBtn>
     } else {
       return null
     }
@@ -60,18 +57,14 @@ function DiaryFooter({ diary, dno }) {
     if (me.nickname === diary.nickname) {
       return (
         <Space size="middle">
-          <StyledPrimaryBtn type="text" onClick={handleModify}>
+          {/* <StyledPrimaryBtn type="text" onClick={handleModify}>
             수정
           </StyledPrimaryBtn>
           <StyledDangerBtn type="text" onClick={showModal}>
             삭제
-          </StyledDangerBtn>
-          {/* <Button type="primary" onClick={handleModify}>
-              수정
-            </Button>
-            <Button type="danger" onClick={showModal}>
-              삭제
-            </Button> */}
+          </StyledDangerBtn> */}
+          <StyledPrimaryBtn onClick={handleModify}>수정</StyledPrimaryBtn>
+          <StyledDangerBtn onClick={showModal}>삭제</StyledDangerBtn>
         </Space>
       )
     } else {
@@ -86,7 +79,13 @@ function DiaryFooter({ diary, dno }) {
       </Col>
       <Col span={12}>
         <StyledEndContainer>{me !== null && myBtn()}</StyledEndContainer>
-        <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Modal
+          title="글 삭제"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          okText="확인"
+          cancelText="취소">
           <p>해당 글을 삭제하시겠습니까?</p>
         </Modal>
       </Col>
@@ -107,13 +106,17 @@ const StyledEndContainer = styled.div`
 `
 
 const StyledPrimaryBtn = styled(Button)`
-  span {
-    color: #188fff;
+  &&& {
+    background: #fafafa;
+    border-color: #f0f0f0;
+    color: #e86f8b;
   }
 `
 const StyledDangerBtn = styled(Button)`
-  span {
-    color: #ff4d4f;
+  &&& {
+    background: #e86f8b;
+    border-color: #e86f8b;
+    color: #fff;
   }
 `
 

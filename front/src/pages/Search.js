@@ -62,19 +62,17 @@ function Search() {
                 <strong>'{keyword}'</strong>에 대한 검색결과가 없습니다.
               </h3>
 
-              {/* <Button
-                type="text"
-                icon={<EditOutlined />}
-                style={{ marginRight: '1rem' }}
-                onClick={(e) => onWrite(keyword)}>
-                해당 단어로 글쓰기
-              </Button> */}
               <Button type="text" style={{ marginRight: '1rem' }} onClick={onMove}>
                 처음으로
               </Button>
             </div>
           ) : (
-            <SearchResult keyword={keyword} diaryList={diaryList} setDiaryList={setDiaryList} />
+            <SearchResult
+              keyword={keyword}
+              diaryList={diaryList}
+              setDiaryList={setDiaryList}
+              optionBool={optionBool}
+            />
           )}
         </div>
       )}

@@ -2,14 +2,19 @@ import DiaryCarousel from './DiaryCarousel'
 import { Row, Col, Button } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
-function SearchResult({ keyword, diaryList, setDiaryList }) {
+function SearchResult({ keyword, diaryList, setDiaryList, optionBool }) {
   const navigate = useNavigate()
 
   const onWrite = (word) => {
     navigate('/my/article', { state: word })
     console.log(word)
   }
+
+  useEffect(() => {
+    // console.log('optionBool', optionBool)
+  }, [optionBool])
 
   return (
     <div
@@ -32,13 +37,16 @@ function SearchResult({ keyword, diaryList, setDiaryList }) {
           {/* '{keyword}' {optionBool === false ? '단어가 주제로 쓰여진 글' : '단어가 포함된 글'} */}
           <strong>#{keyword}</strong>
         </h2>
-        <Button
-          type="text"
-          icon={<EditOutlined />}
-          style={{ marginRight: '1rem' }}
-          onClick={(e) => onWrite(keyword)}>
-          해당 단어로 글쓰기
-        </Button>
+
+        {optionBool === false ? (
+          <Button
+            type="text"
+            icon={<EditOutlined />}
+            style={{ marginRight: '1rem' }}
+            onClick={(e) => onWrite(keyword)}>
+            해당 단어로 글쓰기
+          </Button>
+        ) : null}
       </Row>
       <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} />
     </div>
