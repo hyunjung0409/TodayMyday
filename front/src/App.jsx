@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import { Layout } from 'antd'
+import { Button, Layout } from 'antd'
 import styled from 'styled-components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
@@ -14,14 +14,45 @@ import Profile from './pages/Profile'
 import ReadDiary from './pages/ReadDiary'
 import ModifyDiary from './pages/ModifyDiary'
 import jwt_decode from 'jwt-decode'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
 import NotFound from './pages/NotFound'
+import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
+
 const { Content, Footer } = Layout
+const audio = new Audio('/bgm/MP_분위기를 한잔.mp3')
+
+const AudioButton1 = styled.div`
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 30px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #c1e17d;
+  padding-top: 7px;
+  padding-left: 6px;
+`
+const AudioButton2 = styled.div`
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 30px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #c1e17d;
+  padding-top: 7px;
+  padding-left: 6px;
+`
 
 function App() {
   const dispatch = useDispatch()
+  const [state, setState] = useState(true)
 
   useEffect(() => {
     if (localStorage.getItem('jwtToken') != null) {
@@ -30,6 +61,18 @@ function App() {
       dispatch(loadUserRequestAction({ userId }))
     }
   }, [])
+
+  const audioPlayer1 = () => {
+    console.log('state false', state)
+    audio.play()
+    setState(false)
+  }
+  const audioPlayer2 = () => {
+    console.log('state true', state)
+    audio.pause()
+    audio.currentTime = 0
+    setState(true)
+  }
 
   return (
     <Layout className="layout">
@@ -57,6 +100,15 @@ function App() {
         <Footer style={{ background: '#C1E17D', textAlign: 'center' }}>
           지금 나의 하루는 ©2022 Created by Ginny-us{' '}
         </Footer>
+        {state ? (
+          <AudioButton1 onClick={audioPlayer1}>
+            <FaVolumeUp style={{ fontSize: '40px', cursor: 'pointer' }} />
+          </AudioButton1>
+        ) : (
+          <AudioButton2 onClick={audioPlayer2}>
+            <FaVolumeMute style={{ fontSize: '40px', cursor: 'pointer' }} />
+          </AudioButton2>
+        )}
       </BrowserRouter>
     </Layout>
   )
