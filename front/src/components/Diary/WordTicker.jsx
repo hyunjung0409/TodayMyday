@@ -122,7 +122,7 @@ const StyledDiv = styled.div`
 
 const StyledNumber = styled.span`
   color: white;
-  background-color: #0d6dfd;
+  background-color: #e86f8b;
   display: inline-block;
   width: 20px;
   height: 20px;
