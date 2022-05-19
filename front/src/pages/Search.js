@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import DiaryCarousel from '../components/Diary/DiaryCarousel'
 import SearchBar from '../components/Diary/SearchBar'
+import SearchResult from '../components/Diary/SearchResult'
+import TopLiked from '../components/Diary/TopLiked'
+import TopWord from '../components/Diary/TopWord'
+import { Row, Col, Button } from 'antd'
+import { EditOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 function Search() {
   const [optionBool, setOptionBool] = useState(false)
@@ -9,11 +15,23 @@ function Search() {
   const [keyword, setKeyword] = useState('')
   const [diaryList, setDiaryList] = useState([{}])
   const { me } = useSelector((state) => state.user)
+  const navigate = useNavigate()
+
+  // console.log('diaryList: ', diaryList)
+
+  const onWrite = (word) => {
+    navigate('/my/article', { state: word })
+    console.log(word)
+  }
+
+  const onMove = () => {
+    navigate('/search', { replace: true })
+    setKeyword('')
+  }
 
   return (
-    <div>
-      <h3>SearchMy page</h3>
-      <div className="search-bar">
+    <StyledContainer>
+      <div className="search-bar" style={{ margin: '2rem auto 1rem auto', width: '90%' }}>
         <SearchBar
           optionBool={optionBool}
           setOptionBool={setOptionBool}
@@ -27,17 +45,48 @@ function Search() {
         />
       </div>
       {keyword === '' ? (
-        <div>검색어를 입력해주세요</div>
+        <div>
+          <TopWord
+            keyword={keyword}
+            setKeyword={setKeyword}
+            diaryList={diaryList}
+            setDiaryList={setDiaryList}
+          />
+          <TopLiked />
+        </div>
       ) : (
-        <div className="diary-carousel-written" style={{ background: '#FFDAE5', margin: '1rem' }}>
-          <h3 style={{ textAlign: 'left', padding: '1rem' }}>
-            '{keyword}' {optionBool === false ? '단어가 주제로 쓰여진 글' : '단어가 포함된 글'}
-          </h3>
-          <DiaryCarousel diaryList={diaryList} setDiaryList={setDiaryList} />
+        <div>
+          {diaryList.length === 0 ? (
+            <div>
+              <h3>
+                <strong>'{keyword}'</strong>에 대한 검색결과가 없습니다.
+              </h3>
+
+              {/* <Button
+                type="text"
+                icon={<EditOutlined />}
+                style={{ marginRight: '1rem' }}
+                onClick={(e) => onWrite(keyword)}>
+                해당 단어로 글쓰기
+              </Button> */}
+              <Button type="text" style={{ marginRight: '1rem' }} onClick={onMove}>
+                처음으로
+              </Button>
+            </div>
+          ) : (
+            <SearchResult keyword={keyword} diaryList={diaryList} setDiaryList={setDiaryList} />
+          )}
         </div>
       )}
-    </div>
+    </StyledContainer>
   )
 }
+
+const StyledContainer = styled.div`
+  background-color: #ffdae5;
+  padding: 1rem;
+  border: 2px solid rgba(200, 200, 200, 0.3);
+  border-radius: 5px;
+`
 
 export default Search

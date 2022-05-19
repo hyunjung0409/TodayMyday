@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Layout } from 'antd'
 import styled from 'styled-components'
@@ -14,9 +14,11 @@ import Profile from './pages/Profile'
 import ReadDiary from './pages/ReadDiary'
 import ModifyDiary from './pages/ModifyDiary'
 import jwt_decode from 'jwt-decode'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
+import Error from './pages/Error'
+import Test from './pages/Test'
 const { Content, Footer } = Layout
 
 function App() {
@@ -40,9 +42,10 @@ function App() {
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/main" element={<Main />} />
+                <Route path="/test" element={<Test />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/user/signup" element={<Signup />} />
-                <Route path="/search" element={<Search />} />
                 <Route path="/my/article" element={<Article />} />
                 <Route path="/my/articleList" element={<ArticleList />} />
                 <Route path="/my/profile" element={<Profile />} />
@@ -70,8 +73,9 @@ const StyledContent = styled(Content)`
 const StyledContentArea = styled.div`
   min-height: 80vh;
   padding: 1rem;
-  // background: rgba(200, 200, 200, 0.5);
-  background: #fff;
+  // background: rgba(220, 220, 220, 1);
+  // background: #fff;
+  border-radius: 5px;
 `
 
 export default App

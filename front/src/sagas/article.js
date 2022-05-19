@@ -18,6 +18,7 @@ import {
 const axios = getAxios()
 
 function articleAddAPI(data) {
+  console.log('data', data)
   return axios.post('diary', data.data, { params: { userId: data.userId } })
 }
 
@@ -25,12 +26,17 @@ function* articleAdd(action) {
   const navigate = action.data.navigate
   try {
     const res = yield call(articleAddAPI, action.data)
+    console.log('res 메롱', res)
     yield put({
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
     })
-    yield alert('글 작성 성공')
-    yield navigate(`/diary/read/${res.data.diary.dno}`)
+    action.data.Modal.success({
+      content: '글 등록 완료',
+      onOk() {
+        navigate(`/diary/read/${res.data.diary.dno}`)
+      },
+    })
   } catch (err) {
     yield put({
       type: ARTICLE_ADD_FAILURE,
@@ -71,7 +77,9 @@ function* diarySearchWord(action) {
       type: DIARY_SEARCH_WORD_SUCCESS,
       data: result.data,
     })
-    yield action.data.setData(result.data)
+    yield result.data.length !== 0
+      ? action.data.setData([result.data[0].word])
+      : action.data.setData(result.data)
   } catch (err) {
     yield put({
       type: DIARY_SEARCH_WORD_FAILURE,

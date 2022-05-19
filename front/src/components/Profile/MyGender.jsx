@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 
 const Gender = styled.div`
   margin-top: 5%;
+  text-align: left;
+  margin-left: 25%;
 `
 function MyGender() {
   // 비동기 처리 해야된다

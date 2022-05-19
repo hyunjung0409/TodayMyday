@@ -1,7 +1,11 @@
 import { Spin } from 'antd'
 import React, { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 function ImageFileInput({ imageUploader, onFileChange, file, data }) {
+  const { me } = useSelector((state) => state.user)
+
   const inputRef = useRef()
   const [loading, setLoading] = useState(false)
   const { fileURL } = data
@@ -22,7 +26,7 @@ function ImageFileInput({ imageUploader, onFileChange, file, data }) {
   }
 
   return (
-    <div>
+    <StyledImageArea className="styled-image-area">
       <input
         style={{ display: 'none' }}
         ref={inputRef}
@@ -34,18 +38,44 @@ function ImageFileInput({ imageUploader, onFileChange, file, data }) {
 
       {!loading && (
         <button
-          style={{ backgroundColor: '#ffff', border: 'none', cursor: 'pointer' }}
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#ffff',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '0',
+          }}
           onClick={onButtonClick}>
-          <img src={file.fileURL || fileURL} alt="img" width="100%" />
+          <img
+            src={file.fileURL || fileURL || me.image}
+            alt="img"
+            width="100%"
+            height="100%"
+            style={{ objectFit: 'cover' }}
+          />
         </button>
       )}
       {loading && (
-        <div>
-          <Spin size="large" tip="Loading..." />,
+        <div
+          style={{
+            width: '100%',
+            textAlign: 'center',
+            // lineHeight: '250px'
+          }}>
+          <Spin size="large" tip="Loading..." />
         </div>
       )}
-    </div>
+    </StyledImageArea>
   )
 }
+
+const StyledImageArea = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // border: 1px solid blue;
+  border-radius: 10px;
+`
 
 export default ImageFileInput

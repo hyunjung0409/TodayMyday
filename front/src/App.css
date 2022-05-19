@@ -6,8 +6,8 @@
   margin: 0px;
   text-align: center;
   box-sizing: border-box;
-  font-family: Consolas, monospace;
-  border: 1px solid green;
+  font-family: 'Noto Sans KR', sans-serif;
+  /* font-family: Consolas, monospace; */
 }
 
 .Carousel {
@@ -21,7 +21,7 @@
 }
 
 .slide {
-  transform: scale(0.2);
+  transform: scale(0.6);
   transition: transform 300ms;
   opacity: 0.5;
 }

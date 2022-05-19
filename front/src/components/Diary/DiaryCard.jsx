@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Avatar, Space, Typography, Image } from 'antd'
+import { Card, Avatar, Space, Typography, Row, Col } from 'antd'
 import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import moment from 'moment'
+import { getAxios } from '../../api'
 
 const { Meta } = Card
 const { Text } = Typography
 
 function DiaryCard({ card }) {
-  const { me } = useSelector((state) => state.user)
-
   const navigate = useNavigate()
+  const axios = getAxios()
 
   const onClick = async () => {
     console.log('click: ', card.dno)
-    navigate(`/diary/read/${card.dno}`)
+    axios.get('/diary/view', { params: { dno: card.dno } }).then(() => {
+      navigate(`/diary/read/${card.dno}`)
+    })
   }
+
+  // console.log(card)
 
   return (
     <StyledCard
@@ -29,26 +32,27 @@ function DiaryCard({ card }) {
         </StyledImageArea>
       }
       onClick={onClick}>
-      {/* <Space>
-        <MessageOutlined style={{ fontSize: '1rem', color: '#08c' }} />
-        <CommentOutlined style={{ fontSize: '1rem', color: '#08c' }} />
-        <Text>내용: {card.content}</Text>
-      </Space> */}
-
-      {/* <Meta
-        avatar={<Avatar src={card.profile_image} />}
+      <Meta
+        avatar={<Avatar src={card.profileImage} />}
         title={card.nickname}
-        description={moment(card.createdat).format('YYYY-MM-DD HH:mm:ss')}
-      /> */}
+        description={`#${card.word}`}
+      />
+      {/* <Row justify="space-evenly" align="middle">
+        <Col span={24}>
+          <Space size="small">
+            <Avatar src={card.profile_image} />
+            <Space direction="vertical" size={1}>
+              <StyledText>{card.nickname}</StyledText>
+              <StyledText>{moment(card.createdat).format('YYYY-MM-DD')}</StyledText>
+            </Space>
+          </Space>
+        </Col>
+      </Row> */}
 
-      <Space direction="vertical" size="middle" style={{ display: 'flex', alignItems: 'start' }}>
-        <Space>
-          <Avatar src={card.profile_image} />
-          <StyledText>{card.nickname}</StyledText>
-        </Space>
-        <StyledText>#{card.word}</StyledText>
+      {/* <StyledText>#{card.word}</StyledText> */}
+      <div style={{ marginTop: '1rem' }}>
         <StyledText>{card.content}</StyledText>
-      </Space>
+      </div>
     </StyledCard>
   )
 }
@@ -64,11 +68,7 @@ const StyledImage = styled.img`
   height: 100%;
   object-fit: cover;
 `
-const StyledUserArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-`
+
 const StyledCard = styled(Card)`
   width: 15vw;
   height: 50vh;
@@ -76,6 +76,16 @@ const StyledCard = styled(Card)`
 
 const StyledText = styled(Text)`
   font-size: small;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2;
+  height: 6em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 `
 
 export default DiaryCard

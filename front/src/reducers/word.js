@@ -9,9 +9,10 @@ export const WORD_GET_REQUEST = 'WORD_GET_REQUEST'
 export const WORD_GET_SUCCESS = 'WORD_GET_SUCCESS'
 export const WORD_GET_FAILURE = 'WORD_GET_FAILURE'
 
-export const wordGetRequestAction = () => {
+export const wordGetRequestAction = (data) => {
   return {
     type: WORD_GET_REQUEST,
+    data,
   }
 }
 

@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 
 const MyNick = styled.div`
   margin-top: 10%;
+  text-align: left;
+  margin-left: 25%;
 `
 function isLogin() {
   const token = localStorage.getItem('token')
