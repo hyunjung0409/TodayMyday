@@ -31,11 +31,11 @@ function MyPicture({ imageUploader, data }) {
   const axios = getAxios()
 
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
-  console.log('file2', file2)
+  // console.log('file2', file2)
   const formRef = useRef()
   const [editable, setEditable] = useState(false)
-  console.log(me)
-  console.log(editable, 'true면 수정 가능 / false면 수정 불가능')
+  // console.log(me)
+  // console.log(editable, 'true면 수정 가능 / false면 수정 불가능')
   const [loading, setLoading] = useState(false)
   const [isImage, setisImage] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -177,4 +177,5 @@ function MyPicture({ imageUploader, data }) {
     </div>
   )
 }
+
 export default MyPicture
