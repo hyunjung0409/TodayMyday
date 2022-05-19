@@ -76,7 +76,13 @@ function WordCard() {
           <MainExplain>오늘의 단어를 선택해보세요</MainExplain>
           <Space size={10}>
             <AllOpen className="all">
-              <Button type="text" icon={<DownOutlined />}>
+              <Button
+                type="text"
+                icon={<DownOutlined />}
+                onClick={() => {
+                  const audio = new Audio('/bgm/MP_Snap.mp3')
+                  audio.play()
+                }}>
                 전체 열기
               </Button>
             </AllOpen>
@@ -101,7 +107,7 @@ function WordCard() {
                     <div
                       className={'heart open' + i}
                       onClick={() => {
-                        const audio = new Audio('/bgm/button-14.mp3')
+                        const audio = new Audio('/bgm/MP_Snap.mp3')
                         audio.play()
                       }}>
                       <ExclamationOutlined style={{ color: 'transparent' }} />

@@ -154,7 +154,7 @@ function ArticleListForm(props) {
       </div>
 
       <MainLook>
-        <div
+        {/* <div
           style={{
             padding: '1rem',
             textAlign: 'right',
@@ -168,7 +168,7 @@ function ArticleListForm(props) {
           <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
             좋아요
           </Tag>
-        </div>
+        </div> */}
 
         <div
           id="scrollableDiv"
