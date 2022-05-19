@@ -98,11 +98,19 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public List<Diary> searchDiariesByContent(String keyword, String userId) {
         List<Diary> diaries = diaryRepository.findByContentContainsOrderByDnoDesc(keyword);
-        if(diaries == null) {
+        List<Diary> my_diaries = new ArrayList<>();
+
+        for (Diary diary : diaries) {
+            if (diary.getUser().getUserId().equals(userId)) {
+                my_diaries.add(diary);
+            }
+        }
+
+        if(my_diaries == null) {
             return null;
         }
 
-        return diaries;
+        return my_diaries;
 
     }
 
@@ -139,12 +147,19 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public List<Diary> searchDiariesByWord(String word, String userId) {
         List<Diary> diaries = diaryRepository.findDiaryByWordOrderByDnoDesc(word);
+        List<Diary> my_diaries = new ArrayList<>();
 
-        if(diaries == null) {
+        for (Diary diary : diaries) {
+            if (diary.getUser().getUserId().equals(userId)) {
+                my_diaries.add(diary);
+            }
+        }
+
+        if(my_diaries == null) {
             return null;
         }
 
-        return diaries;
+        return my_diaries;
 
     }
 
@@ -244,6 +259,4 @@ public class DiaryServiceImpl implements DiaryService{
 
         return diaries;
     }
-
-
 }
