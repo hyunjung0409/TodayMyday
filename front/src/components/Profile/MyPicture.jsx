@@ -83,7 +83,7 @@ function MyPicture({ imageUploader, data }) {
     setFile2({ fileName: null, fileURL: null })
     dispatch(loadUserRequestAction({ userId: me.userId }))
     setEditable(!editable)
-    console.log('file2', file2)
+    // console.log('file2', file2)
   }
   const success = () => {
     Modal.success({

@@ -216,7 +216,7 @@ function InfinityScoll(props) {
                           <MessageFilled style={{ fontSize: '1rem' }} />
                         </StyledFlexEnd>
                         <StyledFlexStart>
-                          <span style={{ fontSize: '1rem' }}>0</span>
+                          <span style={{ fontSize: '1rem' }}>{item.comments.length}</span>
                         </StyledFlexStart>
                       </div>
                     </Space>

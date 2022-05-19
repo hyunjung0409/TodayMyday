@@ -14,7 +14,7 @@ import { Button, Row, Space } from 'antd'
 import styled from 'styled-components'
 import Zoom from 'react-reveal/Zoom'
 import LightSpeed from 'react-reveal/LightSpeed'
-
+import '../Diary/Comment.css'
 const MainExplain = styled.h1`
   // padding-top: 5%;
   // font-size: 300%;
@@ -28,9 +28,7 @@ const MainBack = styled.div`
   border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 5px;
 `
-const allOpen = styled.div`
-  margin-bottom: 10px;
-`
+const AllOpen = styled.div``
 
 function WordCard() {
   const navigate = useNavigate()
@@ -94,11 +92,11 @@ function WordCard() {
           <Button type="disabled" style={{ width: '12rem' }}></Button>
           <MainExplain>오늘의 단어를 선택해보세요</MainExplain>
           <Space size={10}>
-            <allOpen className="all">
+            <AllOpen className="all">
               <Button type="text" icon={<DownOutlined />}>
                 전체 열기
               </Button>
-            </allOpen>
+            </AllOpen>
             <Button type="text" icon={<RedoOutlined />} onClick={wordShuffle}>
               새로고침
             </Button>
@@ -107,8 +105,8 @@ function WordCard() {
         </Row>
         {wordGet != null
           ? wordGet.map((item, i) => (
-              <Zoom>
-                <div key={item} className="bg-wrapper">
+              <Zoom key={i}>
+                <div className="bg-wrapper">
                   <div className={'envelope-wrapper card' + i}>
                     <div className="envelope">
                       <div className="card">

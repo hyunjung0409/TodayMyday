@@ -79,7 +79,7 @@ function LikedImgCarousel({ liked }) {
                   <EyeFilled /> {item.view}
                 </span>
                 <span style={{ margin: '10px' }}>
-                  <MessageFilled /> 0
+                  <MessageFilled /> {item.comments.length}
                 </span>
               </Card>
             </div>

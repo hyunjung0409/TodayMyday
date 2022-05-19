@@ -3,7 +3,7 @@ import { Row, Col, Space } from 'antd'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import styled from 'styled-components'
 
-function ArticleListItem({ picture, title, createdat, view, liked, content }) {
+function ArticleListItem({ picture, title, createdat, view, liked, content, comment }) {
   return (
     <>
       <div style={{ width: '100%', height: '150px', display: 'flex' }}>
@@ -52,7 +52,7 @@ function ArticleListItem({ picture, title, createdat, view, liked, content }) {
               <MessageFilled style={{ fontSize: '1rem' }} />
             </StyledFlexEnd>
             <StyledFlexStart>
-              <span style={{ fontSize: '1rem' }}>0</span>
+              <span style={{ fontSize: '1rem' }}>{comment}</span>
             </StyledFlexStart>
           </div>
         </Space>

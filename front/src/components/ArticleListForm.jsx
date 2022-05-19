@@ -197,6 +197,7 @@ function ArticleListForm(props) {
                     picture={item.image}
                     title={item.word}
                     content={item.content}
+                    comment={item.comments.length}
                     view={item.view}
                     liked={item.liked}
                     createdat={timeForToday(item.createdat)}
