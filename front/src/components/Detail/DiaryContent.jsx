@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { Row, Col, Typography } from 'antd'
 import styled from 'styled-components'
+import '../Diary/Comment.css'
+const { Text } = Typography
 
-const { Title } = Typography
+function DiaryContent({ diary }) {
+  const [content, setContent] = useState('')
 
-function DiaryContent(params) {
-  const [content, setContent] = useState(
-    '가까이 있어서 소중한 것,\n그러나 너무나 평범한 일상 속에 있어서\n소중함을 잘 모르는 것.',
-  )
+  // setContent(me.dairies[])
   return (
     <Row>
       <Col span={24}>
         <StyledContainer>
-          <Title level={5}>{content}</Title>
+          <Text level={5}>{diary.content}</Text>
         </StyledContainer>
       </Col>
     </Row>
@@ -25,6 +25,9 @@ const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  margin: 1rem 0;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
 `
 
 export default DiaryContent

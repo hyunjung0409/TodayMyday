@@ -28,7 +28,7 @@ export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE'
 export const loadUserRequestAction = (data) => {
   return {
     type: LOAD_USER_REQUEST,
-    data: data.userId,
+    data,
   }
 }
 

@@ -2,12 +2,20 @@
 @import '~slick-carousel/slick/slick.css';
 @import '~slick-carousel/slick/slick-theme.css';
 
+@font-face {
+  font-family: '나눔손글씨 동화또박';
+  src: url('./font/나눔손글씨 동화또박.ttf');
+}
+@font-face {
+  font-family: 'Maru';
+  src: url('./font/MaruBuri-Regular.ttf');
+}
 .App {
   margin: 0px;
   text-align: center;
   box-sizing: border-box;
-  font-family: Consolas, monospace;
-  border: 1px solid green;
+  /* font-family: 'Maru'; */
+  /* font-family: '나눔손글씨 동화또박'; */
 }
 
 .Carousel {
@@ -21,7 +29,7 @@
 }
 
 .slide {
-  transform: scale(0.2);
+  transform: scale(0.6);
   transition: transform 300ms;
   opacity: 0.5;
 }

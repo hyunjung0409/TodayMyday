@@ -1,37 +1,91 @@
-import React, { useState } from 'react'
-import { Card, Avatar, Space, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Card, Avatar, Space, Typography, Row, Col } from 'antd'
+import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
+import { getAxios } from '../../api'
 
 const { Meta } = Card
 const { Text } = Typography
 
-function DiaryCard() {
-  const [comment, setComment] = useState(0)
+function DiaryCard({ card }) {
+  const navigate = useNavigate()
+  const axios = getAxios()
+
+  const onClick = async () => {
+    console.log('click: ', card.dno)
+    axios.get('/diary/view', { params: { dno: card.dno } }).then(() => {
+      navigate(`/diary/read/${card.dno}`)
+    })
+  }
+
+  // console.log(card)
 
   return (
-    <Card
+    <StyledCard
+      className="card"
       hoverable
-      style={{ width: 300 }}
       cover={
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
+        <StyledImageArea>
+          <StyledImage src={card.image} />
+        </StyledImageArea>
       }
-      // actions={[
-      //   <SettingOutlined key="setting" />,
-      //   <EditOutlined key="edit" />,
-      //   <EllipsisOutlined key="ellipsis" />,
-      // ]}
-    >
-      <Space>
-        <MessageOutlined style={{ fontSize: '20px', color: '#08c' }} />
-        <CommentOutlined style={{ fontSize: '20px', color: '#08c' }} />
-        <Text>{comment}</Text>
-      </Space>
-      <Meta avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />} title="Nickname" />
-    </Card>
+      onClick={onClick}>
+      <Meta
+        avatar={<Avatar src={card.profileImage} />}
+        title={card.nickname}
+        description={`#${card.word}`}
+      />
+      {/* <Row justify="space-evenly" align="middle">
+        <Col span={24}>
+          <Space size="small">
+            <Avatar src={card.profile_image} />
+            <Space direction="vertical" size={1}>
+              <StyledText>{card.nickname}</StyledText>
+              <StyledText>{moment(card.createdat).format('YYYY-MM-DD')}</StyledText>
+            </Space>
+          </Space>
+        </Col>
+      </Row> */}
+
+      {/* <StyledText>#{card.word}</StyledText> */}
+      <div style={{ marginTop: '1rem' }}>
+        <StyledText>{card.content}</StyledText>
+      </div>
+    </StyledCard>
   )
 }
+
+const StyledImageArea = styled.div`
+  height: 25vh;
+  overflow: hidden;
+  // border: 1px solid red;
+`
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
+const StyledCard = styled(Card)`
+  width: 15vw;
+  height: 50vh;
+`
+
+const StyledText = styled(Text)`
+  font-size: small;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2;
+  height: 6em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+`
 
 export default DiaryCard

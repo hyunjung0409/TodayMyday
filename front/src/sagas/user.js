@@ -16,7 +16,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken'
 const axios = getAxios()
 
 function loadUsedrAPI(data) {
-  return axios.get(`/user/read/${data}`)
+  return axios.get(`/user/read`, { params: { userId: data.userId } })
 }
 
 function* loadUser(action) {
@@ -46,27 +46,36 @@ function* logIn(action) {
     localStorage.setItem('jwtToken', token)
     setAuthorizationToken(token)
     const { navigate } = action.data
+    let test = ''
+    yield axios.get(`/user/read`, { params: { userId: action.data.userId } }).then((res) => {
+      test = res.data.user
+    })
     yield put({
       type: LOG_IN_SUCCESS,
-      data: action.data,
+      data: test,
     })
-    navigate('/')
+    navigate('/main')
   } catch (err) {
     yield put({
       type: LOG_IN_FAILURE,
       error: err.response.data,
     })
+    yield action.data.Modal.error({
+      content: '아이디와 비밀번호를 확인해주세요.',
+    })
   }
 }
 
 function* logOut(action) {
+  console.log('action', action)
   try {
     const { navigate } = action.data
-    yield delay(1000)
+    yield delay(500)
     localStorage.removeItem('jwtToken')
     yield put({
       type: LOG_OUT_SUCCESS,
     })
+    action.data.setIsModalVisible(false)
     navigate('/')
   } catch (err) {
     yield put({

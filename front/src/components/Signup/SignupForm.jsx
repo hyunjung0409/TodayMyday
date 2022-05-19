@@ -1,13 +1,29 @@
-import React, { useRef, useState } from 'react'
-import { Form, Input, Button, Select, Upload } from 'antd'
+import React, { useCallback, useState } from 'react'
+import { Form, Input, Button, Select, Modal } from 'antd'
 import ImageFileInput from '../ImageFileInput'
 import { getAxios } from '../../api'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
+const axios = getAxios()
 const { Option } = Select
 
 function SignupForm({ imageUploader, data }) {
+  const navigate = useNavigate()
+
+  const [idStatus, setIdStatus] = useState(false)
+  const [nkStatus, setNkStatus] = useState(false)
+
+  const [id, setId] = useState('')
+  const [nickname, setNickname] = useState('')
+
+  const [formValues, setFormValues] = useState({})
   const [form] = Form.useForm()
-  const [file, setFile] = useState({ fileName: null, fileURL: null })
+
+  const [image, setImage] = useState({
+    fileURL: '/images/기본사진.png',
+  })
+  const [file, setFile] = useState({ fileName: '기본사진', fileURL: image.fileURL })
 
   const onFileChange = (file) => {
     setFile({
@@ -16,22 +32,68 @@ function SignupForm({ imageUploader, data }) {
     })
   }
 
-  // const onSubmit = (event) => {
-  //   event.preventDefault()
-  //   const data = {
-  //     id: Date.now(), // uuid
-  //     fileName: file.fileName || '',
-  //     fileURL: file.fileURL || '',
-  //   }
-  //   formRef.current.reset()
-  //   console.log(data)
-  // }
+  const changeId = (e) => {
+    setId(e.target.value)
+  }
+
+  const onBlurId = () => {
+    console.log(form.getFieldValue('id'))
+
+    if (form.getFieldError('id').length === 0 && form.getFieldValue('id')) {
+      axios
+        .get('user/verifyid', {
+          params: {
+            userId: form.getFieldValue('id'),
+          },
+        })
+        .then((res) => {
+          console.log('res.data', res.data)
+          if (!res.data) {
+            setIdStatus(false)
+            form.setFields([{ name: 'id', errors: ['사용 중인 아이디입니다.'] }])
+          } else {
+            setIdStatus(true)
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
+
+  const changeNickname = (e) => {
+    setNickname(e.target.value)
+  }
+
+  const onBlurNickname = useCallback(() => {
+    console.log(form.getFieldValue('nickname'))
+    console.log(form.getFieldsValue())
+
+    if (form.getFieldError('nickname').length === 0 && form.getFieldValue('nickname')) {
+      axios
+        .get('user/verifynk', {
+          params: {
+            nickname: form.getFieldValue('nickname'),
+          },
+        })
+        .then((res) => {
+          console.log('res.data', res.data)
+          if (!res.data) {
+            console.log('error: ', form.getFieldError('nickname'))
+            setNkStatus(false)
+            form.setFields([{ name: 'nickname', errors: ['사용 중인 닉네임입니다.'] }])
+          } else {
+            setNkStatus(true)
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [])
 
   const onFinish = async (values) => {
-    const axios = getAxios()
-    console.log(axios)
     await axios.post('user/signup', {
-      // image: values.image,
       image: file.fileURL,
       nickname: values.nickname,
       password: values.password,
@@ -39,20 +101,43 @@ function SignupForm({ imageUploader, data }) {
       age: values.ageRange,
       gender: values.gender,
     })
-    console.log('Success:', values)
+
+    Modal.success({
+      content: '회원가입이 완료되었습니다.',
+      okText: '확인',
+      onOk: () => {
+        navigate('/')
+      },
+    })
+
+    console.log('Success')
   }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+    console.log('Failed:', errorInfo.errorFields)
+
+    const render = () => {
+      const result = []
+      for (let index = 0; index < errorInfo.errorFields.length; index++) {
+        result.push(<div>{errorInfo.errorFields[index].errors}</div>)
+      }
+      return result
+    }
+
+    Modal.error({
+      title: '회원가입이 완료되지 않았습니다.',
+      okText: '확인',
+      content: render(),
+    })
   }
 
   return (
     <Form
       form={form}
       name="signup"
-      // onSubmit={onSubmit}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      onValuesChange={(_, values) => setFormValues(values)}
       autoComplete="off"
       layout="vertical">
       <Form.Item
@@ -64,14 +149,16 @@ function SignupForm({ imageUploader, data }) {
             message: 'Please upload your profile picture!',
           },
         ]}>
-        <ImageFileInput
-          name={file.fileName}
-          imageUploader={imageUploader}
-          onFileChange={onFileChange}
-          file={file}
-          data={data}
-          setFile={setFile}
-        />
+        <StyledImage className="image-file-input">
+          <ImageFileInput
+            name={file.fileName}
+            imageUploader={imageUploader}
+            onFileChange={onFileChange}
+            file={file}
+            data={data}
+            setFile={setFile}
+          />
+        </StyledImage>
       </Form.Item>
 
       <Form.Item
@@ -80,23 +167,29 @@ function SignupForm({ imageUploader, data }) {
         rules={[
           {
             required: true,
-            message: 'Please input your id!',
+            message: '아이디를 입력하세요!',
           },
         ]}>
-        <Input />
+        <Input placeholder="아이디" value={id} onChange={changeId} onBlur={onBlurId} allowClear />
       </Form.Item>
 
       <Form.Item
         label="비밀번호"
         name="password"
+        tooltip="비밀번호는 문자, 숫자, 특수기호를 포함하며 8자 이상이어야 합니다.'"
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: '비밀번호를 입력하세요!',
+          },
+          {
+            pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
+            message: '비밀번호는 문자, 숫자, 특수기호를 포함하며 8자 이상이어야 합니다.',
           },
         ]}>
         <Input.Password />
       </Form.Item>
+
       <Form.Item
         label="비밀번호 확인"
         name="confirm"
@@ -105,7 +198,7 @@ function SignupForm({ imageUploader, data }) {
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            message: '비밀번호가 일치하지 않습니다!',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -113,7 +206,7 @@ function SignupForm({ imageUploader, data }) {
                 return Promise.resolve()
               }
 
-              return Promise.reject(new Error('The two passwords that you entered do not match!'))
+              return Promise.reject(new Error('비밀번호가 일치하지 않습니다!'))
             },
           }),
         ]}>
@@ -123,15 +216,20 @@ function SignupForm({ imageUploader, data }) {
       <Form.Item
         label="닉네임"
         name="nickname"
-        tooltip="What do you want others to call you?"
         rules={[
           {
             required: true,
-            message: 'Please input your nickname!',
+            message: '닉네임을 입력하세요!',
             whitespace: true,
           },
         ]}>
-        <Input />
+        <Input
+          placeholder="닉네임"
+          value={nickname}
+          onChange={changeNickname}
+          onBlur={onBlurNickname}
+          allowClear
+        />
       </Form.Item>
 
       <Form.Item
@@ -139,11 +237,11 @@ function SignupForm({ imageUploader, data }) {
         name="gender"
         rules={[
           {
-            required: false,
-            message: 'Please select gender!',
+            required: true,
+            message: '성별을 선택하세요!',
           },
         ]}>
-        <Select placeholder="Select your gender">
+        <Select placeholder="성별을 선택하세요">
           <Option value="male">남성</Option>
           <Option value="female">여성</Option>
         </Select>
@@ -154,11 +252,11 @@ function SignupForm({ imageUploader, data }) {
         name="ageRange"
         rules={[
           {
-            required: false,
-            message: 'Please select ageRange!',
+            required: true,
+            message: '연령대를 선택하세요!',
           },
         ]}>
-        <Select placeholder="Select your ageRange">
+        <Select placeholder="연령대를 선택하세요">
           <Option value="1">어린이 (0~9)</Option>
           <Option value="2">청소년 (10~19)</Option>
           <Option value="3">청년 (20~29)</Option>
@@ -168,12 +266,27 @@ function SignupForm({ imageUploader, data }) {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Register
-        </Button>
+        {idStatus === true && nkStatus === true ? (
+          <Button type="primary" htmlType="submit">
+            등록
+          </Button>
+        ) : (
+          <Button type="primary" disabled>
+            등록
+          </Button>
+        )}
       </Form.Item>
     </Form>
   )
 }
+
+const StyledImage = styled.div`
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid rgba(100, 100, 100, 0.3);
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto;
+`
 
 export default SignupForm

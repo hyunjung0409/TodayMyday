@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import ArticleForm from '../components/ArticleForm'
 import ImageUploader from '../service/image_uploader'
 
 const imageUploader = new ImageUploader()
 
 function Writing() {
-  const [data, setData] = useState({
-    word: '바다',
+  const { state } = useLocation()
+  const rand_1_3 = Math.floor(Math.random() * 3) + 1
+  const [data] = useState({
+    word: state,
     message: '',
-    fileURL: '/images/기본이미지.jpg',
+    fileURL: `/images/${rand_1_3}.svg`,
   })
 
   return (
