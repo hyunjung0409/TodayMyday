@@ -100,7 +100,7 @@ function DiaryHeader({ diary }) {
             <EyeOutlined /> {diary.view}
           </div>
           <div>
-            <MessageFilled /> {diary.comments.length}
+            <MessageFilled /> {diary.comments && diary.comments.length}
           </div>
         </StyledSpace>
       </Col>
