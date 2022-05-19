@@ -33,6 +33,8 @@ public class WordServiceImpl implements WordService{
     @Override
     public void createWord(String word) {
 
+
+
         if(word.trim().isEmpty() || word == null || duplicateWord(word))
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
@@ -75,23 +77,23 @@ public class WordServiceImpl implements WordService{
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
         if(user.getAge().equals("1")){
-            word.setTeens(word.getTeens()+5);
+            word.setTeens(word.getTeens()+100);
         } else if(user.getAge().equals("2")){
-            word.setTwenties(word.getTwenties()+5);
+            word.setTwenties(word.getTwenties()+100);
         } else if(user.getAge().equals("3")){
-            word.setThirties(word.getThirties()+5);
+            word.setThirties(word.getThirties()+100);
         } else if(user.getAge().equals("4")){
-            word.setFourties(word.getFourties()+5);
+            word.setFourties(word.getFourties()+100);
         } else if(user.getAge().equals("5")){
-            word.setFifties(word.getFifties()+5);
+            word.setFifties(word.getFifties()+100);
         } else if(user.getAge().equals("6")){
-            word.setOversixties(word.getOversixties()+5);
+            word.setOversixties(word.getOversixties()+100);
         }
 
         if(user.getGender().equals("male")) {
-            word.setMale(word.getMale()+5);
+            word.setMale(word.getMale()+100);
         } else {
-            word.setFemale(word.getFemale()+5);
+            word.setFemale(word.getFemale()+100);
         }
 
         wordRepository.save(word);
