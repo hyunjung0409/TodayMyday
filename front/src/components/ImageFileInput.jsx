@@ -52,7 +52,7 @@ function ImageFileInput({ imageUploader, onFileChange, file, data }) {
             alt="img"
             width="100%"
             height="100%"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', verticalAlign: 'top' }}
           />
         </button>
       )}

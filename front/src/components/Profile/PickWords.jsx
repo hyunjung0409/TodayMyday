@@ -16,13 +16,16 @@ const { Option } = Select
 const Words = styled.div`
   width: 100%;
   height: 350px;
-  background-color: rgb(238, 167, 187);
+  // background-color: rgb(238, 167, 187);
+  background: #ffe6f0;
   text-align: left;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2%;
   margin-top: 3%;
   overflow: auto;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
 `
 
 function PickWords() {

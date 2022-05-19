@@ -15,8 +15,8 @@ function SearchResult({ keyword, diaryList, setDiaryList }) {
     <div
       className="diary-carousel-written"
       style={{
-        // background: '#FFF',
-        background: '#FFDAE5',
+        background: '#ffe6f0',
+        // background: '#FFDAE5',
         margin: '1rem auto',
         width: '90%',
         borderRadius: '3px',

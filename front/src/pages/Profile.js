@@ -17,10 +17,24 @@ import MainProfile from '../components/Profile/MainProfile'
 const imageUploader = new ImageUploader()
 
 const Place = styled.div`
-  border: 1px solid #d3d3d3;
-  border-radius: 1%;
-  padding: 5%;
+  padding: 2%;
   padding-right: 10%;
+`
+
+const Left = styled.div`
+  padding: 2%;
+`
+
+const StyledBackground = styled.div`
+  background-color: #ffdae5;
+  padding: 2%;
+  border-radius: 5px;
+`
+
+const StyledContainer = styled.div`
+  background-color: #fff;
+  padding: 2%;
+  border-radius: 5px;
 `
 
 function Profile() {
@@ -32,22 +46,28 @@ function Profile() {
   // })
 
   return (
-    <div>
-      <Row>
-        <Col span={12}>
-          {me !== null && (
-            <MyPicture imageUploader={imageUploader} data={me !== null && me.image}></MyPicture>
-          )}
-          <MainProfile imageUploader={imageUploader} data={me !== null && me.image}></MainProfile>
-        </Col>
-        <Col span={12}>
-          <Place>
-            <PickWords></PickWords>
-            <Grass></Grass>
-          </Place>
-        </Col>
-      </Row>
-    </div>
+    <StyledBackground>
+      <StyledContainer>
+        <Row>
+          <Col span={12}>
+            <Left>
+              {me !== null && (
+                <MyPicture imageUploader={imageUploader} data={me !== null && me.image}></MyPicture>
+              )}
+              <MainProfile
+                imageUploader={imageUploader}
+                data={me !== null && me.image}></MainProfile>
+            </Left>
+          </Col>
+          <Col span={12}>
+            <Place>
+              <PickWords></PickWords>
+              <Grass></Grass>
+            </Place>
+          </Col>
+        </Row>
+      </StyledContainer>
+    </StyledBackground>
   )
 }
 export default Profile

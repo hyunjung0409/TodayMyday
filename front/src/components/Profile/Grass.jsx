@@ -20,7 +20,7 @@ function Grass() {
   const [curMonth, setCurMonth] = useState(parseInt(moment(new Date()).format('M')))
 
   const onActiveStartDateChange = ({ action, activeStartDate, value, view }) => {
-    console.log('Changed view to: ', moment(activeStartDate).format('YYYY-M'), view)
+    // console.log('Changed view to: ', moment(activeStartDate).format('YYYY-M'), view)
     setCurYear(parseInt(moment(activeStartDate).format('YYYY')))
     setCurMonth(parseInt(moment(activeStartDate).format('M')))
   }
@@ -34,7 +34,7 @@ function Grass() {
           year: curYear,
         },
       })
-      console.log('jandi: ', res.data)
+      // console.log('jandi: ', res.data)
       setMark([...res.data.jandis])
     } catch (err) {
       console.log(err)
@@ -64,16 +64,12 @@ function Grass() {
 
   return (
     <StyledCalender>
-      {/* <h5>
-        {curYear}년 {curMonth}월<br />
-        {mark}
-      </h5> */}
       <MyCalender
         onActiveStartDateChange={onActiveStartDateChange}
         onChange={onChange}
         formatDay={(locale, date) => moment(date).format('DD')}
         value={value}
-        className="mx-auto w-full text-sm border-b"
+        className="mx-auto w-full text-sm"
         tileContent={({ date, view }) => {
           if (mark.find((x) => x === moment(date).format('YYYY-M-D'))) {
             return (
@@ -98,13 +94,17 @@ function Grass() {
 }
 
 const StyledCalender = styled.div`
-  width: 350px;
+  width: 100%;
   margin: 1rem auto;
-  // border: 1px solid #f0f0f0;
-  // border-radius: 2px;
+  padding: 1rem 0;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
 `
 
 const MyCalender = styled(Calendar)`
+  margin: 0 auto;
+  border: 0;
+
   abbr[title],
   abbr[data-original-title] {
     text-decoration: none;

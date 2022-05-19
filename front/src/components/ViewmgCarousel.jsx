@@ -5,6 +5,7 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import { Card } from 'antd'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 function ViewImgCarousel({ view }) {
   const navigate = useNavigate()
@@ -57,9 +58,22 @@ function ViewImgCarousel({ view }) {
                   pageMove(item.dno, e)
                 }}>
                 <div style={{ marginBottom: '10px' }}>{idx + 1}</div>
-                <div style={{ marginBottom: '10px' }}>
+                {/* <div style={{ marginBottom: '10px' }}>
                   <img style={{ width: '150px' }} src={item.image} alt={item.image} />
-                </div>
+                </div> */}
+
+                <ImageLayout>
+                  <StyledImageArea>
+                    <img
+                      src={item.image}
+                      alt="content-image"
+                      width="100%"
+                      height="100%"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </StyledImageArea>
+                </ImageLayout>
+
                 <h3 style={{ fontWeight: 'bold' }}>#{item.word}</h3>
                 <span style={{ margin: '10px' }}>
                   <EyeFilled /> {item.view}
@@ -78,5 +92,20 @@ function ViewImgCarousel({ view }) {
     </>
   )
 }
+
+const ImageLayout = styled.div`
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  border-radius: 20px;
+  padding: 0.5rem 0;
+`
+
+const StyledImageArea = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+`
 
 export default ViewImgCarousel
