@@ -109,17 +109,26 @@ function InfinityScoll(props) {
   return (
     <>
       <MainLook>
-        <div style={{ padding: '1rem', textAlign: 'right' }}>
-          <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
-            최신순
-          </Tag>
-          <Tag style={{ cursor: 'pointer' }} color="green" onClick={viewSort}>
-            조회수
-          </Tag>
-          <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
-            좋아요
-          </Tag>
-        </div>
+        <Row>
+          <Col span={12}>
+            <div style={{ padding: '1rem 2rem', textAlign: 'left' }}>
+              <h3 style={{ margin: 0 }}>전체 글 보기</h3>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div style={{ padding: '1rem', textAlign: 'right' }}>
+              <Tag style={{ cursor: 'pointer' }} color="magenta" onClick={createdatSort}>
+                최신순
+              </Tag>
+              <Tag style={{ cursor: 'pointer' }} color="green" onClick={viewSort}>
+                조회수
+              </Tag>
+              <Tag style={{ cursor: 'pointer' }} color="purple" onClick={likedSort}>
+                좋아요
+              </Tag>
+            </div>
+          </Col>
+        </Row>
         <div
           id="scrollableDiv"
           style={{

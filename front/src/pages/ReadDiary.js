@@ -44,7 +44,9 @@ function MyDetail() {
           </StyledDiaryContainer>
         </Col>
         <Col span={12}>
-          <Comment></Comment>
+          <StyledCmtyContainer>
+            <Comment></Comment>
+          </StyledCmtyContainer>
         </Col>
       </Row>
     </StyledContainer>
@@ -57,25 +59,34 @@ const StyledContainer = styled.div`
   border-radius: 5px;
 `
 
+const StyledCmtyContainer = styled.div`
+  height: 100%;
+  background-color: #fff;
+  border-radius: 0 5px 5px 0;
+  padding: 5% 0;
+`
+
 const StyledDiaryContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #fff;
   border-radius: 5px 0 0 5px;
+  padding: 5% 0;
 `
 
 const StyledImageArea = styled.div`
-  width: 70%;
+  width: 80%;
   height: 50%;
+  // min-height: 20rem;
   overflow: hidden;
   border-radius: 5px 5px 0 0;
 `
 
 const StyledFormArea = styled.div`
-  width: 70%;
+  width: 80%;
   background: #ffe6f0;
   // background: #ffdae5;
   padding: 2rem;

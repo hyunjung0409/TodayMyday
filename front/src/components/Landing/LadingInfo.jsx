@@ -101,6 +101,11 @@ const StyledButton = styled(Button)`
   bottom: 0;
   left: 10.5rem;
   width: 6rem;
+  &&& {
+    bacground: #fff;
+    border-color: rgb(220, 220, 220);
+    color: rgb(100, 100, 100);
+  }
 `
 
 export default LandingInfo

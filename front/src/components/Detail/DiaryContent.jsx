@@ -25,6 +25,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  margin: 1rem 0;
 `
 
 export default DiaryContent
