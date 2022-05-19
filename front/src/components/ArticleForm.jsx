@@ -55,19 +55,20 @@ const TitleWord = styled.h1`
 `
 
 const MyTextarea = styled.textarea`
-  line-height: 1.5rem;
+  font-size: 1rem;
+  line-height: 28px;
   border: 0;
   outline: none;
   font-family: inherit;
   appearance: none;
   color: #4e5e72;
   background-color: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='24'><rect fill='rgb(229, 225, 187)' x='0' y='23' width='10' height='1'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='28'><rect fill='rgb(229, 225, 187)' x='0' y='23' width='10' height='1'/></svg>");
   width: 98%;
   height: 20rem;
   resize: none;
   &:focus {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='24'><rect fill='rgba(78, 94, 114, 0.3)' x='0' y='23' width='10' height='1'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='28'><rect fill='rgba(78, 94, 114, 0.3)' x='0' y='23' width='10' height='1'/></svg>");
     outline: none;
   }
 `
