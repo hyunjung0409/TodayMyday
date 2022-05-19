@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar, Select, Divider } from 'antd'
 import { loadUserRequestAction } from '../../reducers/user'
 // import { useNavigate } from 'react-router-dom'
-import DeleteAccount from './DeleteAccount'
+// import DeleteAccount from './DeleteAccount'
 const { Option } = Select
 const Gender = styled.div`
   margin-top: 5%;
@@ -36,9 +36,9 @@ const UpdateIcon = styled.div`
 const DiverPlace = styled.div`
   margin-right: 2%;
 `
-const DeletePlace = styled.div`
-  margin-top: 10%;
-`
+// const DeletePlace = styled.div`
+//   margin-top: 10%;
+// `
 const tailLayout = {
   wrapperCol: { offset: 1, span: 16 },
 }
@@ -204,9 +204,6 @@ function MainProfile({ imageUploader, data }) {
         )}
       </div>
       <Gender>성별 | {checkGender()}</Gender>
-      <DeletePlace>
-        <DeleteAccount></DeleteAccount>
-      </DeletePlace>
     </div>
   )
 }

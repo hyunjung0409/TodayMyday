@@ -5,13 +5,12 @@ import { useSelector } from 'react-redux'
 import { Button, Modal, Avatar, Comment, Tooltip, Input } from 'antd'
 import moment from 'moment'
 import './Comment.css'
-import { CloseCircleTwoTone } from '@ant-design/icons'
+import { CloseCircleTwoTone, StarOutlined } from '@ant-design/icons'
 
 let CommentSize = styled.div`
   font-size: medium;
   text-align: left;
   margin-left: 5%;
-  font-family: 'LeeSeoyun';
   font-size: 30px;
 `
 
@@ -20,6 +19,13 @@ const ButtonPlace = styled.div`
 `
 const DeleteButton = styled.div`
   margin-left: 75%;
+`
+const StyledButton = styled(Button)`
+  &&& {
+    bacground: #fff;
+    border-color: rgb(220, 220, 220);
+    color: rgb(100, 100, 100);
+  }
 `
 
 const UpdateComments = (props) => {
@@ -74,22 +80,22 @@ const UpdateComments = (props) => {
 
       {me.userId === id ? (
         <ButtonPlace>
-          <Button
+          <StyledButton
             variant="secondary"
             size="sm"
             onClick={() => {
               setEditable(!editable)
             }}>
             수정
-          </Button>{' '}
-          <Button
+          </StyledButton>{' '}
+          <StyledButton
             variant="danger"
             size="sm"
             onClick={() => {
               handleShow()
             }}>
             삭제
-          </Button>
+          </StyledButton>
         </ButtonPlace>
       ) : (
         <ButtonPlace></ButtonPlace>
@@ -103,8 +109,6 @@ const UpdateComments = (props) => {
           handleClose()
         }}
         okText="확인"
-        closeIcon={<CloseCircleTwoTone />}
-        okType="primary"
         cancelText="취소"
         onCancel={handleClose}>
         <p>해당 댓글을 삭제하시겠습니까?</p>
@@ -131,7 +135,7 @@ const UpdateComments = (props) => {
       </CommentSize>
       {me.userId === id ? (
         <DeleteButton>
-          <Button
+          <StyledButton
             variant="secondary"
             size="sm"
             onClick={(e) => {
@@ -139,15 +143,15 @@ const UpdateComments = (props) => {
               setEditable(!editable)
             }}>
             저장
-          </Button>{' '}
-          <Button
+          </StyledButton>{' '}
+          <StyledButton
             variant="secondary"
             size="sm"
             onClick={(e) => {
               setEditable(!editable)
             }}>
             취소
-          </Button>
+          </StyledButton>
         </DeleteButton>
       ) : (
         <DeleteButton></DeleteButton>
