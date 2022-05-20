@@ -97,19 +97,26 @@ function ArticleForm({ imageUploader, data }) {
   const onSubmit = async (event) => {
     event.preventDefault()
     if (messageRef.current.value !== '') {
-      const data = {
-        content: messageRef.current.value,
-        word: word,
-        image: file.fileURL || fileURL,
+      if (messageRef.current.value.length >= 301) {
+        Modal.warning({
+          title: '300자 이내로 입력가능합니다.',
+          okText: '확인',
+        })
+      } else {
+        const data = {
+          content: messageRef.current.value,
+          word: word,
+          image: file.fileURL || fileURL,
+        }
+        await dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
       }
-      await dispatch(articleAddRequestAction({ userId: me.userId, data, navigate, Modal }))
     } else {
       Modal.warning({
         title: '일기를 작성해 주세요.',
         okText: '확인',
       })
     }
-    formRef.current.reset()
+    // formRef.current.reset()
   }
 
   return (
