@@ -67,7 +67,6 @@ function* logIn(action) {
 }
 
 function* logOut(action) {
-  console.log('action', action)
   try {
     const { navigate } = action.data
     yield delay(500)

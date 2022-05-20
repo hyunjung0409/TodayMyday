@@ -45,13 +45,13 @@ function LikedImgCarousel({ liked }) {
 
   return (
     <>
-      <div className="Carousel" style={{ padding: '1rem' }}>
+      <div className="Carousel">
         <StyledFont>좋아요 top5</StyledFont>
         <Slider {...settings}>
           {liked.map((item, idx) => (
             <div key={idx} className={idx === ImageIndex ? 'slide activeSlide' : 'slide'}>
               <Card
-                style={{ width: '200px' }}
+                style={{ width: '190px' }}
                 hoverable
                 onClick={(e) => {
                   pageMove(item.dno, e)
@@ -63,11 +63,15 @@ function LikedImgCarousel({ liked }) {
                 <ImageLayout>
                   <StyledImageArea>
                     <img
+                      style={{
+                        width: '88%',
+                        height: '88%',
+                        objectFit: 'cover',
+                        margin: '0',
+                        borderRadius: '5px',
+                      }}
                       src={item.image}
                       alt="content-image"
-                      width="100%"
-                      height="100%"
-                      style={{ objectFit: 'cover' }}
                     />
                   </StyledImageArea>
                 </ImageLayout>

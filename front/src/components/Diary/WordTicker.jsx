@@ -6,14 +6,12 @@ const axios = getAxios()
 
 function WordTicker({ wordList, setKeyword, setDiaryList }) {
   const onClick = (word) => {
-    console.log(word)
     setKeyword(word)
 
     const getResult = async () => {
       let result = await axios.get('diary/searchallword', {
         params: { word: word },
       })
-      console.log('result: ', result)
       await setDiaryList([...result.data])
     }
 

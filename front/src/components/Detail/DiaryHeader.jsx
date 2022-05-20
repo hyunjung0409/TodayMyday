@@ -15,7 +15,6 @@ import '../Diary/Comment.css'
 const { Title, Text } = Typography
 
 function DiaryHeader({ diary }) {
-  console.log('diary', diary)
   const { me } = useSelector((state) => state.user)
   const [state, setState] = useState(false)
   const axios = getAxios()

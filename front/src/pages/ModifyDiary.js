@@ -18,7 +18,6 @@ function ModifyDiary() {
   const match = async () => {
     try {
       let result = await axios.get(`/diary/read/${dno}`)
-      console.log('result: ', result)
       setData({
         word: result.data.word,
         content: result.data.content,
@@ -31,7 +30,6 @@ function ModifyDiary() {
 
   useEffect(() => {
     match()
-    console.log(data)
   }, [])
 
   return (

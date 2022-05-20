@@ -14,13 +14,10 @@ function DiaryCard({ card }) {
   const axios = getAxios()
 
   const onClick = async () => {
-    console.log('click: ', card.dno)
     axios.get('/diary/view', { params: { dno: card.dno } }).then(() => {
       navigate(`/diary/read/${card.dno}`)
     })
   }
-
-  // console.log(card)
 
   return (
     <StyledCard

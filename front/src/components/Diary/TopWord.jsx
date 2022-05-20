@@ -19,7 +19,7 @@ function TopWord({ setKeyword, setDiaryList }) {
       let result = await axios.get('word/readTop', {
         params: { userId: me.userId },
       })
-      console.log('word-result: ', result.data)
+      // console.log('word-result: ', result.data)
       await setWordList([...result.data])
     } catch (err) {
       console.log(err)
@@ -27,14 +27,14 @@ function TopWord({ setKeyword, setDiaryList }) {
   }
 
   const onClick = (word) => {
-    console.log(word)
+    // console.log(word)
     setKeyword(word)
 
     const getResult = async () => {
       let result = await axios.get('diary/searchallword', {
         params: { word: word },
       })
-      console.log('result: ', result)
+      // console.log('result: ', result)
       await setDiaryList([...result.data])
     }
 
@@ -47,7 +47,7 @@ function TopWord({ setKeyword, setDiaryList }) {
 
   const onOpen = () => {
     setOpen(!open)
-    console.log(open)
+    // console.log(open)
   }
 
   const openRender = () => {
@@ -71,7 +71,7 @@ function TopWord({ setKeyword, setDiaryList }) {
     if (me != null) {
       if (me.userId != null) {
         getWordList()
-        console.log(me)
+        // console.log(me)
       }
     }
   }, [me])

@@ -9,7 +9,7 @@ function TopLiked() {
   const getResult = async () => {
     try {
       let result = await axios.get('diary/topliked')
-      console.log('like-result: ', result.data.diaries)
+      // console.log('like-result: ', result.data.diaries)
       await setLikedList([...result.data.diaries])
     } catch (err) {
       console.log(err)

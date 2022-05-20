@@ -28,7 +28,6 @@ function ModifyForm({ imageUploader, data }) {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    console.log(copyContent)
     try {
       axios
         .put(
@@ -45,7 +44,6 @@ function ModifyForm({ imageUploader, data }) {
         .then(() => {
           navigate(`/diary/read/${dno}`, { replace: true })
         })
-      console.log('완료')
       // message.success('This is a success message')
     } catch (err) {
       console.log(err)
@@ -53,7 +51,6 @@ function ModifyForm({ imageUploader, data }) {
   }
 
   const onChange = (e) => {
-    console.log('e.target.value: ', e.target.value)
     setCopyContent(e.target.value)
   }
 
