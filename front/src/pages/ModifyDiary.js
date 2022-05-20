@@ -24,7 +24,7 @@ function ModifyDiary() {
         fileURL: result.data.image,
       })
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

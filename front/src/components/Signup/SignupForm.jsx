@@ -53,7 +53,7 @@ function SignupForm({ imageUploader, data }) {
           }
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
     }
   }
@@ -79,7 +79,7 @@ function SignupForm({ imageUploader, data }) {
           }
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
     }
   }, [])

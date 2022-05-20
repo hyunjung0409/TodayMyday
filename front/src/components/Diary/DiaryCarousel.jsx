@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import DiaryCard from './DiaryCard'
 import './Comment.css'
 function onChange(a, b, c) {
-  console.log(a, b, c)
+  // console.log(a, b, c)
 }
 
 const MyCarousel = styled(Carousel)`

@@ -22,7 +22,7 @@ function TopWord({ setKeyword, setDiaryList }) {
       // console.log('word-result: ', result.data)
       await setWordList([...result.data])
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
@@ -41,7 +41,7 @@ function TopWord({ setKeyword, setDiaryList }) {
     try {
       getResult()
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
