@@ -65,12 +65,10 @@ function App() {
   }, [])
 
   const audioPlayer1 = () => {
-    console.log('state false', state)
     audio.play()
     setState(false)
   }
   const audioPlayer2 = () => {
-    console.log('state true', state)
     audio.pause()
     audio.currentTime = 0
     setState(true)
@@ -90,7 +88,6 @@ function App() {
                     <Route path="/main" element={<Main />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/user/login" element={<Login />} />
-                    <Route path="/user/signup" element={<Signup />} />
                     <Route path="/my/article" element={<Article />} />
                     <Route path="/my/articleList" element={<ArticleList />} />
                     <Route path="/my/profile" element={<Profile />} />
@@ -102,6 +99,7 @@ function App() {
                   <>
                     <Route path="/" element={<Landing />} />
                     <Route path="/*" element={<RequiredLogin />} />
+                    <Route path="/user/signup" element={<Signup />} />
                   </>
                 )}
               </Routes>

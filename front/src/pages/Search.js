@@ -21,7 +21,6 @@ function Search() {
 
   const onWrite = (word) => {
     navigate('/my/article', { state: word })
-    console.log(word)
   }
 
   const onMove = () => {

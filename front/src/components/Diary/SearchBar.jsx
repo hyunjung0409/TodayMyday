@@ -22,27 +22,23 @@ const SearchBar = ({
   const dispatch = useDispatch()
 
   const onChange = (value) => {
-    console.log('value: ', value)
     setOption(value)
   }
 
   const onSearch = (value) => {
     setKeyword(value)
-    console.log('searching')
 
     const getResult = async () => {
       if (option === 'word') {
         let result = await axios.get('diary/searchallword', {
           params: { word: value },
         })
-        // console.log('result: ', result)
         await setDiaryList([...result.data])
         setOptionBool(false)
       } else if (option === 'content') {
         let result = await axios.get('diary/searchallcontent', {
           params: { keyword: value },
         })
-        // console.log('result: ', result)
         await setDiaryList([...result.data])
         setOptionBool(true)
       }

@@ -37,8 +37,6 @@ function SignupForm({ imageUploader, data }) {
   }
 
   const onBlurId = () => {
-    console.log(form.getFieldValue('id'))
-
     if (form.getFieldError('id').length === 0 && form.getFieldValue('id')) {
       axios
         .get('user/verifyid', {
@@ -47,7 +45,6 @@ function SignupForm({ imageUploader, data }) {
           },
         })
         .then((res) => {
-          console.log('res.data', res.data)
           if (!res.data) {
             setIdStatus(false)
             form.setFields([{ name: 'id', errors: ['사용 중인 아이디입니다.'] }])
@@ -66,9 +63,6 @@ function SignupForm({ imageUploader, data }) {
   }
 
   const onBlurNickname = useCallback(() => {
-    console.log(form.getFieldValue('nickname'))
-    console.log(form.getFieldsValue())
-
     if (form.getFieldError('nickname').length === 0 && form.getFieldValue('nickname')) {
       axios
         .get('user/verifynk', {
@@ -77,9 +71,7 @@ function SignupForm({ imageUploader, data }) {
           },
         })
         .then((res) => {
-          console.log('res.data', res.data)
           if (!res.data) {
-            console.log('error: ', form.getFieldError('nickname'))
             setNkStatus(false)
             form.setFields([{ name: 'nickname', errors: ['사용 중인 닉네임입니다.'] }])
           } else {
@@ -109,13 +101,9 @@ function SignupForm({ imageUploader, data }) {
         navigate('/')
       },
     })
-
-    console.log('Success')
   }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo.errorFields)
-
     const render = () => {
       const result = []
       for (let index = 0; index < errorInfo.errorFields.length; index++) {

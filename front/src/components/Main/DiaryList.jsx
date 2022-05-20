@@ -27,7 +27,6 @@ function DiaryList(props) {
     //     message.success(`${body.results.length} more items loaded!`)
     //   })
     axios.get('/diary/').then((res) => {
-      console.log('res', res.data.dairies)
       setData(res.data.dairies)
     })
   }

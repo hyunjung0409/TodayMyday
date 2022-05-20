@@ -72,7 +72,6 @@ function ArticleListForm(props) {
   }
 
   function handleChange(value) {
-    console.log('value', value)
     setSearchKind(value)
   }
 

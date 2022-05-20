@@ -9,7 +9,7 @@ function SearchResult({ keyword, diaryList, setDiaryList, optionBool }) {
 
   const onWrite = (word) => {
     navigate('/my/article', { state: word })
-    console.log(word)
+    // console.log(word)
   }
 
   useEffect(() => {

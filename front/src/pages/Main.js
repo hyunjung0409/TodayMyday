@@ -17,7 +17,6 @@ function Main() {
 
   useEffect(() => {
     if (me !== null) {
-      console.log('me', me)
       dispatch(wordGetRequestAction({ userId: me.userId }))
     }
   }, [me])

@@ -20,7 +20,6 @@ function MyDetail() {
   const match = async () => {
     let result = await axios.get(`/diary/read/${dno}`)
     setDiary(result.data)
-    console.log(result.data)
   }
 
   useEffect(() => {
