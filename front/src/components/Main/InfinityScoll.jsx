@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import { getAxios } from '../../api'
 import { useNavigate } from 'react-router-dom'
+import '../Diary/Comment.css'
 
 const MainLook = styled.div`
   margin-top: 1.5rem;
@@ -27,6 +28,19 @@ const StyledImageArea = styled.div`
   border-radius: 5px;
 `
 
+const StyledFont = styled.h3`
+  font-family: 'Noto Sans Korean Medium';
+`
+const StyledContent = styled.p`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
+`
+
+const StyledTitle = styled.h1`
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 25px;
+`
+
 const PAGE_NUMBER = 1
 
 function InfinityScoll(props) {
@@ -35,6 +49,8 @@ function InfinityScoll(props) {
   const [page, setPage] = useState(PAGE_NUMBER)
   const axios = getAxios()
   const navigate = useNavigate()
+
+  const max = Number.MAX_SAFE_INTEGER
 
   const loadMoreData = () => {
     if (loading) {
@@ -112,7 +128,7 @@ function InfinityScoll(props) {
         <Row>
           <Col span={12}>
             <div style={{ padding: '1rem 2rem', textAlign: 'left' }}>
-              <h3 style={{ margin: 0 }}>전체 글 보기</h3>
+              <StyledFont style={{ margin: 0 }}>전체 글 보기</StyledFont>
             </div>
           </Col>
           <Col span={12}>
@@ -141,9 +157,9 @@ function InfinityScoll(props) {
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}
-            hasMore={data.length < 100}
+            hasMore={data.length < max}
             loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+            endMessage={<Divider plain>마지막 글입니다 🤐</Divider>}
             scrollableTarget="scrollableDiv">
             <List
               dataSource={data}
@@ -176,15 +192,13 @@ function InfinityScoll(props) {
                       direction="vertical"
                       size={1}
                       style={{ display: 'flex', justifyContent: 'center', width: '40rem' }}>
-                      <h1 style={{ fontWeight: 'bold' }}>#{item.word}</h1>
-                      <p>
-                        {item.content.length >= 250
-                          ? item.content.substr(0, 250) + '...'
+                      <StyledTitle style={{ fontWeight: 'bold' }}>#{item.word}</StyledTitle>
+                      <StyledContent>
+                        {item.content.length >= 120
+                          ? item.content.substr(0, 120) + '...'
                           : item.content}
-                      </p>
-                      <div>
-                        <span>{timeForToday(item.createdat)}</span>
-                      </div>
+                      </StyledContent>
+                      <StyledTime>{timeForToday(item.createdat)}</StyledTime>
                     </Space>
 
                     <Space
@@ -268,5 +282,7 @@ const StyledFlexStart = styled.div`
   width: 5rem;
   padding-left: 0.2rem;
 `
-
+const StyledTime = styled.div`
+  font-size: 10px;
+`
 export default InfinityScoll
