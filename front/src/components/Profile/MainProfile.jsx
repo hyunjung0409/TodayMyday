@@ -138,6 +138,7 @@ function MainProfile({ imageUploader, data }) {
       content: '연령대 수정이 완료되었습니다.',
       okText: '확인',
     })
+    // setEditable(!editable)
   }
   const changePic = () => {
     Modal.success({
@@ -173,14 +174,14 @@ function MainProfile({ imageUploader, data }) {
       </UpdateIcon>
 
       <div>
-        <MyNick>닉네임 : {me !== null && me.nickname}</MyNick>
+        <MyNick>닉네임 | {me !== null && me.nickname}</MyNick>
       </div>
       <div>
         {editable === false ? (
-          <Age>연령대 : {me !== null && showAge(me.age)} </Age>
+          <Age>연령대 | {me !== null && showAge(me.age)} </Age>
         ) : (
           <Age>
-            연령대 :
+            연령대 |
             <Form form={form} name="modify" onFinish={onAge} autoComplete="off" layout="vertical">
               <Form.Item
                 {...tailLayout}
@@ -211,7 +212,7 @@ function MainProfile({ imageUploader, data }) {
           </Age>
         )}
       </div>
-      <Gender>성별 : {checkGender()}</Gender>
+      <Gender>성별 | {checkGender()}</Gender>
     </div>
   )
 }
