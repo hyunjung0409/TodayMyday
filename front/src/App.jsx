@@ -19,6 +19,7 @@ import { loadUserRequestAction } from './reducers/user'
 import Landing from './pages/Landing'
 import NotFound from './pages/NotFound'
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
+import RequiredLogin from './pages/RequiredLogin'
 
 const { Content, Footer } = Layout
 const audio = new Audio('/bgm/MP_분위기를 한잔.mp3')
@@ -95,11 +96,12 @@ function App() {
                     <Route path="/my/profile" element={<Profile />} />
                     <Route path="/diary/read/:dno" element={<ReadDiary />} />
                     <Route path="/diary/modify/:dno" element={<ModifyDiary />} />
+                    <Route path="/*" element={<NotFound />} />
                   </>
                 ) : (
                   <>
                     <Route path="/" element={<Landing />} />
-                    <Route path="/*" element={<NotFound />} />
+                    <Route path="/*" element={<RequiredLogin />} />
                   </>
                 )}
               </Routes>

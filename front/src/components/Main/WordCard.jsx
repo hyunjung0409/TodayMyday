@@ -17,9 +17,6 @@ import LightSpeed from 'react-reveal/LightSpeed'
 import '../Diary/Comment.css'
 
 const MainExplain = styled.h1`
-  // padding-top: 5%;
-  padding-bottom: 5%;
-  // font-size: 300%;
   font-size: 3rem;
   color: #38532e;
   margin: 0;

@@ -8,6 +8,11 @@ function onChange(a, b, c) {
 }
 
 const MyCarousel = styled(Carousel)`
+  > .slick-dots-bottom li button {
+    height: 5px;
+    border-radius: 3px;
+  }
+
   > .slick-dots-bottom li button:before {
     display: none;
   }
