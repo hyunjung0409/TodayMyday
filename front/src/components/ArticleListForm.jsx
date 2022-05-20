@@ -110,7 +110,7 @@ function ArticleListForm(props) {
       return `${betweenTimeDay}일 전`
     }
 
-    return `${value}`
+    return `${moment(value).format('YYYY-MM-DD hh:mm')}`
   }
 
   const viewSort = () => {

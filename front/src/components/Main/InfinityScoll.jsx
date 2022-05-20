@@ -6,6 +6,7 @@ import { EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
 import { getAxios } from '../../api'
 import { useNavigate } from 'react-router-dom'
 import '../Diary/Comment.css'
+import moment from 'moment'
 
 const MainLook = styled.div`
   margin-top: 1.5rem;
@@ -95,7 +96,7 @@ function InfinityScoll(props) {
       return `${betweenTimeDay}일 전`
     }
 
-    return `${value}`
+    return `${moment(value).format('YYYY-MM-DD hh:mm')}`
   }
 
   const viewSort = () => {

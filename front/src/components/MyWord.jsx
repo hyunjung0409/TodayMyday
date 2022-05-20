@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { useNavigate } from 'react-router-dom'
 import { EditOutlined, EyeFilled, HeartFilled, MessageFilled } from '@ant-design/icons'
+import moment from 'moment'
 
 const { Title } = Typography
 
@@ -88,7 +89,7 @@ function MyWord({ data, keyword, setWord, word }) {
       return `${betweenTimeDay}일 전`
     }
 
-    return `${value}`
+    return `${moment(value).format('YYYY-MM-DD hh:mm')}`
   }
 
   const onWrite = (word) => {
