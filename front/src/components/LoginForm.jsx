@@ -25,7 +25,7 @@ function LoginForm({ setIsModalVisible }) {
   }
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+    // console.log('Failed:', errorInfo)
   }
 
   const pageMove = () => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Carousel } from 'antd'
 
 function onChange(a, b, c) {
-  console.log(a, b, c)
+  // console.log(a, b, c)
 }
 
 const contentStyle = {

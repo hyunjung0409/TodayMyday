@@ -18,7 +18,7 @@ function WordTicker({ wordList, setKeyword, setDiaryList }) {
     try {
       getResult()
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

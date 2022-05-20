@@ -12,7 +12,7 @@ function TopLiked() {
       // console.log('like-result: ', result.data.diaries)
       await setLikedList([...result.data.diaries])
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

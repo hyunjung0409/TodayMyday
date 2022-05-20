@@ -37,7 +37,7 @@ function Grass() {
       // console.log('jandi: ', res.data)
       setMark([...res.data.jandis])
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
