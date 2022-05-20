@@ -26,7 +26,7 @@ function ArticleList(props) {
           setLiked(tmp)
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
       axios
         .get('/diary/mytopview', { params: { userId: me.userId } })
@@ -38,7 +38,7 @@ function ArticleList(props) {
           setView(tmp)
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
         })
     }
   }, [me])
