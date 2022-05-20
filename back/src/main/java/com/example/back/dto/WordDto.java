@@ -1,6 +1,5 @@
 package com.example.back.dto;
 
-import com.example.back.entity.Word;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;

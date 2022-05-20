@@ -2,8 +2,6 @@ package com.example.back.service;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
-import com.example.back.entity.User;
-
 import java.util.List;
 
 public interface DiaryService {

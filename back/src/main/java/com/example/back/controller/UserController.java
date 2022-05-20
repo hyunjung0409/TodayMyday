@@ -25,7 +25,6 @@ import java.util.Map;
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 @Api(tags = {"유저 컨트롤러"})
-//@CrossOrigin(origins = "http://k6c205.p.ssafy.io:3000")
 public class UserController {
 
     private final UserService userService;
@@ -48,7 +47,6 @@ public class UserController {
                 result.put("message", "SUCCESS");
             }
             else {
-                System.out.print("오류 났어");
                 result.put("message", "FAIL");
                 status = HttpStatus.OK;
             }
@@ -56,25 +54,7 @@ public class UserController {
             return new ResponseEntity<Map<String, Object>>(result, status);
         }
 
-//        try {
-//            userService.signup(userDto);
-//            status = HttpStatus.OK;
-//            result.put("message", "SUCCESS");
-//        }
-//        catch(Exception e) {
-//            System.out.print("오류 났어");
-//            result.put("message", "FAIL");
-//            status = HttpStatus.OK;
-//        }
-//
-//        return new ResponseEntity<Map<String, Object>>(result, status);
     }
-
-//    @PostMapping("/login")
-//    @ApiOperation(value = "로그인", notes = "사용자 로그인", response = String.class)
-//    public ResponseEntity<Map<String, Object>> login(@RequestBody UserDto userDto) {
-//
-//    }
 
     @GetMapping("/read")
     @ApiOperation(value = "사용자 조회", notes = "아이디로 사용자 조회", response = String.class)

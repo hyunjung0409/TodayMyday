@@ -19,6 +19,4 @@ public interface WordService {
     Boolean duplicateWord(String word);
     List<String> wordRanking(String userId);
 
-//    Boolean getWordLogList(String userId);
-
 }

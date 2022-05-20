@@ -33,8 +33,6 @@ public class CommentServiceImpl implements CommentService{
         if(commentDto == null || diary == null)
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
-//        Comment save = commentDto.toEntity();
-
         Comment save = Comment.builder()
                 .userId(commentDto.getUserId())
                 .profileImage(user.getImage())

@@ -27,7 +27,6 @@ public class WordServiceImpl implements WordService{
 
     private final UserRepository userRepository;
     private final WordRepository wordRepository;
-    private final DiaryRepository diaryRepository;
     private final WordLogRepository wordLogRepository;
 
     @Override
@@ -226,10 +225,6 @@ public class WordServiceImpl implements WordService{
                 break;
         }
 
-//        for (int i = 0; i < wordList.size(); i++) {
-//            System.out.println("here : \n"+wordList.get(i));
-//        }
-
         return wordList;
     }
 
@@ -267,7 +262,6 @@ public class WordServiceImpl implements WordService{
 
         for (int i = 0; i < 10; i++) {
             wordList.add(wordTop3.get(i).split(",")[0]);
-//            System.out.println("잘되나? "+wordTop3.get(i).split(",")[0]);
         }
 
         return wordList;

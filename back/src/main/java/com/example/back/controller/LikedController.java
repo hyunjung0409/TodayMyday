@@ -1,7 +1,6 @@
 package com.example.back.controller;
 
 import com.example.back.dto.LikedDto;
-import com.example.back.entity.Liked;
 import com.example.back.service.LikedService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -72,6 +71,5 @@ public class LikedController {
 
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
-
 
 }

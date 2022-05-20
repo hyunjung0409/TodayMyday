@@ -2,11 +2,7 @@ package com.example.back.controller;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
-import com.example.back.entity.Liked;
-import com.example.back.entity.User;
-import com.example.back.entity.Word;
 import com.example.back.repository.DiaryRepository;
-import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DiaryService;
 import com.example.back.service.LikedService;
@@ -20,9 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +29,7 @@ import java.util.Map;
 public class DiaryController {
 
     private final DiaryService diaryService;
-    private final UserService userService;
-    private final UserRepository userRepository;
     private final DiaryRepository diaryRepository;
-    private final LikedService likedService;
     private final WordService wordService;
 
     @GetMapping("/")
@@ -61,8 +52,6 @@ public class DiaryController {
     @ApiOperation(value = "다이어리 등록", notes = "현재 로그인 된 아이디로 다이어리 등록", response = String.class)
     public ResponseEntity<Map<String, Object>> createDiary(@RequestParam String userId, @RequestBody DiaryDto diaryDto){
         Map<String, Object> hashMap = new HashMap<>();
-
-//        User user = userRepository.findByUserId(userId);
 
         Diary diary = diaryService.createDiary(diaryDto, userId);
         wordService.increaseFrequency(userId, diaryDto);
@@ -159,7 +148,6 @@ public class DiaryController {
     public ResponseEntity<List<Diary>> searchDiaryByContent(@RequestParam String keyword, @RequestParam String userId) {
         HttpStatus status;
 
-        System.out.println("키워드" + keyword);
         List<Diary> diares = diaryService.searchDiariesByContent(keyword, userId);
 
         if (diares != null) {
@@ -212,7 +200,6 @@ public class DiaryController {
     public ResponseEntity<List<Diary>> searchAllDiaryByContent(@RequestParam String keyword) {
         HttpStatus status;
 
-        System.out.println("키워드" + keyword);
         List<Diary> diares = diaryService.searchAllDiariesByContent(keyword);
 
         if (diares != null) {

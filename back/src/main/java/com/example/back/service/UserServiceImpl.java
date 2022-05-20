@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
             throw new CustomException(ErrorCode.INVALID_PASSWORD_ERROR);
         }
         String encPass = BCrypt.hashpw(password, BCrypt.gensalt());
-        System.out.println("확인해보자" + user.getPassword());
 
         if (!validateDuplicateUser(user)) {
             return false;
@@ -105,7 +104,6 @@ public class UserServiceImpl implements UserService {
         }
 
         if (jandis.isEmpty()) {
-            System.out.println("여기로 들어온다");
             return null;
         }
 

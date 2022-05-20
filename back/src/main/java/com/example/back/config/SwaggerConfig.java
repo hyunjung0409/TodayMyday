@@ -7,8 +7,6 @@ import com.google.common.base.Predicate;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -45,7 +43,6 @@ public class SwaggerConfig {
                 .paths(postPaths())
                 .build();
 
-        System.out.println(" doc : "+d.getGroupName());
         return d;
     }
 
@@ -66,7 +63,6 @@ public class SwaggerConfig {
     private Predicate<String> postPaths(){
 
         Predicate<String> path = PathSelectors.any();
-        System.out.println("path : "+path.toString());
         return path;
     }
 
@@ -77,7 +73,6 @@ public class SwaggerConfig {
                 .version(VERSION)
                 .license(LICENSE)
                 .build();
-        System.out.println("info : "+info);
 
         return info;
     }

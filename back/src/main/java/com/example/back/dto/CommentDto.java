@@ -1,9 +1,7 @@
 package com.example.back.dto;
 
 import com.example.back.entity.Comment;
-import com.example.back.entity.Diary;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

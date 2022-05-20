@@ -2,7 +2,6 @@ package com.example.back.service;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
-import com.example.back.entity.Liked;
 import com.example.back.entity.User;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
@@ -42,7 +41,6 @@ public class DiaryServiceImpl implements DiaryService{
                 .content(diaryDto.getContent())
                 .createdat(LocalDateTime.now())
                 .user(user)
-//                .userId(user.getUserId())
                 .nickname(user.getNickname())
                 .profileImage(user.getImage())
                 .word(diaryDto.getWord())
@@ -52,7 +50,6 @@ public class DiaryServiceImpl implements DiaryService{
 
         diaryRepository.save(save);
 
-        System.out.println(save.getNickname()+" "+save.getProfileImage());
         return save;
     }
 
@@ -73,7 +70,6 @@ public class DiaryServiceImpl implements DiaryService{
         diary.setImage(diaryDto.getImage());
         diary.setContent(diaryDto.getContent());
 
-        System.out.println(diary.getWord()+" "+diary.getContent());
 
         diaryRepository.save(diary);
 

@@ -1,11 +1,8 @@
 package com.example.back.service;
 
-import com.example.back.dto.DiaryDto;
 import com.example.back.dto.LikedDto;
 import com.example.back.entity.Diary;
 import com.example.back.entity.Liked;
-import com.example.back.exception.CustomException;
-import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.LikedRepository;
 import lombok.RequiredArgsConstructor;
