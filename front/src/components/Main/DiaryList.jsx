@@ -69,7 +69,7 @@ function DiaryList(props) {
       return `${betweenTimeDay}일 전`
     }
 
-    return `${moment(value).format('YYYY-MM-DD')}`
+    return `${moment(value).format('YYYY-MM-DD hh:mm')}`
   }
 
   const viewSort = () => {
