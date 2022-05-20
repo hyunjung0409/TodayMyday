@@ -3,8 +3,6 @@ package com.example.back.repository;
 import com.example.back.entity.Word;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +11,8 @@ import java.util.List;
 public interface WordRepository extends JpaRepository<Word, String> {
 
     Word findWordByWord(String word);
+
+    Boolean existsByWord(String word);
 
     @Query(value = "select word, sum(teens+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByTeensAndMale();
@@ -26,10 +26,10 @@ public interface WordRepository extends JpaRepository<Word, String> {
     @Query(value = "select word, sum(twenties+female) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByTwentiesAndFemale();
 
-    @Query(value = "select word, sum(thirtes+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
+    @Query(value = "select word, sum(thirties+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByThirtiesAndMale();
 
-    @Query(value = "select word, sum(thirtes+female) as cnt from word group by word order by cnt DESC", nativeQuery = true)
+    @Query(value = "select word, sum(thirties+female) as cnt from word group by word order by cnt DESC", nativeQuery = true)
     List<String> findWordByThirtiesAndFemale();
 
     @Query(value = "select word, sum(fourties+male) as cnt from word group by word order by cnt DESC", nativeQuery = true)
@@ -74,7 +74,7 @@ public interface WordRepository extends JpaRepository<Word, String> {
     @Query(value = "select word, female from word group by word order by female DESC", nativeQuery = true)
     List<String> findWordByFemale();
 
-    @Query(value = "select word, sum(teens+twenties+thirties+fourties+fifties+oversixties+male+female) as res from word group by word order by res DESC", nativeQuery = true)
+    @Query(value = "select word, sum(teens+twenties+thirties+fourties+fifties+oversixties+male+female) as res from word group by word order by res ASC", nativeQuery = true)
     List<String> findWordByAll();
 
     @Query(value = "select word from word order by rand() limit 5", nativeQuery = true)

@@ -16,4 +16,9 @@ public interface LikedRepository extends JpaRepository<Liked, Long> {
     Liked findByDno(Long dno);
     List<Liked> findLikedByDno(Long dno);
 
+    @Query(value = "select lno, user_id, dno, count(*) from liked group by dno order by count(*) desc limit 15", nativeQuery = true)
+    List<Liked>findTopLiked();
+
+    @Query(value = "select * from liked where user_id = :userId and dno = :dno", nativeQuery = true)
+    Liked findLikedUser(@Param("userId") String userId, @Param("dno") Long dno);
 }

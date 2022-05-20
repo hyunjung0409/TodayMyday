@@ -2,11 +2,7 @@ package com.example.back.controller;
 
 import com.example.back.dto.DiaryDto;
 import com.example.back.entity.Diary;
-import com.example.back.entity.Liked;
-import com.example.back.entity.User;
-import com.example.back.entity.Word;
 import com.example.back.repository.DiaryRepository;
-import com.example.back.repository.LikedRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.DiaryService;
 import com.example.back.service.LikedService;
@@ -15,9 +11,11 @@ import com.example.back.service.WordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -31,10 +29,8 @@ import java.util.Map;
 public class DiaryController {
 
     private final DiaryService diaryService;
-    private final UserService userService;
-    private final UserRepository userRepository;
     private final DiaryRepository diaryRepository;
-    private final LikedService likedService;
+    private final WordService wordService;
 
     @GetMapping("/")
     @ApiOperation(value = "다이어리 전체 검색", notes = "모든 다이어리 출력", response = String.class)
@@ -42,12 +38,12 @@ public class DiaryController {
         Map<String, Object> hashMap = new HashMap<>();
         HttpStatus status;
 
-        List<Diary> dairies = diaryRepository.findAll();
+        List<Diary> diaries = diaryService.readAllDiary();
 
         hashMap.put("Message", "SUCCESS");
         status = HttpStatus.OK;
         hashMap.put("Status", status);
-        hashMap.put("dairies", dairies);
+        hashMap.put("dairies", diaries);
 
         return new ResponseEntity<>(hashMap, status);
     }
@@ -56,39 +52,13 @@ public class DiaryController {
     @ApiOperation(value = "다이어리 등록", notes = "현재 로그인 된 아이디로 다이어리 등록", response = String.class)
     public ResponseEntity<Map<String, Object>> createDiary(@RequestParam String userId, @RequestBody DiaryDto diaryDto){
         Map<String, Object> hashMap = new HashMap<>();
-        HttpStatus status;
 
-        User user = userRepository.findByUserId(userId);
+        Diary diary = diaryService.createDiary(diaryDto, userId);
+        wordService.increaseFrequency(userId, diaryDto);
 
-        Diary diary = diaryService.createDiary(diaryDto, user);
-
-//        if (diaryService.createDiary(diaryDto, user)) {
-//            // 단어 정보 수집
-//            Word word = wordService.increaseFrequency(userId, diaryDto);
-//            hashMap.put("word", word);
-//            hashMap.put("Message", "SUCCESS");
-//            status = HttpStatus.OK;
-//            hashMap.put("Status", status);
-//        } else {
-//            hashMap.put("Message", "FAIL");
-//            status = HttpStatus.INTERNAL_SERVER_ERROR;
-//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
-//            hashMap.put("Status", status);
-
-        hashMap.put("diary", diary);
         hashMap.put("Message", "SUCCESS");
-//        if (diaryService.createDiary(diaryDto, user)) {
-//            hashMap.put("Message", "SUCCESS");
-//            status = HttpStatus.OK;
-//            hashMap.put("Status", status);
-//
-//        } else {
-//            hashMap.put("Message", "FAIL");
-//            status = HttpStatus.INTERNAL_SERVER_ERROR;
-//            hashMap.put("ERROR", "빈 값이 들어있습니다.");
-//            hashMap.put("Status", status);
-//
-//        }
+        hashMap.put("diary", diary);
+
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
 
@@ -152,7 +122,7 @@ public class DiaryController {
             status = HttpStatus.NOT_FOUND;
         }
 
-        return new ResponseEntity<Diary>(diary, status);
+        return new ResponseEntity<>(diary, status);
     }
 
     @GetMapping("/myword")
@@ -175,11 +145,10 @@ public class DiaryController {
 
     @GetMapping("/searchcontent")
     @ApiOperation(value = "내 다이어리 내용별 검색", notes = "내가 등록한 다이어리 내용별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchDiaryByContent(@RequestParam String keyword, @RequestParam String userId) {
+    public ResponseEntity<List<Diary>> searchDiaryByContent(@RequestParam String keyword, @RequestParam String userId) {
         HttpStatus status;
 
-        System.out.println("키워드" + keyword);
-        List<DiaryDto> diares = diaryService.searchDiariesByContent(keyword, userId);
+        List<Diary> diares = diaryService.searchDiariesByContent(keyword, userId);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -193,10 +162,10 @@ public class DiaryController {
 
     @GetMapping("/searchword")
     @ApiOperation(value = "내 다이어리 단어별 검색", notes = "내가 등록한 다이어리 단어별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchDiaryByWord(@RequestParam String word, @RequestParam String userId) {
+    public ResponseEntity<List<Diary>> searchDiaryByWord(@RequestParam String word, @RequestParam String userId) {
         HttpStatus status;
 
-        List<DiaryDto> diares = diaryService.searchDiariesByWord(word, userId);
+        List<Diary> diares = diaryService.searchDiariesByWord(word, userId);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -228,11 +197,10 @@ public class DiaryController {
 
     @GetMapping("/searchallcontent")
     @ApiOperation(value = "전체 다이어리 내용별 검색", notes = "전체 내용별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchAllDiaryByContent(@RequestParam String keyword) {
+    public ResponseEntity<List<Diary>> searchAllDiaryByContent(@RequestParam String keyword) {
         HttpStatus status;
 
-        System.out.println("키워드" + keyword);
-        List<DiaryDto> diares = diaryService.searchAllDiariesByContent(keyword);
+        List<Diary> diares = diaryService.searchAllDiariesByContent(keyword);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -246,10 +214,10 @@ public class DiaryController {
 
     @GetMapping("/searchallword")
     @ApiOperation(value = "전체 다이어리 단어별 검색", notes = "전체 단어별 검색하기", response = String.class)
-    public ResponseEntity<List<DiaryDto>> searchAllDiaryByWord(@RequestParam String word) {
+    public ResponseEntity<List<Diary>> searchAllDiaryByWord(@RequestParam String word) {
         HttpStatus status;
 
-        List<DiaryDto> diares = diaryService.searchAllDiariesByWord(word);
+        List<Diary> diares = diaryService.searchAllDiariesByWord(word);
 
         if (diares != null) {
             status = HttpStatus.OK;
@@ -261,7 +229,7 @@ public class DiaryController {
         return new ResponseEntity<>(diares, status);
     }
 
-    @PutMapping("/view")
+    @GetMapping("/view")
     @ApiOperation(value = "다이어리 조회수 추가", notes = "다이어리 조회수 증가하기", response = String.class)
     public ResponseEntity<Map<String, Object>> updateView(@RequestParam Long dno) {
         Map<String, Object> hashMap = new HashMap<>();
@@ -280,4 +248,82 @@ public class DiaryController {
 
         return new ResponseEntity<>(hashMap, HttpStatus.OK);
     }
+
+    @GetMapping("/topliked")
+    @ApiOperation(value = "전체 다이어리 좋아요 top 15 반환", notes = "전체 다이어리 좋아요 수 top 15", response = String.class)
+    public ResponseEntity<Map<String, Object>> readTopLiked() {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Diary> diaries = diaryService.readTopLiked();
+
+        if (diaries == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diaries", diaries);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/mytopliked")
+    @ApiOperation(value = "내 다이어리 좋아요 top 5 반환", notes = "내 다이어리 좋아요 수 top 5", response = String.class)
+    public ResponseEntity<Map<String, Object>> readMyDiaryTopLiked(@RequestParam String userId) {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Diary> diaries = diaryService.readMyDiaryTopLiked(userId);
+
+        if (diaries == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diaries", diaries);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/mytopview")
+    @ApiOperation(value = "내 다이어리 조회수 top 5 반환", notes = "내 다이어리 조회수 top 5", response = String.class)
+    public ResponseEntity<Map<String, Object>> readMyDiaryTopView(@RequestParam String userId) {
+        Map<String, Object> hashMap = new HashMap<>();
+        HttpStatus status;
+
+        List<Diary> diaries = diaryService.readMyDiaryTopView(userId);
+
+        if (diaries == null) {
+            hashMap.put("Message", "NO DIARY");
+        }
+        else {
+            hashMap.put("Message", "SUCCESS");
+        }
+
+        hashMap.put("diaries", diaries);
+
+        return new ResponseEntity<>(hashMap, HttpStatus.OK);
+    }
+
+    @GetMapping("/paging")
+    @ApiOperation(value = "전체 다이어리 페이지네이션", notes = "page번호 넘기면 해당 페이지 데이터 반환", response = String.class)
+    public ResponseEntity retrievePosts(final Pageable pageable) {
+        Page<Diary> diaries = diaryRepository.findAll(pageable);
+
+        return new ResponseEntity<>(diaries,HttpStatus.OK);
+    }
+
+    @GetMapping("/mypaging")
+    @ApiOperation(value = "내 다이어리 페이지네이션", notes = "userId와 page번호 넘기면 해당 페이지 데이터 반환", response = String.class)
+    public ResponseEntity retrieveMyPosts(@RequestParam String userId, @PageableDefault(size = 3) final Pageable pageable) {
+        Page<Diary> diaries = diaryRepository.findByUserUserId(userId, pageable);
+
+        return new ResponseEntity<>(diaries,HttpStatus.OK);
+    }
+
+
 }

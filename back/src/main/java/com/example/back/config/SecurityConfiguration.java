@@ -20,8 +20,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
@@ -52,12 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/diary/**").permitAll()
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/liked/**").permitAll()
-                //.antMatchers("/swagger-ui.html", "/swagger/**", "/swagger-resources/**", "webjars/**").permitAll()
                 .anyRequest().authenticated();
-
-        //http.formLogin();
-                //.usernameParameter("userId");
-                //.disable();
 
         http
                 .csrf().disable()      // csrf 비활성화
@@ -75,19 +68,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowedOrigins("http://localhost:3000");
         config.addAllowedOrigin("*");
-//        config.addAllowedOrigin("http://k6c205.p.ssafy.io");
-//        config.addAllowedOrigin("http://k6c205.p.ssafy.io:3000");
-//        config.addAllowedOrigin("http://k6c205.p.ssafy.io:8080");
         config.addAllowedOriginPattern("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-//        config.setMaxAge(3600L);
-//        config.setAllowedOrigins(Arrays.asList("*"));
-//        config.setAllowedOrigins("h");
-//        config.setAllowedMethods(Arrays.asList("*"));
-//        config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);
         config.applyPermitDefaultValues();
 

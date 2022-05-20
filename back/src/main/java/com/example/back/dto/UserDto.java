@@ -1,27 +1,20 @@
 package com.example.back.dto;
 
 import com.example.back.entity.User;
-import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @NoArgsConstructor
 @Data
 public class UserDto {
-    @NotNull
+
     String userId;
-    @NotNull
     String password;
-    @NotNull
     String nickname;
-
     String image;
-
-    @NotNull
     String gender;
-
-    @NotNull
     String age;
 
     @Builder

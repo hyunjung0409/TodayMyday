@@ -2,30 +2,27 @@ package com.example.back.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "diary")
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Diary {
     @Id
     @NotNull
     @GeneratedValue
     private Long dno;
-
-//    @NotNull
-//    private String userId;
 
     @NotNull
     private String word;
@@ -42,16 +39,15 @@ public class Diary {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     @JsonIgnore
-    User user;
+    private User user;
 
-    @Builder
-    public Diary (Long dno, String word, String image, String content, LocalDateTime createdat, User user, int view){
-        this.dno = dno;
-        this.word = word;
-        this.image = image;
-        this.content = content;
-        this.createdat = createdat;
-        this.user = user;
-        this.view = view;
-    }
+    private String profileImage;
+
+    private String nickname;
+
+    private int liked;
+
+    @OneToMany(mappedBy = "diary", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
+
 }

@@ -5,16 +5,21 @@ import com.example.back.dto.UserDto;
 import com.example.back.entity.User;
 import com.example.back.entity.Word;
 
+import com.example.back.entity.WordLog;
 import com.example.back.exception.CustomException;
 import com.example.back.exception.ErrorCode;
 import com.example.back.repository.DiaryRepository;
 import com.example.back.repository.UserRepository;
+import com.example.back.repository.WordLogRepository;
 import com.example.back.repository.WordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -22,12 +27,14 @@ public class WordServiceImpl implements WordService{
 
     private final UserRepository userRepository;
     private final WordRepository wordRepository;
-    private final DiaryRepository diaryRepository;
+    private final WordLogRepository wordLogRepository;
 
     @Override
     public void createWord(String word) {
 
-        if(word.trim().isEmpty() || word == null)
+
+
+        if(word.trim().isEmpty() || word == null || duplicateWord(word))
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
            Word str = Word.builder()
@@ -46,6 +53,21 @@ public class WordServiceImpl implements WordService{
     }
 
     @Override
+    public void createWordLog(String word, String userId) {
+        if(word.trim().isEmpty() || word == null)
+            throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
+        WordLog save = WordLog.builder()
+                .word(word)
+                .userId(userId)
+                .selectedat(LocalDateTime.now())
+                .build();
+
+        wordLogRepository.save(save);
+
+    }
+
+    @Override
     public Word increaseFrequency(String userId, DiaryDto diaryDto) {
         User user = userRepository.findByUserId(userId);
         Word word = wordRepository.findWordByWord(diaryDto.getWord());
@@ -54,23 +76,23 @@ public class WordServiceImpl implements WordService{
             throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
         if(user.getAge().equals("1")){
-            word.setTeens(word.getTeens()+1);
+            word.setTeens(word.getTeens()+100);
         } else if(user.getAge().equals("2")){
-            word.setTwenties(word.getTwenties()+1);
+            word.setTwenties(word.getTwenties()+100);
         } else if(user.getAge().equals("3")){
-            word.setThirties(word.getThirties()+1);
+            word.setThirties(word.getThirties()+100);
         } else if(user.getAge().equals("4")){
-            word.setFourties(word.getFourties()+1);
+            word.setFourties(word.getFourties()+100);
         } else if(user.getAge().equals("5")){
-            word.setFifties(word.getFifties()+1);
+            word.setFifties(word.getFifties()+100);
         } else if(user.getAge().equals("6")){
-            word.setOversixties(word.getOversixties()+1);
+            word.setOversixties(word.getOversixties()+100);
         }
 
         if(user.getGender().equals("male")) {
-            word.setMale(word.getMale()+1);
+            word.setMale(word.getMale()+25);
         } else {
-            word.setFemale(word.getFemale()+1);
+            word.setFemale(word.getFemale()+25);
         }
 
         wordRepository.save(word);
@@ -83,11 +105,54 @@ public class WordServiceImpl implements WordService{
         // 각 조건에 따른 각각의 5개의 단어들을 담을 배열
         List<String> pickedWords = new ArrayList<>();
         User user = userRepository.findByUserId(userId);
+
+        if(user == null) throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
         String gender = user.getGender();
         String age = user.getAge();
+        Word countWord;
 
+        Set<String> randomPickhSet = new HashSet<>();
+        Set<String> selectedSet = new HashSet<>();
+
+        // 5분 이내에 추천받은 단어 로그
+        List<WordLog> wordLogsList = wordLogRepository.findWordLogsByUserId(userId);
+        if(wordLogsList != null) {
+            for (int i = 0; i < wordLogsList.size(); i++) {
+                selectedSet.add(wordLogsList.get(i).getWord());
+            }
+        }
+
+        // 랜덤 추출 알고리즘
+        int cnt = 0;
         for(int i = 1; i <= 5; i++){
-            String selectedWord = pickWordByCondition(5, gender, age);
+            String selectedWord = selectOne(i, gender, age);
+            if(randomPickhSet.contains(selectedWord) || selectedSet.contains(selectedWord)) {
+                i--;
+                cnt++;
+                if(cnt == 10) {
+                    randomPickhSet = new HashSet<>();
+                    while(randomPickhSet.size() < 5) {
+                        selectedWord = selectOne(5, gender, age);
+                        randomPickhSet.add(selectedWord);
+                    }
+                    break;
+                }
+                continue;
+            }
+            randomPickhSet.add(selectedWord);
+            selectedSet.add(selectedWord);
+            countWord = wordRepository.findWordByWord(selectedWord);
+            increaseFrequencyByAge(countWord, age);
+            increaseFrequencyByGender(countWord, gender);
+            wordRepository.save(countWord);
+        }
+
+
+
+        // 로그 기록하기
+        for (String selectedWord : randomPickhSet){
+            createWordLog(selectedWord, userId);
             pickedWords.add(selectedWord);
         }
 
@@ -95,8 +160,7 @@ public class WordServiceImpl implements WordService{
     }
 
     @Override
-    public String pickWordByCondition(int condition, String gender, String age) {
-        String selectedWord = "";
+    public List<String> pickWordByCondition(int condition, String gender, String age) {
         List<String> wordList = new ArrayList<>();
 
         switch (condition){
@@ -161,12 +225,73 @@ public class WordServiceImpl implements WordService{
                 break;
         }
 
+        return wordList;
+    }
+
+    @Override
+    public String selectOne(int condition, String gender, String age) {
+
+        List<String> wordList = pickWordByCondition(condition, gender, age);
+
+        if(wordList == null) throw new CustomException(ErrorCode.DATA_NOT_FOUND);
 
         int val = wordList.size();
         int ranValue = (int)(Math.random() * val);
-        selectedWord = wordList.get(ranValue);
+        String[] wordListStr = wordList.get(ranValue).split(",");
 
-        return selectedWord;
+        return wordListStr[0];
     }
+
+    @Override
+    public Boolean duplicateWord(String word) {
+        return wordRepository.existsByWord(word);
+    }
+
+    @Override
+    public List<String> wordRanking(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        if(user == null) throw new CustomException(ErrorCode.DATA_NOT_FOUND);
+
+        String userAge = user.getAge();
+        String userGender = user.getGender();
+
+
+        List<String> wordTop3 = pickWordByCondition(1, userGender, userAge);
+        List<String> wordList = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            wordList.add(wordTop3.get(i).split(",")[0]);
+        }
+
+        return wordList;
+    }
+
+    @Override
+    public void increaseFrequencyByAge(Word selectedWord, String age) {
+        if(age.equals("1")) {
+            selectedWord.setTeens(selectedWord.getTeens()+1);
+        } else if(age.equals("2")) {
+            selectedWord.setTwenties(selectedWord.getTwenties()+1);
+        } else if(age.equals("3")) {
+            selectedWord.setThirties(selectedWord.getThirties()+1);
+        } else if(age.equals("4")) {
+            selectedWord.setFourties(selectedWord.getFourties()+1);
+        } else if(age.equals("5")) {
+            selectedWord.setFifties(selectedWord.getFifties()+1);
+        } else if(age.equals("6")) {
+            selectedWord.setOversixties(selectedWord.getOversixties()+1);
+        }
+    }
+
+    @Override
+    public void increaseFrequencyByGender(Word selectedWord, String gender) {
+        if(gender.equals("male")){
+            selectedWord.setMale(selectedWord.getMale()+1);
+        } else if(gender.equals("female")) {
+            selectedWord.setFemale(selectedWord.getFemale()+1);
+        }
+    }
+
 
 }
