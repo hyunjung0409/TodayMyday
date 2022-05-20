@@ -8,6 +8,10 @@ const { Option } = Select
 
 const Age = styled.div`
   margin-top: 5%;
+  text-align: left;
+  margin-left: 25%;
+  width: 40%;
+  display: flex;
 `
 function MyAge() {
   const { me } = useSelector((state) => state.user)
@@ -81,7 +85,7 @@ function MyAge() {
                 등록
               </Button>
             </Form.Item>
-          </Form>
+          </Form>{' '}
           <EditOutlined
             onClick={(e) => {
               setEditable(!editable)

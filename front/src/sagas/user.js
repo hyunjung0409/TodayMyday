@@ -60,17 +60,21 @@ function* logIn(action) {
       type: LOG_IN_FAILURE,
       error: err.response.data,
     })
+    yield action.data.Modal.error({
+      content: '아이디와 비밀번호를 확인해주세요.',
+    })
   }
 }
 
 function* logOut(action) {
   try {
     const { navigate } = action.data
-    yield delay(1000)
+    yield delay(500)
     localStorage.removeItem('jwtToken')
     yield put({
       type: LOG_OUT_SUCCESS,
     })
+    action.data.setIsModalVisible(false)
     navigate('/')
   } catch (err) {
     yield put({

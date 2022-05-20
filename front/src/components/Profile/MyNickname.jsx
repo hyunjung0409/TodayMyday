@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { Select } from 'antd'
 import { useSelector } from 'react-redux'
-
 const MyNick = styled.div`
   margin-top: 10%;
+  text-align: left;
+  margin-left: 25%;
 `
 function isLogin() {
   const token = localStorage.getItem('token')

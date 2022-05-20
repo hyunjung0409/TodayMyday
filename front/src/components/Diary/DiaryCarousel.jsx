@@ -2,12 +2,17 @@ import React, { useEffect } from 'react'
 import { Carousel } from 'antd'
 import styled from 'styled-components'
 import DiaryCard from './DiaryCard'
-
+import './Comment.css'
 function onChange(a, b, c) {
-  console.log(a, b, c)
+  // console.log(a, b, c)
 }
 
 const MyCarousel = styled(Carousel)`
+  > .slick-dots-bottom li button {
+    height: 5px;
+    border-radius: 3px;
+  }
+
   > .slick-dots-bottom li button:before {
     display: none;
   }
@@ -18,7 +23,7 @@ const MyCarousel = styled(Carousel)`
   }
 `
 
-function DiaryCarousel({ diaryList, setDiaryList, me }) {
+function DiaryCarousel({ diaryList }) {
   const rendering = () => {
     const result = []
     for (let index = 0; index < diaryList.length; index += 5) {

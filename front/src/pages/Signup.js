@@ -24,13 +24,15 @@ const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  background: #fff;
+  border: 2px solid rgba(200, 200, 200, 0.3);
+  border-radius: 5px;
 `
 
 const StyledFormArea = styled.div`
   border: 1px solid rgba(100, 100, 100, 0.3);
   border-radius: 3px;
-  width: 20%;
+  width: 30%;
   padding: 1rem;
   margin: 3rem;
 `

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const axios = getAxios()
 
-function DiaryFooter({ dno }) {
+function DiaryFooter({ diary, dno }) {
   const { me } = useSelector((state) => state.user)
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -24,7 +24,11 @@ function DiaryFooter({ dno }) {
   const handleOk = () => {
     setIsModalVisible(false)
     deleteDiary()
-    success()
+    Modal.success({
+      content: '글 삭제가 완료되었습니다.',
+      okText: '확인',
+      onOk: handleMove,
+    })
   }
 
   const handleCancel = () => {
@@ -38,31 +42,50 @@ function DiaryFooter({ dno }) {
   }
 
   const handleMove = () => {
-    // navigate('/')
-    navigate(-1)
+    navigate('/my/articleList')
   }
 
-  const success = () => {
-    Modal.success({
-      content: '글 삭제가 완료되었습니다.',
-      onOk: handleMove,
-    })
+  const myList = (e) => {
+    if (me.nickname === diary.nickname) {
+      return <StyledPrimaryBtn onClick={handleMove}>내 글 목록</StyledPrimaryBtn>
+    } else {
+      return null
+    }
+  }
+
+  const myBtn = (e) => {
+    if (me.nickname === diary.nickname) {
+      return (
+        <Space size="middle">
+          {/* <StyledPrimaryBtn type="text" onClick={handleModify}>
+            수정
+          </StyledPrimaryBtn>
+          <StyledDangerBtn type="text" onClick={showModal}>
+            삭제
+          </StyledDangerBtn> */}
+          <StyledPrimaryBtn onClick={handleModify}>수정</StyledPrimaryBtn>
+          <StyledDangerBtn onClick={showModal}>삭제</StyledDangerBtn>
+        </Space>
+      )
+    } else {
+      return null
+    }
   }
 
   return (
     <Row>
-      <Col span={24}>
-        <StyledContainer>
-          <Space size="middle">
-            <Button type="primary" onClick={handleModify}>
-              수정
-            </Button>
-            <Button type="danger" onClick={showModal}>
-              삭제
-            </Button>
-          </Space>
-        </StyledContainer>
-        <Modal title="글 삭제" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Col span={12}>
+        <StyledStratContainer>{me !== null && myList()}</StyledStratContainer>
+      </Col>
+      <Col span={12}>
+        <StyledEndContainer>{me !== null && myBtn()}</StyledEndContainer>
+        <Modal
+          title="글 삭제"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          okText="확인"
+          cancelText="취소">
           <p>해당 글을 삭제하시겠습니까?</p>
         </Modal>
       </Col>
@@ -70,10 +93,31 @@ function DiaryFooter({ dno }) {
   )
 }
 
-const StyledContainer = styled.div`
+const StyledStratContainer = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-start;
   align-items: center;
+`
+
+const StyledEndContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`
+
+const StyledPrimaryBtn = styled(Button)`
+  &&& {
+    background: #fafafa;
+    border-color: #f0f0f0;
+    color: #e86f8b;
+  }
+`
+const StyledDangerBtn = styled(Button)`
+  &&& {
+    background: #e86f8b;
+    border-color: #e86f8b;
+    color: #fff;
+  }
 `
 
 export default DiaryFooter

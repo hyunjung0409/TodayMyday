@@ -1,15 +1,33 @@
 import { useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import Fade from 'react-reveal/Fade'
-import { Space, Button, Typography } from 'antd'
+import { Space, Button, Typography, Modal } from 'antd'
 import { LoginOutlined } from '@ant-design/icons'
+import { useEffect, useState } from 'react'
+import LoginForm from '../LoginForm'
+import { useSelector } from 'react-redux'
 
 function LandingInfo() {
+  const { me } = useSelector((state) => state.user)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [state, setState] = useState(null)
   const navigate = useNavigate()
 
-  const onClick = () => {
-    navigate('/user/login')
+  const showModal = () => {
+    state === false ? setIsModalVisible(true) : navigate('/main')
   }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
+
+  useEffect(() => {
+    me !== null ? setState(true) : setState(false)
+  }, [me, setState])
 
   return (
     <>
@@ -24,7 +42,15 @@ function LandingInfo() {
         </Fade>
         <Fade left>
           <StyledSubTitle src={process.env.PUBLIC_URL + '/images/title-008.png'} />
-          <StyledButton onClick={onClick}>시작하기</StyledButton>
+          <StyledButton onClick={showModal}>시작하기</StyledButton>
+          <Modal
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            width={350}
+            footer={null}>
+            <LoginForm />
+          </Modal>
         </Fade>
       </StyledContainer>
     </>
@@ -75,6 +101,11 @@ const StyledButton = styled(Button)`
   bottom: 0;
   left: 10.5rem;
   width: 6rem;
+  &&& {
+    bacground: #fff;
+    border-color: rgb(220, 220, 220);
+    color: rgb(100, 100, 100);
+  }
 `
 
 export default LandingInfo

@@ -4,16 +4,19 @@ import styled from 'styled-components'
 import { CommentOutlined, MessageOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
+import { getAxios } from '../../api'
 
 const { Meta } = Card
 const { Text } = Typography
 
 function DiaryCard({ card }) {
   const navigate = useNavigate()
+  const axios = getAxios()
 
   const onClick = async () => {
-    console.log('click: ', card.dno)
-    navigate(`/diary/read/${card.dno}`)
+    axios.get('/diary/view', { params: { dno: card.dno } }).then(() => {
+      navigate(`/diary/read/${card.dno}`)
+    })
   }
 
   return (
@@ -27,9 +30,9 @@ function DiaryCard({ card }) {
       }
       onClick={onClick}>
       <Meta
-        avatar={<Avatar src={card.profile_image} />}
+        avatar={<Avatar src={card.profileImage} />}
         title={card.nickname}
-        // description={moment(card.createdat).format('YYYY-MM-DD')}
+        description={`#${card.word}`}
       />
       {/* <Row justify="space-evenly" align="middle">
         <Col span={24}>

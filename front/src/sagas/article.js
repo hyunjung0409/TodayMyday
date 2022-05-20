@@ -13,6 +13,7 @@ import {
   DIARY_SEARCH_CONTENT_REQUEST,
   DIARY_SEARCH_CONTENT_SUCCESS,
   DIARY_SEARCH_CONTENT_FAILURE,
+  MY_SEARCH_WORD_REQUEST,
 } from '../reducers/article'
 
 const axios = getAxios()
@@ -29,8 +30,13 @@ function* articleAdd(action) {
       type: ARTICLE_ADD_SUCCESS,
       data: action.data,
     })
-    yield alert('글 작성 성공')
-    yield navigate(`/diary/read/${res.data.diary.dno}`)
+    action.data.Modal.success({
+      content: '글 등록 완료',
+      okText: '확인',
+      onOk() {
+        navigate(`/diary/read/${res.data.diary.dno}`)
+      },
+    })
   } catch (err) {
     yield put({
       type: ARTICLE_ADD_FAILURE,
@@ -45,8 +51,9 @@ function articleListAPI(data) {
 
 function* articleList(action) {
   try {
-    const result = yield call(articleListAPI, action.data)
+    const result = yield call(articleListAPI, action.data.userId)
     const dairies = result.data.user.dairies
+    yield action.data.setData(dairies)
     yield put({
       type: ARTICLE_LIST_SUCCESS,
       data: dairies,
@@ -71,7 +78,33 @@ function* diarySearchWord(action) {
       type: DIARY_SEARCH_WORD_SUCCESS,
       data: result.data,
     })
+    // yield result.data.length !== 0
+    //   ? action.data.setData([result.data[0].word])
+    //   : action.data.setData(result.data)
     yield action.data.setData(result.data)
+  } catch (err) {
+    yield put({
+      type: DIARY_SEARCH_WORD_FAILURE,
+      error: err.response.data,
+    })
+  }
+}
+
+function mySearchWordAPI(data) {
+  const searchKind = data.searchKind
+  return axios.get(`diary/${searchKind}`, { params: { userId: data.userId, word: data.word } })
+}
+
+function* mySearchWord(action) {
+  try {
+    const result = yield call(mySearchWordAPI, action.data)
+    yield put({
+      type: DIARY_SEARCH_WORD_SUCCESS,
+      data: result.data,
+    })
+    yield result.data.length !== 0
+      ? action.data.setData([result.data[0].word])
+      : action.data.setData(result.data)
   } catch (err) {
     yield put({
       type: DIARY_SEARCH_WORD_FAILURE,
@@ -115,6 +148,10 @@ function* watchDiarySearchWord() {
   yield takeLatest(DIARY_SEARCH_WORD_REQUEST, diarySearchWord)
 }
 
+function* watchMySearchWord() {
+  yield takeLatest(MY_SEARCH_WORD_REQUEST, mySearchWord)
+}
+
 function* watchDiarySearchContent() {
   yield takeLatest(DIARY_SEARCH_CONTENT_REQUEST, diarySearchContent)
 }
@@ -125,5 +162,6 @@ export default function* userSaga() {
     fork(watchArticleList),
     fork(watchDiarySearchWord),
     fork(watchDiarySearchContent),
+    fork(watchMySearchWord),
   ])
 }

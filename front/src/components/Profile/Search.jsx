@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Search = styled(Button)`
   margin-top: 5%;
+  margin-right: 35%;
 `
 function SearchAll() {
   const navigate = useNavigate()

@@ -1,77 +1,12 @@
-/* .card {
-  width: 100px;
-  height: 150px;
-  position: relative;
-  display: inline-block;
-  margin-right: 50px;
-}
-.front {
-  position: absolute;
-  width: 100px;
-  height: 150px;
-  background: #ccc;
-  top: 0;
-  left: 0;
-}
-.back {
-  position: absolute;
-  width: 100px;
-  height: 150px;
-  background: #ff0;
-  top: 0;
-  left: 0;
-  transform: rotateY(90deg);
-}
-.cardRotate .front {
-  opacity: 1;
-  animation: rotateAni 0.5s 1;
-  transform: rotateY(90deg);
-}
-.cardRotate .back {
-  opacity: 1;
-  animation: rotateAni2 0.5s 0.5s 1 backwards;
-  transform: rotateY(0);
-}
-.backRotate .front {
-  animation: backAni 0.5s 1;
-  opacity: 1;
-}
-.backRotate .back {
-  opacity: 0;
-}
-
-@keyframes rotateAni {
-  0% {
-    transform: rotateY(0);
-  }
-  100% {
-    transform: rotateY(90deg);
-  }
-}
-@keyframes rotateAni2 {
-  0% {
-    transform: rotateY(-90deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
-}
-
-@keyframes backAni {
-  0% {
-    transform: rotateY(90deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
-} */
 .bg-wrapper {
-  height: 100vh;
+  height: 32vh;
   display: inline-block;
   justify-content: center;
   align-items: center;
-  padding-top: 20%;
-  margin-right: 4%;
+  margin-top: 10%;
+  margin-right: 2%;
+  margin-left: 1%;
+
   /* background: #444; */
 }
 .bg-wrapper .envelope-wrapper {
@@ -79,7 +14,8 @@
 }
 .bg-wrapper .envelope-wrapper .envelope {
   position: relative;
-  width: 150px;
+  width: 200px;
+  /* width: 150px 이었음 */
   height: 100px;
   right: 50%;
   /* right 추가 */
@@ -89,6 +25,8 @@
   position: absolute;
   top: 0px;
   z-index: 2;
+  width: 200px;
+  /* width:200px 추가했음 */
   border-top: 55px solid #d3eafd;
   border-right: 75px solid transparent;
   border-left: 75px solid transparent;
@@ -99,7 +37,9 @@
   content: '';
   position: absolute;
   z-index: 2;
-  width: 0px;
+  /* z-index: 0; */
+  width: 200px;
+  /* width:0px 이었음 */
   height: 0px;
   border-top: 50px solid transparent;
   border-right: 75px solid #b4d2ee;
@@ -112,6 +52,7 @@
   left: 70%;
   bottom: 0;
   width: 60%;
+  /* width: 80%; */
   height: 89%;
   background: #fff;
   text-align: center;
@@ -130,7 +71,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  font-family: 'Great Vibes', cursive;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
   color: #c51803;
   transform: translate(-50%, -50%);
 }
@@ -160,6 +102,7 @@
 }
 .bg-wrapper .envelope-wrapper .heart:before {
   top: -7.5px;
+  right: 1%;
 }
 .bg-wrapper .envelope-wrapper .heart:after {
   right: 7.5px;

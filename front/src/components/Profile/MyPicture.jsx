@@ -6,20 +6,27 @@ import ImageFileInput from '../ImageFileInput'
 import './MyPicture.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Modal, Avatar } from 'antd'
-import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { loadUserRequestAction } from '../../reducers/user'
-// const MyPic = styled.div`
-//   margin-left: auto;
-//   margin-right: auto;
-//   width: 250px;
-//   height: 250px;
-//   border-radius: 50%;
-//   border: solid;
-//   overflow: hidden;
-//   position: relative;
-// `
+
+const UpdateIcon = styled.div`
+  margin-left: 120%;
+`
 const Submit = styled(Button)`
   margin-top: 10px;
+`
+const ChangeButton = styled(Button)`
+  &&& {
+    background: #fafafa;
+    border-color: #f0f0f0;
+    color: #e86f8b;
+  }
+`
+const DeleteButton = styled(Button)`
+  &&& {
+    background: #e86f8b;
+    border-color: #e86f8b;
+    color: #fff;
+  }
 `
 function MyPicture({ imageUploader, data }) {
   const dispatch = useDispatch()
@@ -30,10 +37,8 @@ function MyPicture({ imageUploader, data }) {
   const [file2, setFile2] = useState({ fileName: null, fileURL: null })
   const formRef = useRef()
   const [editable, setEditable] = useState(false)
-  console.log(me)
-  console.log(editable, 'true면 수정 가능 / false면 수정 불가능')
+
   const [loading, setLoading] = useState(false)
-  const [isImage, setisImage] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const showModal = () => {
     setIsModalVisible(true)
@@ -76,13 +81,14 @@ function MyPicture({ imageUploader, data }) {
         { image: image.fileURL, age: me.age, gender: me.gender },
         { params: { userId: me.userId } },
       ))
+    setFile2({ fileName: null, fileURL: null })
     dispatch(loadUserRequestAction({ userId: me.userId }))
     setEditable(!editable)
   }
   const success = () => {
     Modal.success({
-      content: '회원정보 수정이 완료되었습니다.',
-      // onOk: handleMove,
+      content: '사진 등록이 완료되었습니다.',
+      okText: '확인',
     })
   }
 
@@ -100,21 +106,28 @@ function MyPicture({ imageUploader, data }) {
       }
     }
   }, [me])
+
   return (
-    <div>
+    <div className="myPic">
+      <UpdateIcon>
+        <EditOutlined
+          onClick={(e) => {
+            setEditable(!editable)
+          }}></EditOutlined>
+      </UpdateIcon>
       {editable === false ? (
         <div>
-          <Avatar size={260} icon={<img src={me !== null && me.image}></img>}></Avatar>
-
-          <EditOutlined
-            onClick={(e) => {
-              setEditable(!editable)
-            }}></EditOutlined>
+          <div>
+            <Avatar
+              size={300}
+              style={{ background: '#ccc', border: 'soild' }}
+              icon={<img src={me !== null && me.image}></img>}></Avatar>
+          </div>
         </div>
       ) : (
         <Form form={form} name="modify" onFinish={onFinish} autoComplete="off" layout="vertical">
           <Avatar
-            size={260}
+            size={300}
             icon={
               me.image !== null && (
                 <ImageFileInput
@@ -130,9 +143,9 @@ function MyPicture({ imageUploader, data }) {
             }
           />{' '}
           <Form.Item>
-            <Button type="danger" htmlType="submit" onClick={showModal}>
+            <DeleteButton type="danger" htmlType="submit" onClick={showModal}>
               삭제
-            </Button>
+            </DeleteButton>
             <Modal
               title="프로필 이미지 삭제"
               visible={isModalVisible}
@@ -140,22 +153,25 @@ function MyPicture({ imageUploader, data }) {
                 onDelete()
                 handleCancel()
               }}
-              onCancel={handleCancel}>
+              onCancel={handleCancel}
+              okText="확인"
+              cancelText="취소">
               <p>삭제하시겠습니까?</p>
             </Modal>
-            <Button type="primary" htmlType="submit" onClick={onFinish}>
+            <ChangeButton
+              type="primary"
+              htmlType="submit"
+              onClick={() => {
+                onFinish()
+                success()
+              }}>
               등록
-            </Button>
-            <EditOutlined
-              onClick={(e) => {
-                setEditable(!editable)
-              }}></EditOutlined>{' '}
+            </ChangeButton>
           </Form.Item>{' '}
         </Form>
       )}
-
-      {/* <EditOutlined onClick={onClickImageUpload}></EditOutlined> */}
     </div>
   )
 }
+
 export default MyPicture

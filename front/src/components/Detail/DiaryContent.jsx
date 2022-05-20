@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Row, Col, Typography } from 'antd'
 import styled from 'styled-components'
-
+import '../Diary/Comment.css'
 const { Text } = Typography
 
 function DiaryContent({ diary }) {
@@ -25,6 +25,9 @@ const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  margin: 1rem 0;
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  font-size: 20px;
 `
 
 export default DiaryContent
