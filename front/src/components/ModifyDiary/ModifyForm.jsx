@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import { message } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -28,25 +28,33 @@ function ModifyForm({ imageUploader, data }) {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    try {
-      axios
-        .put(
-          `diary/${dno}`,
-          {
-            word: word,
-            content: copyContent === '' ? content : copyContent,
-            image: file.fileURL === null ? fileURL : file.fileURL,
-          },
-          {
-            params: { dno: dno, userId: me.userId },
-          },
-        )
-        .then(() => {
-          navigate(`/diary/read/${dno}`, { replace: true })
-        })
-      // message.success('This is a success message')
-    } catch (err) {
-      console.log(err)
+    // console.log(copyContent)
+    if (copyContent.length <= 300) {
+      try {
+        axios
+          .put(
+            `diary/${dno}`,
+            {
+              word: word,
+              content: copyContent === '' ? content : copyContent,
+              image: file.fileURL === null ? fileURL : file.fileURL,
+            },
+            {
+              params: { dno: dno, userId: me.userId },
+            },
+          )
+          .then(() => {
+            navigate(`/diary/read/${dno}`, { replace: true })
+          })
+        // message.success('This is a success message')
+      } catch (err) {
+        // console.log(err)
+      }
+    } else {
+      Modal.warning({
+        title: '300자 이내로 입력가능합니다.',
+        okText: '확인',
+      })
     }
   }
 
