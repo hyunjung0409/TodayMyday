@@ -1,0 +1,58 @@
+@import '~antd/dist/antd.css';
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+.App {
+  margin: 0px;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+  /* font-family: Consolas, monospace; */
+  border: 1px solid green;
+}
+
+.Carousel {
+  width: 80%;
+  margin: 10rem auto;
+}
+
+.slide img {
+  width: 180px;
+  margin: 0 auto;
+}
+
+.slide {
+  transform: scale(0.2);
+  transition: transform 300ms;
+  opacity: 0.5;
+}
+
+.activeSlide {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.arrow {
+  background-color: #fff;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow svg {
+  transition: color 300ms;
+}
+
+.arrow svg :hover {
+  color: aqua;
+}
+
+.next {
+  right: 0%;
+  top: 50%;
+}
+
+.prev {
+  left: 0%;
+  top: 50%;
+}
